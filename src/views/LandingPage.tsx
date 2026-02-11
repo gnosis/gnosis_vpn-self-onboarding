@@ -14,8 +14,7 @@ import {
   Github,
   Twitter // Kept for completeness if needed later
 } from 'lucide-react';
-import Button from './components/Button';
-
+import Button from '../components/Button';import { useAppStore } from '../store/appStore';
 // --- Global Styles ---
 const GlobalStyle = createGlobalStyle`
 
@@ -480,6 +479,8 @@ const FooterLinks = styled.div`
 // --- Component ---
 
 const GnosisLanding: React.FC = () => {
+  const setCurrentView = useAppStore((state) => state.setCurrentView);
+  
   return (
     <>
       <GlobalStyle />
@@ -495,6 +496,7 @@ const GnosisLanding: React.FC = () => {
             <NavLinks>
               <Button
                 label='Onboard now'
+                onClick={() => setCurrentView('onboarding')}
               />
               <a href="#">Privacy Policy</a>
               <a href="#" style={{color: '#999'}}>(→ Logout</a>
