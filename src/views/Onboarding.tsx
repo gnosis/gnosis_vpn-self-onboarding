@@ -7,10 +7,12 @@ import { useAppStore } from "../store/appStore";
 import Welcome from "./onboarding/1_welcome";
 import Os from "./onboarding/2_os";
 import Download from "./onboarding/3_download";
+import MessageBubble from "../components/MessageBubble";
 
 
 export default function Onboarding() {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+  const selectedOS = useAppStore((state) => state.selectedOS);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
@@ -28,7 +30,9 @@ export default function Onboarding() {
         }}
         >
           { onboardingStep >= 1 && <Welcome /> }
+          { onboardingStep >= 2 && <MessageBubble text="Continue" /> }
           { onboardingStep >= 2 && <Os /> }
+          { onboardingStep >= 3 && <MessageBubble text={selectedOS} /> }
           { onboardingStep >= 3 && <Download /> }
         </Box>
       </Container>
