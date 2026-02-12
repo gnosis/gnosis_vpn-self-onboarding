@@ -12,17 +12,14 @@ import { useAppStore } from "../store/appStore";
 export default function Login() {
   const username = useAppStore((state) => state.username);
   const password = useAppStore((state) => state.password);
-  const userPreference = useAppStore((state) => state.userPreference);
   const setUsername = useAppStore((state) => state.setUsername);
   const setPassword = useAppStore((state) => state.setPassword);
-  const setUserPreference = useAppStore((state) => state.setUserPreference);
   const setCurrentView = useAppStore((state) => state.setCurrentView);
 
   const handleLogin = () => {
     console.log({
       username,
       password,
-      preference: userPreference,
     });
     setCurrentView("onboarding");
   };
@@ -175,12 +172,9 @@ export default function Login() {
           >
             <Button
               label="Stay anonymous"
-              isActive={userPreference === "anonymous"}
-              onClick={() => setUserPreference("anonymous")}
             />
             <Button
               label="Share minimal data"
-              isActive={userPreference === "share_data"}
               onClick={() => setCurrentView("landing")}
             />
           </Stack>

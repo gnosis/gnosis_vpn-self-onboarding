@@ -6,7 +6,7 @@ import Onboarding from './views/Onboarding';
 export type AppView = 
   'login' | 
   'landing' |
-  'onboarding'
+  'onboarding' 
 ;
 
 function App() {

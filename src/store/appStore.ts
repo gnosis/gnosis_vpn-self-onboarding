@@ -9,10 +9,8 @@ interface AppStore {
   // Onboarding
   onboardingStep: number;
   setOnboardingStep: (step: number) => void;
-
-  // User preferences
-  userPreference: 'anonymous' | 'share_data';
-  setUserPreference: (pref: 'anonymous' | 'share_data') => void;
+  selectedOS: 'debian' | 'macos' | null;
+  setSelectedOS: (os: 'debian' | 'macos') => void;
 
   // Login form
   username: string;
@@ -30,10 +28,8 @@ export const useAppStore = create<AppStore>((set) => ({
   // Onboarding
   onboardingStep: 1,
   setOnboardingStep: (step) => set({ onboardingStep: step }),
-
-  // User preferences
-  userPreference: 'anonymous',
-  setUserPreference: (pref) => set({ userPreference: pref }),
+  selectedOS: null,
+  setSelectedOS: (os) => set({ selectedOS: os }),
 
   // Login form
   username: '',
