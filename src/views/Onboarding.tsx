@@ -7,14 +7,41 @@ import MessageBubble from "../components/MessageBubble";
 // Steps
 import Welcome from "./onboarding/1_welcome";
 import HowOnboardingWorks from "./onboarding/2_HowOnboardingWorks";
-
-
-
 import GettingHelp from "./onboarding/3_GettingHelp";
 import SwitchingDevices from "./onboarding/4_SwitchingDevices";
 import SessionSummary from "./onboarding/5_SessionSummary";
 import Os from "./onboarding/6_os";
 import Download from "./onboarding/7_download";
+import RunInstaller from "./onboarding/8_RunInstaller";
+import HoprBasics from "./onboarding/9_HoprBasics";
+import RunGnosisVPN from "./onboarding/10_RunGnosisVPN";
+import GetStarted from "./onboarding/11_GetStarted";
+import Funding from "./onboarding/12_Funding";
+import Syncing from "./onboarding/13_Syncing";
+import SyncingFeedback from "./onboarding/14_SyncingFeedback";
+import ReadyToTest from "./onboarding/15_ReadyToTest";
+import ReadyTimeout from "./onboarding/16_ReadyTimeout";
+import CheckIP from "./onboarding/17_CheckIP";
+import CloseIPSite from "./onboarding/18_CloseIPSite";
+import ChooseExitNode from "./onboarding/19_ChooseExitNode";
+import TellChoice from "./onboarding/20_TellChoice";
+import CheckIPAgain from "./onboarding/21_CheckIPAgain";
+import DidIPChange from "./onboarding/22_DidIPChange";
+import IPChangeResponse from "./onboarding/23_IPChangeResponse";
+import NoIPChangeResponse from "./onboarding/24_NoIPChangeResponse";
+import VisitWebsite from "./onboarding/25_VisitWebsite";
+import VisitYoutube from "./onboarding/26_VisitYoutube";
+import YouTubeFeedback from "./onboarding/27_YouTubeFeedback";
+import CheckYoutubeStats from "./onboarding/28_CheckYoutubeStats";
+import CheckIPThirdTime from "./onboarding/29_CheckIPThirdTime";
+import OpenChatApp from "./onboarding/30_OpenChatApp";
+import TellChatApp from "./onboarding/31_TellChatApp";
+import UseChatApp from "./onboarding/32_UseChatApp";
+import AppFeedback from "./onboarding/33_AppFeedback";
+import CheckIPLastTime from "./onboarding/34_CheckIPLastTime";
+import DidIPChangeLast from "./onboarding/35_DidIPChangeLast";
+import TryDifferentExitNode from "./onboarding/36_TryDifferentExitNode";
+import WrapUp from "./onboarding/37_WrapUp";
 
 
 
@@ -60,31 +87,88 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={16} />
+      <TopBar currentStep={onboardingStep} totalSteps={37} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <Box 
-        sx={{ 
+        <Box
+          sx={{
             py: { xs: 3, sm: 4, md: 6 },
             display: "flex",
             flexDirection: "column",
             gap: 8,
-        }}
+          }}
         >
-          { onboardingStep >= 1 && <Welcome /> }
-          { onboardingStep >= 2 && <MessageBubble text="Start onboarding" /> }
-          { onboardingStep >= 2 && <HowOnboardingWorks /> }
-          { onboardingStep >= 3 && <MessageBubble text="Continue" /> }
-          { onboardingStep >= 3 && <GettingHelp /> }
-          { onboardingStep >= 4 && <MessageBubble text="Continue" /> }
-          { onboardingStep >= 4 && <SwitchingDevices /> }
-          { onboardingStep >= 5 && <MessageBubble text="Continue" /> }
-          { onboardingStep >= 5 && <SessionSummary /> }
-          { onboardingStep >= 6 && <MessageBubble text="Continue" /> }
-          { onboardingStep >= 6 && <Os /> }
-          { onboardingStep >= 7 && <MessageBubble text={selectedOS} /> }
-          { onboardingStep >= 7 && <Download /> }
+          {onboardingStep >= 1 && <Welcome />} 
+          {onboardingStep >= 2 && <MessageBubble text="Start onboarding" />}
+          {onboardingStep >= 2 && <HowOnboardingWorks />}
+          {onboardingStep >= 3 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 3 && <GettingHelp />}
+          {onboardingStep >= 4 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 4 && <SwitchingDevices />}
+          {onboardingStep >= 5 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 5 && <SessionSummary />}
+          {onboardingStep >= 6 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 6 && <Os />}
+          {onboardingStep >= 7 && <MessageBubble text={selectedOS} />}
+          {onboardingStep >= 7 && <Download />}
+          {onboardingStep >= 8 && <MessageBubble text="Done it!" />}
+          {onboardingStep >= 8 && <RunInstaller />}
+          {onboardingStep >= 9 && <MessageBubble text="Done it" />}
+          {onboardingStep >= 9 && <HoprBasics />}
+          {onboardingStep >= 9 && <MessageBubble text="It's installed" />}
+          {onboardingStep >= 10 && <RunGnosisVPN />}
+          {onboardingStep >= 11 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 11 && <GetStarted />}
+          {onboardingStep >= 12 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 12 && <Funding />}
+          {onboardingStep >= 13 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 13 && <Syncing />}
+          {onboardingStep >= 14 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 14 && <SyncingFeedback />}
+          {onboardingStep >= 15 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 15 && <ReadyToTest />}
+          {onboardingStep >= 16 && <ReadyTimeout />}
+          {onboardingStep >= 17 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 17 && <CheckIP />}
+          {onboardingStep >= 18 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 18 && <CloseIPSite />}
+          {onboardingStep >= 19 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 19 && <ChooseExitNode />}
+          {onboardingStep >= 20 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 20 && <TellChoice />}
+          {onboardingStep >= 21 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 21 && <CheckIPAgain />}
+          {onboardingStep >= 22 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 22 && <DidIPChange />}
+          {onboardingStep >= 23 && <IPChangeResponse />}
+          {onboardingStep >= 24 && <NoIPChangeResponse />}
+          {onboardingStep >= 25 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 25 && <VisitWebsite />}
+          {onboardingStep >= 26 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 26 && <VisitYoutube />}
+          {onboardingStep >= 27 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 27 && <YouTubeFeedback />}
+          {onboardingStep >= 28 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 28 && <CheckYoutubeStats />}
+          {onboardingStep >= 29 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 29 && <CheckIPThirdTime />}
+          {onboardingStep >= 30 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 30 && <OpenChatApp />}
+          {onboardingStep >= 31 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 31 && <TellChatApp />}
+          {onboardingStep >= 32 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 32 && <UseChatApp />}
+          {onboardingStep >= 33 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 33 && <AppFeedback />}
+          {onboardingStep >= 34 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 34 && <CheckIPLastTime />}
+          {onboardingStep >= 35 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 35 && <DidIPChangeLast />}
+          {onboardingStep >= 36 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 36 && <TryDifferentExitNode />}
+          {onboardingStep >= 37 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 37 && <WrapUp />} 
         </Box>
       </Container>
     </Box>
