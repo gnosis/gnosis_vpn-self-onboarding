@@ -16,7 +16,7 @@ export default function CheckIP({ className }: CheckIPProps) {
   const GOT_IT_LABEL = "I've got it";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("17_CheckIP", answer);
+    saveAnswer("18_CheckIP", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -23,7 +23,7 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
   return (
     <Step
       className={`VisitYoutube${className ? ` ${className}` : ""}`}
-      onboardingStep={26}
+      onboardingStep={27}
       title="Visit YouTube"
       text={
         <>
@@ -40,10 +40,10 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
         </>
       }
       buttons={
-        onboardingStep === 26 ? (
+        onboardingStep === 27 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 26)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 27)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 27)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 28)} />
           </>
         ) : null
       }

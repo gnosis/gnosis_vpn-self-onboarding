@@ -22,7 +22,7 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
   return (
     <Step
       className={`AppFeedback${className ? ` ${className}` : ""}`}
-      onboardingStep={33}
+      onboardingStep={34}
       title="App feedback"
       text={
         <Typography
@@ -37,7 +37,7 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 33 ? (
+        onboardingStep === 34 ? (
           <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 34)} />
         ) : null
       }

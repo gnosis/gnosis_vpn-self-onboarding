@@ -40,7 +40,7 @@ export default function ReadyToTest({ className }: ReadyToTestProps) {
       buttons={
         onboardingStep === 15 ? (
           <>
-            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, 17)} />
+            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, 16)} />
             <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, 17)} />
           </>
         ) : null

@@ -23,7 +23,7 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
   return (
     <Step
       className={`DidIPChange${className ? ` ${className}` : ""}`}
-      onboardingStep={22}
+      onboardingStep={23}
       title="Did the IP change"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 22 ? (
+        onboardingStep === 23 ? (
           <>
-            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, 24)} />
-            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, 23)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, 25)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, 24)} />
           </>
         ) : null
       }

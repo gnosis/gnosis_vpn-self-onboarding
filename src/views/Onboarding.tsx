@@ -20,28 +20,29 @@ import Funding from "./onboarding/12_Funding";
 import Syncing from "./onboarding/13_Syncing";
 import SyncingFeedback from "./onboarding/14_SyncingFeedback";
 import ReadyToTest from "./onboarding/15_ReadyToTest";
-import ReadyTimeout from "./onboarding/16_ReadyTimeout";
-import CheckIP from "./onboarding/17_CheckIP";
-import CloseIPSite from "./onboarding/18_CloseIPSite";
-import ChooseExitNode from "./onboarding/19_ChooseExitNode";
-import TellChoice from "./onboarding/20_TellChoice";
-import CheckIPAgain from "./onboarding/21_CheckIPAgain";
-import DidIPChange from "./onboarding/22_DidIPChange";
-import IPChangeResponse from "./onboarding/23_IPChangeResponse";
-import NoIPChangeResponse from "./onboarding/24_NoIPChangeResponse";
-import VisitWebsite from "./onboarding/25_VisitWebsite";
-import VisitYoutube from "./onboarding/26_VisitYoutube";
-import YouTubeFeedback from "./onboarding/27_YouTubeFeedback";
-import CheckYoutubeStats from "./onboarding/28_CheckYoutubeStats";
-import CheckIPThirdTime from "./onboarding/29_CheckIPThirdTime";
-import OpenChatApp from "./onboarding/30_OpenChatApp";
-import TellChatApp from "./onboarding/31_TellChatApp";
-import UseChatApp from "./onboarding/32_UseChatApp";
-import AppFeedback from "./onboarding/33_AppFeedback";
-import CheckIPLastTime from "./onboarding/34_CheckIPLastTime";
-import DidIPChangeLast from "./onboarding/35_DidIPChangeLast";
-import TryDifferentExitNode from "./onboarding/36_TryDifferentExitNode";
-import WrapUp from "./onboarding/37_WrapUp";
+import AlreadyConnected from "./onboarding/16_AlreadyConnected";
+import ReadyTimeout from "./onboarding/17_ReadyTimeout";
+import CheckIP from "./onboarding/18_CheckIP";
+import CloseIPSite from "./onboarding/19_CloseIPSite";
+import ChooseExitNode from "./onboarding/20_ChooseExitNode";
+import TellChoice from "./onboarding/21_TellChoice";
+import CheckIPAgain from "./onboarding/22_CheckIPAgain";
+import DidIPChange from "./onboarding/23_DidIPChange";
+import IPChangeResponse from "./onboarding/24_IPChangeResponse";
+import NoIPChangeResponse from "./onboarding/25_NoIPChangeResponse";
+import VisitWebsite from "./onboarding/26_VisitWebsite";
+import VisitYoutube from "./onboarding/27_VisitYoutube";
+import YouTubeFeedback from "./onboarding/28_YouTubeFeedback";
+import CheckYoutubeStats from "./onboarding/29_CheckYoutubeStats";
+import CheckIPThirdTime from "./onboarding/30_CheckIPThirdTime";
+import OpenChatApp from "./onboarding/31_OpenChatApp";
+import TellChatApp from "./onboarding/32_TellChatApp";
+import UseChatApp from "./onboarding/33_UseChatApp";
+import AppFeedback from "./onboarding/34_AppFeedback";
+import CheckIPLastTime from "./onboarding/35_CheckIPLastTime";
+import DidIPChangeLast from "./onboarding/36_DidIPChangeLast";
+import TryDifferentExitNode from "./onboarding/37_TryDifferentExitNode";
+import WrapUp from "./onboarding/38_WrapUp";
 
 
 
@@ -87,7 +88,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={37} />
+      <TopBar currentStep={onboardingStep} totalSteps={39} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -129,49 +130,53 @@ export default function Onboarding({ className }: OnboardingProps) {
           {onboardingStep >= 15 && <MessageBubble text={onboardingAnswers["14_SyncingFeedback"]} />}
           {onboardingStep >= 15 && <ReadyToTest />}
           {onboardingStep >= 16 && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
-          {onboardingStep >= 16 && <ReadyTimeout />}
-          {onboardingStep >= 17 && <MessageBubble text={onboardingAnswers["16_ReadyTimeout"]} />}
-          {onboardingStep >= 17 && <CheckIP />}
-          {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_CheckIP"]} />}
-          {onboardingStep >= 18 && <CloseIPSite />}
-          {onboardingStep >= 19 && <MessageBubble text={onboardingAnswers["18_CloseIPSite"]} />}
-          {onboardingStep >= 19 && <ChooseExitNode />}
-          {onboardingStep >= 20 && <MessageBubble text={onboardingAnswers["19_ChooseExitNode"]} />}
-          {onboardingStep >= 20 && <TellChoice />}
-          {onboardingStep >= 21 && <MessageBubble text={onboardingAnswers["20_TellChoice"]} />}
-          {onboardingStep >= 21 && <CheckIPAgain />}
-          {onboardingStep >= 22 && <MessageBubble text={onboardingAnswers["21_CheckIPAgain"]} />}
-          {onboardingStep >= 22 && <DidIPChange />}
-          {onboardingStep >= 23 && <MessageBubble text={onboardingAnswers["22_DidIPChange"]} />}
-          {onboardingStep >= 23 && <IPChangeResponse />}
-          {onboardingStep >= 24 && <MessageBubble text={onboardingAnswers["23_IPChangeResponse"]} />}
-          {onboardingStep >= 24 && <NoIPChangeResponse />}
-          {onboardingStep >= 25 && <MessageBubble text={onboardingAnswers["24_NoIPChangeResponse"]} />}
-          {onboardingStep >= 25 && <VisitWebsite />}
-          {onboardingStep >= 26 && <MessageBubble text={onboardingAnswers["25_VisitWebsite"]} />}
-          {onboardingStep >= 26 && <VisitYoutube />}
-          {onboardingStep >= 27 && <MessageBubble text={onboardingAnswers["26_VisitYoutube"]} />}
-          {onboardingStep >= 27 && <YouTubeFeedback />}
-          {onboardingStep >= 28 && <MessageBubble text={onboardingAnswers["27_YouTubeFeedback"]} />}
-          {onboardingStep >= 28 && <CheckYoutubeStats />}
-          {onboardingStep >= 29 && <MessageBubble text={onboardingAnswers["28_CheckYoutubeStats"]} />}
-          {onboardingStep >= 29 && <CheckIPThirdTime />}
-          {onboardingStep >= 30 && <MessageBubble text={onboardingAnswers["29_CheckIPThirdTime"]} />}
-          {onboardingStep >= 30 && <OpenChatApp />}
-          {onboardingStep >= 31 && <MessageBubble text={onboardingAnswers["30_OpenChatApp"]} />}
-          {onboardingStep >= 31 && <TellChatApp />}
-          {onboardingStep >= 32 && <MessageBubble text={onboardingAnswers["31_TellChatApp"]} />}
-          {onboardingStep >= 32 && <UseChatApp />}
-          {onboardingStep >= 33 && <MessageBubble text={onboardingAnswers["32_UseChatApp"]} />}
-          {onboardingStep >= 33 && <AppFeedback />}
-          {onboardingStep >= 34 && <MessageBubble text={onboardingAnswers["33_AppFeedback"]} />}
-          {onboardingStep >= 34 && <CheckIPLastTime />}
-          {onboardingStep >= 35 && <MessageBubble text={onboardingAnswers["34_CheckIPLastTime"]} />}
-          {onboardingStep >= 35 && <DidIPChangeLast />}
-          {onboardingStep >= 36 && <MessageBubble text={onboardingAnswers["35_DidIPChangeLast"]} />}
-          {onboardingStep >= 36 && <TryDifferentExitNode />}
-          {onboardingStep >= 37 && <MessageBubble text={onboardingAnswers["36_TryDifferentExitNode"]} />}
-          {onboardingStep >= 37 && <WrapUp />} 
+          {onboardingStep >= 16 && <AlreadyConnected />}
+          {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
+          {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <ReadyToTest />}
+          {onboardingStep >= 17 && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
+          {onboardingStep >= 17 && <ReadyTimeout />}
+          {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_ReadyTimeout"]} />}
+          {onboardingStep >= 18 && <CheckIP />}
+          {onboardingStep >= 19 && <MessageBubble text={onboardingAnswers["18_CheckIP"]} />}
+          {onboardingStep >= 19 && <CloseIPSite />}
+          {onboardingStep >= 20 && <MessageBubble text={onboardingAnswers["19_CloseIPSite"]} />}
+          {onboardingStep >= 20 && <ChooseExitNode />}
+          {onboardingStep >= 21 && <MessageBubble text={onboardingAnswers["20_ChooseExitNode"]} />}
+          {onboardingStep >= 21 && <TellChoice />}
+          {onboardingStep >= 22 && <MessageBubble text={onboardingAnswers["21_TellChoice"]} />}
+          {onboardingStep >= 22 && <CheckIPAgain />}
+          {onboardingStep >= 23 && <MessageBubble text={onboardingAnswers["22_CheckIPAgain"]} />}
+          {onboardingStep >= 23 && <DidIPChange />}
+          {onboardingStep >= 24 && <MessageBubble text={onboardingAnswers["23_DidIPChange"]} />}
+          {onboardingStep >= 24 && <IPChangeResponse />}
+          {onboardingStep >= 25 && <MessageBubble text={onboardingAnswers["24_IPChangeResponse"]} />}
+          {onboardingStep >= 25 && <NoIPChangeResponse />}
+          {onboardingStep >= 26 && <MessageBubble text={onboardingAnswers["25_NoIPChangeResponse"]} />}
+          {onboardingStep >= 26 && <VisitWebsite />}
+          {onboardingStep >= 27 && <MessageBubble text={onboardingAnswers["26_VisitWebsite"]} />}
+          {onboardingStep >= 27 && <VisitYoutube />}
+          {onboardingStep >= 28 && <MessageBubble text={onboardingAnswers["27_VisitYoutube"]} />}
+          {onboardingStep >= 28 && <YouTubeFeedback />}
+          {onboardingStep >= 29 && <MessageBubble text={onboardingAnswers["28_YouTubeFeedback"]} />}
+          {onboardingStep >= 29 && <CheckYoutubeStats />}
+          {onboardingStep >= 30 && <MessageBubble text={onboardingAnswers["29_CheckYoutubeStats"]} />}
+          {onboardingStep >= 30 && <CheckIPThirdTime />}
+          {onboardingStep >= 31 && <MessageBubble text={onboardingAnswers["30_CheckIPThirdTime"]} />}
+          {onboardingStep >= 31 && <OpenChatApp />}
+          {onboardingStep >= 32 && <MessageBubble text={onboardingAnswers["31_OpenChatApp"]} />}
+          {onboardingStep >= 32 && <TellChatApp />}
+          {onboardingStep >= 33 && <MessageBubble text={onboardingAnswers["32_TellChatApp"]} />}
+          {onboardingStep >= 33 && <UseChatApp />}
+          {onboardingStep >= 34 && <MessageBubble text={onboardingAnswers["33_UseChatApp"]} />}
+          {onboardingStep >= 34 && <AppFeedback />}
+          {onboardingStep >= 35 && <MessageBubble text={onboardingAnswers["34_AppFeedback"]} />}
+          {onboardingStep >= 35 && <CheckIPLastTime />}
+          {onboardingStep >= 36 && <MessageBubble text={onboardingAnswers["35_CheckIPLastTime"]} />}
+          {onboardingStep >= 36 && <DidIPChangeLast />}
+          {onboardingStep >= 37 && <MessageBubble text={onboardingAnswers["36_DidIPChangeLast"]} />}
+          {onboardingStep >= 37 && <TryDifferentExitNode />}
+          {onboardingStep >= 38 && <MessageBubble text={onboardingAnswers["37_TryDifferentExitNode"]} />}
+          {onboardingStep >= 38 && <WrapUp />} 
         </Box>
       </Container>
     </Box>

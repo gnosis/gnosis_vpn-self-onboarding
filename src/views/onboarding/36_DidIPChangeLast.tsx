@@ -3,27 +3,28 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface DidIPChangeLastProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const WRONG_LABEL = "Something went wrong";
+  const SAME_LABEL = "It's the same as last time";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("36_DidIPChangeLast", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`DidIPChangeLast${className ? ` ${className}` : ""}`}
+      onboardingStep={37}
+      title="Did the IP change?"
       text={
         <Typography
           variant="body1"
@@ -33,12 +34,15 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Did the IP change?
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 37 ? (
+          <>
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, 38)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, 39)} />
+          </>
         ) : null
       }
     />

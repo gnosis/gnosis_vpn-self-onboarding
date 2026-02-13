@@ -22,7 +22,7 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   return (
     <Step
       className={`IPChangeResponse${className ? ` ${className}` : ""}`}
-      onboardingStep={23}
+      onboardingStep={24}
       title="Response"
       text={
         <Typography
@@ -37,7 +37,7 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 23 ? (
+        onboardingStep === 24 ? (
           <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 25)} />
         ) : null
       }

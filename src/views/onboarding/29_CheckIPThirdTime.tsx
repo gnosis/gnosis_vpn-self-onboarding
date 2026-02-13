@@ -24,7 +24,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
   return (
     <Step
       className={`CheckIPThirdTime${className ? ` ${className}` : ""}`}
-      onboardingStep={29}
+      onboardingStep={30}
       title="Check your IP again"
       text={
         <Typography
@@ -53,11 +53,11 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 29 ? (
+        onboardingStep === 30 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 29)} />
-            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, 30)} />
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, 30)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 30)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, 31)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, 31)} />
           </>
         ) : null
       }

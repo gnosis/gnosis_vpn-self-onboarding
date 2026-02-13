@@ -23,7 +23,7 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
   return (
     <Step
       className={`ChooseExitNode${className ? ` ${className}` : ""}`}
-      onboardingStep={19}
+      onboardingStep={20}
       title="Choose an exit node"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 19 ? (
+        onboardingStep === 20 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 19)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 20)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 20)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 21)} />
           </>
         ) : null
       }

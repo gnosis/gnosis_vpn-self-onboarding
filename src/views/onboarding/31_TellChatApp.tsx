@@ -22,7 +22,7 @@ export default function TellChatApp({ className }: TellChatAppProps) {
   return (
     <Step
       className={`TellChatApp${className ? ` ${className}` : ""}`}
-      onboardingStep={31}
+      onboardingStep={32}
       title="Tell Us Your Chat App"
       text={
         <Typography
@@ -37,7 +37,7 @@ export default function TellChatApp({ className }: TellChatAppProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 31 ? (
+        onboardingStep === 32 ? (
           <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 32)} />
         ) : null
       }

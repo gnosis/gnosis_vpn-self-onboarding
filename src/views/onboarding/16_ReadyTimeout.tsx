@@ -22,7 +22,7 @@ export default function ReadyTimeout({ className }: ReadyTimeoutProps) {
   return (
     <Step
       className={`ReadyTimeout${className ? ` ${className}` : ""}`}
-      onboardingStep={16}
+      onboardingStep={17}
       title="Response"
       text={
         <Typography
@@ -37,8 +37,8 @@ export default function ReadyTimeout({ className }: ReadyTimeoutProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 16 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 17)} />
+        onboardingStep === 17 ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 18)} />
         ) : null
       }
     />

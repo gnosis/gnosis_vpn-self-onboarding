@@ -23,7 +23,7 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
   return (
     <Step
       className={`CloseIPSite${className ? ` ${className}` : ""}`}
-      onboardingStep={18}
+      onboardingStep={19}
       title="Close IP site"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 18 ? (
+        onboardingStep === 19 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 18)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 19)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 19)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 20)} />
           </>
         ) : null
       }

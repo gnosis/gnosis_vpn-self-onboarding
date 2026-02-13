@@ -3,27 +3,28 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface CheckYoutubeStatsProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("29_CheckYoutubeStats", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
+      onboardingStep={30}
+      title="Check YouTube Stats"
       text={
         <Typography
           variant="body1"
@@ -33,12 +34,15 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Let's check the video stats
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 30 ? (
+          <>
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 30)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 31)} />
+          </>
         ) : null
       }
     />

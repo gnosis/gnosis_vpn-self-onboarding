@@ -15,14 +15,14 @@ export default function WrapUp({ className }: WrapUpProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("38_WrapUp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
       className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
+      onboardingStep={39}
       title="Wrap up"
       text={
         <Typography
@@ -37,8 +37,8 @@ export default function WrapUp({ className }: WrapUpProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 39 ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 39)} />
         ) : null
       }
     />

@@ -22,7 +22,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
   return (
     <Step
       className={`TellChoice${className ? ` ${className}` : ""}`}
-      onboardingStep={20}
+      onboardingStep={21}
       title="Tell us choice"
       text={
         <Typography
@@ -37,7 +37,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 20 ? (
+        onboardingStep === 21 ? (
           <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 21)} />
         ) : null
       }

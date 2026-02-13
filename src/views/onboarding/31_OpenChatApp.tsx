@@ -16,14 +16,14 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("30_OpenChatApp", answer);
+    saveAnswer("31_OpenChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
       className={`OpenChatApp${className ? ` ${className}` : ""}`}
-      onboardingStep={31}
+      onboardingStep={32}
       title="Open your Chat App"
       text={
         <>
@@ -62,10 +62,10 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
         </>
       }
       buttons={
-        onboardingStep === 31 ? (
+        onboardingStep === 32 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 31)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 32)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 32)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 33)} />
           </>
         ) : null
       }

@@ -3,27 +3,28 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface ChooseExitNodeProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("20_ChooseExitNode", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`ChooseExitNode${className ? ` ${className}` : ""}`}
+      onboardingStep={21}
+      title="Choose an exit node"
       text={
         <Typography
           variant="body1"
@@ -33,12 +34,15 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Next, choose and exit node and connect the VPN
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 21 ? (
+          <>
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 21)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 22)} />
+          </>
         ) : null
       }
     />

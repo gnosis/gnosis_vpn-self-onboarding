@@ -3,27 +3,28 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface AlreadyConnectedProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function AlreadyConnected({ className }: AlreadyConnectedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const DISCONNECTED_LABEL = "Disconnected";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("16_AlreadyConnected", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`AlreadyConnected${className ? ` ${className}` : ""}`}
+      onboardingStep={16}
+      title="Good to know!"
       text={
         <Typography
           variant="body1"
@@ -33,12 +34,15 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          No problem! Just disconnect for now
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 16 ? (
+          <>
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 16)} />
+            <Button label={DISCONNECTED_LABEL} onClick={() => handleAnswer(DISCONNECTED_LABEL, 15)} />
+          </>
         ) : null
       }
     />

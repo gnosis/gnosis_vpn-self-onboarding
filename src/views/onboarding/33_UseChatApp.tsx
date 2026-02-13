@@ -3,27 +3,28 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface UseChatAppProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function UseChatApp({ className }: UseChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("33_UseChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`UseChatApp${className ? ` ${className}` : ""}`}
+      onboardingStep={34}
+      title="Use your Chat App"
       text={
         <Typography
           variant="body1"
@@ -33,12 +34,15 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Now just use your chat app normally for a bit
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 34 ? (
+          <>
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 34)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 35)} />
+          </>
         ) : null
       }
     />

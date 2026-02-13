@@ -3,11 +3,11 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface IPChangeResponseProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -15,15 +15,15 @@ export default function WrapUp({ className }: WrapUpProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("24_IPChangeResponse", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`IPChangeResponse${className ? ` ${className}` : ""}`}
+      onboardingStep={25}
+      title="Response"
       text={
         <Typography
           variant="body1"
@@ -33,12 +33,12 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Great! Your private Gnosis VPN connection is working
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 25 ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 26)} />
         ) : null
       }
     />

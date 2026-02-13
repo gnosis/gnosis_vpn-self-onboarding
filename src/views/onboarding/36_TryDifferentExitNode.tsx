@@ -23,7 +23,7 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
   return (
     <Step
       className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
-      onboardingStep={36}
+      onboardingStep={37}
       title="Try with a different exit node"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
         </Typography>
       }
       buttons={
-        onboardingStep === 36 ? (
+        onboardingStep === 37 ? (
           <>
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, 37)} />
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 36)} />
+            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, 38)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 37)} />
           </>
         ) : null
       }

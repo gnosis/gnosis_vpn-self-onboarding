@@ -23,7 +23,7 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
   return (
     <Step
       className={`VisitWebsite${className ? ` ${className}` : ""}`}
-      onboardingStep={25}
+      onboardingStep={26}
       title="Visit website"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 25 ? (
+        onboardingStep === 26 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 25)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 26)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 26)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 27)} />
           </>
         ) : null
       }

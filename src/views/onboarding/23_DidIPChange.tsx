@@ -3,27 +3,28 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface DidIPChangeProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function DidIPChange({ className }: DidIPChangeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NO_CHANGE_LABEL = "No it's the same";
+  const YES_LABEL = "Yes!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("23_DidIPChange", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`DidIPChange${className ? ` ${className}` : ""}`}
+      onboardingStep={24}
+      title="Did the IP change"
       text={
         <Typography
           variant="body1"
@@ -33,12 +34,15 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Did your IP change?
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 24 ? (
+          <>
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, 26)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, 25)} />
+          </>
         ) : null
       }
     />

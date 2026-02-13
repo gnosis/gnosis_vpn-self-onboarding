@@ -23,7 +23,7 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
   return (
     <Step
       className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
-      onboardingStep={28}
+      onboardingStep={29}
       title="Check YouTube Stats"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
         </Typography>
       }
       buttons={
-        onboardingStep === 28 ? (
+        onboardingStep === 29 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 28)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 29)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 29)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 30)} />
           </>
         ) : null
       }

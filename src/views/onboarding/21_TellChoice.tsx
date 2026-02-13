@@ -3,11 +3,11 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface TellChoiceProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function TellChoice({ className }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -15,15 +15,15 @@ export default function WrapUp({ className }: WrapUpProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("21_TellChoice", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`TellChoice${className ? ` ${className}` : ""}`}
+      onboardingStep={22}
+      title="Tell us choice"
       text={
         <Typography
           variant="body1"
@@ -33,12 +33,12 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Which one did you choose?
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 22 ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 22)} />
         ) : null
       }
     />

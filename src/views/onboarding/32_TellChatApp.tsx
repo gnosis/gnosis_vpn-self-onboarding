@@ -3,11 +3,11 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface WrapUpProps {
+interface TellChatAppProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function TellChatApp({ className }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -15,15 +15,15 @@ export default function WrapUp({ className }: WrapUpProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_WrapUp", answer);
+    saveAnswer("32_TellChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
-      title="Wrap up"
+      className={`TellChatApp${className ? ` ${className}` : ""}`}
+      onboardingStep={33}
+      title="Tell Us Your Chat App"
       text={
         <Typography
           variant="body1"
@@ -33,12 +33,12 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
+        onboardingStep === 33 ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 33)} />
         ) : null
       }
     />

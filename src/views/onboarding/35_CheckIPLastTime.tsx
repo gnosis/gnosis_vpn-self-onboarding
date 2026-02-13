@@ -16,14 +16,14 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_CheckIPLastTime", answer);
+    saveAnswer("35_CheckIPLastTime", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
       className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
-      onboardingStep={35}
+      onboardingStep={36}
       title="Check IP one last time"
       text={
         <Typography
@@ -51,10 +51,10 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 35 ? (
+        onboardingStep === 36 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 35)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 36)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 36)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 37)} />
           </>
         ) : null
       }

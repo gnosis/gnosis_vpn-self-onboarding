@@ -23,7 +23,7 @@ export default function UseChatApp({ className }: UseChatAppProps) {
   return (
     <Step
       className={`UseChatApp${className ? ` ${className}` : ""}`}
-      onboardingStep={32}
+      onboardingStep={33}
       title="Use your Chat App"
       text={
         <Typography
@@ -38,10 +38,10 @@ export default function UseChatApp({ className }: UseChatAppProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 32 ? (
+        onboardingStep === 33 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 32)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 33)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 33)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 34)} />
           </>
         ) : null
       }

@@ -22,7 +22,7 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
   return (
     <Step
       className={`NoIPChangeResponse${className ? ` ${className}` : ""}`}
-      onboardingStep={24}
+      onboardingStep={25}
       title="Response"
       text={
         <Typography
@@ -37,7 +37,7 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
         </Typography>
       }
       buttons={
-        onboardingStep === 24 ? (
+        onboardingStep === 25 ? (
           <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 25)} />
         ) : null
       }

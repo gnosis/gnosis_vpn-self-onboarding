@@ -3,28 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-interface CheckIPLastTimeProps {
+interface CheckIPThirdTimeProps {
   className?: string;
 }
 
-export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
+export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
+  const SAME_LABEL = "It's the same as last time";
+  const WRONG_LABEL = "Something's gone wrong";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_CheckIPLastTime", answer);
+    saveAnswer("30_CheckIPThirdTime", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
-      onboardingStep={35}
-      title="Check IP one last time"
+      className={`CheckIPThirdTime${className ? ` ${className}` : ""}`}
+      onboardingStep={31}
+      title="Check your IP again"
       text={
         <Typography
           variant="body1"
@@ -34,7 +35,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
             color: "#333",
           }}
         >
-          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
+          Let's check in on the connection. Go back to{" "}
           <Box
             component="a"
             href="https://whatismyipaddress.com"
@@ -48,13 +49,15 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
           >
             https://whatismyipaddress.com
           </Box>
+          {" "}and check your IP
         </Typography>
       }
       buttons={
-        onboardingStep === 35 ? (
+        onboardingStep === 31 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 35)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 36)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 31)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, 32)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, 32)} />
           </>
         ) : null
       }

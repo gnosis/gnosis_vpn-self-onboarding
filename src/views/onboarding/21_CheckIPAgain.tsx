@@ -23,7 +23,7 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
   return (
     <Step
       className={`CheckIPAgain${className ? ` ${className}` : ""}`}
-      onboardingStep={21}
+      onboardingStep={22}
       title="Check your IP again"
       text={
         <Typography
@@ -52,10 +52,10 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 21 ? (
+        onboardingStep === 22 ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 21)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 22)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 22)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 23)} />
           </>
         ) : null
       }
