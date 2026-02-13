@@ -3,12 +3,17 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-export default function Welcome() {
+interface WelcomeProps {
+  className?: string;
+}
+
+export default function Welcome({ className }: WelcomeProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
 
   return (
     <Step
+      className={`Welcome${className ? ` ${className}` : ""}`}
       onboardingStep={1}
       title="Welcome to Gnosis VPN Onboarding"
       text={

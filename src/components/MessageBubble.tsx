@@ -2,13 +2,15 @@ import { Box, Typography } from "@mui/material";
 
 interface MessageBubbleProps {
   text?: string | null;
+  className?: string;
 }
 
-export default function MessageBubble({ text }: MessageBubbleProps) {
+export default function MessageBubble({ text, className }: MessageBubbleProps) {
   if (!text) return null;
 
   return (
     <Box
+      className={`MessageBubble${className ? ` ${className}` : ""}`}
       sx={{
         backgroundColor: "#e8e8e8",
         borderRadius: "8px",

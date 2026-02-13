@@ -19,7 +19,11 @@ interface SummaryItem {
   timestamp: string;
 }
 
-export default function Summary() {
+interface SummaryProps {
+  className?: string;
+}
+
+export default function Summary({ className }: SummaryProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
 
   const summaryItems: SummaryItem[] = [
@@ -53,7 +57,7 @@ export default function Summary() {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <Box className={`Summary${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <Stack spacing={3} sx={{ flex: 1 }}>
         {/* Title */}
         <Typography

@@ -3,12 +3,20 @@ import { Box, Stack, Typography, Button } from "@mui/material";
 interface TopBarProps {
   currentStep?: number;
   totalSteps?: number;
+  className?: string;
 }
 
-export default function TopBar({ currentStep = 1, totalSteps = 16 }: TopBarProps) {
+export default function TopBar({ currentStep = 1, totalSteps = 16, className }: TopBarProps) {
   return (
     <Box
+      className={`TopBar${className ? ` ${className}` : ""}`}
       sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1100,
+        backgroundColor: "#fff",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",

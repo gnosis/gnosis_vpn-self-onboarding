@@ -9,7 +9,11 @@ import {
 import Button from "../components/onboarding/Button";
 import { useAppStore } from "../store/appStore";
 
-export default function Login() {
+interface LoginProps {
+  className?: string;
+}
+
+export default function Login({ className }: LoginProps) {
   const username = useAppStore((state) => state.username);
   const password = useAppStore((state) => state.password);
   const setUsername = useAppStore((state) => state.setUsername);
@@ -25,7 +29,7 @@ export default function Login() {
   };
 
   return (
-    <Container maxWidth={false}>
+    <Container className={`Login${className ? ` ${className}` : ""}`} maxWidth={false}>
       <Box
         sx={{
           display: "flex",

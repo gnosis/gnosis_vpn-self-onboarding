@@ -3,7 +3,11 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-export default function OS() {
+interface OSProps {
+    className?: string;
+}
+
+export default function OS({ className }: OSProps) {
     const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
     const setSelectedOS = useAppStore((state) => state.setSelectedOS);
     const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -16,6 +20,7 @@ export default function OS() {
 
     return (
         <Step
+            className={`OS${className ? ` ${className}` : ""}`}
             onboardingStep={2}
             title="Which OS?"
             text={

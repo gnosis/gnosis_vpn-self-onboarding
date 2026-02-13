@@ -10,7 +10,11 @@ import Download from "./onboarding/3_download";
 import MessageBubble from "../components/MessageBubble";
 
 
-export default function Onboarding() {
+interface OnboardingProps {
+  className?: string;
+}
+
+export default function Onboarding({ className }: OnboardingProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const selectedOS = useAppStore((state) => state.selectedOS);
 
@@ -46,7 +50,7 @@ export default function Onboarding() {
   }, [onboardingStep]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
       <TopBar currentStep={onboardingStep} totalSteps={16} />
 

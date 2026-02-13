@@ -3,7 +3,11 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-export default function Download() {
+interface DownloadProps {
+  className?: string;
+}
+
+export default function Download({ className }: DownloadProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
@@ -17,6 +21,7 @@ export default function Download() {
 
   return (
     <Step
+      className={`Download${className ? ` ${className}` : ""}`}
       onboardingStep={3}
       title="Download the app"
       text={

@@ -6,11 +6,13 @@ interface StepProps {
   text: ReactNode;
   buttons: ReactNode;
   onboardingStep?: number | null;
+  className?: string;
 }
 
-export default function Step({ title, text, buttons, onboardingStep }: StepProps) {
+export default function Step({ title, text, buttons, onboardingStep, className }: StepProps) {
   return (
     <Box
+      className={`Step${className ? ` ${className}` : ""}`}
       {...(onboardingStep != null ? { id: `onboardingStep-${onboardingStep}` } : {})}
       sx={{ display: "flex", flexDirection: "column" }}
     >

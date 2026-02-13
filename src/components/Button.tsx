@@ -68,10 +68,11 @@ interface OnboardButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const OnboardButton: React.FC<OnboardButtonProps> = ({
   label = "Onboard now",
+  className,
   ...props
 }) => {
   return (
-    <ButtonWrapper {...props}>
+    <ButtonWrapper className={`OnboardButton${className ? ` ${className}` : ""}`} {...props}>
       <IconWrapper>
         <ArrowRight size={16} strokeWidth={2} />
       </IconWrapper>

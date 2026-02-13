@@ -478,13 +478,17 @@ const FooterLinks = styled.div`
 
 // --- Component ---
 
-const GnosisLanding: React.FC = () => {
+interface GnosisLandingProps {
+  className?: string;
+}
+
+const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
-  
+
   return (
     <>
       <GlobalStyle />
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div className={`GnosisLanding${className ? ` ${className}` : ""}`} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
         {/* Navigation */}
         <Container>

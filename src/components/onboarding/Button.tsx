@@ -8,10 +8,12 @@ interface OnboardingButtonProps extends ButtonProps {
 export default function Button({
     label,
     isActive = false,
+    className,
     ...props
 }: OnboardingButtonProps) {
     return (
         <MuiButton
+            className={`Button${className ? ` ${className}` : ""}`}
             variant={isActive ? "contained" : "outlined"}
             sx={{
                 flex: 1,
