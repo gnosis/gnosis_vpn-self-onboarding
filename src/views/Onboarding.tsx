@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { Container, Box } from "@mui/material";
 import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
@@ -13,6 +13,37 @@ import MessageBubble from "../components/MessageBubble";
 export default function Onboarding() {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const selectedOS = useAppStore((state) => state.selectedOS);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      while (!cancelled) {
+        const el = document.getElementById(`onboardingStep-${onboardingStep}`);
+        if (el) {
+          const target = el.getBoundingClientRect().top + window.scrollY;
+          const start = window.scrollY;
+          const distance = target - start;
+          const duration = 1000;
+          let startTime: number | null = null;
+          const step = (timestamp: number) => {
+            if (cancelled) return;
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = progress < 0.5
+              ? 2 * progress * progress
+              : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+            window.scrollTo(0, start + distance * ease);
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [onboardingStep]);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>

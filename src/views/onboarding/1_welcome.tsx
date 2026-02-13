@@ -9,6 +9,7 @@ export default function Welcome() {
 
   return (
     <Step
+      onboardingStep={1}
       title="Welcome to Gnosis VPN Onboarding"
       text={
         <>

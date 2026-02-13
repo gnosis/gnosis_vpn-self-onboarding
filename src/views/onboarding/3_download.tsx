@@ -17,6 +17,7 @@ export default function Download() {
 
   return (
     <Step
+      onboardingStep={3}
       title="Download the app"
       text={
         <>

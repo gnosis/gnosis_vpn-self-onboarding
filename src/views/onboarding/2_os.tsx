@@ -16,6 +16,7 @@ export default function OS() {
 
     return (
         <Step
+            onboardingStep={2}
             title="Which OS?"
             text={
                 <>

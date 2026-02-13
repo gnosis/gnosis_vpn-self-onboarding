@@ -5,11 +5,15 @@ interface StepProps {
   title: string;
   text: ReactNode;
   buttons: ReactNode;
+  onboardingStep?: number | null;
 }
 
-export default function Step({ title, text, buttons }: StepProps) {
+export default function Step({ title, text, buttons, onboardingStep }: StepProps) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box
+      {...(onboardingStep != null ? { id: `onboardingStep-${onboardingStep}` } : {})}
+      sx={{ display: "flex", flexDirection: "column" }}
+    >
       <Box sx={{ mr: 8 }}>
         {/* Title with Avatar */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
