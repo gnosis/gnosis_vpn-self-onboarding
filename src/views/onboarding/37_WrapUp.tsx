@@ -9,7 +9,15 @@ interface WrapUpProps {
 
 export default function WrapUp({ className }: WrapUpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("37_WrapUp", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -30,7 +38,7 @@ export default function WrapUp({ className }: WrapUpProps) {
       }
       buttons={
         onboardingStep === 37 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(38)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 38)} />
         ) : null
       }
     />

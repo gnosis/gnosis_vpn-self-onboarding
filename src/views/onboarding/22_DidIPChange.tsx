@@ -9,7 +9,16 @@ interface DidIPChangeProps {
 
 export default function DidIPChange({ className }: DidIPChangeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NO_CHANGE_LABEL = "No it's the same";
+  const YES_LABEL = "Yes!";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("22_DidIPChange", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -31,8 +40,8 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
       buttons={
         onboardingStep === 22 ? (
           <>
-            <Button label="No it's the same" onClick={() => setOnboardingStep(23)} />
-            <Button label="Yes!" onClick={() => setOnboardingStep(24)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, 24)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, 23)} />
           </>
         ) : null
       }

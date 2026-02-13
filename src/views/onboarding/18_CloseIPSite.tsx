@@ -9,7 +9,16 @@ interface CloseIPSiteProps {
 
 export default function CloseIPSite({ className }: CloseIPSiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "Done";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("18_CloseIPSite", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -31,8 +40,8 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
       buttons={
         onboardingStep === 18 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="Done" onClick={() => setOnboardingStep(19)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 18)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 19)} />
           </>
         ) : null
       }

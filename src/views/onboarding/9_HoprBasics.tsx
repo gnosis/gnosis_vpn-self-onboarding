@@ -9,7 +9,16 @@ interface HoprBasicsProps {
 
 export default function HoprBasics({ className }: HoprBasicsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need some help";
+  const INSTALLED_LABEL = "It's installed";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("9_HoprBasics", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -64,8 +73,8 @@ export default function HoprBasics({ className }: HoprBasicsProps) {
       buttons={
         onboardingStep === 9 ? (
           <>
-            <Button label="I need some help" onClick={() => console.log("User needs help")} />
-            <Button label="It's installed" onClick={() => setOnboardingStep(10)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 9)} />
+            <Button label={INSTALLED_LABEL} onClick={() => handleAnswer(INSTALLED_LABEL, 10)} />
           </>
         ) : null
       }

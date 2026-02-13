@@ -9,8 +9,8 @@ interface AppStore {
   // Onboarding
   onboardingStep: number;
   setOnboardingStep: (step: number) => void;
-  selectedOS: 'linux' | 'macos' | null;
-  setSelectedOS: (os: 'linux' | 'macos') => void;
+  onboardingAnswers: Record<string, string | null>;
+  saveAnswer: (stepKey: string, answer: string) => void;
 
   // Login form
   username: string;
@@ -28,8 +28,11 @@ export const useAppStore = create<AppStore>((set) => ({
   // Onboarding
   onboardingStep: 1,
   setOnboardingStep: (step) => set({ onboardingStep: step }),
-  selectedOS: null,
-  setSelectedOS: (os) => set({ selectedOS: os }),
+  onboardingAnswers: {},
+  saveAnswer: (stepKey, answer) =>
+    set((state) => ({
+      onboardingAnswers: { ...state.onboardingAnswers, [stepKey]: answer },
+    })),
 
   // Login form
   username: '',

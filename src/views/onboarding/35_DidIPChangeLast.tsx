@@ -9,7 +9,16 @@ interface DidIPChangeLastProps {
 
 export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const WRONG_LABEL = "Something went wrong";
+  const SAME_LABEL = "It's the same as last time";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("35_DidIPChangeLast", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -31,8 +40,8 @@ export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
       buttons={
         onboardingStep === 35 ? (
           <>
-            <Button label="Something went wrong" onClick={() => setOnboardingStep(36)} />
-            <Button label="It's the same as last time" onClick={() => setOnboardingStep(36)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, 36)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, 37)} />
           </>
         ) : null
       }

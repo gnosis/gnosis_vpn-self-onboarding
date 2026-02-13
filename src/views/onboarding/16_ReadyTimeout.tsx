@@ -9,7 +9,15 @@ interface ReadyTimeoutProps {
 
 export default function ReadyTimeout({ className }: ReadyTimeoutProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("16_ReadyTimeout", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -30,7 +38,7 @@ export default function ReadyTimeout({ className }: ReadyTimeoutProps) {
       }
       buttons={
         onboardingStep === 16 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(17)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 17)} />
         ) : null
       }
     />

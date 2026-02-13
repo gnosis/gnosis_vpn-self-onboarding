@@ -9,7 +9,16 @@ interface SyncingProps {
 
 export default function Syncing({ className }: SyncingProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need some help";
+  const SYNCED_LABEL = "It's synced";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("13_Syncing", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -44,8 +53,8 @@ export default function Syncing({ className }: SyncingProps) {
       buttons={
         onboardingStep === 13 ? (
           <>
-            <Button label="I need some help" onClick={() => console.log("User needs help")} />
-            <Button label="It's synced" onClick={() => setOnboardingStep(14)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 13)} />
+            <Button label={SYNCED_LABEL} onClick={() => handleAnswer(SYNCED_LABEL, 14)} />
           </>
         ) : null
       }

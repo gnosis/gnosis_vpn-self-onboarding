@@ -9,7 +9,16 @@ interface TryDifferentExitNodeProps {
 
 export default function TryDifferentExitNode({ className }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const WRAP_UP_LABEL = "Let's wrap up";
+  const TRY_AGAIN_LABEL = "Let's do that";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("36_TryDifferentExitNode", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -31,8 +40,8 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
       buttons={
         onboardingStep === 36 ? (
           <>
-            <Button label="Let's wrap up" onClick={() => setOnboardingStep(37)} />
-            <Button label="Let's do that" onClick={() => setOnboardingStep(19)} />
+            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, 37)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 36)} />
           </>
         ) : null
       }

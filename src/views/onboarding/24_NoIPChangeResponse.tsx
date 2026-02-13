@@ -9,7 +9,15 @@ interface NoDifferentExitNodeProps {
 
 export default function NoIPChangeResponse({ className }: NoDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("24_NoIPChangeResponse", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -30,7 +38,7 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
       }
       buttons={
         onboardingStep === 24 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(25)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 25)} />
         ) : null
       }
     />

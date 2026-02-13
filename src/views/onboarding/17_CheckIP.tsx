@@ -9,7 +9,16 @@ interface CheckIPProps {
 
 export default function CheckIP({ className }: CheckIPProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const GOT_IT_LABEL = "I've got it";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("17_CheckIP", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -58,8 +67,8 @@ export default function CheckIP({ className }: CheckIPProps) {
       buttons={
         onboardingStep === 17 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="I've got it" onClick={() => setOnboardingStep(18)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 17)} />
+            <Button label={GOT_IT_LABEL} onClick={() => handleAnswer(GOT_IT_LABEL, 18)} />
           </>
         ) : null
       }

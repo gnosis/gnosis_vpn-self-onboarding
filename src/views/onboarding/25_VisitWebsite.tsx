@@ -9,7 +9,16 @@ interface VisitWebsiteProps {
 
 export default function VisitWebsite({ className }: VisitWebsiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const WORKED_LABEL = "It's worked";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("25_VisitWebsite", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -31,8 +40,8 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
       buttons={
         onboardingStep === 25 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="It's worked" onClick={() => setOnboardingStep(26)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 25)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 26)} />
           </>
         ) : null
       }

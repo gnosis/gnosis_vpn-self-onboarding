@@ -9,7 +9,15 @@ interface AppFeedbackProps {
 
 export default function AppFeedback({ className }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("33_AppFeedback", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -30,7 +38,7 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
       }
       buttons={
         onboardingStep === 33 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(34)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 34)} />
         ) : null
       }
     />

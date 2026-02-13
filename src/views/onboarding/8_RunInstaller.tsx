@@ -8,7 +8,16 @@ interface RunInstallerProps {
 
 export default function RunInstaller({ className }: RunInstallerProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need some help";
+  const DONE_IT_LABEL = "Done it!";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("8_RunInstaller", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -19,8 +28,8 @@ export default function RunInstaller({ className }: RunInstallerProps) {
       buttons={
         onboardingStep === 8 ? (
           <>
-            <Button label="I need some help" onClick={() => console.log("User needs help")} />
-            <Button label="Done it!" onClick={() => setOnboardingStep(9)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 8)} />
+            <Button label={DONE_IT_LABEL} onClick={() => handleAnswer(DONE_IT_LABEL, 9)} />
           </>
         ) : null
       }

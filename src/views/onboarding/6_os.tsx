@@ -9,13 +9,15 @@ interface OSProps {
 
 export default function OS({ className }: OSProps) {
     const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
-    const setSelectedOS = useAppStore((state) => state.setSelectedOS);
+    const saveAnswer = useAppStore((state) => state.saveAnswer);
     const onboardingStep = useAppStore((state) => state.onboardingStep);
-    const selectedOS = useAppStore((state) => state.selectedOS);
 
-    const handleSelectOS = (os: 'linux' | 'macos') => {
-        setSelectedOS(os);
-        setOnboardingStep(7);
+    const LINUX_LABEL = "Linux";
+    const MACOS_LABEL = "Mac OS";
+
+    const handleAnswer = (answer: string, nextStep: number) => {
+        saveAnswer("6_os", answer);
+        setOnboardingStep(nextStep);
     };
 
     return (
@@ -42,14 +44,12 @@ export default function OS({ className }: OSProps) {
                 onboardingStep === 6 ? (
                     <>
                         <Button
-                            label="Linux"
-                            isActive={selectedOS === 'linux'}
-                            onClick={() => handleSelectOS("linux")}
+                            label={LINUX_LABEL}
+                            onClick={() => handleAnswer(LINUX_LABEL, 7)}
                         />
                         <Button
-                            label="Mac OS"
-                            isActive={selectedOS === 'macos'}
-                            onClick={() => handleSelectOS("macos")}
+                            label={MACOS_LABEL}
+                            onClick={() => handleAnswer(MACOS_LABEL, 7)}
                         />
                     </>
                 ) : null

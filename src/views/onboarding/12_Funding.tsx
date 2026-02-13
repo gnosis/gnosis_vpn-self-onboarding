@@ -9,7 +9,16 @@ interface FundingProps {
 
 export default function Funding({ className }: FundingProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need some help";
+  const FUNDED_LABEL = "It's funded";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("12_Funding", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -79,8 +88,8 @@ export default function Funding({ className }: FundingProps) {
       buttons={
         onboardingStep === 12 ? (
           <>
-            <Button label="I need some help" onClick={() => console.log("User needs help")} />
-            <Button label="It's funded" onClick={() => setOnboardingStep(13)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 12)} />
+            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, 13)} />
           </>
         ) : null
       }

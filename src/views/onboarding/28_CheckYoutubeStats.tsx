@@ -9,7 +9,16 @@ interface CheckYoutubeStatsProps {
 
 export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "That's done";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("28_CheckYoutubeStats", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -31,8 +40,8 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
       buttons={
         onboardingStep === 28 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="That's done" onClick={() => setOnboardingStep(29)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 28)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 29)} />
           </>
         ) : null
       }

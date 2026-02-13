@@ -20,14 +20,6 @@ export default function Login({ className }: LoginProps) {
   const setPassword = useAppStore((state) => state.setPassword);
   const setCurrentView = useAppStore((state) => state.setCurrentView);
 
-  const handleLogin = () => {
-    console.log({
-      username,
-      password,
-    });
-    setCurrentView("onboarding");
-  };
-
   return (
     <Container className={`Login${className ? ` ${className}` : ""}`} maxWidth={false}>
       <Box

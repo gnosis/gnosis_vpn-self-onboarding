@@ -9,7 +9,15 @@ interface YouTubeFeedbackProps {
 
 export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("27_YouTubeFeedback", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -43,7 +51,7 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
       }
       buttons={
         onboardingStep === 27 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(28)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 28)} />
         ) : null
       }
     />

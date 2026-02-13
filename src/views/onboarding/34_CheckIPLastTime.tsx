@@ -9,7 +9,16 @@ interface CheckIPLastTimeProps {
 
 export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "I've done that";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("34_CheckIPLastTime", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -44,8 +53,8 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
       buttons={
         onboardingStep === 34 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="I've done that" onClick={() => setOnboardingStep(35)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 34)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 35)} />
           </>
         ) : null
       }

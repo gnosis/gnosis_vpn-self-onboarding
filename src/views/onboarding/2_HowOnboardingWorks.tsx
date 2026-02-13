@@ -10,6 +10,14 @@ interface HowOnboardingWorksProps {
 export default function HowOnboardingWorks({ className }: HowOnboardingWorksProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("2_HowOnboardingWorks", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -48,8 +56,8 @@ export default function HowOnboardingWorks({ className }: HowOnboardingWorksProp
       buttons={
         onboardingStep === 2 ? (
           <Button
-            label="Continue"
-            onClick={() => setOnboardingStep(3)}
+            label={CONTINUE_LABEL}
+            onClick={() => handleAnswer(CONTINUE_LABEL, 3)}
           />
         ) : null
       }

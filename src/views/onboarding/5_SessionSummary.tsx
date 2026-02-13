@@ -10,6 +10,14 @@ interface SessionSummaryProps {
 export default function SessionSummary({ className }: SessionSummaryProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("5_SessionSummary", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -48,8 +56,8 @@ export default function SessionSummary({ className }: SessionSummaryProps) {
       buttons={
         onboardingStep === 5 ? (
           <Button
-            label="Continue"
-            onClick={() => setOnboardingStep(6)}
+            label={CONTINUE_LABEL}
+            onClick={() => handleAnswer(CONTINUE_LABEL, 6)}
           />
         ) : null
       }

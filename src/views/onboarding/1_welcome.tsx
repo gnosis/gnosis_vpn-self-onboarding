@@ -10,7 +10,15 @@ interface WelcomeProps {
 export default function Welcome({ className }: WelcomeProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const username = useAppStore((state) => state.username);
+
+  const START_ONBOARDING_LABEL = "Start onboarding";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("1_welcome", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -88,8 +96,8 @@ export default function Welcome({ className }: WelcomeProps) {
       buttons={
         onboardingStep === 1 ? (
           <Button
-            label="Start onboarding"
-            onClick={() => setOnboardingStep(2)}
+            label={START_ONBOARDING_LABEL}
+            onClick={() => handleAnswer(START_ONBOARDING_LABEL, 2)}
           />
         ) : null
       }

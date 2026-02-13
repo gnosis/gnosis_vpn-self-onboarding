@@ -9,7 +9,16 @@ interface OpenChatAppProps {
 
 export default function OpenChatApp({ className }: OpenChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "I've done that";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("30_OpenChatApp", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -55,8 +64,8 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
       buttons={
         onboardingStep === 30 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="I've done that" onClick={() => setOnboardingStep(31)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 30)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 31)} />
           </>
         ) : null
       }

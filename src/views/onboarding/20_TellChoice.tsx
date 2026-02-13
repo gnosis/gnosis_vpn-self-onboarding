@@ -9,7 +9,15 @@ interface TellChoiceProps {
 
 export default function TellChoice({ className }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("20_TellChoice", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -30,7 +38,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
       }
       buttons={
         onboardingStep === 20 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(21)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 21)} />
         ) : null
       }
     />

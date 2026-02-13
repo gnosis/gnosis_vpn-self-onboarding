@@ -12,7 +12,6 @@ import {
   ChevronDown,
   X,
   Github,
-  Twitter // Kept for completeness if needed later
 } from 'lucide-react';
 import Button from '../components/Button';import { useAppStore } from '../store/appStore';
 // --- Global Styles ---
@@ -640,9 +639,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
 
         {/* Footer CTA */}
         <CtaBar>
-          <a href="#">
+          <button onClick={() => setCurrentView('onboarding')} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '30px', fontWeight: '400', color: 'black', padding: 0 }}>
             <ArrowRight size={28} /> Onboard now
-          </a>
+          </button>
         </CtaBar>
 
         {/* Main Footer */}

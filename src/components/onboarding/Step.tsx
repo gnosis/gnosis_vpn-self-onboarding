@@ -1,5 +1,5 @@
 import { Typography, Stack, Box, Avatar } from "@mui/material";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface StepProps {
   title: string;

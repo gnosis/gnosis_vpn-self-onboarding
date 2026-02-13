@@ -9,7 +9,16 @@ interface VisitYoutubeProps {
 
 export default function VisitYoutube({ className }: VisitYoutubeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const NEED_HELP_LABEL = "I need help";
+  const WORKED_LABEL = "It's worked";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("26_VisitYoutube", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -33,8 +42,8 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
       buttons={
         onboardingStep === 26 ? (
           <>
-            <Button label="I need help" onClick={() => console.log("User needs help")} />
-            <Button label="It's worked" onClick={() => setOnboardingStep(27)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 26)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 27)} />
           </>
         ) : null
       }

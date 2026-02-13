@@ -9,14 +9,15 @@ interface DownloadProps {
 
 export default function Download({ className }: DownloadProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const handleMoveOn = () => {
-    setOnboardingStep(8);
-  };
+  const NEED_HELP_LABEL = "I need some help";
+  const DOWNLOADED_LABEL = "Downloaded!";
 
-  const handleNeedHelp = () => {
-    console.log("User needs help");
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("7_download", answer);
+    setOnboardingStep(nextStep);
   };
 
   return (
@@ -109,8 +110,8 @@ export default function Download({ className }: DownloadProps) {
       buttons={
         onboardingStep === 7 ? (
           <>
-            <Button label="I need some help" onClick={handleNeedHelp} />
-            <Button label="Done it!" onClick={handleMoveOn} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 7)} />
+            <Button label={DOWNLOADED_LABEL} onClick={() => handleAnswer(DOWNLOADED_LABEL, 8)} />
           </>
         ) : null
       }

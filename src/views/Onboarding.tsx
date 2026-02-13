@@ -51,7 +51,7 @@ interface OnboardingProps {
 
 export default function Onboarding({ className }: OnboardingProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
-  const selectedOS = useAppStore((state) => state.selectedOS);
+  const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
 
   useEffect(() => {
     let cancelled = false;
@@ -100,74 +100,77 @@ export default function Onboarding({ className }: OnboardingProps) {
           }}
         >
           {onboardingStep >= 1 && <Welcome />} 
-          {onboardingStep >= 2 && <MessageBubble text="Start onboarding" />}
+          {onboardingStep >= 2 && <MessageBubble text={onboardingAnswers["1_welcome"]} />}
           {onboardingStep >= 2 && <HowOnboardingWorks />}
-          {onboardingStep >= 3 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 3 && <MessageBubble text={onboardingAnswers["2_HowOnboardingWorks"]} />}
           {onboardingStep >= 3 && <GettingHelp />}
-          {onboardingStep >= 4 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 4 && <MessageBubble text={onboardingAnswers["3_GettingHelp"]} />}
           {onboardingStep >= 4 && <SwitchingDevices />}
-          {onboardingStep >= 5 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 5 && <MessageBubble text={onboardingAnswers["4_SwitchingDevices"]} />}
           {onboardingStep >= 5 && <SessionSummary />}
-          {onboardingStep >= 6 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 6 && <MessageBubble text={onboardingAnswers["5_SessionSummary"]} />}
           {onboardingStep >= 6 && <Os />}
-          {onboardingStep >= 7 && <MessageBubble text={selectedOS} />}
+          {onboardingStep >= 7 && <MessageBubble text={onboardingAnswers["6_os"]} />}
           {onboardingStep >= 7 && <Download />}
-          {onboardingStep >= 8 && <MessageBubble text="Done it!" />}
+          {onboardingStep >= 8 && <MessageBubble text={onboardingAnswers["7_download"]} />}
           {onboardingStep >= 8 && <RunInstaller />}
-          {onboardingStep >= 9 && <MessageBubble text="Done it" />}
+          {onboardingStep >= 9 && <MessageBubble text={onboardingAnswers["8_RunInstaller"]} />}
           {onboardingStep >= 9 && <HoprBasics />}
-          {onboardingStep >= 9 && <MessageBubble text="It's installed" />}
+          {onboardingStep >= 9 && <MessageBubble text={onboardingAnswers["9_HoprBasics"]} />}
           {onboardingStep >= 10 && <RunGnosisVPN />}
-          {onboardingStep >= 11 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 11 && <MessageBubble text={onboardingAnswers["10_RunGnosisVPN"]} />}
           {onboardingStep >= 11 && <GetStarted />}
-          {onboardingStep >= 12 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 12 && <MessageBubble text={onboardingAnswers["11_GetStarted"]} />}
           {onboardingStep >= 12 && <Funding />}
-          {onboardingStep >= 13 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 13 && <MessageBubble text={onboardingAnswers["12_Funding"]} />}
           {onboardingStep >= 13 && <Syncing />}
-          {onboardingStep >= 14 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 14 && <MessageBubble text={onboardingAnswers["13_Syncing"]} />}
           {onboardingStep >= 14 && <SyncingFeedback />}
-          {onboardingStep >= 15 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 15 && <MessageBubble text={onboardingAnswers["14_SyncingFeedback"]} />}
           {onboardingStep >= 15 && <ReadyToTest />}
+          {onboardingStep >= 16 && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
           {onboardingStep >= 16 && <ReadyTimeout />}
-          {onboardingStep >= 17 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 17 && <MessageBubble text={onboardingAnswers["16_ReadyTimeout"]} />}
           {onboardingStep >= 17 && <CheckIP />}
-          {onboardingStep >= 18 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_CheckIP"]} />}
           {onboardingStep >= 18 && <CloseIPSite />}
-          {onboardingStep >= 19 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 19 && <MessageBubble text={onboardingAnswers["18_CloseIPSite"]} />}
           {onboardingStep >= 19 && <ChooseExitNode />}
-          {onboardingStep >= 20 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 20 && <MessageBubble text={onboardingAnswers["19_ChooseExitNode"]} />}
           {onboardingStep >= 20 && <TellChoice />}
-          {onboardingStep >= 21 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 21 && <MessageBubble text={onboardingAnswers["20_TellChoice"]} />}
           {onboardingStep >= 21 && <CheckIPAgain />}
-          {onboardingStep >= 22 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 22 && <MessageBubble text={onboardingAnswers["21_CheckIPAgain"]} />}
           {onboardingStep >= 22 && <DidIPChange />}
+          {onboardingStep >= 23 && <MessageBubble text={onboardingAnswers["22_DidIPChange"]} />}
           {onboardingStep >= 23 && <IPChangeResponse />}
+          {onboardingStep >= 24 && <MessageBubble text={onboardingAnswers["23_IPChangeResponse"]} />}
           {onboardingStep >= 24 && <NoIPChangeResponse />}
-          {onboardingStep >= 25 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 25 && <MessageBubble text={onboardingAnswers["24_NoIPChangeResponse"]} />}
           {onboardingStep >= 25 && <VisitWebsite />}
-          {onboardingStep >= 26 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 26 && <MessageBubble text={onboardingAnswers["25_VisitWebsite"]} />}
           {onboardingStep >= 26 && <VisitYoutube />}
-          {onboardingStep >= 27 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 27 && <MessageBubble text={onboardingAnswers["26_VisitYoutube"]} />}
           {onboardingStep >= 27 && <YouTubeFeedback />}
-          {onboardingStep >= 28 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 28 && <MessageBubble text={onboardingAnswers["27_YouTubeFeedback"]} />}
           {onboardingStep >= 28 && <CheckYoutubeStats />}
-          {onboardingStep >= 29 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 29 && <MessageBubble text={onboardingAnswers["28_CheckYoutubeStats"]} />}
           {onboardingStep >= 29 && <CheckIPThirdTime />}
-          {onboardingStep >= 30 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 30 && <MessageBubble text={onboardingAnswers["29_CheckIPThirdTime"]} />}
           {onboardingStep >= 30 && <OpenChatApp />}
-          {onboardingStep >= 31 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 31 && <MessageBubble text={onboardingAnswers["30_OpenChatApp"]} />}
           {onboardingStep >= 31 && <TellChatApp />}
-          {onboardingStep >= 32 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 32 && <MessageBubble text={onboardingAnswers["31_TellChatApp"]} />}
           {onboardingStep >= 32 && <UseChatApp />}
-          {onboardingStep >= 33 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 33 && <MessageBubble text={onboardingAnswers["32_UseChatApp"]} />}
           {onboardingStep >= 33 && <AppFeedback />}
-          {onboardingStep >= 34 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 34 && <MessageBubble text={onboardingAnswers["33_AppFeedback"]} />}
           {onboardingStep >= 34 && <CheckIPLastTime />}
-          {onboardingStep >= 35 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 35 && <MessageBubble text={onboardingAnswers["34_CheckIPLastTime"]} />}
           {onboardingStep >= 35 && <DidIPChangeLast />}
-          {onboardingStep >= 36 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 36 && <MessageBubble text={onboardingAnswers["35_DidIPChangeLast"]} />}
           {onboardingStep >= 36 && <TryDifferentExitNode />}
-          {onboardingStep >= 37 && <MessageBubble text="Continue" />}
+          {onboardingStep >= 37 && <MessageBubble text={onboardingAnswers["36_TryDifferentExitNode"]} />}
           {onboardingStep >= 37 && <WrapUp />} 
         </Box>
       </Container>

@@ -9,7 +9,15 @@ interface IPChangeResponseProps {
 
 export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("23_IPChangeResponse", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -30,7 +38,7 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
       }
       buttons={
         onboardingStep === 23 ? (
-          <Button label="Continue" onClick={() => setOnboardingStep(25)} />
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 25)} />
         ) : null
       }
     />

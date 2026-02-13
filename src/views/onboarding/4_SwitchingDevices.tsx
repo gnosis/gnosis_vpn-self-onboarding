@@ -10,6 +10,14 @@ interface SwitchingDevicesProps {
 export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
+
+  const CONTINUE_LABEL = "Continue";
+
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("4_SwitchingDevices", answer);
+    setOnboardingStep(nextStep);
+  };
 
   return (
     <Step
@@ -47,8 +55,8 @@ export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
       buttons={
         onboardingStep === 4 ? (
           <Button
-            label="Continue"
-            onClick={() => setOnboardingStep(5)}
+            label={CONTINUE_LABEL}
+            onClick={() => handleAnswer(CONTINUE_LABEL, 5)}
           />
         ) : null
       }
