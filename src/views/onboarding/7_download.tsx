@@ -12,7 +12,7 @@ export default function Download({ className }: DownloadProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const handleMoveOn = () => {
-    setOnboardingStep(4);
+    setOnboardingStep(8);
   };
 
   const handleNeedHelp = () => {
@@ -22,7 +22,7 @@ export default function Download({ className }: DownloadProps) {
   return (
     <Step
       className={`Download${className ? ` ${className}` : ""}`}
-      onboardingStep={3}
+      onboardingStep={7}
       title="Download the app"
       text={
         <>
@@ -34,13 +34,15 @@ export default function Download({ className }: DownloadProps) {
               color: "#333",
             }}
           >
-            Get Gnosis VPN from the official download page.
+            Great! Now head to
           </Typography>
 
           <Box>
             <Typography
               component="a"
-              href="#"
+              href="https://github.com/gnosis/gnosis_vpn-client/releases"
+              target="_blank"
+              rel="noreferrer noopener"
               sx={{
                 fontSize: "0.95rem",
                 color: "#0066cc",
@@ -54,33 +56,19 @@ export default function Download({ className }: DownloadProps) {
                 },
               }}
             >
-              Open download page ↗
+              https://github.com/gnosis/gnosis_vpn-client/releases 
             </Typography>
           </Box>
 
           <Typography
-            variant="body2"
+            variant="body1"
             sx={{
-              fontSize: "0.85rem",
+              fontSize: "0.95rem",
               lineHeight: 1.6,
-              color: "#666",
+              color: "#333",
             }}
           >
-            And if you're on your second, here's the domain:{" "}
-            <Typography
-              component="span"
-              sx={{
-                fontFamily: "monospace",
-                fontSize: "0.8rem",
-                backgroundColor: "#f5f5f5",
-                px: 1,
-                py: 0.5,
-                borderRadius: 0.5,
-              }}
-            >
-              https://vpn.gnosis.eth.lm/releases/MacOS
-            </Typography>{" "}
-            (NOT FINAL URL)
+            and download the installer
           </Typography>
 
           <Box
@@ -119,10 +107,10 @@ export default function Download({ className }: DownloadProps) {
         </>
       }
       buttons={
-        onboardingStep === 3 ? (
+        onboardingStep === 7 ? (
           <>
-            <Button label="I need more help" onClick={handleNeedHelp} />
-            <Button label="I'm ok to move on" onClick={handleMoveOn} />
+            <Button label="I need some help" onClick={handleNeedHelp} />
+            <Button label="Done it!" onClick={handleMoveOn} />
           </>
         ) : null
       }

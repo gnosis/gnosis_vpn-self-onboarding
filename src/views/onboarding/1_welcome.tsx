@@ -10,6 +10,7 @@ interface WelcomeProps {
 export default function Welcome({ className }: WelcomeProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const username = useAppStore((state) => state.username);
 
   return (
     <Step
@@ -18,6 +19,32 @@ export default function Welcome({ className }: WelcomeProps) {
       title="Welcome to Gnosis VPN Onboarding"
       text={
         <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Welcome, {username || "datanaut"} to the datanaut program, so-called because
+            we're searching for ways to reduce the amount of data you leak online all the
+            way to nought.
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            I'm Gino, your guide for this quest to Atlantis, the first hidden city on the
+            journey to Gnosis VPN's launch. This guide will walk you step-by-step through
+            setting up and using Gnosis VPN.
+          </Typography>
+
           <Typography
             variant="body1"
             sx={{
@@ -54,14 +81,14 @@ export default function Welcome({ className }: WelcomeProps) {
               fontWeight: 600,
             }}
           >
-            Ready? Let's get started!
+            Ready? Let’s get started!
           </Typography>
         </>
       }
       buttons={
         onboardingStep === 1 ? (
           <Button
-            label="Continue"
+            label="Start onboarding"
             onClick={() => setOnboardingStep(2)}
           />
         ) : null

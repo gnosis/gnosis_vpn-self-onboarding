@@ -2,12 +2,20 @@ import { useEffect } from "react";
 import { Container, Box } from "@mui/material";
 import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
+import MessageBubble from "../components/MessageBubble";
 
 // Steps
 import Welcome from "./onboarding/1_welcome";
-import Os from "./onboarding/2_os";
-import Download from "./onboarding/3_download";
-import MessageBubble from "../components/MessageBubble";
+import HowOnboardingWorks from "./onboarding/2_HowOnboardingWorks";
+
+
+
+import GettingHelp from "./onboarding/3_GettingHelp";
+import SwitchingDevices from "./onboarding/4_SwitchingDevices";
+import SessionSummary from "./onboarding/5_SessionSummary";
+import Os from "./onboarding/6_os";
+import Download from "./onboarding/7_download";
+
 
 
 interface OnboardingProps {
@@ -65,10 +73,18 @@ export default function Onboarding({ className }: OnboardingProps) {
         }}
         >
           { onboardingStep >= 1 && <Welcome /> }
-          { onboardingStep >= 2 && <MessageBubble text="Continue" /> }
-          { onboardingStep >= 2 && <Os /> }
-          { onboardingStep >= 3 && <MessageBubble text={selectedOS} /> }
-          { onboardingStep >= 3 && <Download /> }
+          { onboardingStep >= 2 && <MessageBubble text="Start onboarding" /> }
+          { onboardingStep >= 2 && <HowOnboardingWorks /> }
+          { onboardingStep >= 3 && <MessageBubble text="Continue" /> }
+          { onboardingStep >= 3 && <GettingHelp /> }
+          { onboardingStep >= 4 && <MessageBubble text="Continue" /> }
+          { onboardingStep >= 4 && <SwitchingDevices /> }
+          { onboardingStep >= 5 && <MessageBubble text="Continue" /> }
+          { onboardingStep >= 5 && <SessionSummary /> }
+          { onboardingStep >= 6 && <MessageBubble text="Continue" /> }
+          { onboardingStep >= 6 && <Os /> }
+          { onboardingStep >= 7 && <MessageBubble text={selectedOS} /> }
+          { onboardingStep >= 7 && <Download /> }
         </Box>
       </Container>
     </Box>

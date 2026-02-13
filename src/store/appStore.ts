@@ -9,8 +9,8 @@ interface AppStore {
   // Onboarding
   onboardingStep: number;
   setOnboardingStep: (step: number) => void;
-  selectedOS: 'debian' | 'macos' | null;
-  setSelectedOS: (os: 'debian' | 'macos') => void;
+  selectedOS: 'linux' | 'macos' | null;
+  setSelectedOS: (os: 'linux' | 'macos') => void;
 
   // Login form
   username: string;
