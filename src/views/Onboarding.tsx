@@ -44,86 +44,45 @@ import DidIPChangeLast from "./onboarding/36_DidIPChangeLast";
 import TryDifferentExitNode from "./onboarding/37_TryDifferentExitNode";
 import WrapUp from "./onboarding/38_WrapUp";
 
-const STEP_COMPONENTS: Record<string, React.ComponentType<any>> = {
-  "1_welcome": Welcome,
-  "2_HowOnboardingWorks": HowOnboardingWorks,
-  "3_GettingHelp": GettingHelp,
-  "4_SwitchingDevices": SwitchingDevices,
-  "5_SessionSummary": SessionSummary,
-  "6_os": Os,
-  "7_download": Download,
-  "8_RunInstaller": RunInstaller,
-  "9_HoprBasics": HoprBasics,
-  "10_RunGnosisVPN": RunGnosisVPN,
-  "11_GetStarted": GetStarted,
-  "12_Funding": Funding,
-  "13_Syncing": Syncing,
-  "14_SyncingFeedback": SyncingFeedback,
-  "15_ReadyToTest": ReadyToTest,
-  "16_AlreadyConnected": AlreadyConnected,
-  "17_Great": ReadyTimeout,
-  "18_CheckIP": CheckIP,
-  "19_CloseIPSite": CloseIPSite,
-  "20_ChooseExitNode": ChooseExitNode,
-  "21_TellChoice": TellChoice,
-  "22_CheckIPAgain": CheckIPAgain,
-  "23_DidIPChange": DidIPChange,
-  "24_IPChangeResponse": IPChangeResponse,
-  "25_NoIPChangeResponse": NoIPChangeResponse,
-  "26_VisitWebsite": VisitWebsite,
-  "27_VisitYoutube": VisitYoutube,
-  "28_YouTubeFeedback": YouTubeFeedback,
-  "29_CheckYoutubeStats": CheckYoutubeStats,
-  "30_CheckIPThirdTime": CheckIPThirdTime,
-  "31_OpenChatApp": OpenChatApp,
-  "32_TellChatApp": TellChatApp,
-  "33_UseChatApp": UseChatApp,
-  "34_AppFeedback": AppFeedback,
-  "35_CheckIPLastTime": CheckIPLastTime,
-  "36_DidIPChangeLast": DidIPChangeLast,
-  "37_TryDifferentExitNode": TryDifferentExitNode,
-  "38_WrapUp": WrapUp,
-};
-
-const STEP_NUMBER_TO_KEY: Record<number, string> = {
-  1: "1_welcome",
-  2: "2_HowOnboardingWorks",
-  3: "3_GettingHelp",
-  4: "4_SwitchingDevices",
-  5: "5_SessionSummary",
-  6: "6_os",
-  7: "7_download",
-  8: "8_RunInstaller",
-  9: "9_HoprBasics",
-  10: "10_RunGnosisVPN",
-  11: "11_GetStarted",
-  12: "12_Funding",
-  13: "13_Syncing",
-  14: "14_SyncingFeedback",
-  15: "15_ReadyToTest",
-  16: "16_AlreadyConnected",
-  17: "17_Great",
-  18: "18_CheckIP",
-  19: "19_CloseIPSite",
-  20: "20_ChooseExitNode",
-  21: "21_TellChoice",
-  22: "22_CheckIPAgain",
-  23: "23_DidIPChange",
-  24: "24_IPChangeResponse",
-  25: "25_NoIPChangeResponse",
-  26: "26_VisitWebsite",
-  27: "27_VisitYoutube",
-  28: "28_YouTubeFeedback",
-  29: "29_CheckYoutubeStats",
-  30: "30_CheckIPThirdTime",
-  31: "31_OpenChatApp",
-  32: "32_TellChatApp",
-  33: "33_UseChatApp",
-  34: "34_AppFeedback",
-  35: "35_CheckIPLastTime",
-  36: "36_DidIPChangeLast",
-  37: "37_TryDifferentExitNode",
-  38: "38_WrapUp",
+const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
+  1: Welcome,
+  2: HowOnboardingWorks,
+  3: GettingHelp,
+  4: SwitchingDevices,
+  5: SessionSummary,
+  6: Os,
+  7: Download,
+  8: RunInstaller,
+  9: HoprBasics,
+  10: RunGnosisVPN,
+  11: GetStarted,
+  12: Funding,
+  13: Syncing,
+  14: SyncingFeedback,
+  15: ReadyToTest,
+  16: AlreadyConnected,
+  17: ReadyTimeout,
+  18: CheckIP,
+  19: CloseIPSite,
+  20: ChooseExitNode,
+  21: TellChoice,
+  22: CheckIPAgain,
+  23: DidIPChange,
+  24: IPChangeResponse,
+  25: NoIPChangeResponse,
+  26: VisitWebsite,
+  27: VisitYoutube,
+  28: YouTubeFeedback,
+  29: CheckYoutubeStats,
+  30: CheckIPThirdTime,
+  31: OpenChatApp,
+  32: TellChatApp,
+  33: UseChatApp,
+  34: AppFeedback,
+  35: CheckIPLastTime,
+  36: DidIPChangeLast,
+  37: TryDifferentExitNode,
+  38: WrapUp,
 };
 
 interface OnboardingProps {
@@ -165,9 +124,7 @@ export default function Onboarding({ className }: OnboardingProps) {
     return () => { cancelled = true; };
   }, [onboardingStep]);
 
-  const disconnectHappen = onboardingStep === 15 && stepLog.some(e => e.startsWith("16_AlreadyConnected:"));
-  const currentKey = STEP_NUMBER_TO_KEY[onboardingStep];
-  const CurrentComponent = currentKey ? STEP_COMPONENTS[currentKey] : null;
+  const CurrentComponent = STEP_COMPONENTS[onboardingStep] ?? null;
 
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
@@ -187,19 +144,19 @@ export default function Onboarding({ className }: OnboardingProps) {
           {/* Completed steps from stepLog */}
           {stepLog.map((entry, i) => {
             const [key, answer] = entry.split(':');
-            const Component = STEP_COMPONENTS[key];
+            const stepNum = parseInt(key);
+            const Component = STEP_COMPONENTS[stepNum];
             if (!Component) return null;
-            const extraProps = key === "15_ReadyToTest" && disconnectHappen ? { disconnectHappen: true } : {};
             return (
               <Fragment key={`${key}-${i}`}>
-                <Component {...extraProps} />
-                {answer && <MessageBubble text={answer} />}
+                <Component />
+                { answer && <MessageBubble text={answer} /> }
               </Fragment>
             );
           })}
 
           {/* Current active step */}
-          {CurrentComponent && <CurrentComponent />}
+          {CurrentComponent && <CurrentComponent lastEntry={true} />}
         </Box>
       </Container>
     </Box>

@@ -7,14 +7,13 @@ const STEP = 15;
 
 interface ReadyToTestProps {
   className?: string;
-  disconnectHappen?: boolean;
+  lastEntry?: boolean;
 }
 
-export default function ReadyToTest({ className, disconnectHappen }: ReadyToTestProps) {
+export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
-  const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
 
   const ALREADY_DID_LABEL = "I already did";
   const OKAY_LABEL = "Okay";
@@ -42,9 +41,7 @@ export default function ReadyToTest({ className, disconnectHappen }: ReadyToTest
         </Typography>
       }
       buttons={
-        (
-          onboardingStep === STEP && !disconnectHappen
-        )
+        onboardingStep === STEP && lastEntry
         ? (
           <>
             <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
