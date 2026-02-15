@@ -14,7 +14,8 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const CONTINUE_LABEL = "It's worked";
+  const NEED_HELP_LABEL = "I need some help";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("24_IPChangeResponse", answer);
@@ -25,7 +26,7 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
     <Step
       className={`IPChangeResponse${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Response"
+      title="Great! Your private Gnosis VPN connection is working"
       text={
         <Typography
           variant="body1"
@@ -35,12 +36,13 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
             color: "#333",
           }}
         >
-          Great! Your private Gnosis VPN connection is working
+          Let's take it for a spin. Visit [Gnosis VPN site]
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
             <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
           </>
         ) : null

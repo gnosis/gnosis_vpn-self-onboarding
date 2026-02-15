@@ -40,7 +40,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
       }
       buttons={
         onboardingStep === STEP ? (
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%", maxWidth: "400px" }}>
+          <>
             {LOCATIONS.map((location) => (
               <Button
                 key={location}
@@ -48,7 +48,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
                 onClick={() => handleAnswer(location, STEP + 1)}
               />
             ))}
-          </Box>
+          </>
         ) : null
       }
     />

@@ -25,7 +25,7 @@ export default function Great({ className }: GreatProps) {
     <Step
       className={`ReadyTimeout${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Response"
+      title="Great!"
       text={
         <Typography
           variant="body1"
@@ -35,7 +35,7 @@ export default function Great({ className }: GreatProps) {
             color: "#333",
           }}
         >
-          Great!
+          
         </Typography>
       }
       buttons={

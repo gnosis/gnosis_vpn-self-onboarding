@@ -23,6 +23,7 @@ export default function Button({
                 backgroundColor: isActive ? "#000" : "transparent",
                 color: isActive ? "#fff" : "#000",
                 fontWeight: 600,
+                minWidth: "200px",
                 fontSize: "0.85rem",
                 transition: "all 0.3s ease",
                 "&:hover": {

@@ -42,8 +42,8 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP + 3)} />
-            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 2)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 1)} />
           </>
         ) : null
       }

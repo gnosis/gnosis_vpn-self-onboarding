@@ -38,7 +38,7 @@ export default function ReadyToTest({ className, disconnectHappen }: ReadyToTest
             color: "#333",
           }}
         >
-          We're ready to test! But please don't connect the VPN yet {disconnectHappen ? 'DIS' : 'NO DIS' }
+          We're ready to test! But please don't connect the VPN yet
         </Typography>
       }
       buttons={

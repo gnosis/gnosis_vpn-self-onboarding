@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 interface StepProps {
   title: string;
-  text: ReactNode;
+  text?: ReactNode;
   buttons: ReactNode;
   onboardingStep?: number | null;
   className?: string;
@@ -42,9 +42,12 @@ export default function Step({ title, text, buttons, onboardingStep, className }
         </Box>
 
         {/* Content */}
-        <Stack spacing={3} sx={{ pl: "72px" }}>
-          {text}
-        </Stack>
+        {
+          text && 
+          <Stack spacing={3} sx={{ pl: "72px" }}>
+            {text}
+          </Stack>
+        }
       </Box>
 
       {/* Buttons */}
@@ -53,6 +56,7 @@ export default function Step({ title, text, buttons, onboardingStep, className }
           mt: 4,
           display: "flex",
           justifyContent: "center",
+          flexWrap: "wrap",
           gap: 2
         }}
       >
