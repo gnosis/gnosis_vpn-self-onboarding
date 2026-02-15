@@ -14,6 +14,8 @@ interface AppStore {
   saveAnswer: (stepKey: string, answer: string) => void;
   notes: Record<string, string>;
   saveNote: (stepKey: string, note: string) => void;
+  stepLog: string[];
+
 
   // Login form
   username: string;
@@ -33,9 +35,11 @@ export const useAppStore = create<AppStore>(
   onboardingStep: 1,
   setOnboardingStep: (step) => set({ onboardingStep: step }),
   onboardingAnswers: {},
+  stepLog: [],
   saveAnswer: (stepKey, answer) =>
     set((state) => ({
       onboardingAnswers: { ...state.onboardingAnswers, [stepKey]: answer },
+      stepLog: [...state.stepLog, `${stepKey}:${answer}`],
     })),
   notes: {},
   saveNote: (stepKey, note) =>

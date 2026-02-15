@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
 import { Container, Box } from "@mui/material";
 import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
@@ -44,7 +44,87 @@ import DidIPChangeLast from "./onboarding/36_DidIPChangeLast";
 import TryDifferentExitNode from "./onboarding/37_TryDifferentExitNode";
 import WrapUp from "./onboarding/38_WrapUp";
 
+const STEP_COMPONENTS: Record<string, React.ComponentType<any>> = {
+  "1_welcome": Welcome,
+  "2_HowOnboardingWorks": HowOnboardingWorks,
+  "3_GettingHelp": GettingHelp,
+  "4_SwitchingDevices": SwitchingDevices,
+  "5_SessionSummary": SessionSummary,
+  "6_os": Os,
+  "7_download": Download,
+  "8_RunInstaller": RunInstaller,
+  "9_HoprBasics": HoprBasics,
+  "10_RunGnosisVPN": RunGnosisVPN,
+  "11_GetStarted": GetStarted,
+  "12_Funding": Funding,
+  "13_Syncing": Syncing,
+  "14_SyncingFeedback": SyncingFeedback,
+  "15_ReadyToTest": ReadyToTest,
+  "16_AlreadyConnected": AlreadyConnected,
+  "17_Great": ReadyTimeout,
+  "18_CheckIP": CheckIP,
+  "19_CloseIPSite": CloseIPSite,
+  "20_ChooseExitNode": ChooseExitNode,
+  "21_TellChoice": TellChoice,
+  "22_CheckIPAgain": CheckIPAgain,
+  "23_DidIPChange": DidIPChange,
+  "24_IPChangeResponse": IPChangeResponse,
+  "25_NoIPChangeResponse": NoIPChangeResponse,
+  "26_VisitWebsite": VisitWebsite,
+  "27_VisitYoutube": VisitYoutube,
+  "28_YouTubeFeedback": YouTubeFeedback,
+  "29_CheckYoutubeStats": CheckYoutubeStats,
+  "30_CheckIPThirdTime": CheckIPThirdTime,
+  "31_OpenChatApp": OpenChatApp,
+  "32_TellChatApp": TellChatApp,
+  "33_UseChatApp": UseChatApp,
+  "34_AppFeedback": AppFeedback,
+  "35_CheckIPLastTime": CheckIPLastTime,
+  "36_DidIPChangeLast": DidIPChangeLast,
+  "37_TryDifferentExitNode": TryDifferentExitNode,
+  "38_WrapUp": WrapUp,
+};
 
+const STEP_NUMBER_TO_KEY: Record<number, string> = {
+  1: "1_welcome",
+  2: "2_HowOnboardingWorks",
+  3: "3_GettingHelp",
+  4: "4_SwitchingDevices",
+  5: "5_SessionSummary",
+  6: "6_os",
+  7: "7_download",
+  8: "8_RunInstaller",
+  9: "9_HoprBasics",
+  10: "10_RunGnosisVPN",
+  11: "11_GetStarted",
+  12: "12_Funding",
+  13: "13_Syncing",
+  14: "14_SyncingFeedback",
+  15: "15_ReadyToTest",
+  16: "16_AlreadyConnected",
+  17: "17_Great",
+  18: "18_CheckIP",
+  19: "19_CloseIPSite",
+  20: "20_ChooseExitNode",
+  21: "21_TellChoice",
+  22: "22_CheckIPAgain",
+  23: "23_DidIPChange",
+  24: "24_IPChangeResponse",
+  25: "25_NoIPChangeResponse",
+  26: "26_VisitWebsite",
+  27: "27_VisitYoutube",
+  28: "28_YouTubeFeedback",
+  29: "29_CheckYoutubeStats",
+  30: "30_CheckIPThirdTime",
+  31: "31_OpenChatApp",
+  32: "32_TellChatApp",
+  33: "33_UseChatApp",
+  34: "34_AppFeedback",
+  35: "35_CheckIPLastTime",
+  36: "36_DidIPChangeLast",
+  37: "37_TryDifferentExitNode",
+  38: "38_WrapUp",
+};
 
 interface OnboardingProps {
   className?: string;
@@ -52,7 +132,7 @@ interface OnboardingProps {
 
 export default function Onboarding({ className }: OnboardingProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
-  const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
+  const stepLog = useAppStore((state) => state.stepLog);
 
   useEffect(() => {
     let cancelled = false;
@@ -85,7 +165,9 @@ export default function Onboarding({ className }: OnboardingProps) {
     return () => { cancelled = true; };
   }, [onboardingStep]);
 
-  const disconnectHappen = onboardingStep === 15 && !!onboardingAnswers["16_AlreadyConnected"];
+  const disconnectHappen = onboardingStep === 15 && stepLog.some(e => e.startsWith("16_AlreadyConnected:"));
+  const currentKey = STEP_NUMBER_TO_KEY[onboardingStep];
+  const CurrentComponent = currentKey ? STEP_COMPONENTS[currentKey] : null;
 
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
@@ -102,93 +184,22 @@ export default function Onboarding({ className }: OnboardingProps) {
             gap: 8,
           }}
         >
-          {onboardingStep >= 1 && <Welcome />} 
-          {onboardingStep >= 2 && <MessageBubble text={onboardingAnswers["1_welcome"]} />}
-          {onboardingStep >= 2 && <HowOnboardingWorks />}
-          {onboardingStep >= 3 && <MessageBubble text={onboardingAnswers["2_HowOnboardingWorks"]} />}
-          {onboardingStep >= 3 && <GettingHelp />}
-          {onboardingStep >= 4 && <MessageBubble text={onboardingAnswers["3_GettingHelp"]} />}
-          {onboardingStep >= 4 && <SwitchingDevices />}
-          {onboardingStep >= 5 && <MessageBubble text={onboardingAnswers["4_SwitchingDevices"]} />}
-          {onboardingStep >= 5 && <SessionSummary />}
-          {onboardingStep >= 6 && <MessageBubble text={onboardingAnswers["5_SessionSummary"]} />}
-          {onboardingStep >= 6 && <Os />}
-          {onboardingStep >= 7 && <MessageBubble text={onboardingAnswers["6_os"]} />}
-          {onboardingStep >= 7 && <Download />}
-          {onboardingStep >= 8 && <MessageBubble text={onboardingAnswers["7_download"]} />}
-          {onboardingStep >= 8 && <RunInstaller />}
-          {onboardingStep >= 9 && <MessageBubble text={onboardingAnswers["8_RunInstaller"]} />}
-          {onboardingStep >= 9 && <HoprBasics />}
-          {onboardingStep >= 9 && <MessageBubble text={onboardingAnswers["9_HoprBasics"]} />}
-          {onboardingStep >= 10 && <RunGnosisVPN />}
-          {onboardingStep >= 11 && <MessageBubble text={onboardingAnswers["10_RunGnosisVPN"]} />}
-          {onboardingStep >= 11 && <GetStarted />}
-          {onboardingStep >= 12 && <MessageBubble text={onboardingAnswers["11_GetStarted"]} />}
-          {onboardingStep >= 12 && <Funding />}
-          {onboardingStep >= 13 && <MessageBubble text={onboardingAnswers["12_Funding"]} />}
-          {onboardingStep >= 13 && <Syncing />}
-          {onboardingStep >= 14 && <MessageBubble text={onboardingAnswers["13_Syncing"]} />}
-          {onboardingStep >= 14 && <SyncingFeedback />}
-          {onboardingStep >= 15 && <MessageBubble text={onboardingAnswers["14_SyncingFeedback"]} />}
-          {onboardingStep >= 15 && <ReadyToTest disconnectHappen={disconnectHappen}/>}
-          {  
-            (
-              onboardingStep >= 16 || 
-              disconnectHappen
-            ) && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />
-          }
-          {  
-            (
-              onboardingStep >= 16 || 
-              disconnectHappen
-            ) &&  <AlreadyConnected />
-          }
-          {disconnectHappen && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
-          {disconnectHappen && <ReadyToTest />}
-          {onboardingStep >= 17 && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
-          {onboardingStep >= 17 && <ReadyTimeout />}
-          {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_Great"]} />}
-          {onboardingStep >= 18 && <CheckIP />}
-          {onboardingStep >= 19 && <MessageBubble text={onboardingAnswers["18_CheckIP"]} />}
-          {onboardingStep >= 19 && <CloseIPSite />}
-          {onboardingStep >= 20 && <MessageBubble text={onboardingAnswers["19_CloseIPSite"]} />}
-          {onboardingStep >= 20 && <ChooseExitNode />}
-          {onboardingStep >= 21 && <MessageBubble text={onboardingAnswers["20_ChooseExitNode"]} />}
-          {onboardingStep >= 21 && <TellChoice />}
-          {onboardingStep >= 22 && <MessageBubble text={onboardingAnswers["21_TellChoice"]} />}
-          {onboardingStep >= 22 && <CheckIPAgain />}
-          {onboardingStep >= 23 && <MessageBubble text={onboardingAnswers["22_CheckIPAgain"]} />}
-          {onboardingStep >= 23 && <DidIPChange />}
-          {onboardingStep >= 24 && <MessageBubble text={onboardingAnswers["23_DidIPChange"]} />}
-          {onboardingStep >= 24 && <IPChangeResponse />}
-          {onboardingStep >= 25 && <MessageBubble text={onboardingAnswers["24_IPChangeResponse"]} />}
-          {onboardingStep >= 25 && <NoIPChangeResponse />}
-          {onboardingStep >= 26 && <MessageBubble text={onboardingAnswers["25_NoIPChangeResponse"]} />}
-          {onboardingStep >= 26 && <VisitWebsite />}
-          {onboardingStep >= 27 && <MessageBubble text={onboardingAnswers["26_VisitWebsite"]} />}
-          {onboardingStep >= 27 && <VisitYoutube />}
-          {onboardingStep >= 28 && <MessageBubble text={onboardingAnswers["27_VisitYoutube"]} />}
-          {onboardingStep >= 28 && <YouTubeFeedback />}
-          {onboardingStep >= 29 && <MessageBubble text={onboardingAnswers["28_YouTubeFeedback"]} />}
-          {onboardingStep >= 29 && <CheckYoutubeStats />}
-          {onboardingStep >= 30 && <MessageBubble text={onboardingAnswers["29_CheckYoutubeStats"]} />}
-          {onboardingStep >= 30 && <CheckIPThirdTime />}
-          {onboardingStep >= 31 && <MessageBubble text={onboardingAnswers["30_CheckIPThirdTime"]} />}
-          {onboardingStep >= 31 && <OpenChatApp />}
-          {onboardingStep >= 32 && <MessageBubble text={onboardingAnswers["31_OpenChatApp"]} />}
-          {onboardingStep >= 32 && <TellChatApp />}
-          {onboardingStep >= 33 && <MessageBubble text={onboardingAnswers["32_TellChatApp"]} />}
-          {onboardingStep >= 33 && <UseChatApp />}
-          {onboardingStep >= 34 && <MessageBubble text={onboardingAnswers["33_UseChatApp"]} />}
-          {onboardingStep >= 34 && <AppFeedback />}
-          {onboardingStep >= 35 && <MessageBubble text={onboardingAnswers["34_AppFeedback"]} />}
-          {onboardingStep >= 35 && <CheckIPLastTime />}
-          {onboardingStep >= 36 && <MessageBubble text={onboardingAnswers["35_CheckIPLastTime"]} />}
-          {onboardingStep >= 36 && <DidIPChangeLast />}
-          {onboardingStep >= 37 && <MessageBubble text={onboardingAnswers["36_DidIPChangeLast"]} />}
-          {onboardingStep >= 37 && <TryDifferentExitNode />}
-          {onboardingStep >= 38 && <MessageBubble text={onboardingAnswers["37_TryDifferentExitNode"]} />}
-          {onboardingStep >= 38 && <WrapUp />} 
+          {/* Completed steps from stepLog */}
+          {stepLog.map((entry, i) => {
+            const [key, answer] = entry.split(':');
+            const Component = STEP_COMPONENTS[key];
+            if (!Component) return null;
+            const extraProps = key === "15_ReadyToTest" && disconnectHappen ? { disconnectHappen: true } : {};
+            return (
+              <Fragment key={`${key}-${i}`}>
+                <Component {...extraProps} />
+                {answer && <MessageBubble text={answer} />}
+              </Fragment>
+            );
+          })}
+
+          {/* Current active step */}
+          {CurrentComponent && <CurrentComponent />}
         </Box>
       </Container>
     </Box>

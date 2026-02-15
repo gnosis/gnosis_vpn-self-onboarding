@@ -56,21 +56,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
         >
           {currentStep}/{totalSteps}
         </Button>
-        <Button
-          variant="text"
-          size="small"
-          sx={{
-            fontSize: "0.85rem",
-            color: "#333",
-            textTransform: "none",
-            fontWeight: 500,
-            "&:hover": {
-              backgroundColor: "rgba(0, 0, 0, 0.04)",
-            },
-          }}
-        >
-          Feedback Summary
-        </Button>
+
         <Button
           variant="text"
           size="small"

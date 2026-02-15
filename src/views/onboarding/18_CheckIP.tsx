@@ -30,7 +30,7 @@ export default function CheckIP({ className }: CheckIPProps) {
       title="Check your IP"
       text={
         <>
-          <VideoPlaceholder title="IP Check" />
+          {/* <VideoPlaceholder title="IP Check" /> */}
 
           <Typography
             variant="body1"

@@ -30,7 +30,7 @@ export default function Funding({ className }: FundingProps) {
       title="Funding"
       text={
         <>
-          <VideoPlaceholder title="Funding" />
+          {/* <VideoPlaceholder title="Funding" /> */}
 
           <Typography
             variant="body1"

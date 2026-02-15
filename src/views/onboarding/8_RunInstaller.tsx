@@ -27,7 +27,7 @@ export default function RunInstaller({ className }: RunInstallerProps) {
       className={`RunInstaller${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Now run the installer"
-      text={<VideoPlaceholder title="Installer" />}
+   //   text={<VideoPlaceholder title="Installer" />}
       buttons={
         onboardingStep === STEP ? (
           <>
