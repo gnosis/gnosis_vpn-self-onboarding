@@ -12,37 +12,45 @@ import SwitchingDevices from "./onboarding/4_SwitchingDevices";
 import SessionSummary from "./onboarding/5_SessionSummary";
 import Os from "./onboarding/6_os";
 import Download from "./onboarding/7_download";
-import RunInstaller from "./onboarding/8_RunInstaller";
-import HoprBasics from "./onboarding/9_HoprBasics";
-import RunGnosisVPN from "./onboarding/10_RunGnosisVPN";
-import GetStarted from "./onboarding/11_GetStarted";
-import Funding from "./onboarding/12_Funding";
-import Syncing from "./onboarding/13_Syncing";
-import SyncingFeedback from "./onboarding/14_SyncingFeedback";
-import ReadyToTest from "./onboarding/15_ReadyToTest";
-import AlreadyConnected from "./onboarding/16_AlreadyConnected";
-import ReadyTimeout from "./onboarding/17_Great";
-import CheckIP from "./onboarding/18_CheckIP";
-import CloseIPSite from "./onboarding/19_CloseIPSite";
-import ChooseExitNode from "./onboarding/20_ChooseExitNode";
-import TellChoice from "./onboarding/21_TellChoice";
-import CheckIPAgain from "./onboarding/22_CheckIPAgain";
-import DidIPChange from "./onboarding/23_DidIPChange";
-import IPChangeResponse from "./onboarding/24_IPChangeResponse";
-import NoIPChangeResponse from "./onboarding/25_NoIPChangeResponse";
-import VisitWebsite from "./onboarding/26_VisitWebsite";
-import VisitYoutube from "./onboarding/27_VisitYoutube";
-import YouTubeFeedback from "./onboarding/28_YouTubeFeedback";
-import CheckYoutubeStats from "./onboarding/29_CheckYoutubeStats";
-import CheckIPThirdTime from "./onboarding/30_CheckIPThirdTime";
-import OpenChatApp from "./onboarding/31_OpenChatApp";
-import TellChatApp from "./onboarding/32_TellChatApp";
-import UseChatApp from "./onboarding/33_UseChatApp";
-import AppFeedback from "./onboarding/34_AppFeedback";
-import CheckIPLastTime from "./onboarding/35_CheckIPLastTime";
-import DidIPChangeLast from "./onboarding/36_DidIPChangeLast";
-import TryDifferentExitNode from "./onboarding/37_TryDifferentExitNode";
-import WrapUp from "./onboarding/38_WrapUp";
+import DownloadVideohelp from "./onboarding/8_Download_videohelp";
+import RunInstaller from "./onboarding/9_RunInstaller";
+import RunInstallerVideohelp from "./onboarding/10_RunInstaller_videohelp";
+import HoprBasics from "./onboarding/11_HoprBasics";
+import HoprBasicsVideohelp from "./onboarding/12_HoprBasics_videohelp";
+import RunGnosisVPN from "./onboarding/13_RunGnosisVPN";
+import RunGnosisVPNVideohelp from "./onboarding/14_RunGnosisVPN_videohelp";
+import GetStarted from "./onboarding/15_GetStarted";
+import GetStartedVideohelp from "./onboarding/16_GetStarted_videohelp";
+import Funding from "./onboarding/17_Funding";
+import FundingVideohelp from "./onboarding/18_Funding_videohelp";
+import Syncing from "./onboarding/19_Syncing";
+import SyncingVideohelp from "./onboarding/20_Syncing_videohelp";
+import SyncingFeedback from "./onboarding/21_SyncingFeedback";
+import ReadyToTest from "./onboarding/22_ReadyToTest";
+import AlreadyConnected from "./onboarding/23_AlreadyConnected";
+import ReadyTimeout from "./onboarding/24_Great";
+import CheckIP from "./onboarding/25_CheckIP";
+import CloseIPSite from "./onboarding/26_CloseIPSite";
+import ChooseExitNode from "./onboarding/27_ChooseExitNode";
+import TellChoice from "./onboarding/28_TellChoice";
+import CheckIPAgain from "./onboarding/29_CheckIPAgain";
+import DidIPChange from "./onboarding/30_DidIPChange";
+import IPChangeResponse from "./onboarding/31_IPChangeResponse";
+import IPChangeResponseVideohelp from "./onboarding/32_IPChangeResponse_videohelp";
+import NoIPChangeResponse from "./onboarding/33_NoIPChangeResponse";
+import VisitWebsite from "./onboarding/34_VisitWebsite";
+import VisitYoutube from "./onboarding/35_VisitYoutube";
+import YouTubeFeedback from "./onboarding/36_YouTubeFeedback";
+import CheckYoutubeStats from "./onboarding/37_CheckYoutubeStats";
+import CheckIPThirdTime from "./onboarding/38_CheckIPThirdTime";
+import OpenChatApp from "./onboarding/39_OpenChatApp";
+import TellChatApp from "./onboarding/40_TellChatApp";
+import UseChatApp from "./onboarding/41_UseChatApp";
+import AppFeedback from "./onboarding/42_AppFeedback";
+import CheckIPLastTime from "./onboarding/43_CheckIPLastTime";
+import DidIPChangeLast from "./onboarding/44_DidIPChangeLast";
+import TryDifferentExitNode from "./onboarding/45_TryDifferentExitNode";
+import WrapUp from "./onboarding/46_WrapUp";
 
 const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   1: Welcome,
@@ -52,37 +60,45 @@ const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   5: SessionSummary,
   6: Os,
   7: Download,
-  8: RunInstaller,
-  9: HoprBasics,
-  10: RunGnosisVPN,
-  11: GetStarted,
-  12: Funding,
-  13: Syncing,
-  14: SyncingFeedback,
-  15: ReadyToTest,
-  16: AlreadyConnected,
-  17: ReadyTimeout,
-  18: CheckIP,
-  19: CloseIPSite,
-  20: ChooseExitNode,
-  21: TellChoice,
-  22: CheckIPAgain,
-  23: DidIPChange,
-  24: IPChangeResponse,
-  25: NoIPChangeResponse,
-  26: VisitWebsite,
-  27: VisitYoutube,
-  28: YouTubeFeedback,
-  29: CheckYoutubeStats,
-  30: CheckIPThirdTime,
-  31: OpenChatApp,
-  32: TellChatApp,
-  33: UseChatApp,
-  34: AppFeedback,
-  35: CheckIPLastTime,
-  36: DidIPChangeLast,
-  37: TryDifferentExitNode,
-  38: WrapUp,
+  8: DownloadVideohelp,
+  9: RunInstaller,
+  10: RunInstallerVideohelp,
+  11: HoprBasics,
+  12: HoprBasicsVideohelp,
+  13: RunGnosisVPN,
+  14: RunGnosisVPNVideohelp,
+  15: GetStarted,
+  16: GetStartedVideohelp,
+  17: Funding,
+  18: FundingVideohelp,
+  19: Syncing,
+  20: SyncingVideohelp,
+  21: SyncingFeedback,
+  22: ReadyToTest,
+  23: AlreadyConnected,
+  24: ReadyTimeout,
+  25: CheckIP,
+  26: CloseIPSite,
+  27: ChooseExitNode,
+  28: TellChoice,
+  29: CheckIPAgain,
+  30: DidIPChange,
+  31: IPChangeResponse,
+  32: IPChangeResponseVideohelp,
+  33: NoIPChangeResponse,
+  34: VisitWebsite,
+  35: VisitYoutube,
+  36: YouTubeFeedback,
+  37: CheckYoutubeStats,
+  38: CheckIPThirdTime,
+  39: OpenChatApp,
+  40: TellChatApp,
+  41: UseChatApp,
+  42: AppFeedback,
+  43: CheckIPLastTime,
+  44: DidIPChangeLast,
+  45: TryDifferentExitNode,
+  46: WrapUp,
 };
 
 interface OnboardingProps {
@@ -129,7 +145,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={39} />
+      <TopBar currentStep={onboardingStep} totalSteps={47} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>

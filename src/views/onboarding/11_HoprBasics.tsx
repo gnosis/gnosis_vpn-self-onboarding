@@ -1,33 +1,32 @@
 import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
-import FeedbackSection from "../../components/FeedbackSection";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 7;
+const STEP = 11;
 
-interface DownloadProps {
+interface HoprBasicsProps {
   className?: string;
 }
 
-export default function Download({ className }: DownloadProps) {
+export default function HoprBasics({ className }: HoprBasicsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
-  const DOWNLOADED_LABEL = "Downloaded!";
+  const INSTALLED_LABEL = "It's installed";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("7_download", answer);
+    saveAnswer("11_HoprBasics", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`Download${className ? ` ${className}` : ""}`}
+      className={`HoprBasics${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Download the app"
+      title="HOPR Basics"
       text={
         <>
           <Typography
@@ -38,31 +37,8 @@ export default function Download({ className }: DownloadProps) {
               color: "#333",
             }}
           >
-            Great! Now head to
+            While we're waiting, I'll explain a little about the VPN. Gnosis VPN runs over the HOPR mixnet, which means we'll be sending your data via multiple nodes run by people like you. Don't worry, they can't see anything you send or learn anything about you. It's fully private!
           </Typography>
-
-          <Box>
-            <Typography
-              component="a"
-              href="https://github.com/gnosis/gnosis_vpn-client/releases"
-              target="_blank"
-              rel="noreferrer noopener"
-              sx={{
-                fontSize: "0.95rem",
-                color: "#0066cc",
-                textDecoration: "none",
-                fontWeight: 500,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 0.5,
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }}
-            >
-              https://github.com/gnosis/gnosis_vpn-client/releases 
-            </Typography>
-          </Box>
 
           <Typography
             variant="body1"
@@ -72,17 +48,35 @@ export default function Download({ className }: DownloadProps) {
               color: "#333",
             }}
           >
-            and download the installer
+            But to join the network you'll need a node of your own that runs in the background. You don't need to know how any of this works, but if you're interested you can learn more at
           </Typography>
 
-          <FeedbackSection stepKey="7_download" />
+          <Box>
+            <Typography
+              component="a"
+              href="https://github.com/hoprnet/hoprnet"
+              target="_blank"
+              rel="noreferrer noopener"
+              sx={{
+                fontSize: "0.95rem",
+                color: "#0066cc",
+                textDecoration: "none",
+                fontWeight: 500,
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              https://github.com/hoprnet/hoprnet
+            </Typography>
+          </Box>
         </>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
-            <Button label={DOWNLOADED_LABEL} onClick={() => handleAnswer(DOWNLOADED_LABEL, STEP + 2)} />
+            <Button label={INSTALLED_LABEL} onClick={() => handleAnswer(INSTALLED_LABEL, STEP + 2)} />
           </>
         ) : null
       }
