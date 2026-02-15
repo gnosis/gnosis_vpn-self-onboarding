@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 10;
+
 interface RunGnosisVPNProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function RunGnosisVPN({ className }: RunGnosisVPNProps) {
   return (
     <Step
       className={`RunGnosisVPN${className ? ` ${className}` : ""}`}
-      onboardingStep={10}
+      onboardingStep={STEP}
       title="Run Gnosis VPN"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function RunGnosisVPN({ className }: RunGnosisVPNProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 10 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 10)} />
-            <Button label={RUNNING_LABEL} onClick={() => handleAnswer(RUNNING_LABEL, 11)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={RUNNING_LABEL} onClick={() => handleAnswer(RUNNING_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 23;
+
 interface DidIPChangeProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
   return (
     <Step
       className={`DidIPChange${className ? ` ${className}` : ""}`}
-      onboardingStep={24}
+      onboardingStep={STEP}
       title="Did the IP change"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 24 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, 26)} />
-            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, 25)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP + 3)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 2)} />
           </>
         ) : null
       }

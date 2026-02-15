@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 15;
+
 interface ReadyToTestProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function ReadyToTest({ className }: ReadyToTestProps) {
   return (
     <Step
       className={`ReadyToTest${className ? ` ${className}` : ""}`}
-      onboardingStep={15}
+      onboardingStep={STEP}
       title="Ready to test"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function ReadyToTest({ className }: ReadyToTestProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 15 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, 16)} />
-            <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, 17)} />
+            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
+            <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, STEP + 2)} />
           </>
         ) : null
       }

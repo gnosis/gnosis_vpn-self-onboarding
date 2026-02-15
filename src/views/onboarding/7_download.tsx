@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 7;
+
 interface DownloadProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function Download({ className }: DownloadProps) {
   return (
     <Step
       className={`Download${className ? ` ${className}` : ""}`}
-      onboardingStep={7}
+      onboardingStep={STEP}
       title="Download the app"
       text={
         <>
@@ -108,10 +110,10 @@ export default function Download({ className }: DownloadProps) {
         </>
       }
       buttons={
-        onboardingStep === 7 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 7)} />
-            <Button label={DOWNLOADED_LABEL} onClick={() => handleAnswer(DOWNLOADED_LABEL, 8)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DOWNLOADED_LABEL} onClick={() => handleAnswer(DOWNLOADED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

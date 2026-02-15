@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 37;
+
 interface TryDifferentExitNodeProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
   return (
     <Step
       className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
-      onboardingStep={38}
+      onboardingStep={STEP}
       title="Try with a different exit node"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
         </Typography>
       }
       buttons={
-        onboardingStep === 38 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, 39)} />
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 38)} />
+            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, STEP)} />
           </>
         ) : null
       }

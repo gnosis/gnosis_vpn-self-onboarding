@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 19;
+
 interface CloseIPSiteProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
   return (
     <Step
       className={`CloseIPSite${className ? ` ${className}` : ""}`}
-      onboardingStep={20}
+      onboardingStep={STEP}
       title="Close IP site"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 20 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 20)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 21)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

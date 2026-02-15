@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 30;
+
 interface CheckIPThirdTimeProps {
   className?: string;
 }
@@ -24,7 +26,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
   return (
     <Step
       className={`CheckIPThirdTime${className ? ` ${className}` : ""}`}
-      onboardingStep={31}
+      onboardingStep={STEP}
       title="Check your IP again"
       text={
         <Typography
@@ -53,11 +55,11 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 31 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 31)} />
-            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, 32)} />
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, 32)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 import type { AppView } from '../App';
 
 interface AppStore {
@@ -20,7 +21,8 @@ interface AppStore {
   clearLoginForm: () => void;
 }
 
-export const useAppStore = create<AppStore>((set) => ({
+export const useAppStore = create<AppStore>(
+  devtools((set) => ({
   // Navigation
   currentView: 'login',
   setCurrentView: (view) => set({ currentView: view }),
@@ -40,4 +42,5 @@ export const useAppStore = create<AppStore>((set) => ({
   setUsername: (username) => set({ username }),
   setPassword: (password) => set({ password }),
   clearLoginForm: () => set({ username: '', password: '' }),
-}));
+  }), { name: 'AppStore' }),
+);

@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 24;
+
 interface IPChangeResponseProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   return (
     <Step
       className={`IPChangeResponse${className ? ` ${className}` : ""}`}
-      onboardingStep={25}
+      onboardingStep={STEP}
       title="Response"
       text={
         <Typography
@@ -37,8 +39,8 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 25 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 26)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
         ) : null
       }
     />

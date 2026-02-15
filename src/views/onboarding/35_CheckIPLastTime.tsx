@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 35;
+
 interface CheckIPLastTimeProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   return (
     <Step
       className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
-      onboardingStep={36}
+      onboardingStep={STEP}
       title="Check IP one last time"
       text={
         <Typography
@@ -51,10 +53,10 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 36 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 36)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 37)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

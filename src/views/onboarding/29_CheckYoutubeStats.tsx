@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 29;
+
 interface CheckYoutubeStatsProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
   return (
     <Step
       className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
-      onboardingStep={30}
+      onboardingStep={STEP}
       title="Check YouTube Stats"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
         </Typography>
       }
       buttons={
-        onboardingStep === 30 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 30)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 31)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 22;
+
 interface CheckIPAgainProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
   return (
     <Step
       className={`CheckIPAgain${className ? ` ${className}` : ""}`}
-      onboardingStep={23}
+      onboardingStep={STEP}
       title="Check your IP again"
       text={
         <Typography
@@ -52,10 +54,10 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 23 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 23)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 24)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

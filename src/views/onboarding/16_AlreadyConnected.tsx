@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 16;
+
 interface AlreadyConnectedProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function AlreadyConnected({ className }: AlreadyConnectedProps) {
   return (
     <Step
       className={`AlreadyConnected${className ? ` ${className}` : ""}`}
-      onboardingStep={16}
+      onboardingStep={STEP}
       title="Good to know!"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function AlreadyConnected({ className }: AlreadyConnectedProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 16 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 16)} />
-            <Button label={DISCONNECTED_LABEL} onClick={() => handleAnswer(DISCONNECTED_LABEL, 15)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DISCONNECTED_LABEL} onClick={() => handleAnswer(DISCONNECTED_LABEL, STEP - 1)} />
           </>
         ) : null
       }

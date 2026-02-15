@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 4;
+
 interface SwitchingDevicesProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
   return (
     <Step
       className={`SwitchingDevices${className ? ` ${className}` : ""}`}
-      onboardingStep={4}
+      onboardingStep={STEP}
       title="Switching Devices"
       text={
         <>
@@ -53,10 +55,10 @@ export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
         </>
       }
       buttons={
-        onboardingStep === 4 ? (
+        onboardingStep === STEP ? (
           <Button
             label={CONTINUE_LABEL}
-            onClick={() => handleAnswer(CONTINUE_LABEL, 5)}
+            onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
           />
         ) : null
       }

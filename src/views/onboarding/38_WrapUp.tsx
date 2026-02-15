@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 38;
+
 interface WrapUpProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function WrapUp({ className }: WrapUpProps) {
   return (
     <Step
       className={`WrapUp${className ? ` ${className}` : ""}`}
-      onboardingStep={39}
+      onboardingStep={STEP}
       title="Wrap up"
       text={
         <Typography
@@ -37,8 +39,8 @@ export default function WrapUp({ className }: WrapUpProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 39 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 39)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
         ) : null
       }
     />

@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 12;
+
 interface FundingProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function Funding({ className }: FundingProps) {
   return (
     <Step
       className={`Funding${className ? ` ${className}` : ""}`}
-      onboardingStep={12}
+      onboardingStep={STEP}
       title="Funding"
       text={
         <>
@@ -86,10 +88,10 @@ export default function Funding({ className }: FundingProps) {
         </>
       }
       buttons={
-        onboardingStep === 12 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 12)} />
-            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, 13)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

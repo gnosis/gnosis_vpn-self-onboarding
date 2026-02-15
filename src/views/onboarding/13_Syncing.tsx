@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 13;
+
 interface SyncingProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function Syncing({ className }: SyncingProps) {
   return (
     <Step
       className={`Syncing${className ? ` ${className}` : ""}`}
-      onboardingStep={13}
+      onboardingStep={STEP}
       title="Syncing"
       text={
         <>
@@ -51,10 +53,10 @@ export default function Syncing({ className }: SyncingProps) {
         </>
       }
       buttons={
-        onboardingStep === 13 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 13)} />
-            <Button label={SYNCED_LABEL} onClick={() => handleAnswer(SYNCED_LABEL, 14)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={SYNCED_LABEL} onClick={() => handleAnswer(SYNCED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

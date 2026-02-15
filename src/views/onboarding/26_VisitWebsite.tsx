@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 26;
+
 interface VisitWebsiteProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
   return (
     <Step
       className={`VisitWebsite${className ? ` ${className}` : ""}`}
-      onboardingStep={27}
+      onboardingStep={STEP}
       title="Visit website"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 27 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 27)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 28)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

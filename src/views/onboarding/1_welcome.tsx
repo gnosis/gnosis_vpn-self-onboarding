@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 1;
+
 interface WelcomeProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function Welcome({ className }: WelcomeProps) {
   return (
     <Step
       className={`Welcome${className ? ` ${className}` : ""}`}
-      onboardingStep={1}
+      onboardingStep={STEP}
       title="Welcome to Gnosis VPN Onboarding"
       text={
         <>
@@ -94,10 +96,10 @@ export default function Welcome({ className }: WelcomeProps) {
         </>
       }
       buttons={
-        onboardingStep === 1 ? (
+        onboardingStep === STEP ? (
           <Button
             label={START_ONBOARDING_LABEL}
-            onClick={() => handleAnswer(START_ONBOARDING_LABEL, 2)}
+            onClick={() => handleAnswer(START_ONBOARDING_LABEL, STEP + 1)}
           />
         ) : null
       }

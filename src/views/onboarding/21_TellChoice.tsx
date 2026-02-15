@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 21;
+
 interface TellChoiceProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
   return (
     <Step
       className={`TellChoice${className ? ` ${className}` : ""}`}
-      onboardingStep={22}
+      onboardingStep={STEP}
       title="Tell us choice"
       text={
         <Typography
@@ -37,8 +39,8 @@ export default function TellChoice({ className }: TellChoiceProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 22 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 22)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
         ) : null
       }
     />

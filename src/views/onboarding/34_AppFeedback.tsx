@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 34;
+
 interface AppFeedbackProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
   return (
     <Step
       className={`AppFeedback${className ? ` ${className}` : ""}`}
-      onboardingStep={35}
+      onboardingStep={STEP}
       title="App feedback"
       text={
         <Typography
@@ -37,8 +39,8 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 35 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 35)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
         ) : null
       }
     />

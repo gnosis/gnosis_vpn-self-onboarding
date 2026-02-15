@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 9;
+
 interface HoprBasicsProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function HoprBasics({ className }: HoprBasicsProps) {
   return (
     <Step
       className={`HoprBasics${className ? ` ${className}` : ""}`}
-      onboardingStep={9}
+      onboardingStep={STEP}
       title="HOPR Basics"
       text={
         <>
@@ -71,10 +73,10 @@ export default function HoprBasics({ className }: HoprBasicsProps) {
         </>
       }
       buttons={
-        onboardingStep === 9 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 9)} />
-            <Button label={INSTALLED_LABEL} onClick={() => handleAnswer(INSTALLED_LABEL, 10)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={INSTALLED_LABEL} onClick={() => handleAnswer(INSTALLED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 25;
+
 interface NoDifferentExitNodeProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
   return (
     <Step
       className={`NoIPChangeResponse${className ? ` ${className}` : ""}`}
-      onboardingStep={26}
+      onboardingStep={STEP}
       title="Response"
       text={
         <Typography
@@ -37,8 +39,8 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
         </Typography>
       }
       buttons={
-        onboardingStep === 26 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 26)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
         ) : null
       }
     />

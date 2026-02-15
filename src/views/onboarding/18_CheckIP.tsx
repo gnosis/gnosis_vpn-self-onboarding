@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 18;
+
 interface CheckIPProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function CheckIP({ className }: CheckIPProps) {
   return (
     <Step
       className={`CheckIP${className ? ` ${className}` : ""}`}
-      onboardingStep={18}
+      onboardingStep={STEP}
       title="Check your IP"
       text={
         <>
@@ -65,10 +67,10 @@ export default function CheckIP({ className }: CheckIPProps) {
         </>
       }
       buttons={
-        onboardingStep === 18 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 18)} />
-            <Button label={GOT_IT_LABEL} onClick={() => handleAnswer(GOT_IT_LABEL, 19)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={GOT_IT_LABEL} onClick={() => handleAnswer(GOT_IT_LABEL, STEP + 1)} />
           </>
         ) : null
       }

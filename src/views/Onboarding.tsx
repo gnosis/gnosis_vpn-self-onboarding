@@ -21,7 +21,7 @@ import Syncing from "./onboarding/13_Syncing";
 import SyncingFeedback from "./onboarding/14_SyncingFeedback";
 import ReadyToTest from "./onboarding/15_ReadyToTest";
 import AlreadyConnected from "./onboarding/16_AlreadyConnected";
-import ReadyTimeout from "./onboarding/17_ReadyTimeout";
+import ReadyTimeout from "./onboarding/17_Great";
 import CheckIP from "./onboarding/18_CheckIP";
 import CloseIPSite from "./onboarding/19_CloseIPSite";
 import ChooseExitNode from "./onboarding/20_ChooseExitNode";
@@ -129,13 +129,13 @@ export default function Onboarding({ className }: OnboardingProps) {
           {onboardingStep >= 14 && <SyncingFeedback />}
           {onboardingStep >= 15 && <MessageBubble text={onboardingAnswers["14_SyncingFeedback"]} />}
           {onboardingStep >= 15 && <ReadyToTest />}
-          {onboardingStep >= 16 && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
-          {onboardingStep >= 16 && <AlreadyConnected />}
-          {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
+          {onboardingStep >= 16 || (onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] ) && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
+          {onboardingStep >= 16 || (onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] ) && <AlreadyConnected />}
+          {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
           {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <ReadyToTest />}
           {onboardingStep >= 17 && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
           {onboardingStep >= 17 && <ReadyTimeout />}
-          {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_ReadyTimeout"]} />}
+          {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_Great"]} />}
           {onboardingStep >= 18 && <CheckIP />}
           {onboardingStep >= 19 && <MessageBubble text={onboardingAnswers["18_CheckIP"]} />}
           {onboardingStep >= 19 && <CloseIPSite />}

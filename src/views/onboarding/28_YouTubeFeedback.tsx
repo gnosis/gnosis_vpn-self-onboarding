@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 28;
+
 interface YouTubeFeedbackProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
   return (
     <Step
       className={`YouTubeFeedback${className ? ` ${className}` : ""}`}
-      onboardingStep={29}
+      onboardingStep={STEP}
       title="YouTube feedback"
       text={
         <>
@@ -50,8 +52,8 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
         </>
       }
       buttons={
-        onboardingStep === 29 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 29)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
         ) : null
       }
     />

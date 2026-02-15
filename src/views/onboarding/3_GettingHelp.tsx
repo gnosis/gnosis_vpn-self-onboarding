@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 3;
+
 interface GettingHelpProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function GettingHelp({ className }: GettingHelpProps) {
   return (
     <Step
       className={`GettingHelp${className ? ` ${className}` : ""}`}
-      onboardingStep={3}
+      onboardingStep={STEP}
       title="Getting Help"
       text={
         <>
@@ -64,10 +66,10 @@ export default function GettingHelp({ className }: GettingHelpProps) {
         </>
       }
       buttons={
-        onboardingStep === 3 ? (
+        onboardingStep === STEP ? (
           <Button
             label={CONTINUE_LABEL}
-            onClick={() => handleAnswer(CONTINUE_LABEL, 4)}
+            onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
           />
         ) : null
       }

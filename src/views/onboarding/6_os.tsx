@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 6;
+
 interface OSProps {
     className?: string;
 }
@@ -23,7 +25,7 @@ export default function OS({ className }: OSProps) {
     return (
         <Step
             className={`OS${className ? ` ${className}` : ""}`}
-            onboardingStep={6}
+            onboardingStep={STEP}
             title="Which OS?"
             text={
                 <>
@@ -41,15 +43,15 @@ export default function OS({ className }: OSProps) {
                 </>
             }
             buttons={
-                onboardingStep === 6 ? (
+                onboardingStep === STEP ? (
                     <>
                         <Button
                             label={LINUX_LABEL}
-                            onClick={() => handleAnswer(LINUX_LABEL, 7)}
+                            onClick={() => handleAnswer(LINUX_LABEL, STEP + 1)}
                         />
                         <Button
                             label={MACOS_LABEL}
-                            onClick={() => handleAnswer(MACOS_LABEL, 7)}
+                            onClick={() => handleAnswer(MACOS_LABEL, STEP + 1)}
                         />
                     </>
                 ) : null

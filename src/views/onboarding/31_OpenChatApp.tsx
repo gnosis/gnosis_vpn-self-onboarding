@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 31;
+
 interface OpenChatAppProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
   return (
     <Step
       className={`OpenChatApp${className ? ` ${className}` : ""}`}
-      onboardingStep={32}
+      onboardingStep={STEP}
       title="Open your Chat App"
       text={
         <>
@@ -62,10 +64,10 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
         </>
       }
       buttons={
-        onboardingStep === 32 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 32)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 33)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

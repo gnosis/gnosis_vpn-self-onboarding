@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 33;
+
 interface UseChatAppProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function UseChatApp({ className }: UseChatAppProps) {
   return (
     <Step
       className={`UseChatApp${className ? ` ${className}` : ""}`}
-      onboardingStep={34}
+      onboardingStep={STEP}
       title="Use your Chat App"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function UseChatApp({ className }: UseChatAppProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 34 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 34)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 35)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

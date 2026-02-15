@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 32;
+
 interface TellChatAppProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function TellChatApp({ className }: TellChatAppProps) {
   return (
     <Step
       className={`TellChatApp${className ? ` ${className}` : ""}`}
-      onboardingStep={33}
+      onboardingStep={STEP}
       title="Tell Us Your Chat App"
       text={
         <Typography
@@ -37,8 +39,8 @@ export default function TellChatApp({ className }: TellChatAppProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 33 ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 33)} />
+        onboardingStep === STEP ? (
+          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
         ) : null
       }
     />

@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 11;
+
 interface GetStartedProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function GetStarted({ className }: GetStartedProps) {
   return (
     <Step
       className={`GetStarted${className ? ` ${className}` : ""}`}
-      onboardingStep={11}
+      onboardingStep={STEP}
       title="Get Started"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function GetStarted({ className }: GetStartedProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 11 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 11)} />
-            <Button label={THERE_LABEL} onClick={() => handleAnswer(THERE_LABEL, 12)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={THERE_LABEL} onClick={() => handleAnswer(THERE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

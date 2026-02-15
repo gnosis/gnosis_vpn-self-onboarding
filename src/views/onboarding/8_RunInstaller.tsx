@@ -2,6 +2,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 8;
+
 interface RunInstallerProps {
   className?: string;
 }
@@ -22,14 +24,14 @@ export default function RunInstaller({ className }: RunInstallerProps) {
   return (
     <Step
       className={`RunInstaller${className ? ` ${className}` : ""}`}
-      onboardingStep={8}
+      onboardingStep={STEP}
       title="Now run the installer"
       text={null}
       buttons={
-        onboardingStep === 8 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 8)} />
-            <Button label={DONE_IT_LABEL} onClick={() => handleAnswer(DONE_IT_LABEL, 9)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_IT_LABEL} onClick={() => handleAnswer(DONE_IT_LABEL, STEP + 1)} />
           </>
         ) : null
       }

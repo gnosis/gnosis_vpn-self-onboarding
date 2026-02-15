@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 20;
+
 interface ChooseExitNodeProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
   return (
     <Step
       className={`ChooseExitNode${className ? ` ${className}` : ""}`}
-      onboardingStep={21}
+      onboardingStep={STEP}
       title="Choose an exit node"
       text={
         <Typography
@@ -38,10 +40,10 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === 21 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 21)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, 22)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

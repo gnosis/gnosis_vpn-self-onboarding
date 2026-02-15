@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 27;
+
 interface VisitYoutubeProps {
   className?: string;
 }
@@ -23,7 +25,7 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
   return (
     <Step
       className={`VisitYoutube${className ? ` ${className}` : ""}`}
-      onboardingStep={28}
+      onboardingStep={STEP}
       title="Visit YouTube"
       text={
         <>
@@ -40,10 +42,10 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
         </>
       }
       buttons={
-        onboardingStep === 28 ? (
+        onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, 28)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, 29)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

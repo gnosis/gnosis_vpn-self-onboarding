@@ -3,6 +3,8 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
+const STEP = 5;
+
 interface SessionSummaryProps {
   className?: string;
 }
@@ -22,7 +24,7 @@ export default function SessionSummary({ className }: SessionSummaryProps) {
   return (
     <Step
       className={`SessionSummary${className ? ` ${className}` : ""}`}
-      onboardingStep={5}
+      onboardingStep={STEP}
       title="Session Summary"
       text={
         <>
@@ -54,10 +56,10 @@ export default function SessionSummary({ className }: SessionSummaryProps) {
         </>
       }
       buttons={
-        onboardingStep === 5 ? (
+        onboardingStep === STEP ? (
           <Button
             label={CONTINUE_LABEL}
-            onClick={() => handleAnswer(CONTINUE_LABEL, 6)}
+            onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
           />
         ) : null
       }
