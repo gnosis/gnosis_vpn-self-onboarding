@@ -85,6 +85,8 @@ export default function Onboarding({ className }: OnboardingProps) {
     return () => { cancelled = true; };
   }, [onboardingStep]);
 
+  const disconnectHappen = onboardingStep === 15 && !!onboardingAnswers["16_AlreadyConnected"];
+
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
@@ -128,11 +130,21 @@ export default function Onboarding({ className }: OnboardingProps) {
           {onboardingStep >= 14 && <MessageBubble text={onboardingAnswers["13_Syncing"]} />}
           {onboardingStep >= 14 && <SyncingFeedback />}
           {onboardingStep >= 15 && <MessageBubble text={onboardingAnswers["14_SyncingFeedback"]} />}
-          {onboardingStep >= 15 && <ReadyToTest />}
-          {onboardingStep >= 16 || (onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] ) && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />}
-          {onboardingStep >= 16 || (onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] ) && <AlreadyConnected />}
-          {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
-          {onboardingStep === 15 && onboardingAnswers["16_AlreadyConnected"] && <ReadyToTest />}
+          {onboardingStep >= 15 && <ReadyToTest disconnectHappen={disconnectHappen}/>}
+          {  
+            (
+              onboardingStep >= 16 || 
+              disconnectHappen
+            ) && <MessageBubble text={onboardingAnswers["15_ReadyToTest"]} />
+          }
+          {  
+            (
+              onboardingStep >= 16 || 
+              disconnectHappen
+            ) &&  <AlreadyConnected />
+          }
+          {disconnectHappen && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
+          {disconnectHappen && <ReadyToTest />}
           {onboardingStep >= 17 && <MessageBubble text={onboardingAnswers["16_AlreadyConnected"]} />}
           {onboardingStep >= 17 && <ReadyTimeout />}
           {onboardingStep >= 18 && <MessageBubble text={onboardingAnswers["17_Great"]} />}
