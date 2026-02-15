@@ -1,6 +1,7 @@
 import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
+import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
 const STEP = 12;
@@ -29,6 +30,8 @@ export default function Funding({ className }: FundingProps) {
       title="Funding"
       text={
         <>
+          <VideoPlaceholder title="Funding" />
+
           <Typography
             variant="body1"
             sx={{

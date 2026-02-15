@@ -1,5 +1,6 @@
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
+import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
 const STEP = 8;
@@ -26,7 +27,7 @@ export default function RunInstaller({ className }: RunInstallerProps) {
       className={`RunInstaller${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Now run the installer"
-      text={null}
+      text={<VideoPlaceholder title="Installer" />}
       buttons={
         onboardingStep === STEP ? (
           <>

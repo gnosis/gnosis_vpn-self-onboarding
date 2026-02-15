@@ -1,6 +1,7 @@
-import { Typography, Box, TextField } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
+import FeedbackSection from "../../components/FeedbackSection";
 import { useAppStore } from "../../store/appStore";
 
 const STEP = 7;
@@ -74,39 +75,7 @@ export default function Download({ className }: DownloadProps) {
             and download the installer
           </Typography>
 
-          <Box
-            sx={{
-              backgroundColor: "#f9f9f9",
-              p: 2.5,
-              borderRadius: 1,
-              border: "1px solid #e0e0e0",
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                fontSize: "0.85rem",
-                color: "#666",
-                mb: 1.5,
-                fontWeight: 500,
-              }}
-            >
-              Share any blockers, questions, or notes for this step.
-            </Typography>
-            <TextField
-              fullWidth
-              multiline
-              rows={3}
-              placeholder="Your feedback..."
-              variant="outlined"
-              size="small"
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  fontSize: "0.9rem",
-                },
-              }}
-            />
-          </Box>
+          <FeedbackSection stepKey="7_download" />
         </>
       }
       buttons={
