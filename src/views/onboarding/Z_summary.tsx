@@ -174,10 +174,12 @@ export default function Summary({ className }: SummaryProps) {
           justifyContent: "center",
         }}
       >
-        <Button
-          label="Continue Onboarding"
-          onClick={handleContinue}
-        />
+        <>
+          <Button
+            label="Continue Onboarding"
+            onClick={handleContinue}
+          />
+        </>
       </Box>
     </Box>
   );

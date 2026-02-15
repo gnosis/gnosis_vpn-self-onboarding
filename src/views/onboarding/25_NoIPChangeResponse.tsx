@@ -40,7 +40,9 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
       }
       buttons={
         onboardingStep === STEP ? (
-          <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+          <>
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+          </>
         ) : null
       }
     />

@@ -97,10 +97,12 @@ export default function Welcome({ className }: WelcomeProps) {
       }
       buttons={
         onboardingStep === STEP ? (
-          <Button
-            label={START_ONBOARDING_LABEL}
-            onClick={() => handleAnswer(START_ONBOARDING_LABEL, STEP + 1)}
-          />
+          <>
+            <Button
+              label={START_ONBOARDING_LABEL}
+              onClick={() => handleAnswer(START_ONBOARDING_LABEL, STEP + 1)}
+            />
+          </>
         ) : null
       }
     />

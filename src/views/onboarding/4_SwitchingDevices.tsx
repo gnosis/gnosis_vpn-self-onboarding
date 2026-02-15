@@ -56,10 +56,12 @@ export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
       }
       buttons={
         onboardingStep === STEP ? (
-          <Button
-            label={CONTINUE_LABEL}
-            onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
-          />
+          <>
+            <Button
+              label={CONTINUE_LABEL}
+              onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
+            />
+          </>
         ) : null
       }
     />
