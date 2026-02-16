@@ -3,30 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 44;
+const STEP = 31;
 
-interface CheckIPLastTimeProps {
+interface CheckIPAgainProps {
   className?: string;
 }
 
-export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
+export default function CheckIPAgain({ className }: CheckIPAgainProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
+  const DONE_LABEL = "Done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("44_CheckIPLastTime", answer);
+    saveAnswer("31_CheckIPAgain", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
+      className={`CheckIPAgain${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check IP one last time"
+      title="Check your IP again"
       text={
         <Typography
           variant="body1"
@@ -36,7 +36,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
             color: "#333",
           }}
         >
-          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
+          Great! Now return to{" "}
           <Box
             component="a"
             href="https://whatismyipaddress.com"
@@ -50,12 +50,13 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
           >
             https://whatismyipaddress.com
           </Box>
+          {" "}and check the IP address
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null

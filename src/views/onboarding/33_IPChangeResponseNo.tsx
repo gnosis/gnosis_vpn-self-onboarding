@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 47;
+const STEP = 34;
 
-interface WrapUpProps {
+interface IPChangeResponseVideohelpProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function IPChangeResponseVideohelp({ className }: IPChangeResponseVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const STILL_NOT_WORKING = "It's still not working";
+  const WORKING_NOW = "It's working now";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("47_WrapUp", answer);
+    saveAnswer("34_IPChangeResponse_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
+      className={`IPChangeResponseVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Wrap up"
+      title="Video support"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Did your IP change?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={STILL_NOT_WORKING} onClick={() => handleAnswer(STILL_NOT_WORKING, STEP + 0.25)} />
+            <Button label={WORKING_NOW} onClick={() => handleAnswer(WORKING_NOW, STEP + 1)} />
           </>
         ) : null
       }

@@ -5,28 +5,28 @@ import { useAppStore } from "../../store/appStore";
 
 const STEP = 46;
 
-interface TryDifferentExitNodeProps {
+interface DidIPChangeLastProps {
   className?: string;
 }
 
-export default function TryDifferentExitNode({ className }: TryDifferentExitNodeProps) {
+export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const WRAP_UP_LABEL = "Let's wrap up";
-  const TRY_AGAIN_LABEL = "Let's do that";
+  const WRONG_LABEL = "Something went wrong";
+  const SAME_LABEL = "It's the same as last time";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("46_TryDifferentExitNode", answer);
+    saveAnswer("46_DidIPChangeLast", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
+      className={`DidIPChangeLast${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Try with a different exit node"
+      title="Did the IP change?"
       text={
         <Typography
           variant="body1"
@@ -36,14 +36,14 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
             color: "#333",
           }}
         >
-          Amazing! If you'd like to keep testing, we can try again with a different exit node
+          Did the IP change?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, STEP)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 2)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 3)} />
           </>
         ) : null
       }

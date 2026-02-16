@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 38;
+const STEP = 48;
 
-interface CheckYoutubeStatsProps {
+interface WrapUpProps {
   className?: string;
 }
 
-export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
+export default function WrapUp({ className }: WrapUpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "That's done";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("38_CheckYoutubeStats", answer);
+    saveAnswer("48_WrapUp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
+      className={`WrapUp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check YouTube Stats"
+      title="Wrap up"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
             color: "#333",
           }}
         >
-          Let's check the video stats
+          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

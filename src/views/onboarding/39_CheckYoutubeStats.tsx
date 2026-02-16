@@ -1,32 +1,32 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 30;
+const STEP = 39;
 
-interface CheckIPAgainProps {
+interface CheckYoutubeStatsProps {
   className?: string;
 }
 
-export default function CheckIPAgain({ className }: CheckIPAgainProps) {
+export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "Done";
+  const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("30_CheckIPAgain", answer);
+    saveAnswer("39_CheckYoutubeStats", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPAgain${className ? ` ${className}` : ""}`}
+      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check your IP again"
+      title="Check YouTube Stats"
       text={
         <Typography
           variant="body1"
@@ -36,21 +36,7 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
             color: "#333",
           }}
         >
-          Great! Now return to{" "}
-          <Box
-            component="a"
-            href="https://whatismyipaddress.com"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://whatismyipaddress.com
-          </Box>
-          {" "}and check the IP address
+          Let's check the video stats
         </Typography>
       }
       buttons={

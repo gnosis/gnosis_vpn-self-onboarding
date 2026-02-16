@@ -3,14 +3,14 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 33;
+const STEP = 29;
 
-interface IPChangeResponseVideohelpProps {
+interface ChooseExitNodeVideohelpProps {
   className?: string;
   lastEntry?: boolean;
 }
 
-export default function IPChangeResponseVideohelp({ className, lastEntry }: IPChangeResponseVideohelpProps) {
+export default function ChooseExitNodeVideohelp({ className, lastEntry }: ChooseExitNodeVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -19,13 +19,13 @@ export default function IPChangeResponseVideohelp({ className, lastEntry }: IPCh
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("33_IPChangeResponse_videohelp", answer);
+    saveAnswer("29_ChooseExitNode_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`IPChangeResponseVideohelp${className ? ` ${className}` : ""}`}
+      className={`ChooseExitNodeVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Video support"
       text={

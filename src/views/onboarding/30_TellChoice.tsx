@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 42;
+const STEP = 30;
 
-interface UseChatAppProps {
+const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
+
+interface TellChoiceProps {
   className?: string;
 }
 
-export default function UseChatApp({ className }: UseChatAppProps) {
+export default function TellChoice({ className }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
-
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("42_UseChatApp", answer);
+    saveAnswer("30_TellChoice", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`UseChatApp${className ? ` ${className}` : ""}`}
+      className={`TellChoice${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Use your Chat App"
+      title="Tell us choice"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,19 @@ export default function UseChatApp({ className }: UseChatAppProps) {
             color: "#333",
           }}
         >
-          Now just use your chat app normally for a bit
+          Which one did you choose?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            {LOCATIONS.map((location) => (
+              <Button
+                key={location}
+                label={location}
+                onClick={() => handleAnswer(location, STEP + 1)}
+              />
+            ))}
           </>
         ) : null
       }

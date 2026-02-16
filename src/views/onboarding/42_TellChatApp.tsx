@@ -3,13 +3,13 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 34;
+const STEP = 42;
 
-interface NoDifferentExitNodeProps {
+interface TellChatAppProps {
   className?: string;
 }
 
-export default function NoIPChangeResponse({ className }: NoDifferentExitNodeProps) {
+export default function TellChatApp({ className }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -17,15 +17,15 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_NoIPChangeResponse", answer);
+    saveAnswer("42_TellChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`NoIPChangeResponse${className ? ` ${className}` : ""}`}
+      className={`TellChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Response"
+      title="Tell Us Your Chat App"
       text={
         <Typography
           variant="body1"
@@ -35,13 +35,13 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
             color: "#333",
           }}
         >
-          We'll try again or get some help
+          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP+1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

@@ -3,13 +3,13 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 35;
+const STEP = 37;
 
-interface VisitWebsiteProps {
+interface VisitYoutubeProps {
   className?: string;
 }
 
-export default function VisitWebsite({ className }: VisitWebsiteProps) {
+export default function VisitYoutube({ className }: VisitYoutubeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -18,26 +18,28 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
   const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("35_VisitWebsite", answer);
+    saveAnswer("37_VisitYoutube", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`VisitWebsite${className ? ` ${className}` : ""}`}
+      className={`VisitYoutube${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Visit website"
+      title="Visit YouTube"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          Let's take it for a spin. Visit the Gnosis VPN site
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Now let's try something more advanced. Go to YouTube and watch a video. Let's watch for at least a minute: really put the VPN to the test!
+          </Typography>
+        </>
       }
       buttons={
         onboardingStep === STEP ? (

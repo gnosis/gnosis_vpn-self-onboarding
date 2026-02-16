@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 41;
+const STEP = 32;
 
-interface TellChatAppProps {
+interface DidIPChangeProps {
   className?: string;
 }
 
-export default function TellChatApp({ className }: TellChatAppProps) {
+export default function DidIPChange({ className }: DidIPChangeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NO_CHANGE_LABEL = "No it's the same";
+  const YES_LABEL = "Yes!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("41_TellChatApp", answer);
+    saveAnswer("32_DidIPChange", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TellChatApp${className ? ` ${className}` : ""}`}
+      className={`DidIPChange${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell Us Your Chat App"
+      title="Did the IP change"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function TellChatApp({ className }: TellChatAppProps) {
             color: "#333",
           }}
         >
-          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
+          Did your IP change?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP + 1)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 2)} />
           </>
         ) : null
       }

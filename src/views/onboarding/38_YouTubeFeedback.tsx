@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 40;
+const STEP = 38;
 
-interface OpenChatAppProps {
+interface YouTubeFeedbackProps {
   className?: string;
 }
 
-export default function OpenChatApp({ className }: OpenChatAppProps) {
+export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("40_OpenChatApp", answer);
+    saveAnswer("38_YouTubeFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`OpenChatApp${className ? ` ${className}` : ""}`}
+      className={`YouTubeFeedback${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Open your Chat App"
+      title="YouTube feedback"
       text={
         <>
           <Typography
@@ -37,7 +36,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
               color: "#333",
             }}
           >
-            Now let's try something else.
+            Great! And how was the video and audio quality?
           </Typography>
 
           <Typography
@@ -48,26 +47,14 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
               color: "#333",
             }}
           >
-            Not everything we do online uses the same method to send data, but we need to support them all!
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            Please open a Chat app, one that isn't in your browser.
+            Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible
           </Typography>
         </>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 31;
+const STEP = 35;
 
-interface DidIPChangeProps {
+interface NoDifferentExitNodeProps {
   className?: string;
 }
 
-export default function DidIPChange({ className }: DidIPChangeProps) {
+export default function NoIPChangeResponse({ className }: NoDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NO_CHANGE_LABEL = "No it's the same";
-  const YES_LABEL = "Yes!";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("31_DidIPChange", answer);
+    saveAnswer("35_NoIPChangeResponse", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`DidIPChange${className ? ` ${className}` : ""}`}
+      className={`NoIPChangeResponse${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Did the IP change"
+      title="Response"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
             color: "#333",
           }}
         >
-          Did your IP change?
+          We'll try again or get some help
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP)} />
-            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP+1)} />
           </>
         ) : null
       }

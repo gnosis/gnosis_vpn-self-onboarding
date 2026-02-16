@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 29;
+const STEP = 33;
 
-const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
-
-interface TellChoiceProps {
+interface IPChangeResponseProps {
   className?: string;
 }
 
-export default function TellChoice({ className }: TellChoiceProps) {
+export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
+  const CONTINUE_LABEL = "It's worked";
+  const NEED_HELP_LABEL = "I need some help";
+
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("29_TellChoice", answer);
+    saveAnswer("33_IPChangeResponseYes", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TellChoice${className ? ` ${className}` : ""}`}
+      className={`IPChangeResponseYes${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell us choice"
+      title="Great! Your private Gnosis VPN connection is working"
       text={
         <Typography
           variant="body1"
@@ -35,19 +36,14 @@ export default function TellChoice({ className }: TellChoiceProps) {
             color: "#333",
           }}
         >
-          Which one did you choose?
+          Let's take it for a spin. Visit [Gnosis VPN site]
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            {LOCATIONS.map((location) => (
-              <Button
-                key={location}
-                label={location}
-                onClick={() => handleAnswer(location, STEP + 1)}
-              />
-            ))}
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 2)} />
           </>
         ) : null
       }

@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 43;
+const STEP = 36;
 
-interface AppFeedbackProps {
+interface VisitWebsiteProps {
   className?: string;
 }
 
-export default function AppFeedback({ className }: AppFeedbackProps) {
+export default function VisitWebsite({ className }: VisitWebsiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("43_AppFeedback", answer);
+    saveAnswer("36_VisitWebsite", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`AppFeedback${className ? ` ${className}` : ""}`}
+      className={`VisitWebsite${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="App feedback"
+      title="Visit website"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
             color: "#333",
           }}
         >
-          Great! Did it work well? Did you notice any issues?
+          Let's take it for a spin. Visit the Gnosis VPN site
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
           </>
         ) : null
       }
