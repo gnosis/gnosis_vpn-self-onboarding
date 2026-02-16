@@ -53,7 +53,7 @@ export default function CheckIP({ className }: CheckIPProps) {
             First, we need to see what your IP address is normally. Go to{" "}
             <Box
               component="a"
-              href="https://whatismyipaddress.com"
+              href="https://radar.cloudflare.com/ip"
               target="_blank"
               rel="noreferrer noopener"
               sx={{
@@ -62,7 +62,7 @@ export default function CheckIP({ className }: CheckIPProps) {
                 "&:hover": { textDecoration: "underline" },
               }}
             >
-              https://whatismyipaddress.com
+              https://radar.cloudflare.com/ip
             </Box>
             {" "}and note down what it says. I don't want to know it! I just need to see if it changes.
           </Typography>
@@ -71,7 +71,7 @@ export default function CheckIP({ className }: CheckIPProps) {
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP+0.25)} />
             <Button label={GOT_IT_LABEL} onClick={() => handleAnswer(GOT_IT_LABEL, STEP + 1)} />
           </>
         ) : null

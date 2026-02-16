@@ -15,8 +15,8 @@ export default function AlreadyConnected({ className, lastEntry }: AlreadyConnec
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DISCONNECTED_LABEL = "Disconnected";
+  const NEED_HELP_LABEL = "I need some help";
+  const DISCONNECTED_LABEL = "I'm disconnected";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("23_AlreadyConnected", answer);

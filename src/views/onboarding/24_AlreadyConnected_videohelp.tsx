@@ -16,7 +16,7 @@ export default function AlreadyConnectedVideohelp({ className, lastEntry }: Alre
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const I_NEED_MORE_HELP = "I need more help";
-  const THANKS_LABEL = "Thanks, continue";
+  const THANKS_LABEL = "Done it!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("24_AlreadyConnected_videohelp", answer);

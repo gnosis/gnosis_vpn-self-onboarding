@@ -55,7 +55,6 @@ import WrapUp from "./onboarding/47_WrapUp";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_iCal from "./onboarding/X_iCal";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
-import Z_Summary from "./onboarding/Z_summary";
 
 const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   1: Welcome,
