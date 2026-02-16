@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 38;
+const STEP = 37;
 
 interface CheckIPThirdTimeProps {
   className?: string;
@@ -19,7 +19,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
   const WRONG_LABEL = "Something's gone wrong";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("38_CheckIPThirdTime", answer);
+    saveAnswer("37_CheckIPThirdTime", answer);
     setOnboardingStep(nextStep);
   };
 

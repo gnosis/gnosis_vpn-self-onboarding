@@ -3,13 +3,13 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 46;
+const STEP = 41;
 
-interface WrapUpProps {
+interface AppFeedbackProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function AppFeedback({ className }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -17,15 +17,15 @@ export default function WrapUp({ className }: WrapUpProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("46_WrapUp", answer);
+    saveAnswer("41_AppFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
+      className={`AppFeedback${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Wrap up"
+      title="App feedback"
       text={
         <Typography
           variant="body1"
@@ -35,7 +35,7 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Great! Did it work well? Did you notice any issues?
         </Typography>
       }
       buttons={

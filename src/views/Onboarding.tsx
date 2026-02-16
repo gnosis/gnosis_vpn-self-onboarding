@@ -40,16 +40,15 @@ import DidIPChange from "./onboarding/32_DidIPChange";
 import VisitWebsite from "./onboarding/34_VisitWebsite";
 import VisitYoutube from "./onboarding/35_VisitYoutube";
 import YouTubeFeedback from "./onboarding/36_YouTubeFeedback";
-import CheckYoutubeStats from "./onboarding/37_CheckYoutubeStats";
-import CheckIPThirdTime from "./onboarding/38_CheckIPThirdTime";
-import OpenChatApp from "./onboarding/39_OpenChatApp";
-import TellChatApp from "./onboarding/40_TellChatApp";
-import UseChatApp from "./onboarding/41_UseChatApp";
-import AppFeedback from "./onboarding/42_AppFeedback";
-import CheckIPLastTime from "./onboarding/43_CheckIPLastTime";
-import DidIPChangeLast from "./onboarding/44_DidIPChangeLast";
-import TryDifferentExitNode from "./onboarding/45_TryDifferentExitNode";
-import WrapUp from "./onboarding/46_WrapUp";
+import CheckIPThirdTime from "./onboarding/37_CheckIPThirdTime";
+import OpenChatApp from "./onboarding/38_OpenChatApp";
+import TellChatApp from "./onboarding/39_TellChatApp";
+import UseChatApp from "./onboarding/40_UseChatApp";
+import AppFeedback from "./onboarding/41_AppFeedback";
+import CheckIPLastTime from "./onboarding/42_CheckIPLastTime";
+import DidIPChangeLast from "./onboarding/43_DidIPChangeLast";
+import TryDifferentExitNode from "./onboarding/44_TryDifferentExitNode";
+import WrapUp from "./onboarding/45_WrapUp";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_iCal from "./onboarding/X_iCal";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
@@ -90,16 +89,15 @@ const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   34: VisitWebsite,
   35: VisitYoutube,
   36: YouTubeFeedback,
-  37: CheckYoutubeStats,
-  38: CheckIPThirdTime,
-  39: OpenChatApp,
-  40: TellChatApp,
-  41: UseChatApp,
-  42: AppFeedback,
-  43: CheckIPLastTime,
-  44: DidIPChangeLast,
-  45: TryDifferentExitNode,
-  46: WrapUp,
+  37: CheckIPThirdTime,
+  38: OpenChatApp,
+  39: TellChatApp,
+  40: UseChatApp,
+  41: AppFeedback,
+  42: CheckIPLastTime,
+  43: DidIPChangeLast,
+  44: TryDifferentExitNode,
+  45: WrapUp,
 };
 
 interface OnboardingProps {
@@ -146,7 +144,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={48} />
+      <TopBar currentStep={onboardingStep} totalSteps={47} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>

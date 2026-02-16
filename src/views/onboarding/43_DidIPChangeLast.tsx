@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 40;
+const STEP = 43;
 
-interface TellChatAppProps {
+interface DidIPChangeLastProps {
   className?: string;
 }
 
-export default function TellChatApp({ className }: TellChatAppProps) {
+export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const WRONG_LABEL = "Something went wrong";
+  const SAME_LABEL = "It's the same as last time";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("40_TellChatApp", answer);
+    saveAnswer("43_DidIPChangeLast", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TellChatApp${className ? ` ${className}` : ""}`}
+      className={`DidIPChangeLast${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell Us Your Chat App"
+      title="Did the IP change?"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function TellChatApp({ className }: TellChatAppProps) {
             color: "#333",
           }}
         >
-          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
+          Did the IP change?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 2)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 3)} />
           </>
         ) : null
       }
