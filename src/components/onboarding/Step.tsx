@@ -1,4 +1,4 @@
-import { Typography, Stack, Box, Avatar } from "@mui/material";
+import { Typography, Stack, Box } from "@mui/material";
 import type { ReactNode } from "react";
 
 interface StepProps {
@@ -19,16 +19,15 @@ export default function Step({ title, text, buttons, onboardingStep, className }
       <Box sx={{ mr: 8 }}>
         {/* Title with Avatar */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
-          <Avatar
-            sx={{
+          <img
+            src="/images/avatar.png"
+            alt="Avatar"
+            style={{
               width: 56,
               height: 56,
-              bgcolor: "#e0e0e0",
               flexShrink: 0,
             }}
-          >
-            {/* Placeholder for avatar image */}
-          </Avatar>
+          />
           <Typography
             variant="h3"
             sx={{
