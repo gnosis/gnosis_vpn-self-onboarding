@@ -51,6 +51,7 @@ import CheckIPLastTime from "./onboarding/43_CheckIPLastTime";
 import DidIPChangeLast from "./onboarding/44_DidIPChangeLast";
 import TryDifferentExitNode from "./onboarding/45_TryDifferentExitNode";
 import WrapUp from "./onboarding/46_WrapUp";
+import WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 
 const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   1: Welcome,
@@ -145,7 +146,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={47} />
+      <TopBar currentStep={onboardingStep} totalSteps={48} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -160,6 +161,12 @@ export default function Onboarding({ className }: OnboardingProps) {
           {/* Completed steps from stepLog */}
           {stepLog.map((entry, i) => {
             const [key, answer] = entry.split(':');
+            if (!key) return null;
+            if (key.startsWith("X") && key.endsWith("_WhatCanIHelpYouWith")) return (
+            <WhatCanIHelpYouWith 
+              onboardingStep={parseFloat(key.split('_')[0].substring(1))}
+            />); 
+            
             const stepNum = parseInt(key);
             const Component = STEP_COMPONENTS[stepNum];
             if (!Component) return null;
@@ -172,7 +179,8 @@ export default function Onboarding({ className }: OnboardingProps) {
           })}
 
           {/* Current active step */}
-          {CurrentComponent && <CurrentComponent lastEntry={true} />}
+          {onboardingStep % 1 === 0 && CurrentComponent && <CurrentComponent lastEntry={true} />}
+          {onboardingStep % 1 === 0.5 && <WhatCanIHelpYouWith lastEntry={true} />}
         </Box>
       </Container>
     </Box>
