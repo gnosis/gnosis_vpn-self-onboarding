@@ -7,12 +7,11 @@ const STEP = 17;
 
 interface FundingProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function Funding({ className }: FundingProps) {
+export default function Funding({ className, lastEntry }: FundingProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
   const FUNDED_LABEL = "It's funded";
@@ -92,7 +91,7 @@ export default function Funding({ className }: FundingProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
             <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 2)} />

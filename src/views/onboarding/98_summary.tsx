@@ -7,7 +7,6 @@ import {
   AccordionDetails,
   IconButton,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "../../components/onboarding/Button";
 import { useAppStore } from "../../store/appStore";
@@ -76,6 +75,7 @@ export default function Summary({ className }: SummaryProps) {
           {summaryItems.map((item, index) => (
             <Accordion
               key={index}
+              defaultExpanded={true}
               sx={{
                 backgroundColor: "#f9f9f9",
                 border: "1px solid #e0e0e0",
@@ -89,7 +89,6 @@ export default function Summary({ className }: SummaryProps) {
               }}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
                 sx={{
                   backgroundColor: "#f0f0f0",
                   borderBottom: "1px solid #e0e0e0",

@@ -7,12 +7,11 @@ const STEP = 34;
 
 interface VisitWebsiteProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function VisitWebsite({ className }: VisitWebsiteProps) {
+export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
   const WORKED_LABEL = "It's worked";
@@ -40,7 +39,7 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />

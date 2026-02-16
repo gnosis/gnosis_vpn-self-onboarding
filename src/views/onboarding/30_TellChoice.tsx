@@ -9,12 +9,11 @@ const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
 
 interface TellChoiceProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function TellChoice({ className }: TellChoiceProps) {
+export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("30_TellChoice", answer);
@@ -39,7 +38,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             {LOCATIONS.map((location) => (
               <Button

@@ -168,6 +168,7 @@ export default function Login({ className }: LoginProps) {
           >
             <Button
               label="Stay anonymous"
+              disabled
             />
             <Button
               label="Share minimal data"

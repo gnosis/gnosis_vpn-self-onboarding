@@ -6,12 +6,11 @@ const STEP = 9;
 
 interface RunInstallerProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function RunInstaller({ className }: RunInstallerProps) {
+export default function RunInstaller({ className, lastEntry }: RunInstallerProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
   const DONE_IT_LABEL = "Done it!";
@@ -28,7 +27,7 @@ export default function RunInstaller({ className }: RunInstallerProps) {
       title="Now run the installer"
    //   text={<VideoPlaceholder title="Installer" />}
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
             <Button label={DONE_IT_LABEL} onClick={() => handleAnswer(DONE_IT_LABEL, STEP + 2)} />

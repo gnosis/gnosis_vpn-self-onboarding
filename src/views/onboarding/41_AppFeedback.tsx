@@ -8,12 +8,11 @@ const STEP = 41;
 
 interface AppFeedbackProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function AppFeedback({ className }: AppFeedbackProps) {
+export default function AppFeedback({ className, lastEntry }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const CONTINUE_LABEL = "Continue";
 
@@ -44,9 +43,9 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

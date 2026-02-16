@@ -8,12 +8,11 @@ const STEP = 39;
 
 interface TellChatAppProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function TellChatApp({ className }: TellChatAppProps) {
+export default function TellChatApp({ className, lastEntry }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const CONTINUE_LABEL = "Continue";
 
@@ -44,9 +43,9 @@ export default function TellChatApp({ className }: TellChatAppProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP +1)} />
           </>
         ) : null
       }

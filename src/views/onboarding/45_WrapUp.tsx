@@ -7,12 +7,11 @@ const STEP = 45;
 
 interface WrapUpProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function WrapUp({ className, lastEntry }: WrapUpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const CONTINUE_LABEL = "Continue";
 
@@ -39,9 +38,9 @@ export default function WrapUp({ className }: WrapUpProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 98)} />
           </>
         ) : null
       }

@@ -43,7 +43,7 @@ export default function Step({ title, text, buttons, onboardingStep, className }
 
         {/* Content */}
         {
-          text && 
+          text &&
           <Stack spacing={3} sx={{ pl: "72px" }}>
             {text}
           </Stack>
@@ -51,17 +51,21 @@ export default function Step({ title, text, buttons, onboardingStep, className }
       </Box>
 
       {/* Buttons */}
-      <Box
-        sx={{
-          mt: 4,
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          gap: 2
-        }}
-      >
-        {buttons}
-      </Box>
+      {
+        buttons &&
+        <Box
+          className={`StepButtons`}
+          sx={{
+            mt: 4,
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: 2
+          }}
+        >
+          {buttons}
+        </Box>
+      }
     </Box>
   );
 }

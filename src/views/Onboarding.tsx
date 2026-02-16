@@ -52,6 +52,7 @@ import WrapUp from "./onboarding/45_WrapUp";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_iCal from "./onboarding/X_iCal";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
+import Summary from "./onboarding/98_summary";
 
 const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   1: Welcome,
@@ -98,6 +99,7 @@ const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   43: DidIPChangeLast,
   44: TryDifferentExitNode,
   45: WrapUp,
+  98: Summary,
 };
 
 interface OnboardingProps {
@@ -111,10 +113,11 @@ export default function Onboarding({ className }: OnboardingProps) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      await new Promise((r) => setTimeout(r, 50));
       while (!cancelled) {
-        const el = document.getElementById(`onboardingStep-${onboardingStep}`);
-        if (el) {
-          const target = el.getBoundingClientRect().top + window.scrollY;
+        const el = document.getElementsByClassName(`StepButtons`);
+        if (el.length > 0) {
+          const target = el[0].getBoundingClientRect().top + window.scrollY;
           const start = window.scrollY;
           const distance = target - start;
           const duration = 1000;
@@ -188,6 +191,7 @@ export default function Onboarding({ className }: OnboardingProps) {
           {onboardingStep % 1 === 0.25 && <X_WhatCanIHelpYouWith lastEntry={true} />}
           {onboardingStep % 1 === 0.5 && <X_KeepAnEye lastEntry={true} />}
           {onboardingStep % 1 === 0.75 && <X_iCal lastEntry={true} />}
+
         </Box>
       </Container>
     </Box>

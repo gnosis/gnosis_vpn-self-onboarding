@@ -7,10 +7,9 @@ const STEP = 3;
 
 interface GettingHelpProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function GettingHelp({ className }: GettingHelpProps) {
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
+export default function GettingHelp({ className, lastEntry }: GettingHelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
@@ -66,7 +65,7 @@ export default function GettingHelp({ className }: GettingHelpProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button
               label={CONTINUE_LABEL}

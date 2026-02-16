@@ -8,12 +8,11 @@ const STEP = 36;
 
 interface YouTubeFeedbackProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
+export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const CONTINUE_LABEL = "That's done";
 
@@ -55,7 +54,7 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
           </>

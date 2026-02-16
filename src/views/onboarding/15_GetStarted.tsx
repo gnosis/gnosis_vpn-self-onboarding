@@ -7,12 +7,11 @@ const STEP = 15;
 
 interface GetStartedProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function GetStarted({ className }: GetStartedProps) {
+export default function GetStarted({ className, lastEntry }: GetStartedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
   const THERE_LABEL = "I'm there";
@@ -40,7 +39,7 @@ export default function GetStarted({ className }: GetStartedProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
             <Button label={THERE_LABEL} onClick={() => handleAnswer(THERE_LABEL, STEP + 2)} />

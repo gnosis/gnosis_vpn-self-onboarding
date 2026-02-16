@@ -13,7 +13,6 @@ interface RunInstallerVideohelpProps {
 export default function RunInstallerVideohelp({ className, lastEntry }: RunInstallerVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
@@ -61,7 +60,7 @@ export default function RunInstallerVideohelp({ className, lastEntry }: RunInsta
         </>
       }
       buttons={
-        onboardingStep === STEP && lastEntry
+        lastEntry
           ? (
             <>
               <Button label={I_NEED_MORE_HELP} onClick={() => handleAnswer(I_NEED_MORE_HELP, STEP + 0.25)} />

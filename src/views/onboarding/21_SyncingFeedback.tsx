@@ -8,12 +8,11 @@ const STEP = 21;
 
 interface SyncingFeedbackProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function SyncingFeedback({ className }: SyncingFeedbackProps) {
+export default function SyncingFeedback({ className, lastEntry }: SyncingFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const CONTINUE_LABEL = "Continue";
 
@@ -43,7 +42,7 @@ export default function SyncingFeedback({ className }: SyncingFeedbackProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
           </>

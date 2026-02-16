@@ -13,7 +13,6 @@ interface DownloadVideohelpProps {
 export default function DownloadVideohelp({ className, lastEntry }: DownloadVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Done it!";
@@ -61,7 +60,7 @@ export default function DownloadVideohelp({ className, lastEntry }: DownloadVide
         </>
       }
       buttons={
-        onboardingStep === STEP && lastEntry
+        lastEntry
           ? (
             <>
               <Button label={I_NEED_MORE_HELP} onClick={() => handleAnswer(I_NEED_MORE_HELP, STEP + 0.25)} />

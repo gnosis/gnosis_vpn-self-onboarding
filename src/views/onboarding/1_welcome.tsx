@@ -7,10 +7,9 @@ const STEP = 1;
 
 interface WelcomeProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function Welcome({ className }: WelcomeProps) {
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
+export default function Welcome({ className, lastEntry }: WelcomeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const username = useAppStore((state) => state.username);
@@ -96,7 +95,7 @@ export default function Welcome({ className }: WelcomeProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button
               label={START_ONBOARDING_LABEL}

@@ -7,12 +7,11 @@ const STEP = 38;
 
 interface OpenChatAppProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function OpenChatApp({ className }: OpenChatAppProps) {
+export default function OpenChatApp({ className, lastEntry }: OpenChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
   const DONE_LABEL = "I've done that";
@@ -64,7 +63,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />

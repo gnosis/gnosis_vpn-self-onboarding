@@ -7,10 +7,9 @@ const STEP = 4;
 
 interface SwitchingDevicesProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
+export default function SwitchingDevices({ className, lastEntry }: SwitchingDevicesProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
@@ -55,7 +54,7 @@ export default function SwitchingDevices({ className }: SwitchingDevicesProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button
               label={CONTINUE_LABEL}

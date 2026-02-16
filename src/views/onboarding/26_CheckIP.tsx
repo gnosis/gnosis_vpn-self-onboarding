@@ -7,12 +7,11 @@ const STEP = 26;
 
 interface CheckIPProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function CheckIP({ className }: CheckIPProps) {
+export default function CheckIP({ className, lastEntry }: CheckIPProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
   const GOT_IT_LABEL = "I've got it";
@@ -69,7 +68,7 @@ export default function CheckIP({ className }: CheckIPProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP+0.25)} />
             <Button label={GOT_IT_LABEL} onClick={() => handleAnswer(GOT_IT_LABEL, STEP + 1)} />

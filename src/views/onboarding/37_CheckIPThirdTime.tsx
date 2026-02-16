@@ -7,12 +7,11 @@ const STEP = 37;
 
 interface CheckIPThirdTimeProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
+export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const SAME_LABEL = "It's the same as last time";
   const WRONG_LABEL = "Something's gone wrong";
@@ -54,7 +53,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
             <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />

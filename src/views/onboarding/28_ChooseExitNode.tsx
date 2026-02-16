@@ -7,12 +7,11 @@ const STEP = 28;
 
 interface ChooseExitNodeProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
+export default function ChooseExitNode({ className, lastEntry }: ChooseExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
   const DONE_LABEL = "That's done";
@@ -40,7 +39,7 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
             <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 2)} />

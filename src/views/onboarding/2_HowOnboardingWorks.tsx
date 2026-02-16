@@ -7,10 +7,9 @@ const STEP = 2;
 
 interface HowOnboardingWorksProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function HowOnboardingWorks({ className }: HowOnboardingWorksProps) {
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
+export default function HowOnboardingWorks({ className, lastEntry }: HowOnboardingWorksProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
@@ -56,7 +55,7 @@ export default function HowOnboardingWorks({ className }: HowOnboardingWorksProp
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button
               label={CONTINUE_LABEL}

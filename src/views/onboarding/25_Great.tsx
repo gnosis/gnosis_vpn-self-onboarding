@@ -7,12 +7,11 @@ const STEP = 25;
 
 interface GreatProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function Great({ className }: GreatProps) {
+export default function Great({ className, lastEntry }: GreatProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const CONTINUE_LABEL = "Continue";
 
@@ -39,7 +38,7 @@ export default function Great({ className }: GreatProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
           </>

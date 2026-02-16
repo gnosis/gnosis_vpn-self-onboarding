@@ -7,10 +7,9 @@ const STEP = 5;
 
 interface SessionSummaryProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function SessionSummary({ className }: SessionSummaryProps) {
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
+export default function SessionSummary({ className, lastEntry }: SessionSummaryProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
@@ -56,7 +55,7 @@ export default function SessionSummary({ className }: SessionSummaryProps) {
         </>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button
               label={CONTINUE_LABEL}

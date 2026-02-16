@@ -7,12 +7,11 @@ const STEP = 44;
 
 interface TryDifferentExitNodeProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function TryDifferentExitNode({ className }: TryDifferentExitNodeProps) {
+export default function TryDifferentExitNode({ className, lastEntry }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const WRAP_UP_LABEL = "Let's wrap up";
   const TRY_AGAIN_LABEL = "Let's do that";
@@ -40,10 +39,10 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
             <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 28)} />
+            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
           </>
         ) : null
       }

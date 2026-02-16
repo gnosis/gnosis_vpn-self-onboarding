@@ -7,12 +7,11 @@ const STEP = 32;
 
 interface DidIPChangeProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function DidIPChange({ className }: DidIPChangeProps) {
+export default function DidIPChange({ className, lastEntry }: DidIPChangeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NO_CHANGE_LABEL = "No it's the same";
   const YES_LABEL = "Yes!";
@@ -40,7 +39,7 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP + 1)} />
             <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 2)} />

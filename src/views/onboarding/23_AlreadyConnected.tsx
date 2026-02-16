@@ -13,7 +13,6 @@ interface AlreadyConnectedProps {
 export default function AlreadyConnected({ className, lastEntry }: AlreadyConnectedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
   const DISCONNECTED_LABEL = "I'm disconnected";
@@ -41,7 +40,7 @@ export default function AlreadyConnected({ className, lastEntry }: AlreadyConnec
         </Typography>
       }
       buttons={
-        onboardingStep === STEP && lastEntry ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
             <Button label={DISCONNECTED_LABEL} onClick={() => handleAnswer(DISCONNECTED_LABEL, STEP - 1)} />

@@ -7,12 +7,11 @@ const STEP = 31;
 
 interface CheckIPAgainProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function CheckIPAgain({ className }: CheckIPAgainProps) {
+export default function CheckIPAgain({ className, lastEntry }: CheckIPAgainProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
   const DONE_LABEL = "Done";
@@ -54,7 +53,7 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />

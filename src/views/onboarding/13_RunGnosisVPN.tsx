@@ -7,12 +7,11 @@ const STEP = 13;
 
 interface RunGnosisVPNProps {
   className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function RunGnosisVPN({ className }: RunGnosisVPNProps) {
+export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need some help";
   const RUNNING_LABEL = "It's running";
@@ -40,7 +39,7 @@ export default function RunGnosisVPN({ className }: RunGnosisVPNProps) {
         </Typography>
       }
       buttons={
-        onboardingStep === STEP ? (
+        lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
             <Button label={RUNNING_LABEL} onClick={() => handleAnswer(RUNNING_LABEL, STEP + 2)} />

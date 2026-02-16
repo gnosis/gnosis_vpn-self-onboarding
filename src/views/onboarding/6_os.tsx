@@ -7,12 +7,11 @@ const STEP = 6;
 
 interface OSProps {
     className?: string;
-}
+  lastEntry?: boolean;}
 
-export default function OS({ className }: OSProps) {
+export default function OS({ className, lastEntry }: OSProps) {
     const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
     const saveAnswer = useAppStore((state) => state.saveAnswer);
-    const onboardingStep = useAppStore((state) => state.onboardingStep);
 
     const LINUX_LABEL = "Linux";
     const MACOS_LABEL = "Mac OS";
@@ -43,7 +42,7 @@ export default function OS({ className }: OSProps) {
                 </>
             }
             buttons={
-                onboardingStep === STEP ? (
+                lastEntry ? (
                     <>
                         <Button
                             label={LINUX_LABEL}

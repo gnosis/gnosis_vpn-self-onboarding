@@ -13,7 +13,6 @@ interface ReadyToTestProps {
 export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const ALREADY_DID_LABEL = "I already did";
   const OKAY_LABEL = "Okay";
@@ -41,7 +40,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
         </Typography>
       }
       buttons={
-        onboardingStep === STEP && lastEntry
+        lastEntry
         ? (
           <>
             <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
