@@ -14,7 +14,6 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
   const SAME_LABEL = "It's the same as last time";
   const WRONG_LABEL = "Something's gone wrong";
 
@@ -40,7 +39,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
           Let's check in on the connection. Go back to{" "}
           <Box
             component="a"
-            href="https://whatismyipaddress.com"
+            href="https://radar.cloudflare.com/ip"
             target="_blank"
             rel="noreferrer noopener"
             sx={{
@@ -49,7 +48,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
               "&:hover": { textDecoration: "underline" },
             }}
           >
-            https://whatismyipaddress.com
+            https://radar.cloudflare.com/ip
           </Box>
           {" "}and check your IP
         </Typography>
@@ -57,9 +56,8 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
             <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 1)} />
           </>
         ) : null
       }

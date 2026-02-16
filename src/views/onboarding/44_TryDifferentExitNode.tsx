@@ -43,7 +43,7 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
         onboardingStep === STEP ? (
           <>
             <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, STEP)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 28)} />
           </>
         ) : null
       }

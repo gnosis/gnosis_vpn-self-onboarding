@@ -39,7 +39,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
           Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
           <Box
             component="a"
-            href="https://whatismyipaddress.com"
+            href="https://radar.cloudflare.com/ip"
             target="_blank"
             rel="noreferrer noopener"
             sx={{
@@ -48,14 +48,14 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
               "&:hover": { textDecoration: "underline" },
             }}
           >
-            https://whatismyipaddress.com
+            https://radar.cloudflare.com/ip
           </Box>
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null

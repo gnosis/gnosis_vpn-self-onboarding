@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import FeedbackSection from "../../components/FeedbackSection";
 
 const STEP = 39;
 
@@ -27,16 +28,20 @@ export default function TellChatApp({ className }: TellChatAppProps) {
       onboardingStep={STEP}
       title="Tell Us Your Chat App"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
+          </Typography>
+
+          <FeedbackSection stepKey="39_TellChatApp" />
+        </>
       }
       buttons={
         onboardingStep === STEP ? (

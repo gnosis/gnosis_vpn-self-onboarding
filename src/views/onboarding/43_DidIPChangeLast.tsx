@@ -36,14 +36,14 @@ export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
             color: "#333",
           }}
         >
-          Did the IP change?
+          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 2)} />
-            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 3)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
           </>
         ) : null
       }

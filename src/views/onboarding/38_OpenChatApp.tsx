@@ -66,7 +66,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null

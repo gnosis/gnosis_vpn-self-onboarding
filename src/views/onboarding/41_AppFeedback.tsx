@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import FeedbackSection from "../../components/FeedbackSection";
 
 const STEP = 41;
 
@@ -27,16 +28,20 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
       onboardingStep={STEP}
       title="App feedback"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          Great! Did it work well? Did you notice any issues?
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Great! Did it work well? Did you notice any issues?
+          </Typography>
+
+          <FeedbackSection stepKey="41_AppFeedback" />
+        </>
       }
       buttons={
         onboardingStep === STEP ? (
