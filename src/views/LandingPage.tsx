@@ -75,16 +75,6 @@ const HeroImageContainer = styled.div`
   }
 `;
 
-const VideoLoopLabel = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: #ef4444;
-  font-size: 14px;
-  font-weight: 500;
-  z-index: 15;
-`;
-
 const Overlay = styled.div`
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
