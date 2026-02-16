@@ -15,7 +15,8 @@ interface AppStore {
   notes: Record<string, string>;
   saveNote: (stepKey: string, note: string) => void;
   stepLog: string[];
-
+  feedback: Record<string, string>;
+  saveFeedback: (key: string, value: string) => void;
 
   // Login form
   username: string;
@@ -23,6 +24,9 @@ interface AppStore {
   setUsername: (username: string) => void;
   setPassword: (password: string) => void;
   clearLoginForm: () => void;
+
+  // Reset store
+  resetStore: () => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -46,6 +50,11 @@ export const useAppStore = create<AppStore>()(
       set((state) => ({
         notes: { ...state.notes, [stepKey]: note },
       })),
+    feedback: {},
+    saveFeedback: (key, value) =>
+      set((state) => ({
+        feedback: { ...state.feedback, [key]: value },
+      })),
 
     // Login form
     username: '',
@@ -53,5 +62,17 @@ export const useAppStore = create<AppStore>()(
     setUsername: (username) => set({ username }),
     setPassword: (password) => set({ password }),
     clearLoginForm: () => set({ username: '', password: '' }),
+
+    // Reset store
+    resetStore: () => set({
+      currentView: 'login',
+      onboardingStep: 1,
+      onboardingAnswers: {},
+      stepLog: [],
+      notes: {},
+      feedback: {},
+      username: '',
+      password: '',
+    }),
   }), { name: 'AppStore' })
 );

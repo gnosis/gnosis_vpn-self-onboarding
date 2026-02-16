@@ -20,11 +20,16 @@ interface SummaryItem {
 
 interface SummaryProps {
   className?: string;
+  lastEntry?: boolean;
 }
 
-export default function Summary({ className }: SummaryProps) {
-  const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+const CONTINUE_LABEL = "Continue";
+
+export default function Summary({ className, lastEntry }: SummaryProps) {
   const notes = useAppStore((state) => state.notes);
+  const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
+
 
   const summaryItems: SummaryItem[] = Object.entries(notes)
     .map(([stepKey, note]) => {
@@ -41,13 +46,13 @@ export default function Summary({ className }: SummaryProps) {
     })
     .filter((item): item is SummaryItem => item !== null);
 
-  const handleEditStep = (stepNumber: number) => {
-   // setOnboardingStep(stepNumber);
+  const handleEditStep = () => {
+   // Edit step
   };
 
-  const handleContinue = () => {
-    // Continue to next step after summary
-   // setOnboardingStep(6);
+  const handleAnswer = (answer: string, nextStep: number) => {
+    saveAnswer("98_summary", answer);
+    setOnboardingStep(nextStep);
   };
 
   return (
@@ -112,7 +117,7 @@ export default function Summary({ className }: SummaryProps) {
                   disabled
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleEditStep(item.step);
+                    handleEditStep();
                   }}
                   sx={{
                     color: "#666",
@@ -151,21 +156,22 @@ export default function Summary({ className }: SummaryProps) {
       </Stack>
 
       {/* Action Buttons */}
-      <Box
-        sx={{
-          mt: 4,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <>
-          <Button
-            label="Continue Onboarding"
-            onClick={handleContinue}
-            disabled
-          />
-        </>
-      </Box>
+      {lastEntry && (
+        <Box
+          sx={{
+            mt: 4,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <>
+            <Button
+              label="Continue"
+              onClick={() => handleAnswer(CONTINUE_LABEL, 99)}
+            />
+          </>
+        </Box>
+      )}
     </Box>
   );
 }
