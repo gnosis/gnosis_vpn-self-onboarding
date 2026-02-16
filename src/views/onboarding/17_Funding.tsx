@@ -49,17 +49,17 @@ export default function Funding({ className, lastEntry }: FundingProps) {
               color: "#333",
             }}
           >
-            You should have received a secret funding code when we contacted you. Please visit the funding tool at{" "}
+            You should have received a secret funding code when we contacted you. Please visit the{" "}
             <Box
               component="a"
-              href="#"
+              href="https://bafybeied72husixvea73mhj6mfhg3zshsgagjg54ygnvtn2pktuidyf5ie.ipfs.dweb.link/"
               sx={{
                 color: "#0066cc",
                 textDecoration: "none",
                 "&:hover": { textDecoration: "underline" },
               }}
             >
-              funding tool link
+              funding tool 
             </Box>
             {" "}and use the code there.
           </Typography>

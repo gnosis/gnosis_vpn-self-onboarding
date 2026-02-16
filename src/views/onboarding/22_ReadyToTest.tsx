@@ -44,7 +44,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
         ? (
           <>
             <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
-            <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, STEP + 2)} />
+            <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, STEP + 3)} />
           </>
         ) : null
       }
