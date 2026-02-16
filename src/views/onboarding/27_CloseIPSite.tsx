@@ -18,7 +18,7 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
   const DONE_LABEL = "Done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(27_CloseIPSite", answer);
+    saveAnswer("27_CloseIPSite", answer);
     setOnboardingStep(nextStep);
   };
 

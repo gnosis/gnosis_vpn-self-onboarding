@@ -17,7 +17,7 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(37_YouTubeFeedback", answer);
+    saveAnswer("37_YouTubeFeedback", answer);
     setOnboardingStep(nextStep);
   };
 

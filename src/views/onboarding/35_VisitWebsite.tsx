@@ -18,7 +18,7 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
   const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(35_VisitWebsite", answer);
+    saveAnswer("35_VisitWebsite", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -18,7 +18,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(44_CheckIPLastTime", answer);
+    saveAnswer("44_CheckIPLastTime", answer);
     setOnboardingStep(nextStep);
   };
 

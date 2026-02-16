@@ -18,7 +18,7 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
   const TRY_AGAIN_LABEL = "Let's do that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(46_TryDifferentExitNode", answer);
+    saveAnswer("46_TryDifferentExitNode", answer);
     setOnboardingStep(nextStep);
   };
 

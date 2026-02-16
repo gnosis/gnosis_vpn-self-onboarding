@@ -18,7 +18,7 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
   const DONE_LABEL = "Done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(30_CheckIPAgain", answer);
+    saveAnswer("30_CheckIPAgain", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -17,7 +17,7 @@ export default function TellChatApp({ className }: TellChatAppProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(41_TellChatApp", answer);
+    saveAnswer("41_TellChatApp", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -17,7 +17,7 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(34_NoIPChangeResponse", answer);
+    saveAnswer("34_NoIPChangeResponse", answer);
     setOnboardingStep(nextStep);
   };
 

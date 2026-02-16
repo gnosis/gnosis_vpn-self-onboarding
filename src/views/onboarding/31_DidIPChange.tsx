@@ -18,7 +18,7 @@ export default function DidIPChange({ className }: DidIPChangeProps) {
   const YES_LABEL = "Yes!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(31_DidIPChange", answer);
+    saveAnswer("31_DidIPChange", answer);
     setOnboardingStep(nextStep);
   };
 

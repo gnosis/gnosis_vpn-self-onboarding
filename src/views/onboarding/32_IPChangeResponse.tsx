@@ -18,7 +18,7 @@ export default function IPChangeResponse({ className }: IPChangeResponseProps) {
   const NEED_HELP_LABEL = "I need some help";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(32_IPChangeResponse", answer);
+    saveAnswer("32_IPChangeResponse", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -18,7 +18,7 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
   const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(36_VisitYoutube", answer);
+    saveAnswer("36_VisitYoutube", answer);
     setOnboardingStep(nextStep);
   };
 

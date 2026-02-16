@@ -18,7 +18,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(40_OpenChatApp", answer);
+    saveAnswer("40_OpenChatApp", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -3,7 +3,8 @@
     "allow": [
       "Bash(yarn install:*)",
       "Bash(grep:*)",
-      "WebFetch(domain:docs.google.com)"
+      "WebFetch(domain:docs.google.com)",
+      "Bash(find:*)"
     ]
   }
 }

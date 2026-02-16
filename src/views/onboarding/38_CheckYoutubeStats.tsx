@@ -18,7 +18,7 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
   const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(38_CheckYoutubeStats", answer);
+    saveAnswer("38_CheckYoutubeStats", answer);
     setOnboardingStep(nextStep);
   };
 

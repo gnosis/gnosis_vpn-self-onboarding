@@ -17,7 +17,7 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(43_AppFeedback", answer);
+    saveAnswer("43_AppFeedback", answer);
     setOnboardingStep(nextStep);
   };
 

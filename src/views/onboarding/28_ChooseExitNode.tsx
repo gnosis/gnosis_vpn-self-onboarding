@@ -18,7 +18,7 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
   const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(28_ChooseExitNode", answer);
+    saveAnswer("28_ChooseExitNode", answer);
     setOnboardingStep(nextStep);
   };
 

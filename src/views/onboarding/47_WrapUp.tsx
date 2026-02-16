@@ -17,7 +17,7 @@ export default function WrapUp({ className }: WrapUpProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(47_WrapUp", answer);
+    saveAnswer("47_WrapUp", answer);
     setOnboardingStep(nextStep);
   };
 

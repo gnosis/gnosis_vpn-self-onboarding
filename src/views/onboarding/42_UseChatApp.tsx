@@ -18,7 +18,7 @@ export default function UseChatApp({ className }: UseChatAppProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(42_UseChatApp", answer);
+    saveAnswer("42_UseChatApp", answer);
     setOnboardingStep(nextStep);
   };
 

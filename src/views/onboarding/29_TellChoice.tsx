@@ -17,7 +17,7 @@ export default function TellChoice({ className }: TellChoiceProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(29_TellChoice", answer);
+    saveAnswer("29_TellChoice", answer);
     setOnboardingStep(nextStep);
   };
 

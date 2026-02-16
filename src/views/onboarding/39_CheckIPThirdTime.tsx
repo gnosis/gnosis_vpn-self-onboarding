@@ -19,7 +19,7 @@ export default function CheckIPThirdTime({ className }: CheckIPThirdTimeProps) {
   const WRONG_LABEL = "Something's gone wrong";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(39_CheckIPThirdTime", answer);
+    saveAnswer("39_CheckIPThirdTime", answer);
     setOnboardingStep(nextStep);
   };
 

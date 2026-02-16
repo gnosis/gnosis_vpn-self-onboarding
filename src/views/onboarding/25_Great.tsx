@@ -17,7 +17,7 @@ export default function Great({ className }: GreatProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(25_Great", answer);
+    saveAnswer("25_Great", answer);
     setOnboardingStep(nextStep);
   };
 

@@ -18,7 +18,7 @@ export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
   const SAME_LABEL = "It's the same as last time";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(45_DidIPChangeLast", answer);
+    saveAnswer("45_DidIPChangeLast", answer);
     setOnboardingStep(nextStep);
   };
 
