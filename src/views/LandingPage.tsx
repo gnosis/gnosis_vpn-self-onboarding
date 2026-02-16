@@ -67,7 +67,7 @@ const HeroImageContainer = styled.div`
   position: relative;
   overflow: hidden;
 
-  img {
+  img, video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -497,10 +497,11 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
         {/* Hero Section */}
         <HeroSection>
           <HeroImageContainer>
-            <VideoLoopLabel>Video-Loop</VideoLoopLabel>
-            <img
-              src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2568&auto=format&fit=crop"
-              alt="Sci-fi ancient city"
+            <video
+              src="/videos/Gnosis_VPN_Atlantis_Hero_1_1.webm"
+              autoPlay
+              muted
+              loop
             />
             <Overlay />
             <HoprBadge>
