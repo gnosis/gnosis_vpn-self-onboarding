@@ -163,9 +163,13 @@ export default function Onboarding({ className }: OnboardingProps) {
             const [key, answer] = entry.split(':');
             if (!key) return null;
             if (key.startsWith("X") && key.endsWith("_WhatCanIHelpYouWith")) return (
-            <WhatCanIHelpYouWith 
-              onboardingStep={parseFloat(key.split('_')[0].substring(1))}
-            />); 
+              <Fragment key={`${key}-${i}`}>
+                <WhatCanIHelpYouWith 
+                  onboardingStep={parseFloat(key.split('_')[0].substring(1))}
+                />
+                { answer && <MessageBubble text={answer} /> }
+              </Fragment>
+            ); 
             
             const stepNum = parseInt(key);
             const Component = STEP_COMPONENTS[stepNum];
