@@ -25,33 +25,33 @@ interface AppStore {
   clearLoginForm: () => void;
 }
 
-export const useAppStore = create<AppStore>(
+export const useAppStore = create<AppStore>()(
   devtools((set) => ({
-  // Navigation
-  currentView: 'login',
-  setCurrentView: (view) => set({ currentView: view }),
+    // Navigation
+    currentView: 'login',
+    setCurrentView: (view) => set({ currentView: view }),
 
-  // Onboarding
-  onboardingStep: 1,
-  setOnboardingStep: (step) => set({ onboardingStep: step }),
-  onboardingAnswers: {},
-  stepLog: [],
-  saveAnswer: (stepKey, answer) =>
-    set((state) => ({
-      onboardingAnswers: { ...state.onboardingAnswers, [stepKey]: answer },
-      stepLog: [...state.stepLog, `${stepKey}:${answer}`],
-    })),
-  notes: {},
-  saveNote: (stepKey, note) =>
-    set((state) => ({
-      notes: { ...state.notes, [stepKey]: note },
-    })),
+    // Onboarding
+    onboardingStep: 1,
+    setOnboardingStep: (step) => set({ onboardingStep: step }),
+    onboardingAnswers: {},
+    stepLog: [],
+    saveAnswer: (stepKey, answer) =>
+      set((state) => ({
+        onboardingAnswers: { ...state.onboardingAnswers, [stepKey]: answer },
+        stepLog: [...state.stepLog, `${stepKey}:${answer}`],
+      })),
+    notes: {},
+    saveNote: (stepKey, note) =>
+      set((state) => ({
+        notes: { ...state.notes, [stepKey]: note },
+      })),
 
-  // Login form
-  username: '',
-  password: '',
-  setUsername: (username) => set({ username }),
-  setPassword: (password) => set({ password }),
-  clearLoginForm: () => set({ username: '', password: '' }),
-  }), { name: 'AppStore' }),
+    // Login form
+    username: '',
+    password: '',
+    setUsername: (username) => set({ username }),
+    setPassword: (password) => set({ password }),
+    clearLoginForm: () => set({ username: '', password: '' }),
+  }), { name: 'AppStore' })
 );

@@ -15,6 +15,7 @@ export default function SyncingVideohelp({ className, lastEntry }: SyncingVideoh
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
+  const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
@@ -50,7 +51,7 @@ export default function SyncingVideohelp({ className, lastEntry }: SyncingVideoh
         onboardingStep === STEP && lastEntry
           ? (
             <>
-              <Button label="I need some help" disabled />
+              <Button label={I_NEED_MORE_HELP} disabled />
               <Button label={THANKS_LABEL} onClick={() => handleAnswer(THANKS_LABEL, STEP + 1)} />
             </>
           )

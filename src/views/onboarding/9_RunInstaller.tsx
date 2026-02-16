@@ -1,6 +1,5 @@
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
-import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
 const STEP = 9;

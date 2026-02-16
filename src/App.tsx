@@ -39,3 +39,4 @@ export default App
 // i need some help -> videos (8)
 // i need more help -> logs, text and call
 // make whole thing a loop
+// add ip check in the topbar
