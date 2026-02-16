@@ -37,7 +37,7 @@ export default function Welcome({ className }: WelcomeProps) {
               color: "#333",
             }}
           >
-            Welcome, {username || "datanaut"} to the datanaut program, so-called because
+            Welcome, {username || "datanaut"}, to the datanaut program, so-called because
             we're searching for ways to reduce the amount of data you leak online all the
             way to nought.
           </Typography>

@@ -51,7 +51,7 @@ export default function FundingVideohelp({ className, lastEntry }: FundingVideoh
         onboardingStep === STEP && lastEntry
           ? (
             <>
-              <Button label={I_NEED_MORE_HELP} onClick={() => handleAnswer(I_NEED_MORE_HELP, STEP + 0.5)} />
+              <Button label={I_NEED_MORE_HELP} onClick={() => handleAnswer(I_NEED_MORE_HELP, STEP + 0.25)} />
               <Button label={THANKS_LABEL} onClick={() => handleAnswer(THANKS_LABEL, STEP + 1)} />
             </>
           )

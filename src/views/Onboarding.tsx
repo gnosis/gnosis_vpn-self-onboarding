@@ -51,7 +51,10 @@ import CheckIPLastTime from "./onboarding/43_CheckIPLastTime";
 import DidIPChangeLast from "./onboarding/44_DidIPChangeLast";
 import TryDifferentExitNode from "./onboarding/45_TryDifferentExitNode";
 import WrapUp from "./onboarding/46_WrapUp";
-import WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
+import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
+import X_iCal from "./onboarding/X_iCal";
+import X_KeepAnEye from "./onboarding/X_KeepAnEye";
+import Z_Summary from "./onboarding/Z_summary";
 
 const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   1: Welcome,
@@ -162,14 +165,17 @@ export default function Onboarding({ className }: OnboardingProps) {
           {stepLog.map((entry, i) => {
             const [key, answer] = entry.split(':');
             if (!key) return null;
-            if (key.startsWith("X") && key.endsWith("_WhatCanIHelpYouWith")) return (
-              <Fragment key={`${key}-${i}`}>
-                <WhatCanIHelpYouWith 
-                  onboardingStep={parseFloat(key.split('_')[0].substring(1))}
-                />
-                { answer && <MessageBubble text={answer} /> }
-              </Fragment>
-            ); 
+            if (key.startsWith("X") && key.endsWith("_WhatCanIHelpYouWith")) {
+              const step = parseFloat(key.split('_')[0].substring(1));
+              return (
+                <Fragment key={`${key}-${i}`}>
+                  { step % 1 === 0.25 && <X_WhatCanIHelpYouWith onboardingStep={step} />}
+                  { step % 1 === 0.5 && <X_KeepAnEye onboardingStep={step} />}
+                  { step % 1 === 0.75 && <X_iCal onboardingStep={step} />}
+                  { answer && <MessageBubble text={answer} /> }
+                </Fragment>
+              ); 
+            }
             
             const stepNum = parseInt(key);
             const Component = STEP_COMPONENTS[stepNum];
@@ -184,7 +190,9 @@ export default function Onboarding({ className }: OnboardingProps) {
 
           {/* Current active step */}
           {onboardingStep % 1 === 0 && CurrentComponent && <CurrentComponent lastEntry={true} />}
-          {onboardingStep % 1 === 0.5 && <WhatCanIHelpYouWith lastEntry={true} />}
+          {onboardingStep % 1 === 0.25 && <X_WhatCanIHelpYouWith lastEntry={true} />}
+          {onboardingStep % 1 === 0.5 && <X_KeepAnEye lastEntry={true} />}
+          {onboardingStep % 1 === 0.75 && <X_iCal lastEntry={true} />}
         </Box>
       </Container>
     </Box>

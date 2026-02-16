@@ -16,8 +16,7 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
   const currentOnboardingStep = useAppStore((state) => state.onboardingStep);
   const stepToUse = onboardingStep || currentOnboardingStep;
 
-  const SUBMIT_LABEL = "Submit";
-  const I_NEED_A_CALL = "I need a call";
+  const IT_IS_RESOLVED = "It's resolved";
 
   const STEP_KEY = `X${stepToUse}_WhatCanIHelpYouWith`;
 
@@ -30,7 +29,7 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
     <Step
       className={`WhatCanIHelpYouWith${className ? ` ${className}` : ""}`}
       onboardingStep={stepToUse}
-      title="What can I help you with?"
+      title="Let's keep in touch!"
       text={
         <>
           <Typography
@@ -42,21 +41,16 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
               mb: 2,
             }}
           >
-            Uh-oh. Just let us know what's gone wrong and we'll try to resolve it ASAP
+            Thanks! Keep an eye on your chosen communication channel and we'll be in touch
           </Typography>
 
-          <FeedbackSection
-            stepKey={STEP_KEY}
-            label="Please briefly describe the issue"
-          />
         </>
       }
       buttons={
         lastEntry
           ? (
             <>
-              <Button label={SUBMIT_LABEL} onClick={() => handleAnswer(SUBMIT_LABEL, currentOnboardingStep + 0.25)} />
-              <Button label={I_NEED_A_CALL} onClick={() => handleAnswer(I_NEED_A_CALL, currentOnboardingStep + 0.5)} />
+              <Button label={IT_IS_RESOLVED} onClick={() => handleAnswer(IT_IS_RESOLVED, currentOnboardingStep + 0.5)} />
             </>
           )
           : null

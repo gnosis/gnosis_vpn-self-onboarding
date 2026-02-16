@@ -34,9 +34,4 @@ function App() {
 
 export default App
 
-
-// add the steps numbers in the exel
-// i need some help -> videos (8)
-// i need more help -> logs, text and call
-// make whole thing a loop
 // add ip check in the topbar
