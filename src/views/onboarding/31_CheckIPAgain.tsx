@@ -38,7 +38,7 @@ export default function CheckIPAgain({ className, lastEntry }: CheckIPAgainProps
           Great! Now return to{" "}
           <Box
             component="a"
-            href="https://whatismyipaddress.com"
+            href="https://radar.cloudflare.com/ip"
             target="_blank"
             rel="noreferrer noopener"
             sx={{
@@ -47,7 +47,7 @@ export default function CheckIPAgain({ className, lastEntry }: CheckIPAgainProps
               "&:hover": { textDecoration: "underline" },
             }}
           >
-            https://whatismyipaddress.com
+            https://radar.cloudflare.com/ip
           </Box>
           {" "}and check the IP address
         </Typography>

@@ -2,9 +2,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import {
   ArrowRight,
-  Smile,
   MessageSquare,
-  HelpCircle,
   Settings,
   List,
   Terminal,
@@ -55,20 +53,6 @@ const NavLinks = styled.div`
   }
 `;
 
-const ButtonBeige = styled.button`
-  background-color: #EDECE6;
-  border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-
-  &:hover {
-    background-color: #e0ded5;
-  }
-`;
-
 // Hero Section
 const HeroSection = styled.div`
   position: relative;
@@ -89,6 +73,16 @@ const HeroImageContainer = styled.div`
     object-fit: cover;
     opacity: 0.8;
   }
+`;
+
+const VideoLoopLabel = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #ef4444;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 15;
 `;
 
 const Overlay = styled.div`
@@ -188,13 +182,6 @@ const FeaturesGrid = styled.div`
 const SectionTitle = styled.h2`
   font-size: 36px;
   font-weight: 400;
-  margin: 0 0 8px 0;
-`;
-
-const SubTitle = styled.h3`
-  font-size: 28px;
-  font-weight: 400;
-  color: #ef4444;
   margin: 0 0 32px 0;
 `;
 
@@ -510,6 +497,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
         {/* Hero Section */}
         <HeroSection>
           <HeroImageContainer>
+            <VideoLoopLabel>Video-Loop</VideoLoopLabel>
             <img
               src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2568&auto=format&fit=crop"
               alt="Sci-fi ancient city"
@@ -528,13 +516,14 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <h1>Gnosis VPN MVP</h1>
               <h2>Onboarding</h2>
               <p>
-                Blindtext in appropriate look. Welcome to the Gnosis VPN self-onboarding.
-                This guide will walk you step by step through setting up and using Gnosis VPN.
-                It is a privacy-respecting web app and does not track you by default.
+                Welcome <span style={{ fontStyle: 'italic' }}>(username)</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
               </p>
-              <ButtonBeige>
-                Onboard now
-              </ButtonBeige>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#1e293b', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', color: 'white' }}>Gino</div>
+                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#ef4444', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', color: 'white' }}>R</div>
+                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#1e293b', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', color: 'white' }}>R</div>
+              </div>
+              <button onClick={() => setCurrentView('onboarding')} style={{ fontSize: '14px', color: '#ef4444', textDecoration: 'none', fontWeight: '500', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Onboard now</button>
             </ContentBox>
           </ContentBoxWrapper>
         </HeroSection>
@@ -545,49 +534,42 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
             {/* Left Column */}
             <div>
               <SectionTitle>How onboarding works</SectionTitle>
-              <SubTitle>Blindtext / maybe cut</SubTitle>
 
               <IntroBlock>
                 <AvatarCircle>
                   <img src="https://via.placeholder.com/50" alt="User Avatar" />
                 </AvatarCircle>
                 <p>
-                  As one of our earliest users, you will be shaping how Gnosis VPN looks and feels for all future explorers. To do this, this page is designed to assess how intuitive Gnosis VPN is.
+                  As one of our first users, you'll be shaping how Gnosis VPN looks and feels for all future explorers. To do this, this tool will both onboard you and assess how intuitive our VPN is. We'll also be on the hunt for bugs!
                 </p>
               </IntroBlock>
 
               <StepList>
                 {/* Step 1 */}
                 <StepItem>
-                  <StepIconBox>
-                    <Smile size={14} />
-                  </StepIconBox>
+                  <StepIconBox>1</StepIconBox>
                   <StepContent>
                     <h4>Determine if the page is good</h4>
                     <p>
-                      At each step, you'll get an instruction which we'll ask you to follow on your own. If you can't work out how, click the "Show me how" button to receive a screenshot or video.
+                      I'll be giving you instructions to get onboarded. We're assessing our UI's clarity and feedback. If you need more, click the "Show me..." to get visual info on what to do.
                     </p>
                   </StepContent>
                 </StepItem>
 
                 {/* Step 2 */}
                 <StepItem>
-                  <StepIconBox>
-                    <MessageSquare size={14} />
-                  </StepIconBox>
+                  <StepIconBox>2</StepIconBox>
                   <StepContent>
                     <h4>Your requests are being recorded</h4>
                     <p>
-                      If you still can't figure out what to do, or something is broken, please briefly describe the issue and we'll respond as soon as possible to get you back on track.
+                      If this still isn't enough info, or something is broken, you can write to us in there. Please briefly describe the issue and we'll reply ASAP to get back on track.
                     </p>
                   </StepContent>
                 </StepItem>
 
                 {/* Step 3 */}
                 <StepItem>
-                  <StepIconBox>
-                    <HelpCircle size={14} />
-                  </StepIconBox>
+                  <StepIconBox>3</StepIconBox>
                   <StepContent>
                     <h4>We help you</h4>
                     <p>
