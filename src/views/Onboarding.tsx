@@ -4,103 +4,10 @@ import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
 import MessageBubble from "../components/MessageBubble";
 
-// Steps
-import Welcome from "./onboarding/1_welcome";
-import HowOnboardingWorks from "./onboarding/2_HowOnboardingWorks";
-import GettingHelp from "./onboarding/3_GettingHelp";
-import SwitchingDevices from "./onboarding/4_SwitchingDevices";
-import SessionSummary from "./onboarding/5_SessionSummary";
-import Os from "./onboarding/6_os";
-import Download from "./onboarding/7_download";
-import DownloadVideohelp from "./onboarding/8_Download_videohelp";
-import RunInstaller from "./onboarding/9_RunInstaller";
-import RunInstallerVideohelp from "./onboarding/10_RunInstaller_videohelp";
-import HoprBasics from "./onboarding/11_HoprBasics";
-import HoprBasicsVideohelp from "./onboarding/12_HoprBasics_videohelp";
-import RunGnosisVPN from "./onboarding/13_RunGnosisVPN";
-import RunGnosisVPNVideohelp from "./onboarding/14_RunGnosisVPN_videohelp";
-import GetStarted from "./onboarding/15_GetStarted";
-import GetStartedVideohelp from "./onboarding/16_GetStarted_videohelp";
-import Funding from "./onboarding/17_Funding";
-import FundingVideohelp from "./onboarding/18_Funding_videohelp";
-import Syncing from "./onboarding/19_Syncing";
-import SyncingVideohelp from "./onboarding/20_Syncing_videohelp";
-import SyncingFeedback from "./onboarding/21_SyncingFeedback";
-import ReadyToTest from "./onboarding/22_ReadyToTest";
-import AlreadyConnected from "./onboarding/23_AlreadyConnected";
-import AlreadyConnectedVideohelp from "./onboarding/24_AlreadyConnected_videohelp";
-import ReadyTimeout from "./onboarding/25_Great";
-import CheckIP from "./onboarding/26_CheckIP";
-import CloseIPSite from "./onboarding/27_CloseIPSite";
-import ChooseExitNode from "./onboarding/28_ChooseExitNode";
-import ChooseExitNodeVideohelp from "./onboarding/29_ChooseExitNode_videohelp";
-import TellChoice from "./onboarding/30_TellChoice";
-import CheckIPAgain from "./onboarding/31_CheckIPAgain";
-import DidIPChange from "./onboarding/32_DidIPChange";
-import VisitWebsite from "./onboarding/34_VisitWebsite";
-import VisitYoutube from "./onboarding/35_VisitYoutube";
-import YouTubeFeedback from "./onboarding/36_YouTubeFeedback";
-import CheckIPThirdTime from "./onboarding/37_CheckIPThirdTime";
-import OpenChatApp from "./onboarding/38_OpenChatApp";
-import TellChatApp from "./onboarding/39_TellChatApp";
-import UseChatApp from "./onboarding/40_UseChatApp";
-import AppFeedback from "./onboarding/41_AppFeedback";
-import CheckIPLastTime from "./onboarding/42_CheckIPLastTime";
-import DidIPChangeLast from "./onboarding/43_DidIPChangeLast";
-import TryDifferentExitNode from "./onboarding/44_TryDifferentExitNode";
-import WrapUp from "./onboarding/45_WrapUp";
+import { STEP_COMPONENTS } from "./onboarding/index";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
-import X_iCal from "./onboarding/X_iCal";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
-import Summary from "./onboarding/98_summary";
-
-const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
-  1: Welcome,
-  2: HowOnboardingWorks,
-  3: GettingHelp,
-  4: SwitchingDevices,
-  5: SessionSummary,
-  6: Os,
-  7: Download,
-  8: DownloadVideohelp,
-  9: RunInstaller,
-  10: RunInstallerVideohelp,
-  11: HoprBasics,
-  12: HoprBasicsVideohelp,
-  13: RunGnosisVPN,
-  14: RunGnosisVPNVideohelp,
-  15: GetStarted,
-  16: GetStartedVideohelp,
-  17: Funding,
-  18: FundingVideohelp,
-  19: Syncing,
-  20: SyncingVideohelp,
-  21: SyncingFeedback,
-  22: ReadyToTest,
-  23: AlreadyConnected,
-  24: AlreadyConnectedVideohelp,
-  25: ReadyTimeout,
-  26: CheckIP,
-  27: CloseIPSite,
-  28: ChooseExitNode,
-  29: ChooseExitNodeVideohelp,
-  30: TellChoice,
-  31: CheckIPAgain,
-  32: DidIPChange,
-  34: VisitWebsite,
-  35: VisitYoutube,
-  36: YouTubeFeedback,
-  37: CheckIPThirdTime,
-  38: OpenChatApp,
-  39: TellChatApp,
-  40: UseChatApp,
-  41: AppFeedback,
-  42: CheckIPLastTime,
-  43: DidIPChangeLast,
-  44: TryDifferentExitNode,
-  45: WrapUp,
-  98: Summary,
-};
+import X_iCal from "./onboarding/X_iCal";
 
 interface OnboardingProps {
   className?: string;

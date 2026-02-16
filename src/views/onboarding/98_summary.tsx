@@ -10,12 +10,12 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "../../components/onboarding/Button";
 import { useAppStore } from "../../store/appStore";
+import { STEP_NAMES } from "./index";
 
 interface SummaryItem {
   step: number;
   title: string;
   content: string;
-  timestamp: string;
 }
 
 interface SummaryProps {
@@ -24,35 +24,30 @@ interface SummaryProps {
 
 export default function Summary({ className }: SummaryProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const notes = useAppStore((state) => state.notes);
 
-  const summaryItems: SummaryItem[] = [
-    {
-      step: 3,
-      title: "Fund your Gnosis VPN installment",
-      content: "It was all clear, but a written out link really would be sth.",
-      timestamp: "Friday 2 July 2026, 13:30",
-    },
-    {
-      step: 4,
-      title: "Fund your Gnosis VPN installment",
-      content: "It was all clear, but a written out link really would be sth.",
-      timestamp: "Friday 2 July 2026, 13:30",
-    },
-    {
-      step: 5,
-      title: "Fund your Gnosis VPN installment",
-      content: "It was all clear, but a written out link really would be sth.",
-      timestamp: "Friday 2 July 2026, 13:30",
-    },
-  ];
+  const summaryItems: SummaryItem[] = Object.entries(notes)
+    .map(([stepKey, note]) => {
+      if (!stepKey || !note) return null;
+      
+      const stepNum = parseInt(stepKey.replace('X',''));
+      const title = STEP_NAMES[stepNum];
+
+      return {
+        step: stepNum,
+        title,
+        content: note,
+      };
+    })
+    .filter((item): item is SummaryItem => item !== null);
 
   const handleEditStep = (stepNumber: number) => {
-    setOnboardingStep(stepNumber);
+   // setOnboardingStep(stepNumber);
   };
 
   const handleContinue = () => {
     // Continue to next step after summary
-    setOnboardingStep(6);
+   // setOnboardingStep(6);
   };
 
   return (
@@ -71,7 +66,7 @@ export default function Summary({ className }: SummaryProps) {
         </Typography>
 
         {/* Summary Accordions */}
-        <Stack spacing={1.5}>
+        <Stack spacing={1.5} sx={{ flex: 1, overflowY: "auto", pr: 1, gap: 2 }}>
           {summaryItems.map((item, index) => (
             <Accordion
               key={index}
@@ -109,11 +104,12 @@ export default function Summary({ className }: SummaryProps) {
                       color: "#333",
                     }}
                   >
-                    {item.step}/16: {item.title}
+                    {item.title}
                   </Typography>
                 </Box>
                 <IconButton
                   size="small"
+                  disabled
                   onClick={(e) => {
                     e.stopPropagation();
                     handleEditStep(item.step);
@@ -136,26 +132,15 @@ export default function Summary({ className }: SummaryProps) {
                   backgroundColor: "#fff",
                 }}
               >
-                <Stack spacing={1.5}>
-                  <Typography
-                    sx={{
-                      fontSize: "0.9rem",
-                      lineHeight: 1.6,
-                      color: "#555",
-                    }}
-                  >
-                    {item.content}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "0.8rem",
-                      color: "#999",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    {item.timestamp}
-                  </Typography>
-                </Stack>
+                <Typography
+                  sx={{
+                    fontSize: "0.9rem",
+                    lineHeight: 1.6,
+                    color: "#555",
+                  }}
+                >
+                  {item.content}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           ))}
@@ -177,6 +162,7 @@ export default function Summary({ className }: SummaryProps) {
           <Button
             label="Continue Onboarding"
             onClick={handleContinue}
+            disabled
           />
         </>
       </Box>

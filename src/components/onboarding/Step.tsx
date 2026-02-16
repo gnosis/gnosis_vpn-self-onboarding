@@ -37,7 +37,7 @@ export default function Step({ title, text, buttons, onboardingStep, className }
               lineHeight: 1.2,
             }}
           >
-            {onboardingStep} {title}
+            {/* {onboardingStep}  */} {title}
           </Typography>
         </Box>
 
