@@ -31,6 +31,7 @@ import ChooseExitNodeVideohelp from "./29_ChooseExitNode_videohelp";
 import TellChoice from "./30_TellChoice";
 import CheckIPAgain from "./31_CheckIPAgain";
 import DidIPChange from "./32_DidIPChange";
+import PleaseRestart from "./33_PleaseRestart";
 import VisitWebsite from "./34_VisitWebsite";
 import VisitYoutube from "./35_VisitYoutube";
 import YouTubeFeedback from "./36_YouTubeFeedback";
@@ -79,6 +80,7 @@ export const STEP_NAMES: Record<number, string> = {
   30: "Tell Choice",
   31: "Check IP Again",
   32: "Did IP Change",
+  33: "Please Restart",
   34: "Visit Website",
   35: "Visit Youtube",
   36: "YouTube Feedback",
@@ -128,6 +130,7 @@ export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   30: TellChoice,
   31: CheckIPAgain,
   32: DidIPChange,
+  33: PleaseRestart,
   34: VisitWebsite,
   35: VisitYoutube,
   36: YouTubeFeedback,
