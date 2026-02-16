@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 47;
+const STEP = 46;
 
-interface TryDifferentExitNodeProps {
+interface WrapUpProps {
   className?: string;
 }
 
-export default function TryDifferentExitNode({ className }: TryDifferentExitNodeProps) {
+export default function WrapUp({ className }: WrapUpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const WRAP_UP_LABEL = "Let's wrap up";
-  const TRY_AGAIN_LABEL = "Let's do that";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("47_TryDifferentExitNode", answer);
+    saveAnswer("46_WrapUp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
+      className={`WrapUp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Try with a different exit node"
+      title="Wrap up"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function TryDifferentExitNode({ className }: TryDifferentExitNode
             color: "#333",
           }}
         >
-          Amazing! If you'd like to keep testing, we can try again with a different exit node
+          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, STEP)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

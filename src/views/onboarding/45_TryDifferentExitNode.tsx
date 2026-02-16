@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 44;
+const STEP = 45;
 
-interface AppFeedbackProps {
+interface TryDifferentExitNodeProps {
   className?: string;
 }
 
-export default function AppFeedback({ className }: AppFeedbackProps) {
+export default function TryDifferentExitNode({ className }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const WRAP_UP_LABEL = "Let's wrap up";
+  const TRY_AGAIN_LABEL = "Let's do that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("44_AppFeedback", answer);
+    saveAnswer("45_TryDifferentExitNode", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`AppFeedback${className ? ` ${className}` : ""}`}
+      className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="App feedback"
+      title="Try with a different exit node"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
             color: "#333",
           }}
         >
-          Great! Did it work well? Did you notice any issues?
+          Amazing! If you'd like to keep testing, we can try again with a different exit node
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, STEP)} />
           </>
         ) : null
       }

@@ -1,15 +1,15 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
 const STEP = 43;
 
-interface UseChatAppProps {
+interface CheckIPLastTimeProps {
   className?: string;
 }
 
-export default function UseChatApp({ className }: UseChatAppProps) {
+export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -18,15 +18,15 @@ export default function UseChatApp({ className }: UseChatAppProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("43_UseChatApp", answer);
+    saveAnswer("43_CheckIPLastTime", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`UseChatApp${className ? ` ${className}` : ""}`}
+      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Use your Chat App"
+      title="Check IP one last time"
       text={
         <Typography
           variant="body1"
@@ -36,7 +36,20 @@ export default function UseChatApp({ className }: UseChatAppProps) {
             color: "#333",
           }}
         >
-          Now just use your chat app normally for a bit
+          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
+          <Box
+            component="a"
+            href="https://whatismyipaddress.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            sx={{
+              color: "#0066cc",
+              textDecoration: "none",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
+            https://whatismyipaddress.com
+          </Box>
         </Typography>
       }
       buttons={

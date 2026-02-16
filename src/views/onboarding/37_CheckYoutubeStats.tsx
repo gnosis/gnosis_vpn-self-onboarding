@@ -1,32 +1,32 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 45;
+const STEP = 37;
 
-interface CheckIPLastTimeProps {
+interface CheckYoutubeStatsProps {
   className?: string;
 }
 
-export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
+export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
+  const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("45_CheckIPLastTime", answer);
+    saveAnswer("37_CheckYoutubeStats", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
+      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check IP one last time"
+      title="Check YouTube Stats"
       text={
         <Typography
           variant="body1"
@@ -36,20 +36,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
             color: "#333",
           }}
         >
-          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
-          <Box
-            component="a"
-            href="https://whatismyipaddress.com"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://whatismyipaddress.com
-          </Box>
+          Let's check the video stats
         </Typography>
       }
       buttons={

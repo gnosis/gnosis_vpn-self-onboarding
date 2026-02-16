@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 37;
+const STEP = 35;
 
 interface VisitYoutubeProps {
   className?: string;
@@ -18,7 +18,7 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
   const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_VisitYoutube", answer);
+    saveAnswer("35_VisitYoutube", answer);
     setOnboardingStep(nextStep);
   };
 
@@ -44,7 +44,7 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
           </>
         ) : null

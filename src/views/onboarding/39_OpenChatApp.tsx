@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 41;
+const STEP = 39;
 
 interface OpenChatAppProps {
   className?: string;
@@ -18,7 +18,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("41_OpenChatApp", answer);
+    saveAnswer("39_OpenChatApp", answer);
     setOnboardingStep(nextStep);
   };
 

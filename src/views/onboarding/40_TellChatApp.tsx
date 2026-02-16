@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 39;
+const STEP = 40;
 
-interface CheckYoutubeStatsProps {
+interface TellChatAppProps {
   className?: string;
 }
 
-export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
+export default function TellChatApp({ className }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "That's done";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("39_CheckYoutubeStats", answer);
+    saveAnswer("40_TellChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
+      className={`TellChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check YouTube Stats"
+      title="Tell Us Your Chat App"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
             color: "#333",
           }}
         >
-          Let's check the video stats
+          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

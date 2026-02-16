@@ -5,28 +5,28 @@ import { useAppStore } from "../../store/appStore";
 
 const STEP = 34;
 
-interface IPChangeResponseVideohelpProps {
+interface VisitWebsiteProps {
   className?: string;
 }
 
-export default function IPChangeResponseVideohelp({ className }: IPChangeResponseVideohelpProps) {
+export default function VisitWebsite({ className }: VisitWebsiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const STILL_NOT_WORKING = "It's still not working";
-  const WORKING_NOW = "It's working now";
+  const NEED_HELP_LABEL = "I need help";
+  const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_IPChangeResponse_videohelp", answer);
+    saveAnswer("34_VisitWebsite", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`IPChangeResponseVideohelp${className ? ` ${className}` : ""}`}
+      className={`VisitWebsite${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Video support"
+      title="Visit our website"
       text={
         <Typography
           variant="body1"
@@ -36,14 +36,14 @@ export default function IPChangeResponseVideohelp({ className }: IPChangeRespons
             color: "#333",
           }}
         >
-          Did your IP change?
+          Let's take it for a spin. Visit https://vpn.gnosis.eth.limo/	
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={STILL_NOT_WORKING} onClick={() => handleAnswer(STILL_NOT_WORKING, STEP + 0.25)} />
-            <Button label={WORKING_NOW} onClick={() => handleAnswer(WORKING_NOW, STEP + 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -3,30 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 36;
+const STEP = 41;
 
-interface VisitWebsiteProps {
+interface UseChatAppProps {
   className?: string;
 }
 
-export default function VisitWebsite({ className }: VisitWebsiteProps) {
+export default function UseChatApp({ className }: UseChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const WORKED_LABEL = "It's worked";
+  const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("36_VisitWebsite", answer);
+    saveAnswer("41_UseChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`VisitWebsite${className ? ` ${className}` : ""}`}
+      className={`UseChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Visit website"
+      title="Use your Chat App"
       text={
         <Typography
           variant="body1"
@@ -36,14 +36,14 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
             color: "#333",
           }}
         >
-          Let's take it for a spin. Visit the Gnosis VPN site
+          Now just use your chat app normally for a bit
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -2,8 +2,9 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import FeedbackSection from "../../components/FeedbackSection";
 
-const STEP = 38;
+const STEP = 36;
 
 interface YouTubeFeedbackProps {
   className?: string;
@@ -17,7 +18,7 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("38_YouTubeFeedback", answer);
+    saveAnswer("36_YouTubeFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
@@ -49,6 +50,8 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
           >
             Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible
           </Typography>
+          
+          <FeedbackSection stepKey="36_YouTubeFeedback" />
         </>
       }
       buttons={

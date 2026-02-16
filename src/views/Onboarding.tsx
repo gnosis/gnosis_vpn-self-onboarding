@@ -37,22 +37,19 @@ import ChooseExitNodeVideohelp from "./onboarding/29_ChooseExitNode_videohelp";
 import TellChoice from "./onboarding/30_TellChoice";
 import CheckIPAgain from "./onboarding/31_CheckIPAgain";
 import DidIPChange from "./onboarding/32_DidIPChange";
-import IPChangeResponseYes from "./onboarding/34_IPChangeResponseYes";
-import IPChangeResponseVideohelp from "./onboarding/33_IPChangeResponseNo";
-import NoIPChangeResponse from "./onboarding/35_NoIPChangeResponse";
-import VisitWebsite from "./onboarding/36_VisitWebsite";
-import VisitYoutube from "./onboarding/37_VisitYoutube";
-import YouTubeFeedback from "./onboarding/38_YouTubeFeedback";
-import CheckYoutubeStats from "./onboarding/39_CheckYoutubeStats";
-import CheckIPThirdTime from "./onboarding/40_CheckIPThirdTime";
-import OpenChatApp from "./onboarding/41_OpenChatApp";
-import TellChatApp from "./onboarding/42_TellChatApp";
-import UseChatApp from "./onboarding/43_UseChatApp";
-import AppFeedback from "./onboarding/44_AppFeedback";
-import CheckIPLastTime from "./onboarding/45_CheckIPLastTime";
-import DidIPChangeLast from "./onboarding/46_DidIPChangeLast";
-import TryDifferentExitNode from "./onboarding/47_TryDifferentExitNode";
-import WrapUp from "./onboarding/48_WrapUp";
+import VisitWebsite from "./onboarding/34_VisitWebsite";
+import VisitYoutube from "./onboarding/35_VisitYoutube";
+import YouTubeFeedback from "./onboarding/36_YouTubeFeedback";
+import CheckYoutubeStats from "./onboarding/37_CheckYoutubeStats";
+import CheckIPThirdTime from "./onboarding/38_CheckIPThirdTime";
+import OpenChatApp from "./onboarding/39_OpenChatApp";
+import TellChatApp from "./onboarding/40_TellChatApp";
+import UseChatApp from "./onboarding/41_UseChatApp";
+import AppFeedback from "./onboarding/42_AppFeedback";
+import CheckIPLastTime from "./onboarding/43_CheckIPLastTime";
+import DidIPChangeLast from "./onboarding/44_DidIPChangeLast";
+import TryDifferentExitNode from "./onboarding/45_TryDifferentExitNode";
+import WrapUp from "./onboarding/46_WrapUp";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_iCal from "./onboarding/X_iCal";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
@@ -90,22 +87,19 @@ const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   30: TellChoice,
   31: CheckIPAgain,
   32: DidIPChange,
-  33: IPChangeResponseYes,
-  34: IPChangeResponseVideohelp,
-  35: NoIPChangeResponse,
-  36: VisitWebsite,
-  37: VisitYoutube,
-  38: YouTubeFeedback,
-  39: CheckYoutubeStats,
-  40: CheckIPThirdTime,
-  41: OpenChatApp,
-  42: TellChatApp,
-  43: UseChatApp,
-  44: AppFeedback,
-  45: CheckIPLastTime,
-  46: DidIPChangeLast,
-  47: TryDifferentExitNode,
-  48: WrapUp,
+  34: VisitWebsite,
+  35: VisitYoutube,
+  36: YouTubeFeedback,
+  37: CheckYoutubeStats,
+  38: CheckIPThirdTime,
+  39: OpenChatApp,
+  40: TellChatApp,
+  41: UseChatApp,
+  42: AppFeedback,
+  43: CheckIPLastTime,
+  44: DidIPChangeLast,
+  45: TryDifferentExitNode,
+  46: WrapUp,
 };
 
 interface OnboardingProps {
@@ -152,7 +146,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={50} />
+      <TopBar currentStep={onboardingStep} totalSteps={48} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
