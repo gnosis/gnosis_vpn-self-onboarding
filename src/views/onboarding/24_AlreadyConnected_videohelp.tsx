@@ -3,14 +3,14 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 18;
+const STEP = 24;
 
-interface FundingVideohelpProps {
+interface AlreadyConnectedVideohelpProps {
   className?: string;
   lastEntry?: boolean;
 }
 
-export default function FundingVideohelp({ className, lastEntry }: FundingVideohelpProps) {
+export default function AlreadyConnectedVideohelp({ className, lastEntry }: AlreadyConnectedVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -19,13 +19,13 @@ export default function FundingVideohelp({ className, lastEntry }: FundingVideoh
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("18_Funding_videohelp", answer);
+    saveAnswer("24_AlreadyConnected_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`FundingVideohelp${className ? ` ${className}` : ""}`}
+      className={`AlreadyConnectedVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Video support"
       text={

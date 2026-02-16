@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 25;
+const STEP = 26;
 
 interface CheckIPProps {
   className?: string;
@@ -18,7 +18,7 @@ export default function CheckIP({ className }: CheckIPProps) {
   const GOT_IT_LABEL = "I've got it";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("25_CheckIP", answer);
+    saveAnswer(26_CheckIP", answer);
     setOnboardingStep(nextStep);
   };
 

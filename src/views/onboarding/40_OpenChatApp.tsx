@@ -3,30 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 35;
+const STEP = 40;
 
-interface VisitYoutubeProps {
+interface OpenChatAppProps {
   className?: string;
 }
 
-export default function VisitYoutube({ className }: VisitYoutubeProps) {
+export default function OpenChatApp({ className }: OpenChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const WORKED_LABEL = "It's worked";
+  const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("35_VisitYoutube", answer);
+    saveAnswer(40_OpenChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`VisitYoutube${className ? ` ${className}` : ""}`}
+      className={`OpenChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Visit YouTube"
+      title="Open your Chat App"
       text={
         <>
           <Typography
@@ -37,7 +37,29 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
               color: "#333",
             }}
           >
-            Now let's try something more advanced. Go to YouTube and watch a video. Let's watch for at least a minute: really put the VPN to the test!
+            Now let's try something else.
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Not everything we do online uses the same method to send data, but we need to support them all!
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Please open a Chat app, one that isn't in your browser.
           </Typography>
         </>
       }
@@ -45,7 +67,7 @@ export default function VisitYoutube({ className }: VisitYoutubeProps) {
         onboardingStep === STEP ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

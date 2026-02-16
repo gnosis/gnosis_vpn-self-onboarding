@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 44;
+const STEP = 25;
 
-interface DidIPChangeLastProps {
+interface GreatProps {
   className?: string;
 }
 
-export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
+export default function Great({ className }: GreatProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const WRONG_LABEL = "Something went wrong";
-  const SAME_LABEL = "It's the same as last time";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("44_DidIPChangeLast", answer);
+    saveAnswer(25_Great", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`DidIPChangeLast${className ? ` ${className}` : ""}`}
+      className={`ReadyTimeout${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Did the IP change?"
+      title="Great!"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function DidIPChangeLast({ className }: DidIPChangeLastProps) {
             color: "#333",
           }}
         >
-          Did the IP change?
+          
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 2)} />
-            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 3)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

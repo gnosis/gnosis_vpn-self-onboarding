@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 42;
+const STEP = 38;
 
-interface AppFeedbackProps {
+interface CheckYoutubeStatsProps {
   className?: string;
 }
 
-export default function AppFeedback({ className }: AppFeedbackProps) {
+export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("42_AppFeedback", answer);
+    saveAnswer(38_CheckYoutubeStats", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`AppFeedback${className ? ` ${className}` : ""}`}
+      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="App feedback"
+      title="Check YouTube Stats"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function AppFeedback({ className }: AppFeedbackProps) {
             color: "#333",
           }}
         >
-          Great! Did it work well? Did you notice any issues?
+          Let's check the video stats
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

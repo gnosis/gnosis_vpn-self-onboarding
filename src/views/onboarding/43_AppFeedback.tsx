@@ -3,13 +3,13 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 40;
+const STEP = 43;
 
-interface TellChatAppProps {
+interface AppFeedbackProps {
   className?: string;
 }
 
-export default function TellChatApp({ className }: TellChatAppProps) {
+export default function AppFeedback({ className }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -17,15 +17,15 @@ export default function TellChatApp({ className }: TellChatAppProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("40_TellChatApp", answer);
+    saveAnswer(43_AppFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TellChatApp${className ? ` ${className}` : ""}`}
+      className={`AppFeedback${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell Us Your Chat App"
+      title="App feedback"
       text={
         <Typography
           variant="body1"
@@ -35,7 +35,7 @@ export default function TellChatApp({ className }: TellChatAppProps) {
             color: "#333",
           }}
         >
-          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
+          Great! Did it work well? Did you notice any issues?
         </Typography>
       }
       buttons={

@@ -3,13 +3,13 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 37;
+const STEP = 28;
 
-interface CheckYoutubeStatsProps {
+interface ChooseExitNodeProps {
   className?: string;
 }
 
-export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps) {
+export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -18,15 +18,15 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
   const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_CheckYoutubeStats", answer);
+    saveAnswer(28_ChooseExitNode", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckYoutubeStats${className ? ` ${className}` : ""}`}
+      className={`ChooseExitNode${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check YouTube Stats"
+      title="Choose an exit node"
       text={
         <Typography
           variant="body1"
@@ -36,7 +36,7 @@ export default function CheckYoutubeStats({ className }: CheckYoutubeStatsProps)
             color: "#333",
           }}
         >
-          Let's check the video stats
+          Next, choose and exit node and connect the VPN
         </Typography>
       }
       buttons={

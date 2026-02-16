@@ -28,29 +28,30 @@ import SyncingVideohelp from "./onboarding/20_Syncing_videohelp";
 import SyncingFeedback from "./onboarding/21_SyncingFeedback";
 import ReadyToTest from "./onboarding/22_ReadyToTest";
 import AlreadyConnected from "./onboarding/23_AlreadyConnected";
-import ReadyTimeout from "./onboarding/24_Great";
-import CheckIP from "./onboarding/25_CheckIP";
-import CloseIPSite from "./onboarding/26_CloseIPSite";
-import ChooseExitNode from "./onboarding/27_ChooseExitNode";
-import TellChoice from "./onboarding/28_TellChoice";
-import CheckIPAgain from "./onboarding/29_CheckIPAgain";
-import DidIPChange from "./onboarding/30_DidIPChange";
-import IPChangeResponse from "./onboarding/31_IPChangeResponse";
-import IPChangeResponseVideohelp from "./onboarding/32_IPChangeResponse_videohelp";
-import NoIPChangeResponse from "./onboarding/33_NoIPChangeResponse";
-import VisitWebsite from "./onboarding/34_VisitWebsite";
-import VisitYoutube from "./onboarding/35_VisitYoutube";
-import YouTubeFeedback from "./onboarding/36_YouTubeFeedback";
-import CheckYoutubeStats from "./onboarding/37_CheckYoutubeStats";
-import CheckIPThirdTime from "./onboarding/38_CheckIPThirdTime";
-import OpenChatApp from "./onboarding/39_OpenChatApp";
-import TellChatApp from "./onboarding/40_TellChatApp";
-import UseChatApp from "./onboarding/41_UseChatApp";
-import AppFeedback from "./onboarding/42_AppFeedback";
-import CheckIPLastTime from "./onboarding/43_CheckIPLastTime";
-import DidIPChangeLast from "./onboarding/44_DidIPChangeLast";
-import TryDifferentExitNode from "./onboarding/45_TryDifferentExitNode";
-import WrapUp from "./onboarding/46_WrapUp";
+import AlreadyConnectedVideohelp from "./onboarding/24_AlreadyConnected_videohelp";
+import ReadyTimeout from "./onboarding/25_Great";
+import CheckIP from "./onboarding/26_CheckIP";
+import CloseIPSite from "./onboarding/27_CloseIPSite";
+import ChooseExitNode from "./onboarding/28_ChooseExitNode";
+import TellChoice from "./onboarding/29_TellChoice";
+import CheckIPAgain from "./onboarding/30_CheckIPAgain";
+import DidIPChange from "./onboarding/31_DidIPChange";
+import IPChangeResponse from "./onboarding/32_IPChangeResponse";
+import IPChangeResponseVideohelp from "./onboarding/33_IPChangeResponse_videohelp";
+import NoIPChangeResponse from "./onboarding/34_NoIPChangeResponse";
+import VisitWebsite from "./onboarding/35_VisitWebsite";
+import VisitYoutube from "./onboarding/36_VisitYoutube";
+import YouTubeFeedback from "./onboarding/37_YouTubeFeedback";
+import CheckYoutubeStats from "./onboarding/38_CheckYoutubeStats";
+import CheckIPThirdTime from "./onboarding/39_CheckIPThirdTime";
+import OpenChatApp from "./onboarding/40_OpenChatApp";
+import TellChatApp from "./onboarding/41_TellChatApp";
+import UseChatApp from "./onboarding/42_UseChatApp";
+import AppFeedback from "./onboarding/43_AppFeedback";
+import CheckIPLastTime from "./onboarding/44_CheckIPLastTime";
+import DidIPChangeLast from "./onboarding/45_DidIPChangeLast";
+import TryDifferentExitNode from "./onboarding/46_TryDifferentExitNode";
+import WrapUp from "./onboarding/47_WrapUp";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_iCal from "./onboarding/X_iCal";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
@@ -80,29 +81,30 @@ const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   21: SyncingFeedback,
   22: ReadyToTest,
   23: AlreadyConnected,
-  24: ReadyTimeout,
-  25: CheckIP,
-  26: CloseIPSite,
-  27: ChooseExitNode,
-  28: TellChoice,
-  29: CheckIPAgain,
-  30: DidIPChange,
-  31: IPChangeResponse,
-  32: IPChangeResponseVideohelp,
-  33: NoIPChangeResponse,
-  34: VisitWebsite,
-  35: VisitYoutube,
-  36: YouTubeFeedback,
-  37: CheckYoutubeStats,
-  38: CheckIPThirdTime,
-  39: OpenChatApp,
-  40: TellChatApp,
-  41: UseChatApp,
-  42: AppFeedback,
-  43: CheckIPLastTime,
-  44: DidIPChangeLast,
-  45: TryDifferentExitNode,
-  46: WrapUp,
+  24: AlreadyConnectedVideohelp,
+  25: ReadyTimeout,
+  26: CheckIP,
+  27: CloseIPSite,
+  28: ChooseExitNode,
+  29: TellChoice,
+  30: CheckIPAgain,
+  31: DidIPChange,
+  32: IPChangeResponse,
+  33: IPChangeResponseVideohelp,
+  34: NoIPChangeResponse,
+  35: VisitWebsite,
+  36: VisitYoutube,
+  37: YouTubeFeedback,
+  38: CheckYoutubeStats,
+  39: CheckIPThirdTime,
+  40: OpenChatApp,
+  41: TellChatApp,
+  42: UseChatApp,
+  43: AppFeedback,
+  44: CheckIPLastTime,
+  45: DidIPChangeLast,
+  46: TryDifferentExitNode,
+  47: WrapUp,
 };
 
 interface OnboardingProps {
@@ -149,7 +151,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={48} />
+      <TopBar currentStep={onboardingStep} totalSteps={49} />
 
       {/* Main Content */}
       <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>

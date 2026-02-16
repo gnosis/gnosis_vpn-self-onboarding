@@ -5,28 +5,27 @@ import { useAppStore } from "../../store/appStore";
 
 const STEP = 34;
 
-interface VisitWebsiteProps {
+interface NoDifferentExitNodeProps {
   className?: string;
 }
 
-export default function VisitWebsite({ className }: VisitWebsiteProps) {
+export default function NoIPChangeResponse({ className }: NoDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const WORKED_LABEL = "It's worked";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_VisitWebsite", answer);
+    saveAnswer(34_NoIPChangeResponse", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`VisitWebsite${className ? ` ${className}` : ""}`}
+      className={`NoIPChangeResponse${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Visit website"
+      title="Response"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function VisitWebsite({ className }: VisitWebsiteProps) {
             color: "#333",
           }}
         >
-          Let's take it for a spin. Visit the Gnosis VPN site
+          We'll try again or get some help
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP+1)} />
           </>
         ) : null
       }

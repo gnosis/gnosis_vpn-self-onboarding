@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 24;
+const STEP = 27;
 
-interface GreatProps {
+interface CloseIPSiteProps {
   className?: string;
 }
 
-export default function Great({ className }: GreatProps) {
+export default function CloseIPSite({ className }: CloseIPSiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "Done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("24_Great", answer);
+    saveAnswer(27_CloseIPSite", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`ReadyTimeout${className ? ` ${className}` : ""}`}
+      className={`CloseIPSite${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Great!"
+      title="Close IP site"
       text={
         <Typography
           variant="body1"
@@ -35,13 +36,14 @@ export default function Great({ className }: GreatProps) {
             color: "#333",
           }}
         >
-          
+          Wonderful. We'll be referring back to that throughout this process. Close the IP address finder for now.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

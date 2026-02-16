@@ -1,15 +1,15 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 43;
+const STEP = 42;
 
-interface CheckIPLastTimeProps {
+interface UseChatAppProps {
   className?: string;
 }
 
-export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
+export default function UseChatApp({ className }: UseChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -18,15 +18,15 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("43_CheckIPLastTime", answer);
+    saveAnswer(42_UseChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
+      className={`UseChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check IP one last time"
+      title="Use your Chat App"
       text={
         <Typography
           variant="body1"
@@ -36,20 +36,7 @@ export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
             color: "#333",
           }}
         >
-          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
-          <Box
-            component="a"
-            href="https://whatismyipaddress.com"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://whatismyipaddress.com
-          </Box>
+          Now just use your chat app normally for a bit
         </Typography>
       }
       buttons={

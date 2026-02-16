@@ -37,7 +37,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
             color: "#333",
           }}
         >
-          We're ready to test! But please don't connect the VPN yet
+          We're ready to test! <strong>But please don't connect the VPN yet</strong>
         </Typography>
       }
       buttons={

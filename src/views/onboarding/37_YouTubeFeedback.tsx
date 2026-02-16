@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 36;
+const STEP = 37;
 
 interface YouTubeFeedbackProps {
   className?: string;
@@ -17,7 +17,7 @@ export default function YouTubeFeedback({ className }: YouTubeFeedbackProps) {
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("36_YouTubeFeedback", answer);
+    saveAnswer(37_YouTubeFeedback", answer);
     setOnboardingStep(nextStep);
   };
 

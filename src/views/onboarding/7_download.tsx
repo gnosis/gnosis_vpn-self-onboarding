@@ -75,7 +75,6 @@ export default function Download({ className }: DownloadProps) {
             and download the installer
           </Typography>
 
-          <FeedbackSection stepKey="7_download" />
         </>
       }
       buttons={

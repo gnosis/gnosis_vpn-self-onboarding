@@ -1,4 +1,4 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
@@ -28,49 +28,33 @@ export default function HoprBasics({ className }: HoprBasicsProps) {
       onboardingStep={STEP}
       title="HOPR Basics"
       text={
-        <>
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: "0.95rem",
+            lineHeight: 1.6,
+            color: "#333",
+          }}
+        >
+          While we're waiting, I'll explain a little about the VPN. Gnosis VPN runs over the HOPR mixnet, which means we'll be sending your data via multiple nodes run by people like you. Don't worry, they can't see anything you send or learn anything about you. It's fully private! But to join the network you'll need a node of your own that runs in the background. You don't need to know how any of this works, but if you're interested you can learn more at{" "}
           <Typography
-            variant="body1"
+            component="a"
+            href="https://github.com/hoprnet/hoprnet"
+            target="_blank"
+            rel="noreferrer noopener"
             sx={{
               fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
+              color: "#0066cc",
+              textDecoration: "none",
+              fontWeight: 500,
+              "&:hover": {
+                textDecoration: "underline",
+              },
             }}
           >
-            While we're waiting, I'll explain a little about the VPN. Gnosis VPN runs over the HOPR mixnet, which means we'll be sending your data via multiple nodes run by people like you. Don't worry, they can't see anything you send or learn anything about you. It's fully private!
+            https://github.com/hoprnet/hoprnet
           </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            But to join the network you'll need a node of your own that runs in the background. You don't need to know how any of this works, but if you're interested you can learn more at
-          </Typography>
-
-          <Box>
-            <Typography
-              component="a"
-              href="https://github.com/hoprnet/hoprnet"
-              target="_blank"
-              rel="noreferrer noopener"
-              sx={{
-                fontSize: "0.95rem",
-                color: "#0066cc",
-                textDecoration: "none",
-                fontWeight: 500,
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }}
-            >
-              https://github.com/hoprnet/hoprnet
-            </Typography>
-          </Box>
-        </>
+        </Typography>
       }
       buttons={
         onboardingStep === STEP ? (

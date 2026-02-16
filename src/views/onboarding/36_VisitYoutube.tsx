@@ -3,30 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 39;
+const STEP = 36;
 
-interface OpenChatAppProps {
+interface VisitYoutubeProps {
   className?: string;
 }
 
-export default function OpenChatApp({ className }: OpenChatAppProps) {
+export default function VisitYoutube({ className }: VisitYoutubeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
+  const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("39_OpenChatApp", answer);
+    saveAnswer(36_VisitYoutube", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`OpenChatApp${className ? ` ${className}` : ""}`}
+      className={`VisitYoutube${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Open your Chat App"
+      title="Visit YouTube"
       text={
         <>
           <Typography
@@ -37,29 +37,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
               color: "#333",
             }}
           >
-            Now let's try something else.
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            Not everything we do online uses the same method to send data, but we need to support them all!
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            Please open a Chat app, one that isn't in your browser.
+            Now let's try something more advanced. Go to YouTube and watch a video. Let's watch for at least a minute: really put the VPN to the test!
           </Typography>
         </>
       }
@@ -67,7 +45,7 @@ export default function OpenChatApp({ className }: OpenChatAppProps) {
         onboardingStep === STEP ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
           </>
         ) : null
       }

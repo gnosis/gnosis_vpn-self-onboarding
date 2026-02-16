@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 26;
+const STEP = 41;
 
-interface CloseIPSiteProps {
+interface TellChatAppProps {
   className?: string;
 }
 
-export default function CloseIPSite({ className }: CloseIPSiteProps) {
+export default function TellChatApp({ className }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "Done";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("26_CloseIPSite", answer);
+    saveAnswer(41_TellChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CloseIPSite${className ? ` ${className}` : ""}`}
+      className={`TellChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Close IP site"
+      title="Tell Us Your Chat App"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,13 @@ export default function CloseIPSite({ className }: CloseIPSiteProps) {
             color: "#333",
           }}
         >
-          Wonderful. We'll be referring back to that throughout this process. Close the IP address finder for now.
+          I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

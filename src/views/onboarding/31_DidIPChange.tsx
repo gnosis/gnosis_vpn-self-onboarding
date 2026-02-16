@@ -3,30 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 27;
+const STEP = 31;
 
-interface ChooseExitNodeProps {
+interface DidIPChangeProps {
   className?: string;
 }
 
-export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
+export default function DidIPChange({ className }: DidIPChangeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "That's done";
+  const NO_CHANGE_LABEL = "No it's the same";
+  const YES_LABEL = "Yes!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("27_ChooseExitNode", answer);
+    saveAnswer(31_DidIPChange", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`ChooseExitNode${className ? ` ${className}` : ""}`}
+      className={`DidIPChange${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Choose an exit node"
+      title="Did the IP change"
       text={
         <Typography
           variant="body1"
@@ -36,14 +36,14 @@ export default function ChooseExitNode({ className }: ChooseExitNodeProps) {
             color: "#333",
           }}
         >
-          Next, choose and exit node and connect the VPN
+          Did your IP change?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 1)} />
           </>
         ) : null
       }

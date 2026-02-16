@@ -3,13 +3,13 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 33;
+const STEP = 47;
 
-interface NoDifferentExitNodeProps {
+interface WrapUpProps {
   className?: string;
 }
 
-export default function NoIPChangeResponse({ className }: NoDifferentExitNodeProps) {
+export default function WrapUp({ className }: WrapUpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
@@ -17,15 +17,15 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("33_NoIPChangeResponse", answer);
+    saveAnswer(47_WrapUp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`NoIPChangeResponse${className ? ` ${className}` : ""}`}
+      className={`WrapUp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Response"
+      title="Wrap up"
       text={
         <Typography
           variant="body1"
@@ -35,13 +35,13 @@ export default function NoIPChangeResponse({ className }: NoDifferentExitNodePro
             color: "#333",
           }}
         >
-          We'll try again or get some help
+          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP+1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
           </>
         ) : null
       }

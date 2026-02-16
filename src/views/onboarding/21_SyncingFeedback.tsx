@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import FeedbackSection from "../../components/FeedbackSection";
 
 const STEP = 21;
 
@@ -27,16 +28,19 @@ export default function SyncingFeedback({ className }: SyncingFeedbackProps) {
       onboardingStep={STEP}
       title="Syncing Feedback"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          Amazing! How long did that take?
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Amazing! How long did that take?
+          </Typography>
+          <FeedbackSection stepKey="21_SyncingFeedback" />
+        </>
       }
       buttons={
         onboardingStep === STEP ? (

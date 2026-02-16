@@ -3,29 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 46;
+const STEP = 29;
 
-interface WrapUpProps {
+const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
+
+interface TellChoiceProps {
   className?: string;
 }
 
-export default function WrapUp({ className }: WrapUpProps) {
+export default function TellChoice({ className }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
-  const CONTINUE_LABEL = "Continue";
-
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("46_WrapUp", answer);
+    saveAnswer(29_TellChoice", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
+      className={`TellChoice${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Wrap up"
+      title="Tell us choice"
       text={
         <Typography
           variant="body1"
@@ -35,13 +35,19 @@ export default function WrapUp({ className }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Which one did you choose?
         </Typography>
       }
       buttons={
         onboardingStep === STEP ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP)} />
+            {LOCATIONS.map((location) => (
+              <Button
+                key={location}
+                label={location}
+                onClick={() => handleAnswer(location, STEP + 1)}
+              />
+            ))}
           </>
         ) : null
       }

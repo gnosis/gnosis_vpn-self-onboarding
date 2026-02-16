@@ -3,30 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 29;
+const STEP = 44;
 
-interface CheckIPAgainProps {
+interface CheckIPLastTimeProps {
   className?: string;
 }
 
-export default function CheckIPAgain({ className }: CheckIPAgainProps) {
+export default function CheckIPLastTime({ className }: CheckIPLastTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
 
   const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "Done";
+  const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("29_CheckIPAgain", answer);
+    saveAnswer(44_CheckIPLastTime", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPAgain${className ? ` ${className}` : ""}`}
+      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check your IP again"
+      title="Check IP one last time"
       text={
         <Typography
           variant="body1"
@@ -36,7 +36,7 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
             color: "#333",
           }}
         >
-          Great! Now return to{" "}
+          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
           <Box
             component="a"
             href="https://whatismyipaddress.com"
@@ -50,7 +50,6 @@ export default function CheckIPAgain({ className }: CheckIPAgainProps) {
           >
             https://whatismyipaddress.com
           </Box>
-          {" "}and check the IP address
         </Typography>
       }
       buttons={
