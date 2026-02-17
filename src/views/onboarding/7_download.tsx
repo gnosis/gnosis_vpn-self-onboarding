@@ -12,6 +12,7 @@ interface DownloadProps {
 export default function Download({ className, lastEntry }: DownloadProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
 
   const NEED_HELP_LABEL = "I need some help";
   const DOWNLOADED_LABEL = "Downloaded!";
@@ -42,7 +43,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
           <Box>
             <Typography
               component="a"
-              href="https://github.com/gnosis/gnosis_vpn-client/releases"
+              href="https://github.com/gnosis/gnosis_vpn/releases/latest"
               target="_blank"
               rel="noreferrer noopener"
               sx={{
@@ -58,7 +59,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
                 },
               }}
             >
-              https://github.com/gnosis/gnosis_vpn-client/releases 
+              https://github.com/gnosis/gnosis_vpn/releases/latest
             </Typography>
           </Box>
 
@@ -70,7 +71,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
               color: "#333",
             }}
           >
-            and download the installer
+            and download the installer <strong>{selectedOS === "Mac OS" ? "GnosisVPN-Installer-<VERSION>.pkg" : "Linux"}</strong>
           </Typography>
 
         </>

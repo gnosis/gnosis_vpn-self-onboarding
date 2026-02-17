@@ -17,7 +17,7 @@ interface AppStore {
   stepLog: string[];
   feedback: Record<string, string>;
   saveFeedback: (key: string, value: string) => void;
-  setOnboardingData: (data: { onboardingStep?: number; stepLog?: string[]; notes?: Record<string, string>; feedback?: Record<string, string> }) => void;
+  setOnboardingData: (data: { onboardingStep?: number; stepLog?: string[]; notes?: Record<string, string>; feedback?: Record<string, string>; onboardingAnswers?: Record<string, string | null> }) => void;
 
   // Login form
   username: string;
@@ -68,6 +68,7 @@ export const useAppStore = create<AppStore>()(
         stepLog: data.stepLog ?? [],
         notes: data.notes ?? {},
         feedback: data.feedback ?? {},
+        onboardingAnswers: data.onboardingAnswers ?? {},
       }),
 
     // Login form

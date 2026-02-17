@@ -30,7 +30,7 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
         lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
-            <Button label={DONE_IT_LABEL} onClick={() => handleAnswer(DONE_IT_LABEL, STEP + 2)} />
+            <Button label={DONE_IT_LABEL} onClick={() => handleAnswer(DONE_IT_LABEL, STEP + 4)} />
           </>
         ) : null
       }

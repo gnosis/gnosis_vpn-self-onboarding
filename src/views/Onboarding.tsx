@@ -19,6 +19,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   const notes = useAppStore((state) => state.notes);
   const feedback = useAppStore((state) => state.feedback);
   const token = useAppStore((state) => state.token);
+  const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ export default function Onboarding({ className }: OnboardingProps) {
               stepLog,
               notes,
               feedback,
+              onboardingAnswers
             }}),
           }
         );
@@ -98,7 +100,7 @@ export default function Onboarding({ className }: OnboardingProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [onboardingStep, stepLog, notes, feedback]);
+  }, [onboardingStep, stepLog, notes, feedback, onboardingAnswers]);
 
 
   const CurrentComponent = STEP_COMPONENTS[onboardingStep] ?? null;
