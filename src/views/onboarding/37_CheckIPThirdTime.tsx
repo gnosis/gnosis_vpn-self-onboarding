@@ -38,7 +38,7 @@ export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdT
           Let's check in on the connection. Go back to{" "}
           <Box
             component="a"
-            href="https://radar.cloudflare.com/ip"
+            href="https:/ifconfig.me/ip"
             target="_blank"
             rel="noreferrer noopener"
             sx={{
@@ -47,7 +47,7 @@ export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdT
               "&:hover": { textDecoration: "underline" },
             }}
           >
-            https://radar.cloudflare.com/ip
+            https:/ifconfig.me/ip
           </Box>
           {" "}and check your IP
         </Typography>

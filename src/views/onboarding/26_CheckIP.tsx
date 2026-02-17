@@ -28,8 +28,6 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
       title="Check your IP"
       text={
         <>
-          {/* <VideoPlaceholder title="IP Check" /> */}
-
           <Typography
             variant="body1"
             sx={{
@@ -52,7 +50,7 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
             First, we need to see what your IP address is normally. Go to{" "}
             <Box
               component="a"
-              href="https://radar.cloudflare.com/ip"
+              href="https:/ifconfig.me/ip"
               target="_blank"
               rel="noreferrer noopener"
               sx={{
@@ -61,7 +59,7 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
                 "&:hover": { textDecoration: "underline" },
               }}
             >
-              https://radar.cloudflare.com/ip
+              https:/ifconfig.me/ip
             </Box>
             {" "}and note down what it says. I don't want to know it! I just need to see if it changes.
           </Typography>

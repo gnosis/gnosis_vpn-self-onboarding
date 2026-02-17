@@ -24,7 +24,7 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
     <Step
       className={`RunInstaller${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Now run the installer"
+      title="Great! Now run the installer from your downloads folder"
    //   text={<VideoPlaceholder title="Installer" />}
       buttons={
         lastEntry ? (
