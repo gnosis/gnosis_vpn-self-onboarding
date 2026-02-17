@@ -166,22 +166,6 @@ const IntroBlock = styled.div`
   }
 `;
 
-const AvatarCircle = styled.div`
-  width: 48px;
-  height: 48px;
-  background-color: #1e293b;
-  border-radius: 50%;
-  border: 2px solid white;
-  overflow: hidden;
-  flex-shrink: 0;
-
-  img {
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-  }
-`;
-
 const StepList = styled.div`
   display: flex;
   flex-direction: column;

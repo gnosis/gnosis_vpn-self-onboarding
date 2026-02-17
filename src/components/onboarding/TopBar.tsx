@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Stack, Button } from "@mui/material";
 import LogoutButton from "./LogoutButton";
 import { useAppStore } from "../../store/appStore";
 
