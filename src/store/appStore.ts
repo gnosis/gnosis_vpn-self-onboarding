@@ -72,7 +72,7 @@ export const useAppStore = create<AppStore>()(
       }),
 
     // Login form
-    username: 'BlockChainBandit',
+    username: '',
     token: null,
     setUsername: (username) => set({ username }),
     setPassword: (password) => set({ password }),
