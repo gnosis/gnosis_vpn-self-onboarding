@@ -73,7 +73,7 @@ const HeroImageContainer = styled.div`
   position: relative;
   overflow: hidden;
 
-  img, video {
+  video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -88,40 +88,12 @@ const Overlay = styled.div`
   pointer-events: none;
 `;
 
-const HoprBadge = styled.div`
+const HoprBadge = styled.img`
   position: absolute;
   bottom: 30px;
   right: 30px;
   z-index: 10;
-
-  div {
-    background-color: #1e40af;
-    color: white;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    border: 2px solid white;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-
-  span {
-    font-weight: bold;
-    text-transform: lowercase;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    background-color: #facc15;
-    border-radius: 50%;
-    margin-bottom: 4px;
-    border: none;
-  }
+  width: 100px;
 `;
 
 const ContentBoxWrapper = styled.div`
@@ -376,6 +348,9 @@ const CtaBar = styled.div`
   padding: 48px 0;
   text-align: center;
   margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   a {
     font-size: 30px;
@@ -500,12 +475,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               loop
             />
             <Overlay />
-            <HoprBadge>
-              <div>
-                <div className="dot" />
-                <span>hopr</span>
-              </div>
-            </HoprBadge>
+            <HoprBadge
+              src="./images/HOPR_Privacy_Powered_by_HOPR.svg"
+            />
           </HeroImageContainer>
 
           <ContentBoxWrapper>
@@ -515,11 +487,6 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <p>
                 Welcome <span style={{ fontStyle: 'italic' }}>(username)</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#1e293b', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', color: 'white' }}>Gino</div>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#ef4444', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', color: 'white' }}>R</div>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#1e293b', border: '2px solid white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', color: 'white' }}>R</div>
-              </div>
               <button onClick={() => setCurrentView('onboarding')} style={{ fontSize: '14px', color: '#ef4444', textDecoration: 'none', fontWeight: '500', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Onboard now</button>
             </ContentBox>
           </ContentBoxWrapper>
