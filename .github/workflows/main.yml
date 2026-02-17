@@ -12,10 +12,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.x'
+      - name: Enable Corepack
+        run: corepack enable
       - name: Installing dependencies
-        run: npm i
+        run: yarn --frozen-lockfile
       - name: Building React
-        run: CI=false npm run build
+        run: CI=false yarn --frozen-lockfile build
       - name: Deploy to server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

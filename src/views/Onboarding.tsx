@@ -1,4 +1,4 @@
-import { useEffect, Fragment, useRef, useState } from "react";
+import { useEffect, Fragment, useRef } from "react";
 import { Container, Box } from "@mui/material";
 import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
