@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
 // --- Styled Components ---
 
 const Container = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
 `;
 
 // Navbar
@@ -472,7 +476,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
         <Container>
           <Nav>
             <Logo
-                src={'src\\assets\\GnosisVPN_logo.svg'}
+              src={'./images/GnosisVPN_logo.svg'}
             />
 
             <NavLinks>
@@ -529,9 +533,15 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <SectionTitle>How onboarding works</SectionTitle>
 
               <IntroBlock>
-                <AvatarCircle>
-                  
-                </AvatarCircle>
+                <img
+                  src="/images/avatar.png"
+                  alt="Avatar"
+                  style={{
+                    width: 56,
+                    height: 56,
+                    flexShrink: 0,
+                  }}
+                />
                 <p>
                   As one of our first users, you'll be shaping how Gnosis VPN looks and feels for all future explorers. To do this, this tool will both onboard you and assess how intuitive our VPN is. We'll also be on the hunt for bugs!
                 </p>

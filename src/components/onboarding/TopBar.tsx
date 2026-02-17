@@ -1,5 +1,6 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
 import LogoutButton from "./LogoutButton";
+import { useAppStore } from "../../store/appStore";
 
 interface TopBarProps {
   currentStep?: number;
@@ -8,6 +9,7 @@ interface TopBarProps {
 }
 
 export default function TopBar({ currentStep = 1, totalSteps = 16, className }: TopBarProps) {
+  const setCurrentView = useAppStore((state) => state.setCurrentView);
 
   return (
     <Box
@@ -28,15 +30,20 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       }}
     >
       {/* Logo */}
-      <Typography
-        variant="h6"
+      <Box
+        component="img"
+        src={'./images/GnosisVPN_logo.svg'}
+        onClick={() => setCurrentView('landing')}
         sx={{
-          fontWeight: 700,
-          fontSize: "1rem",
+          height: 32,
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+          "&:hover": {
+            opacity: 0.8,
+          },
         }}
-      >
-        Gnosis VPN
-      </Typography>
+      />
 
       {/* Right Side Buttons */}
       <Stack direction="row" spacing={1}>

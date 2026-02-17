@@ -111,7 +111,7 @@ export default function Onboarding({ className }: OnboardingProps) {
       <TopBar currentStep={onboardingStep} totalSteps={47} />
 
       {/* Main Content */}
-      <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: "1024px", margin: "0 auto", px: { xs: 2, sm: 3, md: 4 } }}>
         <Box
           sx={{
             py: { xs: 3, sm: 4, md: 6 },
