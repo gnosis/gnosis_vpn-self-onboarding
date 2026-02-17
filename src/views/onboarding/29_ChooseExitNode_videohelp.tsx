@@ -14,6 +14,8 @@ interface ChooseExitNodeVideohelpProps {
 export default function ChooseExitNodeVideohelp({ className, lastEntry }: ChooseExitNodeVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
@@ -41,7 +43,10 @@ export default function ChooseExitNodeVideohelp({ className, lastEntry }: Choose
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder title="Choose Exit Node" />
+          <VideoPlaceholder 
+            title="Choose Exit Node" 
+            videoUrl={macOS ? "./videos/MacOS/04_Connecting-MacOS_FHD.webm" : "./videos/Linux/04_connecting_new_Linux.webm"}
+          />
         </>
       }
       buttons={

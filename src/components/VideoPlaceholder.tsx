@@ -2,9 +2,35 @@ import { Box, Typography } from "@mui/material";
 
 interface VideoPlaceholderProps {
   title?: string;
+  videoUrl?: string;
 }
 
-export default function VideoPlaceholder({ title = "Video" }: VideoPlaceholderProps) {
+export default function VideoPlaceholder({ title = "Video", videoUrl }: VideoPlaceholderProps) {
+  if (videoUrl) {
+    return (
+      <Box
+        sx={{
+          width: "100%",
+          aspectRatio: "16 / 9",
+          borderRadius: "8px",
+          overflow: "hidden",
+        }}
+      >
+        <video
+          width="100%"
+          height="100%"
+          autoPlay
+          loop
+          muted
+          style={{ width: "100%", height: "100%" }}
+        >
+          <source src={videoUrl} type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+      </Box>
+    );
+  }
+
   return (
     <Box
       sx={{

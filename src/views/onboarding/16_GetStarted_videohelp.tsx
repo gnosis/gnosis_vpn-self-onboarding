@@ -14,6 +14,8 @@ interface GetStartedVideohelpProps {
 export default function GetStartedVideohelp({ className, lastEntry }: GetStartedVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
@@ -41,7 +43,9 @@ export default function GetStartedVideohelp({ className, lastEntry }: GetStarted
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder title="Get Started" />
+          <VideoPlaceholder 
+            title="Get Started"
+          />
         </>
       }
       buttons={

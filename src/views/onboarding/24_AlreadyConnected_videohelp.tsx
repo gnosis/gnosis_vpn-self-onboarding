@@ -14,6 +14,8 @@ interface AlreadyConnectedVideohelpProps {
 export default function AlreadyConnectedVideohelp({ className, lastEntry }: AlreadyConnectedVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Done it!";
@@ -41,7 +43,10 @@ export default function AlreadyConnectedVideohelp({ className, lastEntry }: Alre
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder title="Already Connected" />
+          <VideoPlaceholder 
+            title="Already Connected" 
+            videoUrl={macOS ? "./videos/MacOS/05_disconnect_Mac_OS.webm" : "./videos/Linux/05_disconnecting_Linux.webm"}
+          />
         </>
       }
       buttons={

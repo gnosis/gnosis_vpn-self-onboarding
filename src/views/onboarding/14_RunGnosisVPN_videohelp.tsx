@@ -41,7 +41,9 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder title="Run Gnosis VPN" />
+          <VideoPlaceholder 
+            title="Run Gnosis VPN" 
+          />
         </>
       }
       buttons={

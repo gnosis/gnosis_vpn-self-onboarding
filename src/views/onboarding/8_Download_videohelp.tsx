@@ -14,6 +14,8 @@ interface DownloadVideohelpProps {
 export default function DownloadVideohelp({ className, lastEntry }: DownloadVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Done it!";
@@ -41,7 +43,10 @@ export default function DownloadVideohelp({ className, lastEntry }: DownloadVide
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder title="Download" />
+          <VideoPlaceholder 
+            title="Download" 
+            videoUrl= {macOS ? "./videos/MacOS/01_Visit Github, Download Installer.webm" : "./videos/Linux/01_github,download binary-Linux.webm"}
+          />
         </>
       }
       buttons={
