@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from "react";
+import { useEffect, Fragment, useRef, useState } from "react";
 import { Container, Box } from "@mui/material";
 import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
@@ -16,6 +16,10 @@ interface OnboardingProps {
 export default function Onboarding({ className }: OnboardingProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const stepLog = useAppStore((state) => state.stepLog);
+  const notes = useAppStore((state) => state.notes);
+  const feedback = useAppStore((state) => state.feedback);
+  const token = useAppStore((state) => state.token);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -48,6 +52,54 @@ export default function Onboarding({ className }: OnboardingProps) {
     })();
     return () => { cancelled = true; };
   }, [onboardingStep]);
+
+  useEffect(() => {
+    const uploadData = async () => {
+      if (!token) return;
+
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/updateJsonData`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({jsonData:{
+              onboardingStep,
+              stepLog,
+              notes,
+              feedback,
+            }}),
+          }
+        );
+
+        if (!response.ok) {
+          console.error('Failed to upload data:', response.statusText);
+        } else {
+          console.log('Data uploaded successfully');
+        }
+      } catch (error) {
+        console.error('Error uploading data:', error);
+      }
+    };
+
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    debounceTimerRef.current = setTimeout(() => {
+      uploadData();
+    }, 5000);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [onboardingStep, stepLog, notes, feedback]);
+
 
   const CurrentComponent = STEP_COMPONENTS[onboardingStep] ?? null;
 

@@ -1,13 +1,15 @@
-import { Button as MuiButton, type ButtonProps } from "@mui/material";
+import { Button as MuiButton, type ButtonProps, CircularProgress, Box } from "@mui/material";
 
 interface OnboardingButtonProps extends ButtonProps {
     label: string;
     isActive?: boolean;
+    loading?: boolean;
 }
 
 export default function Button({
     label,
     isActive = false,
+    loading = false,
     className,
     ...props
 }: OnboardingButtonProps) {
@@ -15,6 +17,7 @@ export default function Button({
         <MuiButton
             className={`Button${className ? ` ${className}` : ""}`}
             variant={isActive ? "contained" : "outlined"}
+            disabled={loading}
             sx={{
                 flex: 1,
                 py: { xs: 1.25, sm: 1.5, md: 1.75 },
@@ -33,7 +36,13 @@ export default function Button({
             }}
             {...props}
         >
-            {label}
+            {loading ? (
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <CircularProgress size={20} sx={{ color: isActive ? "#fff" : "#000" }} />
+                </Box>
+            ) : (
+                label
+            )}
         </MuiButton>
     );
 }

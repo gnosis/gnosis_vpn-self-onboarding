@@ -1,5 +1,5 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
-import { useAppStore } from "../../store/appStore";
+import LogoutButton from "./LogoutButton";
 
 interface TopBarProps {
   currentStep?: number;
@@ -8,7 +8,6 @@ interface TopBarProps {
 }
 
 export default function TopBar({ currentStep = 1, totalSteps = 16, className }: TopBarProps) {
-  const setCurrentView = useAppStore((state) => state.setCurrentView);
 
   return (
     <Box
@@ -72,22 +71,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
         >
           Upload Logs
         </Button>
-        <Button
-          variant="text"
-          size="small"
-          onClick={() => setCurrentView("login")}
-          sx={{
-            fontSize: "0.85rem",
-            color: "#999",
-            textTransform: "none",
-            fontWeight: 500,
-            "&:hover": {
-              backgroundColor: "rgba(0, 0, 0, 0.04)",
-            },
-          }}
-        >
-          Logout
-        </Button>
+        <LogoutButton />
       </Stack>
     </Box>
   );

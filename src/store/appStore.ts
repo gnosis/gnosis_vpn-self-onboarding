@@ -17,16 +17,23 @@ interface AppStore {
   stepLog: string[];
   feedback: Record<string, string>;
   saveFeedback: (key: string, value: string) => void;
+  setOnboardingData: (data: { onboardingStep?: number; stepLog?: string[]; notes?: Record<string, string>; feedback?: Record<string, string> }) => void;
 
   // Login form
   username: string;
   password: string;
+  token: string | null;
   setUsername: (username: string) => void;
   setPassword: (password: string) => void;
+  setToken: (token: string | null) => void;
   clearLoginForm: () => void;
 
   // Reset store
   resetStore: () => void;
+
+  // Global loading
+  isAutoLoading: boolean;
+  setAutoLoading: (loading: boolean) => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -55,13 +62,21 @@ export const useAppStore = create<AppStore>()(
       set((state) => ({
         feedback: { ...state.feedback, [key]: value },
       })),
+    setOnboardingData: (data) =>
+      set({
+        onboardingStep: data.onboardingStep ?? 1,
+        stepLog: data.stepLog ?? [],
+        notes: data.notes ?? {},
+        feedback: data.feedback ?? {},
+      }),
 
     // Login form
-    username: '',
-    password: '',
+    username: 'BlockChainBandit',
+    token: null,
     setUsername: (username) => set({ username }),
     setPassword: (password) => set({ password }),
-    clearLoginForm: () => set({ username: '', password: '' }),
+    setToken: (token) => set({ token }),
+    clearLoginForm: () => set({ username: '', password: '', token: null }),
 
     // Reset store
     resetStore: () => set({
@@ -72,7 +87,12 @@ export const useAppStore = create<AppStore>()(
       notes: {},
       feedback: {},
       username: '',
-      password: '',
+      token: null,
+      isAutoLoading: false,
     }),
+
+    // Global loading
+    isAutoLoading: false,
+    setAutoLoading: (loading) => set({ isAutoLoading: loading }),
   }), { name: 'AppStore' })
 );

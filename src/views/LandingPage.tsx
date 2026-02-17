@@ -11,7 +11,9 @@ import {
   X,
   Github,
 } from 'lucide-react';
-import Button from '../components/Button';import { useAppStore } from '../store/appStore';
+import Button from '../components/Button';
+import LogoutButton from '../components/onboarding/LogoutButton';
+import { useAppStore } from '../store/appStore';
 // --- Global Styles ---
 const GlobalStyle = createGlobalStyle`
 
@@ -479,7 +481,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                 onClick={() => setCurrentView('onboarding')}
               />
               <a href="#">Privacy Policy</a>
-              <a href="#" style={{color: '#999'}}>(→ Logout</a>
+              <LogoutButton />
             </NavLinks>
           </Nav>
         </Container>
@@ -528,7 +530,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
 
               <IntroBlock>
                 <AvatarCircle>
-                  <img src="https://via.placeholder.com/50" alt="User Avatar" />
+                  
                 </AvatarCircle>
                 <p>
                   As one of our first users, you'll be shaping how Gnosis VPN looks and feels for all future explorers. To do this, this tool will both onboard you and assess how intuitive our VPN is. We'll also be on the hunt for bugs!

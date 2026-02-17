@@ -5,7 +5,12 @@ import {
   Typography,
   Paper,
   Stack,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
+import { useState } from "react";
 import Button from "../components/onboarding/Button";
 import { useAppStore } from "../store/appStore";
 
@@ -14,11 +19,68 @@ interface LoginProps {
 }
 
 export default function Login({ className }: LoginProps) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [password, setPassword] = useState("");
   const username = useAppStore((state) => state.username);
-  const password = useAppStore((state) => state.password);
   const setUsername = useAppStore((state) => state.setUsername);
-  const setPassword = useAppStore((state) => state.setPassword);
+  const setToken = useAppStore((state) => state.setToken);
+  const setOnboardingData = useAppStore((state) => state.setOnboardingData);
   const setCurrentView = useAppStore((state) => state.setCurrentView);
+
+  /**
+   * Login to gnosis-vpn-self-onboarding
+   * @param {string} loginCredential - The login credential (username/email)
+   * @param {string} password - The user's password
+   * @returns {Promise<{success: boolean, jsonData?: Object, isFirstLogin?: boolean, error?: string}>}
+   */
+  async function loginUser(loginCredential: string, password: string): Promise<{
+    success: boolean;
+    jsonData?: Object;
+    isFirstLogin?: boolean;
+    error?: string;
+  }> {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          loginCredential,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        return {
+          success: false,
+          error: errorData.error || `HTTP Error: ${response.status}`,
+        };
+      }
+
+      const data = await response.json();
+      const token = data.token;
+      if (token) {
+        localStorage.setItem('authToken', token);
+        setToken(token);
+      }
+      console.log('Login successful:', data);
+      return {
+        success: true,
+        jsonData: data.jsonData,
+        isFirstLogin: data.isFirstLogin,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: (error instanceof Error ? error.message : String(error)) || 'Network error occurred',
+      };
+    }
+  }
+
 
   return (
     <Container className={`Login${className ? ` ${className}` : ""}`} maxWidth={false}>
@@ -172,8 +234,36 @@ export default function Login({ className }: LoginProps) {
             />
             <Button
               label="Share minimal data"
-              onClick={() => setCurrentView("landing")}
+              loading={loading}
+              onClick={async () => {
+                setError(null);
+                setLoading(true);
+                const result = await loginUser(username, password);
+                setLoading(false);
+                if (result.success) {
+                  if (result.jsonData) {
+                    setOnboardingData(result.jsonData as Parameters<typeof setOnboardingData>[0]);
+                  }
+                  setCurrentView("landing");
+                } else {
+                  setError(result.error || "Login failed");
+                  setShowErrorModal(true);
+                }
+              }}
             />
+
+            <Dialog open={showErrorModal} onClose={() => setShowErrorModal(false)}>
+              <DialogTitle sx={{ fontWeight: 600 }}>Login Error</DialogTitle>
+              <DialogContent>
+                <Typography>{error}</Typography>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  label="OK"
+                  onClick={() => setShowErrorModal(false)}
+                />
+              </DialogActions>
+            </Dialog>
           </Stack>
 
         </Box>
