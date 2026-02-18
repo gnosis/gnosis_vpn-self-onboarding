@@ -3,11 +3,6 @@ import styled, { createGlobalStyle } from 'styled-components';
 import {
   ArrowRight,
   MessageSquare,
-  Settings,
-  List,
-  Terminal,
-  Check,
-  ChevronDown,
   X,
   Github,
 } from 'lucide-react';
@@ -204,128 +199,6 @@ const StepContent = styled.div`
   }
 `;
 
-// Mobile Mockup CSS
-const MockupContainer = styled.div`
-  width: 300px;
-  height: 550px;
-  background-color: #f9fafb;
-  border-radius: 30px;
-  padding: 24px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f3f4f6;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin: 0 auto;
-`;
-
-const MockupHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 48px;
-`;
-
-const ConnectionStatus = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    background-color: #22c55e;
-    border-radius: 50%;
-  }
-`;
-
-const MockupIcons = styled.div`
-  display: flex;
-  gap: 8px;
-
-  div {
-    background-color: black;
-    color: white;
-    padding: 4px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-  }
-`;
-
-const MockupBody = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    color: #e5e7eb;
-    width: 96px;
-    height: 96px;
-  }
-`;
-
-const MockupFooter = styled.div`
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-
-const NodeSelector = styled.div`
-  background-color: white;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .label {
-    font-size: 10px;
-    color: #9ca3af;
-    margin-bottom: 2px;
-  }
-  .value {
-    font-size: 14px;
-    font-weight: 700;
-  }
-`;
-
-const GreenIndicator = styled.div`
-  display: flex;
-  justify-content: center;
-
-  div {
-    height: 64px;
-    width: 24px;
-    background-color: #166534;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.5);
-    font-size: 10px;
-  }
-`;
-
-const StopButton = styled.button`
-  width: 100%;
-  background-color: black;
-  color: white;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-`;
-
 // Footer CTA
 const CtaBar = styled.div`
   background-color: #EDECE6;
@@ -336,7 +209,10 @@ const CtaBar = styled.div`
   justify-content: center;
   align-items: center;
 
-  a {
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
     font-size: 30px;
     font-weight: 400;
     color: black;
@@ -345,10 +221,20 @@ const CtaBar = styled.div`
     align-items: center;
     justify-content: center;
     gap: 8px;
+    padding: 0;
+    border-bottom: 4px solid black;
+    transition: border-color 0.2s;
 
-    &:hover {
-      text-decoration: underline;
+  /* --- Hover State --- */
+  &:hover {
+    background-color: #E6E4DC; /* Slightly darker beige */
+    transform: translateY(-1px); /* Subtle lift */
+
+    /* Target the icon specifically on hover */
+    svg {
+      transform: translateX(6px); /* Slide arrow forward */
     }
+  }
   }
 `;
 
@@ -471,12 +357,15 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <p>
                 Welcome <span style={{ fontStyle: 'italic' }}>(username)</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
               </p>
-              <button onClick={() => setCurrentView('onboarding')} style={{ fontSize: '14px', color: '#ef4444', textDecoration: 'none', fontWeight: '500', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Onboard now</button>
+              <Button
+                label='Onboard now'
+                onClick={() => setCurrentView('onboarding')}
+              />
             </ContentBox>
           </ContentBoxWrapper>
         </HeroSection>
 
-{/* Features / Onboarding Steps */}
+        {/* Features / Onboarding Steps */}
         <Container>
           <FeaturesGrid>
             {/* Left Column */}
@@ -536,46 +425,18 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
 
             {/* Right Column (Mobile Mockup) */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-              <MockupContainer>
-                <MockupHeader>
-                  <ConnectionStatus>
-                    <div className="dot" />
-                    <span>Connected</span>
-                  </ConnectionStatus>
-                  <MockupIcons>
-                    <div><Settings size={12} /></div>
-                    <div><List size={12} /></div>
-                    <div><Terminal size={12} /></div>
-                  </MockupIcons>
-                </MockupHeader>
-
-                <MockupBody>
-                  <Check strokeWidth={3} />
-                </MockupBody>
-
-                <MockupFooter>
-                  <NodeSelector>
-                    <div>
-                      <div className="label">Exit Node</div>
-                      <div className="value">Default</div>
-                    </div>
-                    <ChevronDown size={16} />
-                  </NodeSelector>
-
-                  <GreenIndicator>
-                    <div>^</div>
-                  </GreenIndicator>
-
-                  <StopButton>Stop</StopButton>
-                </MockupFooter>
-              </MockupContainer>
+              <img
+                src="./images/Gnosis_VPN_MVP-1771410097223.svg"
+                alt="Gnosis VPN MVP"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
             </div>
           </FeaturesGrid>
         </Container>
 
         {/* Footer CTA */}
         <CtaBar>
-          <button onClick={() => setCurrentView('onboarding')} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '30px', fontWeight: '400', color: 'black', padding: 0 }}>
+          <button onClick={() => setCurrentView('onboarding')}>
             <ArrowRight size={28} /> Onboard now
           </button>
         </CtaBar>
