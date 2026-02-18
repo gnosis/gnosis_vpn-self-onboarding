@@ -52,7 +52,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
             You should have received a secret funding code when we contacted you. Please visit the{" "}
             <Box
               component="a"
-              href="https://bafybeied72husixvea73mhj6mfhg3zshsgagjg54ygnvtn2pktuidyf5ie.ipfs.dweb.link/"
+              href="https://faucet.vpn.gnosis.eth.limo/"
               sx={{
                 color: "#0066cc",
                 textDecoration: "none",

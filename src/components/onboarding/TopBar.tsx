@@ -102,12 +102,17 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
         </Button>
 
         <Button
+          component="a"
+          href="https://log-uploader.gnosisvpn.io/"
+          target="_blank"
+          rel="noreferrer noopener"
           variant="text"
           size="small"
           sx={{
             fontSize: "0.85rem",
             color: "#333",
             textTransform: "none",
+            textDecoration: "none",
             fontWeight: 500,
             "&:hover": {
               backgroundColor: "rgba(0, 0, 0, 0.04)",

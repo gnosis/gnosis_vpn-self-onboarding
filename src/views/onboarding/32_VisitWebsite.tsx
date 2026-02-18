@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
@@ -35,7 +35,20 @@ export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps
             color: "#333",
           }}
         >
-          Let's take it for a spin. Visit https://vpn.gnosis.eth.limo/	
+          Let's take it for a spin. Visit{" "}
+          <Box
+            component="a"
+            href="https://vpn.gnosis.eth.limo/"
+            target="_blank"
+            rel="noreferrer noopener"
+            sx={{
+              color: "#0066cc",
+              textDecoration: "none",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
+            https://vpn.gnosis.eth.limo/
+          </Box>
         </Typography>
       }
       buttons={
