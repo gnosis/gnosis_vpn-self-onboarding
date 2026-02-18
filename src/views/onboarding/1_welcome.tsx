@@ -49,9 +49,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            I'm Gino, your guide for this quest to Atlantis, the first hidden city on the
-            journey to Gnosis VPN's launch. This guide will walk you step-by-step through
-            setting up and using Gnosis VPN.
+            I'm Gino, your guide for this quest to Atlantis. This guide will walk you step-by-step through setting up and using Gnosis VPN.
           </Typography>
 
           <Typography
@@ -62,9 +60,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            Thanks for agreeing to share some information with us – it will really help
-            shape how the VPN is developed. It also means you can switch devices and your
-            progress will be restored once you log back in.
+           Thanks for agreeing to share some info – it will really help shape the VPN. It also lets you switch devices and save progress.
           </Typography>
 
           <Typography
@@ -75,10 +71,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            No data will be shared until you submit feedback or close the session. Until
-            then I'll store everything locally if I can. If you're using something like
-            incognito mode – well done on being private! – then you'll need to make sure
-            to submit your progress before you close the browser.
+            I’ll store everything locally until you choose to submit or end your session. If you’re using something like incognito mode – well done on being private! – you’ll need to submit your progress before you close the browser.
           </Typography>
 
           <Typography

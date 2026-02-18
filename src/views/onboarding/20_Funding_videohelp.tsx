@@ -6,26 +6,28 @@ import { useAppStore } from "../../store/appStore";
 
 const STEP = 20;
 
-interface SyncingVideohelpProps {
+interface FundingVideohelpProps {
   className?: string;
   lastEntry?: boolean;
 }
 
-export default function SyncingVideohelp({ className, lastEntry }: SyncingVideohelpProps) {
+export default function FundingVideohelp({ className, lastEntry }: FundingVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
+  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("20_Syncing_videohelp", answer);
+    saveAnswer("20_Funding_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`SyncingVideohelp${className ? ` ${className}` : ""}`}
+      className={`FundingVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Video support"
       text={
@@ -41,7 +43,10 @@ export default function SyncingVideohelp({ className, lastEntry }: SyncingVideoh
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder title="Syncing" />
+          <VideoPlaceholder
+            title="Funding"
+            videoUrl={macOS ? "./videos/MacOS/03_funding_MacOS_FHD.webm" : "./videos/Linux/03_funding_new_Linux.webm"}
+          />
         </>
       }
       buttons={

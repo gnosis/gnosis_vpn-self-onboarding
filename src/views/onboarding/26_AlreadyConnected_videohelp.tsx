@@ -4,7 +4,7 @@ import Step from "../../components/onboarding/Step";
 import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 24;
+const STEP = 26;
 
 interface AlreadyConnectedVideohelpProps {
   className?: string;
@@ -14,14 +14,14 @@ interface AlreadyConnectedVideohelpProps {
 export default function AlreadyConnectedVideohelp({ className, lastEntry }: AlreadyConnectedVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
   const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Done it!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("24_AlreadyConnected_videohelp", answer);
+    saveAnswer("26_AlreadyConnected_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 

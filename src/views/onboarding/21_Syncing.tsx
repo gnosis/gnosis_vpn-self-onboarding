@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 19;
+const STEP = 21;
 
 interface SyncingProps {
   className?: string;
@@ -17,7 +17,7 @@ export default function Syncing({ className, lastEntry }: SyncingProps) {
   const SYNCED_LABEL = "It's synced";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("19_Syncing", answer);
+    saveAnswer("21_Syncing", answer);
     setOnboardingStep(nextStep);
   };
 

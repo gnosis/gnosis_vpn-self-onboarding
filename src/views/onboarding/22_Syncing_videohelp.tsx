@@ -4,14 +4,14 @@ import Step from "../../components/onboarding/Step";
 import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 16;
+const STEP = 22;
 
-interface GetStartedVideohelpProps {
+interface SyncingVideohelpProps {
   className?: string;
   lastEntry?: boolean;
 }
 
-export default function GetStartedVideohelp({ className, lastEntry }: GetStartedVideohelpProps) {
+export default function SyncingVideohelp({ className, lastEntry }: SyncingVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
@@ -19,13 +19,13 @@ export default function GetStartedVideohelp({ className, lastEntry }: GetStarted
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("16_GetStarted_videohelp", answer);
+    saveAnswer("22_Syncing_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`GetStartedVideohelp${className ? ` ${className}` : ""}`}
+      className={`SyncingVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Video support"
       text={
@@ -41,9 +41,7 @@ export default function GetStartedVideohelp({ className, lastEntry }: GetStarted
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder 
-            title="Get Started"
-          />
+          <VideoPlaceholder title="Syncing" />
         </>
       }
       buttons={

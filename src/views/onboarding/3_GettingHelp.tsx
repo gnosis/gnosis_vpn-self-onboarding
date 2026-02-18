@@ -35,8 +35,7 @@ export default function GettingHelp({ className, lastEntry }: GettingHelpProps) 
               color: "#333",
             }}
           >
-            If you still can't work out what to do, or something is broken, I can put you
-            in touch with the team for more help.
+            If you're still stuck, I can put you in touch with the team.
           </Typography>
 
           <Typography
@@ -47,9 +46,7 @@ export default function GettingHelp({ className, lastEntry }: GettingHelpProps) 
               color: "#333",
             }}
           >
-            The first line of support is to briefly describe your problem in one of these
-            boxes. A team member will get back to you via your chosen contact method as
-            soon as possible.
+            First, briefly describe your problem in one of these boxes. A team member will get back to you via your chosen contact method as soon as possible.
           </Typography>
 
           <Typography
@@ -60,7 +57,7 @@ export default function GettingHelp({ className, lastEntry }: GettingHelpProps) 
               color: "#333",
             }}
           >
-            If you're still stuck, I can book you a 1-on-1 call with a member of the team.
+            If you’re still stuck, I can book you a 1-on-1 call with a member of the team.
           </Typography>
         </>
       }

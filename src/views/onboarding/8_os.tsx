@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 6;
+const STEP = 8;
 
 interface OSProps {
     className?: string;
@@ -17,7 +17,7 @@ export default function OS({ className, lastEntry }: OSProps) {
     const MACOS_LABEL = "Mac OS";
 
     const handleAnswer = (answer: string, nextStep: number) => {
-        saveAnswer("6_os", answer);
+        saveAnswer("8_os", answer);
         setOnboardingStep(nextStep);
     };
 

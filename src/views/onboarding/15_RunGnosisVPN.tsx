@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 23;
+const STEP = 15;
 
-interface AlreadyConnectedProps {
+interface RunGnosisVPNProps {
   className?: string;
-  lastEntry?: boolean;
-}
+  lastEntry?: boolean;}
 
-export default function AlreadyConnected({ className, lastEntry }: AlreadyConnectedProps) {
+export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
   const NEED_HELP_LABEL = "I need some help";
-  const DISCONNECTED_LABEL = "I'm disconnected";
+  const RUNNING_LABEL = "It's running";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("23_AlreadyConnected", answer);
+    saveAnswer("15_RunGnosisVPN", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`AlreadyConnected${className ? ` ${className}` : ""}`}
+      className={`RunGnosisVPN${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Good to know!"
+      title="Run Gnosis VPN"
       text={
         <Typography
           variant="body1"
@@ -36,14 +35,14 @@ export default function AlreadyConnected({ className, lastEntry }: AlreadyConnec
             color: "#333",
           }}
         >
-          No problem! Just disconnect for now
+          Amazing! Now we're ready to run the Gnosis VPN app and begin our journey properly
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP)} />
-            <Button label={DISCONNECTED_LABEL} onClick={() => handleAnswer(DISCONNECTED_LABEL, STEP - 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
+            <Button label={RUNNING_LABEL} onClick={() => handleAnswer(RUNNING_LABEL, STEP + 2)} />
           </>
         ) : null
       }

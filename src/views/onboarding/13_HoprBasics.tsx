@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 11;
+const STEP = 13;
 
 interface HoprBasicsProps {
   className?: string;
@@ -17,7 +17,7 @@ export default function HoprBasics({ className, lastEntry }: HoprBasicsProps) {
   const INSTALLED_LABEL = "It's installed";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("11_HoprBasics", answer);
+    saveAnswer("13_HoprBasics", answer);
     setOnboardingStep(nextStep);
   };
 

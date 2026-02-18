@@ -14,7 +14,7 @@ interface ChooseExitNodeVideohelpProps {
 export default function ChooseExitNodeVideohelp({ className, lastEntry }: ChooseExitNodeVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
   const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";

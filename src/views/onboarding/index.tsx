@@ -4,28 +4,28 @@ import HowOnboardingWorks from "./2_HowOnboardingWorks";
 import GettingHelp from "./3_GettingHelp";
 import SwitchingDevices from "./4_SwitchingDevices";
 import SessionSummary from "./5_SessionSummary";
-import Os from "./6_os";
-import Download from "./7_download";
-import DownloadVideohelp from "./8_Download_videohelp";
-import RunInstaller from "./9_RunInstaller";
-import RunInstallerVideohelp from "./10_RunInstaller_videohelp";
-import HoprBasics from "./11_HoprBasics";
-import HoprBasicsVideohelp from "./12_HoprBasics_videohelp";
-import RunGnosisVPN from "./13_RunGnosisVPN";
-import RunGnosisVPNVideohelp from "./14_RunGnosisVPN_videohelp";
-import GetStarted from "./15_GetStarted";
-import GetStartedVideohelp from "./16_GetStarted_videohelp";
-import Funding from "./17_Funding";
-import FundingVideohelp from "./18_Funding_videohelp";
-import Syncing from "./19_Syncing";
-import SyncingVideohelp from "./20_Syncing_videohelp";
-import SyncingFeedback from "./21_SyncingFeedback";
-import ReadyToTest from "./22_ReadyToTest";
-import AlreadyConnected from "./23_AlreadyConnected";
-import AlreadyConnectedVideohelp from "./24_AlreadyConnected_videohelp";
-import ReadyTimeout from "./25_Great";
-import CheckIP from "./26_CheckIP";
-import CloseIPSite from "./27_CloseIPSite";
+import CheckIP from "./6_CheckIP";
+import CloseIPSite from "./7_CloseIPSite";
+import Os from "./8_os";
+import Download from "./9_download";
+import DownloadVideohelp from "./10_Download_videohelp";
+import RunInstaller from "./11_RunInstaller";
+import RunInstallerVideohelp from "./12_RunInstaller_videohelp";
+import HoprBasics from "./13_HoprBasics";
+import HoprBasicsVideohelp from "./14_HoprBasics_videohelp";
+import RunGnosisVPN from "./15_RunGnosisVPN";
+import RunGnosisVPNVideohelp from "./16_RunGnosisVPN_videohelp";
+import GetStarted from "./17_GetStarted";
+import GetStartedVideohelp from "./18_GetStarted_videohelp";
+import Funding from "./19_Funding";
+import FundingVideohelp from "./20_Funding_videohelp";
+import Syncing from "./21_Syncing";
+import SyncingVideohelp from "./22_Syncing_videohelp";
+import SyncingFeedback from "./23_SyncingFeedback";
+import ReadyToTest from "./24_ReadyToTest";
+import AlreadyConnected from "./25_AlreadyConnected";
+import AlreadyConnectedVideohelp from "./26_AlreadyConnected_videohelp";
+import ReadyTimeout from "./27_Great";
 import ChooseExitNode from "./28_ChooseExitNode";
 import ChooseExitNodeVideohelp from "./29_ChooseExitNode_videohelp";
 import TellChoice from "./30_TellChoice";
@@ -53,28 +53,28 @@ export const STEP_NAMES: Record<number, string> = {
   3: "Getting Help",
   4: "Switching Devices",
   5: "Session Summary",
-  6: "OS",
-  7: "Download",
-  8: "Download Videohelp",
-  9: "Run Installer",
-  10: "Run Installer Videohelp",
-  11: "HOPR Basics",
-  12: "HOPR Basics Videohelp",
-  13: "Run Gnosis VPN",
-  14: "Run Gnosis VPN Videohelp",
-  15: "Get Started",
-  16: "Get Started Videohelp",
-  17: "Funding",
-  18: "Funding Videohelp",
-  19: "Syncing",
-  20: "Syncing Videohelp",
-  21: "Syncing Feedback",
-  22: "Ready to Test",
-  23: "Already Connected",
-  24: "Already Connected Videohelp",
-  25: "Ready Timeout",
-  26: "Check IP",
-  27: "Close IP Site",
+  6: "Check IP",
+  7: "Close IP Site",
+  8: "OS",
+  9: "Download",
+  10: "Download Videohelp",
+  11: "Run Installer",
+  12: "Run Installer Videohelp",
+  13: "HOPR Basics",
+  14: "HOPR Basics Videohelp",
+  15: "Run Gnosis VPN",
+  16: "Run Gnosis VPN Videohelp",
+  17: "Get Started",
+  18: "Get Started Videohelp",
+  19: "Funding",
+  20: "Funding Videohelp",
+  21: "Syncing",
+  22: "Syncing Videohelp",
+  23: "Syncing Feedback",
+  24: "Ready to Test",
+  25: "Already Connected",
+  26: "Already Connected Videohelp",
+  27: "Ready Timeout",
   28: "Choose Exit Node",
   29: "Choose Exit Node Videohelp",
   30: "Tell Choice",
@@ -103,28 +103,28 @@ export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   3: GettingHelp,
   4: SwitchingDevices,
   5: SessionSummary,
-  6: Os,
-  7: Download,
-  8: DownloadVideohelp,
-  9: RunInstaller,
-  10: RunInstallerVideohelp,
-  11: HoprBasics,
-  12: HoprBasicsVideohelp,
-  13: RunGnosisVPN,
-  14: RunGnosisVPNVideohelp,
-  15: GetStarted,
-  16: GetStartedVideohelp,
-  17: Funding,
-  18: FundingVideohelp,
-  19: Syncing,
-  20: SyncingVideohelp,
-  21: SyncingFeedback,
-  22: ReadyToTest,
-  23: AlreadyConnected,
-  24: AlreadyConnectedVideohelp,
-  25: ReadyTimeout,
-  26: CheckIP,
-  27: CloseIPSite,
+  6: CheckIP,
+  7: CloseIPSite,
+  8: Os,
+  9: Download,
+  10: DownloadVideohelp,
+  11: RunInstaller,
+  12: RunInstallerVideohelp,
+  13: HoprBasics,
+  14: HoprBasicsVideohelp,
+  15: RunGnosisVPN,
+  16: RunGnosisVPNVideohelp,
+  17: GetStarted,
+  18: GetStartedVideohelp,
+  19: Funding,
+  20: FundingVideohelp,
+  21: Syncing,
+  22: SyncingVideohelp,
+  23: SyncingFeedback,
+  24: ReadyToTest,
+  25: AlreadyConnected,
+  26: AlreadyConnectedVideohelp,
+  27: ReadyTimeout,
   28: ChooseExitNode,
   29: ChooseExitNodeVideohelp,
   30: TellChoice,

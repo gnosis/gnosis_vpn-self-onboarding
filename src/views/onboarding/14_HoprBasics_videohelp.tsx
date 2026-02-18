@@ -4,30 +4,28 @@ import Step from "../../components/onboarding/Step";
 import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 18;
+const STEP = 14;
 
-interface FundingVideohelpProps {
+interface HoprBasicsVideohelpProps {
   className?: string;
   lastEntry?: boolean;
 }
 
-export default function FundingVideohelp({ className, lastEntry }: FundingVideohelpProps) {
+export default function HoprBasicsVideohelp({ className, lastEntry }: HoprBasicsVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
-  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("18_Funding_videohelp", answer);
+    saveAnswer("14_HoprBasics_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`FundingVideohelp${className ? ` ${className}` : ""}`}
+      className={`HoprBasicsVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Video support"
       text={
@@ -43,10 +41,7 @@ export default function FundingVideohelp({ className, lastEntry }: FundingVideoh
           >
             No problem! Just follow the video below and you should get back on track
           </Typography>
-          <VideoPlaceholder
-            title="Funding"
-            videoUrl={macOS ? "./videos/MacOS/03_funding_MacOS_FHD.webm" : "./videos/Linux/03_funding_new_Linux.webm"}
-          />
+          <VideoPlaceholder title="HOPR Basics" />
         </>
       }
       buttons={

@@ -35,21 +35,7 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
               color: "#333",
             }}
           >
-            You can use this onboarding tool on any device, but you'll need to test on a
-            desktop device. Sometimes we might ask you to switch to the device you're
-            testing so you can send us logs from your VPN.
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            If you want to switch devices, just close the session here so I know where to
-            resume from when you log in again.
+            You can use this onboarding tool on any device, but you’ll need to test on a desktop device. If you want to switch devices, just close the session here so I know where to resume from when you log in again.
           </Typography>
         </>
       }

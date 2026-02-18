@@ -2,40 +2,44 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import FeedbackSection from "../../components/FeedbackSection";
 
-const STEP = 25;
+const STEP = 23;
 
-interface GreatProps {
+interface SyncingFeedbackProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function Great({ className, lastEntry }: GreatProps) {
+export default function SyncingFeedback({ className, lastEntry }: SyncingFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("25_Great", answer);
+    saveAnswer("23_SyncingFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`ReadyTimeout${className ? ` ${className}` : ""}`}
+      className={`SyncingFeedback${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Great!"
+      title="Syncing Feedback"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Amazing! How long did that take?
+          </Typography>
+          <FeedbackSection stepKey="23_SyncingFeedback" />
+        </>
       }
       buttons={
         lastEntry ? (

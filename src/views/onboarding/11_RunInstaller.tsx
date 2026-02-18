@@ -2,7 +2,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 9;
+const STEP = 11;
 
 interface RunInstallerProps {
   className?: string;
@@ -16,7 +16,7 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
   const DONE_IT_LABEL = "Done it!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("9_RunInstaller", answer);
+    saveAnswer("11_RunInstaller", answer);
     setOnboardingStep(nextStep);
   };
 

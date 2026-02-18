@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 7;
+const STEP = 9;
 
 interface DownloadProps {
   className?: string;
@@ -12,13 +12,13 @@ interface DownloadProps {
 export default function Download({ className, lastEntry }: DownloadProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["6_os"]);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
 
   const NEED_HELP_LABEL = "I need some help";
   const DOWNLOADED_LABEL = "Downloaded!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("7_download", answer);
+    saveAnswer("9_download", answer);
     setOnboardingStep(nextStep);
   };
 

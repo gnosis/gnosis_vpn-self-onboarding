@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 26;
+const STEP = 6;
 
 interface CheckIPProps {
   className?: string;
@@ -17,7 +17,7 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
   const GOT_IT_LABEL = "I've got it";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("26_CheckIP", answer);
+    saveAnswer("6_CheckIP", answer);
     setOnboardingStep(nextStep);
   };
 
@@ -50,7 +50,7 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
             First, we need to see what your IP address is normally. Go to{" "}
             <Box
               component="a"
-              href="https:/ifconfig.me/ip"
+              href="https://ifconfig.me/ip"
               target="_blank"
               rel="noreferrer noopener"
               sx={{
@@ -59,7 +59,7 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
                 "&:hover": { textDecoration: "underline" },
               }}
             >
-              https:/ifconfig.me/ip
+              https://ifconfig.me/ip
             </Box>
             {" "}and note down what it says. I don't want to know it! I just need to see if it changes.
           </Typography>

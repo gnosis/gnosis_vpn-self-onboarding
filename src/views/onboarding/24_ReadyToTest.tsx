@@ -3,29 +3,30 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 27;
+const STEP = 24;
 
-interface CloseIPSiteProps {
+interface ReadyToTestProps {
   className?: string;
-  lastEntry?: boolean;}
+  lastEntry?: boolean;
+}
 
-export default function CloseIPSite({ className, lastEntry }: CloseIPSiteProps) {
+export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "Done";
+  const ALREADY_DID_LABEL = "I already did";
+  const OKAY_LABEL = "Okay";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("27_CloseIPSite", answer);
+    saveAnswer("24_ReadyToTest", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CloseIPSite${className ? ` ${className}` : ""}`}
+      className={`ReadyToTest${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Close IP site"
+      title="Ready to test"
       text={
         <Typography
           variant="body1"
@@ -35,14 +36,15 @@ export default function CloseIPSite({ className, lastEntry }: CloseIPSiteProps) 
             color: "#333",
           }}
         >
-          Wonderful. We'll be referring back to that throughout this process. Close the IP address finder for now.
+          We're ready to test! <strong>But please don't connect the VPN yet</strong>
         </Typography>
       }
       buttons={
-        lastEntry ? (
+        lastEntry
+        ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
+            <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, STEP + 3)} />
           </>
         ) : null
       }

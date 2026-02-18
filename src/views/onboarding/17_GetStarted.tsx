@@ -3,30 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 22;
+const STEP = 17;
 
-interface ReadyToTestProps {
+interface GetStartedProps {
   className?: string;
-  lastEntry?: boolean;
-}
+  lastEntry?: boolean;}
 
-export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) {
+export default function GetStarted({ className, lastEntry }: GetStartedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const ALREADY_DID_LABEL = "I already did";
-  const OKAY_LABEL = "Okay";
+  const NEED_HELP_LABEL = "I need some help";
+  const THERE_LABEL = "I'm there";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("22_ReadyToTest", answer);
+    saveAnswer("17_GetStarted", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`ReadyToTest${className ? ` ${className}` : ""}`}
+      className={`GetStarted${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Ready to test"
+      title="Get Started"
       text={
         <Typography
           variant="body1"
@@ -36,15 +35,14 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
             color: "#333",
           }}
         >
-          We're ready to test! <strong>But please don't connect the VPN yet</strong>
+          Perfect. Just follow the instructions in the app and let me know once you can see the funding screen
         </Typography>
       }
       buttons={
-        lastEntry
-        ? (
+        lastEntry ? (
           <>
-            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
-            <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, STEP + 3)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
+            <Button label={THERE_LABEL} onClick={() => handleAnswer(THERE_LABEL, STEP + 2)} />
           </>
         ) : null
       }

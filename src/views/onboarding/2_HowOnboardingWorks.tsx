@@ -35,9 +35,7 @@ export default function HowOnboardingWorks({ className, lastEntry }: HowOnboardi
               color: "#333",
             }}
           >
-            As one of our first datanauts, you'll be shaping how Gnosis VPN looks and
-            feels for all future users. To do this, this tool will both onboard you and
-            assess how intuitive our VPN is. We'll also be on the hunt for bugs.
+            As a datanaut, you’ll be shaping how Gnosis VPN looks and feels. This tool will both onboard you and assess how intuitive our VPN is. We’ll also be on the hunt for bugs.
           </Typography>
 
           <Typography
@@ -48,9 +46,7 @@ export default function HowOnboardingWorks({ className, lastEntry }: HowOnboardi
               color: "#333",
             }}
           >
-            At each step, I'll give you a short instruction for what to do next. Try to
-            complete it on your own. But if you can't, click the "More info" button and
-            I'll show you what to do in more detail.
+            At each step, I’ll give you a short instruction. Try to complete it on your own. If you can’t, you can ask for help and I'll show you more.
           </Typography>
         </>
       }

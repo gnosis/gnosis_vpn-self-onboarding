@@ -4,28 +4,30 @@ import Step from "../../components/onboarding/Step";
 import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 14;
+const STEP = 10;
 
-interface RunGnosisVPNVideohelpProps {
+interface DownloadVideohelpProps {
   className?: string;
   lastEntry?: boolean;
 }
 
-export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosisVPNVideohelpProps) {
+export default function DownloadVideohelp({ className, lastEntry }: DownloadVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
+  const macOS = selectedOS === "Mac OS";
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Done it!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("14_RunGnosisVPN_videohelp", answer);
+    saveAnswer("10_Download_videohelp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`RunGnosisVPNVideohelp${className ? ` ${className}` : ""}`}
+      className={`DownloadVideohelp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Video support"
       text={
@@ -42,7 +44,8 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
             No problem! Just follow the video below and you should get back on track
           </Typography>
           <VideoPlaceholder 
-            title="Run Gnosis VPN" 
+            title="Download" 
+            videoUrl= {macOS ? "./videos/MacOS/01_Visit Github, Download Installer.webm" : "./videos/Linux/01_github,download binary-Linux.webm"}
           />
         </>
       }

@@ -3,7 +3,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 17;
+const STEP = 19;
 
 interface FundingProps {
   className?: string;
@@ -17,7 +17,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
   const FUNDED_LABEL = "It's funded";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("17_Funding", answer);
+    saveAnswer("19_Funding", answer);
     setOnboardingStep(nextStep);
   };
 
