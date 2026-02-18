@@ -38,7 +38,7 @@ export default function CheckIPLastTime({ className, lastEntry }: CheckIPLastTim
           Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
           <Box
             component="a"
-            href="https:/ifconfig.me/ip"
+            href="https://ifconfig.me/ip"
             target="_blank"
             rel="noreferrer noopener"
             sx={{
@@ -47,7 +47,7 @@ export default function CheckIPLastTime({ className, lastEntry }: CheckIPLastTim
               "&:hover": { textDecoration: "underline" },
             }}
           >
-            https:/ifconfig.me/ip
+            https://ifconfig.me/ip
           </Box>
         </Typography>
       }
