@@ -60,12 +60,6 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
             <br />
             <Box component="span" sx={{ color: "#6a9955" }}>$</Box>{" "}
             <Box component="span" sx={{ color: "#d4d4d4" }}>sudo apt install ./gnosisvpn_&lt;version&gt;_amd64.deb</Box>
-            <br />
-            <Box component="span" sx={{ color: "#6a9955" }}>$</Box>{" "}
-            <Box component="span" sx={{ color: "#d4d4d4" }}>{`sudo bash -c 'echo "GNOSISVPN_FORCE_STATIC_ROUTING=true" >> /etc/gnosisvpn/gnosisvpn.env'`}</Box>
-            <br />
-            <Box component="span" sx={{ color: "#6a9955" }}>$</Box>{" "}
-            <Box component="span" sx={{ color: "#d4d4d4" }}>sudo systemctl restart gnosisvpn.service</Box>
           </Box>
           </>
       }
