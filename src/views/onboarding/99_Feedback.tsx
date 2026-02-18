@@ -1,15 +1,23 @@
+import { useState } from "react";
 import { Box, TextField, Typography, Stack } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import { useAppStore } from "../../store/appStore";
+import { uploadData } from "../../functions";
 
 interface FeedbackProps {
   className?: string;
 }
 
 export default function Feedback({ className }: FeedbackProps) {
+  const onboardingStep = useAppStore((state) => state.onboardingStep);
+  const stepLog = useAppStore((state) => state.stepLog);
+  const notes = useAppStore((state) => state.notes);
   const feedback = useAppStore((state) => state.feedback);
+  const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
+  const token = useAppStore((state) => state.token);
   const saveFeedback = useAppStore((state) => state.saveFeedback);
   const resetStore = useAppStore((state) => state.resetStore);
+  const [loading, setLoading] = useState(false);
 
   const questions = [
     { key: "feel", label: "How did the product feel to use?" },
@@ -19,7 +27,10 @@ export default function Feedback({ className }: FeedbackProps) {
     { key: "other", label: "Anything else?" },
   ];
 
-  const handleTheEnd = () => {
+  const handleTheEnd = async () => {
+    setLoading(true);
+    await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers });
+    localStorage.removeItem('authToken');
     resetStore();
   };
 
@@ -85,7 +96,7 @@ export default function Feedback({ className }: FeedbackProps) {
       </Stack>
 
       <Box sx={{ display: "flex", justifyContent: "center", pt: 2 }}>
-        <Button label="The End" onClick={handleTheEnd} />
+        <Button label="The End" loading={loading} onClick={handleTheEnd} />
       </Box>
     </Box>
   );

@@ -30,6 +30,41 @@ function isValidPublicIP(ip: string): boolean {
   return false;
 }
 
+export async function uploadData(
+  token: string | null,
+  data: {
+    onboardingStep: number;
+    stepLog: string[];
+    notes: Record<string, string>;
+    feedback: Record<string, string>;
+    onboardingAnswers: Record<string, string | null>;
+  }
+): Promise<void> {
+  if (!token) return;
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/updateJsonData`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ jsonData: data }),
+      }
+    );
+
+    if (!response.ok) {
+      console.error('Failed to upload data:', response.statusText);
+    } else {
+      console.log('Data uploaded successfully');
+    }
+  } catch (error) {
+    console.error('Error uploading data:', error);
+  }
+}
+
 export async function getPublicIP(): Promise<string | null> {
   for (const url of IP_CHECK_URLS) {
     try {

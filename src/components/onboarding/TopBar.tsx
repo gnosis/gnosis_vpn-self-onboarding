@@ -62,27 +62,38 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       />
 
       {/* IP Display */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <Box
-          sx={{
-            width: 8,
-            height: 8,
-            borderRadius: "50%",
-            backgroundColor: ipColor,
-          }}
-        />
-        <Box
-          sx={{
-            fontSize: "0.85rem",
-            color: ipColor,
-            fontFamily: "'Courier New', Consolas, monospace",
-            fontWeight: 700,
-          }}
-        >
-          Your IP: {currentIP ?? "..."}
+      {
+        currentIP && 
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              backgroundColor: ipColor,
+            }}
+          />
+          <Box
+            sx={{
+              fontSize: "0.85rem",
+              color: ipColor,
+              fontFamily: "'Courier New', Consolas, monospace",
+              fontWeight: 700,
+              textAlign: "center",
+            }}
+          >
+            Your IP: {currentIP}
+            <Box
+              sx={{
+                fontSize: "0.7rem",
+              }}
+            >
+              {isHoprIP ? "connected through Gnosis VPN" : "not connected to Gnosis VPN"}
+            </Box>
+          </Box>
         </Box>
-      </Box>
-
+      }
+      
       {/* Right Side Buttons */}
       <Stack direction="row" spacing={1}>
         <Button

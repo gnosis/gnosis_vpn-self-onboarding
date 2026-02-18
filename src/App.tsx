@@ -97,6 +97,7 @@ function App() {
   const setOnboardingData = useAppStore((state) => state.setOnboardingData);
   const setCurrentView = useAppStore((state) => state.setCurrentView);
   const setAutoLoading = useAppStore((state) => state.setAutoLoading);
+  const setUsername = useAppStore((state) => state.setUsername);
 
   useEffect(() => {
     const loadAndRefreshToken = async () => {
@@ -110,6 +111,10 @@ function App() {
       if (result.success && result.token) {
         localStorage.setItem('authToken', result.token);
         setToken(result.token);
+
+        const payload = JSON.parse(atob(result.token.split('.')[1]));
+        console.log('Token payload:', payload);
+        if (payload.username) setUsername(payload.username);
 
         const jsonDataResult = await getJsonData(result.token);
         if (jsonDataResult.success && jsonDataResult.jsonData) {

@@ -4,6 +4,7 @@ import TopBar from "../components/onboarding/TopBar";
 import { useAppStore } from "../store/appStore";
 import MessageBubble from "../components/MessageBubble";
 
+import { uploadData } from "../functions";
 import { STEP_COMPONENTS } from "./onboarding/index";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
@@ -56,45 +57,13 @@ export default function Onboarding({ className }: OnboardingProps) {
   }, [onboardingStep]);
 
   useEffect(() => {
-    const uploadData = async () => {
-      if (!token) return;
-
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/updateJsonData`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({jsonData:{
-              onboardingStep,
-              stepLog,
-              notes,
-              feedback,
-              onboardingAnswers
-            }}),
-          }
-        );
-
-        if (!response.ok) {
-          console.error('Failed to upload data:', response.statusText);
-        } else {
-          console.log('Data uploaded successfully');
-        }
-      } catch (error) {
-        console.error('Error uploading data:', error);
-      }
-    };
-
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
 
     debounceTimerRef.current = setTimeout(() => {
-      uploadData();
-    }, 5000);
+      uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers });
+    }, 4000);
 
     return () => {
       if (debounceTimerRef.current) {
