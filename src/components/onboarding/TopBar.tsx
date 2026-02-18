@@ -88,7 +88,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
                 fontSize: "0.7rem",
               }}
             >
-              {isHoprIP ? "connected through Gnosis VPN" : "not connected to Gnosis VPN"}
+              {isHoprIP ? "Gnosis VPN connected" : "Gnosis VPN not connected"}
             </Box>
           </Box>
         </Box>
