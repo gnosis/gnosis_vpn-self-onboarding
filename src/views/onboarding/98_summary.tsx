@@ -70,6 +70,28 @@ export default function Summary({ className, lastEntry }: SummaryProps) {
           Summary
         </Typography>
 
+        {/* Intro copy */}
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: "0.95rem",
+            lineHeight: 1.6,
+            color: "#333",
+          }}
+        >
+          Thanks for all your help! It's been a hoot!
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            fontSize: "0.95rem",
+            lineHeight: 1.6,
+            color: "#333",
+          }}
+        >
+          Below you'll see a summary of your onboarding journey, including every time you needed help and the feedback you gave me. When you press submit, this data will be sent to the team for analysis. We'll only use it to bug fix and improve the VPN. You can also download it locally.
+        </Typography>
+
         {/* Summary Accordions */}
         <Stack spacing={1.5} sx={{ flex: 1, overflowY: "auto", pr: 1, gap: 2 }}>
           {summaryItems.map((item, index) => (

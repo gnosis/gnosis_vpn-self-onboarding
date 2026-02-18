@@ -28,6 +28,10 @@ interface AppStore {
   setToken: (token: string | null) => void;
   clearLoginForm: () => void;
 
+  // IP tracking
+  currentIP: string | null;
+  setCurrentIP: (ip: string | null) => void;
+
   // Reset store
   resetStore: () => void;
 
@@ -78,6 +82,10 @@ export const useAppStore = create<AppStore>()(
     setPassword: (password) => set({ password }),
     setToken: (token) => set({ token }),
     clearLoginForm: () => set({ username: '', password: '', token: null }),
+
+    // IP tracking
+    currentIP: null,
+    setCurrentIP: (ip) => set({ currentIP: ip }),
 
     // Reset store
     resetStore: () => set({

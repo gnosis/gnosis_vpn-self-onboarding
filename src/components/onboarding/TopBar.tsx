@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Box, Stack, Button } from "@mui/material";
 import LogoutButton from "./LogoutButton";
 import { useAppStore } from "../../store/appStore";
+import { getPublicIP } from "../../functions";
 
 interface TopBarProps {
   currentStep?: number;
@@ -10,6 +12,20 @@ interface TopBarProps {
 
 export default function TopBar({ currentStep = 1, totalSteps = 16, className }: TopBarProps) {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
+  const setCurrentIP = useAppStore((state) => state.setCurrentIP);
+  const currentIP = useAppStore((state) => state.currentIP);
+
+  useEffect(() => {
+    const checkIP = () => {
+      getPublicIP().then((ip) => setCurrentIP(ip));
+    };
+    checkIP();
+    const interval = setInterval(checkIP, 15000);
+    return () => clearInterval(interval);
+  }, [setCurrentIP]);
+
+  const isHoprIP = currentIP?.startsWith("185.9.1.");
+  const ipColor = isHoprIP ? "#2e7d32" : "#e53935";
 
   return (
     <Box
@@ -44,6 +60,28 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
           },
         }}
       />
+
+      {/* IP Display */}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Box
+          sx={{
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            backgroundColor: ipColor,
+          }}
+        />
+        <Box
+          sx={{
+            fontSize: "0.85rem",
+            color: ipColor,
+            fontFamily: "'Courier New', Consolas, monospace",
+            fontWeight: 700,
+          }}
+        >
+          Your IP: {currentIP ?? "..."}
+        </Box>
+      </Box>
 
       {/* Right Side Buttons */}
       <Stack direction="row" spacing={1}>

@@ -21,6 +21,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   const token = useAppStore((state) => state.token);
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const numberOfSteps = Object.keys(STEP_COMPONENTS).length;
 
   useEffect(() => {
     let cancelled = false;
@@ -108,10 +109,10 @@ export default function Onboarding({ className }: OnboardingProps) {
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
       {/* Top Bar */}
-      <TopBar currentStep={onboardingStep} totalSteps={47} />
+      <TopBar currentStep={onboardingStep} totalSteps={numberOfSteps} />
 
       {/* Main Content */}
-      <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: "1024px", margin: "0 auto", px: { xs: 2, sm: 3, md: 4 } }}>
+      <Container maxWidth={false} sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: "900px", margin: "0 auto", px: { xs: 2, sm: 3, md: 4 } }}>
         <Box
           sx={{
             py: { xs: 3, sm: 4, md: 6 },
