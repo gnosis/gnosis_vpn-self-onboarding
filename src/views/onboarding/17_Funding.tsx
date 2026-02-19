@@ -2,6 +2,7 @@ import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
 const STEP = 17;
 
@@ -49,18 +50,11 @@ export default function Funding({ className, lastEntry }: FundingProps) {
               color: "#333",
             }}
           >
-            You should have received a secret funding code when we contacted you. Please visit the{" "}
-            <Box
-              component="a"
+            You should have received a secret funding code when we contacted you. Please visit the 
+              funding tool  at {" "}
+                        <ButtonGrayCta
               href="https://faucet.vpn.gnosis.eth.limo/"
-              sx={{
-                color: "#0066cc",
-                textDecoration: "none",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              funding tool 
-            </Box>
+              label="https://faucet.vpn.gnosis.eth.limo/"/>
             {" "}and use the code there.
           </Typography>
 

@@ -2,6 +2,7 @@ import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
 const STEP = 32;
 
@@ -36,19 +37,9 @@ export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps
           }}
         >
           Let's take it for a spin. Visit{" "}
-          <Box
-            component="a"
+                      <ButtonGrayCta
             href="https://vpn.gnosis.eth.limo/"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://vpn.gnosis.eth.limo/
-          </Box>
+            label="https://vpn.gnosis.eth.limo/" />
         </Typography>
       }
       buttons={

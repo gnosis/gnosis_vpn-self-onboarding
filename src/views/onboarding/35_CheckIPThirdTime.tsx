@@ -1,7 +1,8 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
 const STEP = 35;
 
@@ -36,19 +37,9 @@ export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdT
           }}
         >
           Let's check in on the connection. Go back to{" "}
-          <Box
-            component="a"
-            href="https://ifconfig.me/ip"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://ifconfig.me/ip
-          </Box>
+            <ButtonGrayCta
+              href="https://ifconfig.me/ip"
+              label="https://ifconfig.me/ip"/>
           {" "}and check your IP
         </Typography>
       }

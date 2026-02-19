@@ -6,7 +6,7 @@ import {
   X,
   Github,
 } from 'lucide-react';
-import Button from '../components/Button';
+import ButtonGrayCta from '../components/ButtonGrayCta';
 import LogoutButton from '../components/onboarding/LogoutButton';
 import { useAppStore } from '../store/appStore';
 // --- Global Styles ---
@@ -325,7 +325,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
             />
 
             <NavLinks>
-              <Button
+              <ButtonGrayCta
                 label='Onboard now'
                 onClick={() => setCurrentView('onboarding')}
               />
@@ -357,7 +357,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <p>
                 Welcome <span style={{ fontStyle: 'italic' }}>(username)</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
               </p>
-              <Button
+              <ButtonGrayCta
                 label='Onboard now'
                 onClick={() => setCurrentView('onboarding')}
               />

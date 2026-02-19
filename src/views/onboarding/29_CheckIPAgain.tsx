@@ -1,7 +1,8 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
 const STEP = 29;
 
@@ -36,19 +37,9 @@ export default function CheckIPAgain({ className, lastEntry }: CheckIPAgainProps
           }}
         >
           Great! Now return to{" "}
-          <Box
-            component="a"
-            href="https://ifconfig.me/ip"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://ifconfig.me/ip
-          </Box>
+          <ButtonGrayCta
+              href="https://ifconfig.me/ip"
+              label="https://ifconfig.me/ip"/>
           {" "}and check the IP address
         </Typography>
       }

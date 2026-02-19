@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ArrowRight } from 'lucide-react';
 
 // --- Styled Components ---
 
-const ButtonWrapper = styled.button`
+const sharedStyles = css`
   /* Core Layout */
   display: inline-flex;
   align-items: center;
@@ -16,11 +16,12 @@ const ButtonWrapper = styled.button`
   color: #000000;
   border: none;
   border-bottom: 3px solid #000000; /* The thick black underline/depth */
+  text-decoration: none;
 
   /* Typography */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px; /* Large, readable text */
-  font-weight: 400; /* Regular weight like the screenshot */
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
 
   /* Interaction Props */
@@ -30,21 +31,20 @@ const ButtonWrapper = styled.button`
 
   /* --- Hover State --- */
   &:hover {
-    background-color: #E6E4DC; /* Slightly darker beige */
-    transform: translateY(-1px); /* Subtle lift */
+    background-color: #E6E4DC;
+    transform: translateY(-1px);
 
-    /* Target the icon specifically on hover */
     svg {
-      transform: translateX(6px); /* Slide arrow forward */
+      transform: translateX(6px);
     }
   }
 
   /* --- Active / Click State --- */
   &:active {
     background-color: #D9D7CF;
-    transform: translateY(4px); /* Moves down to simulate being pressed */
-    border-bottom-width: 0px; /* "Collapses" the 3D depth */
-    margin-bottom: 4px; /* Maintains layout stability so it doesn't jump */
+    transform: translateY(4px);
+    border-bottom-width: 0px;
+    margin-bottom: 4px;
   }
 
   /* --- Focus State for Accessibility --- */
@@ -52,6 +52,14 @@ const ButtonWrapper = styled.button`
     outline: 2px solid black;
     outline-offset: 4px;
   }
+`;
+
+const ButtonWrapper = styled.button`
+  ${sharedStyles}
+`;
+
+const AnchorWrapper = styled.a`
+  ${sharedStyles}
 `;
 
 const IconWrapper = styled.div`
@@ -62,23 +70,48 @@ const IconWrapper = styled.div`
 
 // --- Component Definition ---
 
-interface OnboardButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonGrayCtaProps = {
   label?: string;
-}
+  className?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+} & (
+    | React.ButtonHTMLAttributes<HTMLButtonElement>
+    | React.AnchorHTMLAttributes<HTMLAnchorElement>
+  );
 
-const OnboardButton: React.FC<OnboardButtonProps> = ({
+const ButtonGrayCta: React.FC<ButtonGrayCtaProps> = ({
   label = "Onboard now",
   className,
+  href,
   ...props
 }) => {
-  return (
-    <ButtonWrapper className={`OnboardButton${className ? ` ${className}` : ""}`} {...props}>
+  const content = (
+    <>
       <IconWrapper>
         <ArrowRight size={16} strokeWidth={2} />
       </IconWrapper>
       <span>{label}</span>
+    </>
+  );
+
+  const cn = `ButtonGrayCta${className ? ` ${className}` : ""}`;
+
+  if (href) {
+    return (
+      <AnchorWrapper className={cn} href={href} target="_blank"
+        rel="noreferrer noopener" {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {content}
+      </AnchorWrapper>
+    );
+  }
+
+  return (
+    <ButtonWrapper className={cn} {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
+      {content}
     </ButtonWrapper>
   );
 };
 
-export default OnboardButton;
+export default ButtonGrayCta;

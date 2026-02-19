@@ -1,7 +1,8 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
 const STEP = 6;
 
@@ -48,19 +49,9 @@ export default function CheckIP({ className, lastEntry }: CheckIPProps) {
             }}
           >
             First, we need to see what your IP address is normally. Go to{" "}
-            <Box
-              component="a"
+            <ButtonGrayCta
               href="https://ifconfig.me/ip"
-              target="_blank"
-              rel="noreferrer noopener"
-              sx={{
-                color: "#0066cc",
-                textDecoration: "none",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              https://ifconfig.me/ip
-            </Box>
+              label="https://ifconfig.me/ip"/>
             {" "}and note down what it says. I don't want to know it! I just need to see if it changes.
           </Typography>
         </>

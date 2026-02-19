@@ -1,7 +1,8 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
 const STEP = 40;
 
@@ -36,19 +37,9 @@ export default function CheckIPLastTime({ className, lastEntry }: CheckIPLastTim
           }}
         >
           Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
-          <Box
-            component="a"
-            href="https://ifconfig.me/ip"
-            target="_blank"
-            rel="noreferrer noopener"
-            sx={{
-              color: "#0066cc",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-            }}
-          >
-            https://ifconfig.me/ip
-          </Box>
+            <ButtonGrayCta
+              href="https://ifconfig.me/ip"
+              label="https://ifconfig.me/ip"/>
         </Typography>
       }
       buttons={
