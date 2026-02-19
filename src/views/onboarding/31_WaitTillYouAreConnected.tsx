@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 

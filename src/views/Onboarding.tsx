@@ -11,7 +11,6 @@ import X_KeepAnEye from "./onboarding/X_KeepAnEye";
 import X_iCal from "./onboarding/X_iCal";
 import X_YouWereDisconnected from "./onboarding/X_YouWereDisconnected";
 import X_YouAreConnected from "./onboarding/X_YouAreConnected";
-import X_YouWereNeverConnected from "./onboarding/X_YouWereNeverConnected";
 import X_ConnectedTooEarly from "./onboarding/X_ConnectedTooEarly";
 
 interface OnboardingProps {

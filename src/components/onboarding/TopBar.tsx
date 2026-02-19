@@ -17,7 +17,6 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const currentIP = useAppStore((state) => state.currentIP);
   const isVpn = useAppStore((state) => state.isVpn);
-  const currentView = useAppStore((state) => state.currentView);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const ipColor = isVpn ? "#2e7d32" : "#e53935";
   const [lastIPIsVpn, setLastIPIsVpn] = useState<boolean | null>(null);

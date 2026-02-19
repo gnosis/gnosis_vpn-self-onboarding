@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import FeedbackSection from "../../components/FeedbackSection";
@@ -11,19 +10,10 @@ interface YouAreConnectedProps {
 }
 
 export default function YouAreConnected({ className, lastEntry, onboardingStep }: YouAreConnectedProps) {
-  const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
-  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const currentOnboardingStep = useAppStore((state) => state.onboardingStep);
   const stepToUse = onboardingStep || currentOnboardingStep;
 
-  const CONTINUE_LABEL = "Continue";
-
   const STEP_KEY = `X${stepToUse}_YouAreConnected`;
-
-  const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(STEP_KEY, answer);
-    setOnboardingStep(nextStep);
-  };
 
   return (
     <Step
