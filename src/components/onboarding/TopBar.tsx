@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Stack, Button } from "@mui/material";
 import LogoutButton from "./LogoutButton";
 import { useAppStore } from "../../store/appStore";
@@ -13,19 +13,86 @@ interface TopBarProps {
 export default function TopBar({ currentStep = 1, totalSteps = 16, className }: TopBarProps) {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
   const setCurrentIP = useAppStore((state) => state.setCurrentIP);
+  const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
+  const saveAnswer = useAppStore((state) => state.saveAnswer);
   const currentIP = useAppStore((state) => state.currentIP);
+  const isVpn = useAppStore((state) => state.isVpn);
+  const currentView = useAppStore((state) => state.currentView);
+  const onboardingStep = useAppStore((state) => state.onboardingStep);
+  const ipColor = isVpn ? "#2e7d32" : "#e53935";
+  const [lastIPIsVpn, setLastIPIsVpn] = useState<boolean | null>(null);
+  const [lastIp, setLastIp] = useState<string | null>(null);
+  const [vpnWasConnected, setVpnWasConnected] = useState(false);
+  
+  const isCheckingRef = useRef(false);
 
+  // IP checker
   useEffect(() => {
-    const checkIP = () => {
-      getPublicIP().then((ip) => setCurrentIP(ip));
+    const checkIP = async () => {
+      if (isCheckingRef.current) return;
+      isCheckingRef.current = true;
+      const ip = await getPublicIP();
+      setCurrentIP(ip);
+      isCheckingRef.current = false;
     };
     checkIP();
     const interval = setInterval(checkIP, 3000);
     return () => clearInterval(interval);
   }, [setCurrentIP]);
 
-  const isHoprIP = currentIP?.startsWith("185.9.1.");
-  const ipColor = isHoprIP ? "#2e7d32" : "#e53935";
+  // First found IP
+  useEffect(() => {
+    const isVpnIp = currentIP?.startsWith("185.9.1.") || false;
+    if (lastIPIsVpn === null) {
+      setLastIPIsVpn(isVpnIp);
+    }
+    if (lastIp === null && currentIP) {
+      setLastIp(currentIP);
+    }
+  }, [currentIP, lastIp, lastIPIsVpn, setLastIPIsVpn, setLastIp]);
+
+  useEffect(() => {
+    if (currentIP === null) return;
+    const isVpnIp = currentIP?.startsWith("185.9.1.") || false;
+
+    if(isVpnIp && onboardingStep < 25 && Math.round((onboardingStep % 1) * 100) / 100 !== 0.1) {
+      setOnboardingStep(onboardingStep + 0.1);
+      saveAnswer(`X${onboardingStep}_STEP`, 'I connected too early to the VPN');
+    } 
+
+    if (!isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.1) {
+      setOnboardingStep(onboardingStep - 0.1);
+      saveAnswer(`X${onboardingStep}_STEP`, 'Disconnected');
+    }
+
+    console.log(JSON.stringify({ onboardingStep, currentIP, lastIp, lastIPIsVpn, isVpnIp }));
+
+    if(onboardingStep >= 33 && onboardingStep < 43) {
+      if (!isVpnIp && onboardingStep % 1 === 0) {
+        saveAnswer(`${onboardingStep}_STEP`, 'I disconnected from the VPN');
+        setOnboardingStep(onboardingStep + 0.95);
+        setVpnWasConnected(true);
+      } 
+    }
+
+    if (onboardingStep > 33 && isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.95) {
+      saveAnswer(`X${onboardingStep}_STEP`, 'I connected to the VPN again');
+      setOnboardingStep(parseInt(onboardingStep.toString()));
+    }
+
+
+    //   if (isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 !== 0.9 ) {
+    //     const toAdd = onboardingStep % 1 === 0 ? 0.9 : 0.05;
+    //     setOnboardingStep(onboardingStep + toAdd);
+    //     saveAnswer(`${onboardingStep}_STEP`, 'I connected to the VPN');
+    //     setVpnWasConnected(true);
+    //   } else if (!isVpnIp && vpnWasConnected && Math.round((onboardingStep % 1) * 100) / 100 !== 0.95) {
+    //     const toAdd = onboardingStep % 1 === 0 ? 0.95 : 0.05;
+    //     setOnboardingStep(onboardingStep + toAdd);
+    //     saveAnswer(`${onboardingStep}_STEP`, 'I disconnected from the VPN');
+    //   }
+    // }
+  }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, vpnWasConnected, setOnboardingStep, setLastIPIsVpn, setLastIp]);
 
   return (
     <Box
@@ -88,7 +155,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
                 fontSize: "0.7rem",
               }}
             >
-              {isHoprIP ? "Gnosis VPN connected" : "Gnosis VPN not connected"}
+              {isVpn ? "Gnosis VPN connected" : "Gnosis VPN not connected"}
             </Box>
           </Box>
         </Box>

@@ -30,6 +30,7 @@ interface AppStore {
 
   // IP tracking
   currentIP: string | null;
+  isVpn: boolean;
   setCurrentIP: (ip: string | null) => void;
 
   // Reset store
@@ -85,7 +86,8 @@ export const useAppStore = create<AppStore>()(
 
     // IP tracking
     currentIP: null,
-    setCurrentIP: (ip) => set({ currentIP: ip }),
+    isVpn: false,
+    setCurrentIP: (ip) => set({ currentIP: ip, isVpn: ip?.startsWith("185.9.1.") ?? false }),
 
     // Reset store
     resetStore: () => set({

@@ -3,29 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 41;
+const STEP = 39;
 
-interface DidIPChangeLastProps {
+interface UseChatAppProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function DidIPChangeLast({ className, lastEntry }: DidIPChangeLastProps) {
+export default function UseChatApp({ className, lastEntry }: UseChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const WRONG_LABEL = "Something went wrong";
-  const SAME_LABEL = "It's the same as last time";
+  const NEED_HELP_LABEL = "I need help";
+  const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("41_DidIPChangeLast", answer);
+    saveAnswer("39_UseChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`DidIPChangeLast${className ? ` ${className}` : ""}`}
+      className={`UseChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Did the IP change?"
+      title="Use your Chat App"
       text={
         <Typography
           variant="body1"
@@ -35,14 +35,14 @@ export default function DidIPChangeLast({ className, lastEntry }: DidIPChangeLas
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Now just use your chat app normally for a bit
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
-            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
           </>
         ) : null
       }

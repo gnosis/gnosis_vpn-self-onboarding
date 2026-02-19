@@ -4,28 +4,30 @@ import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import FeedbackSection from "../../components/FeedbackSection";
 
-const STEP = 37;
+const STEP = 40;
 
-interface TellChatAppProps {
+interface AppFeedbackProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function TellChatApp({ className, lastEntry }: TellChatAppProps) {
+export default function AppFeedback({ className, lastEntry }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedDevice = useAppStore((state) => state.onboardingAnswers["4_SwitchingDevices"]);
+  const sameDevice = selectedDevice === "same device";
 
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("37_TellChatApp", answer);
+    saveAnswer("40_AppFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TellChatApp${className ? ` ${className}` : ""}`}
+      className={`AppFeedback${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell Us Your Chat App"
+      title="App feedback"
       text={
         <>
           <Typography
@@ -36,16 +38,16 @@ export default function TellChatApp({ className, lastEntry }: TellChatAppProps) 
               color: "#333",
             }}
           >
-            I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
+            Great! Did it work well? Did you notice any issues?
           </Typography>
 
-          <FeedbackSection stepKey="37_TellChatApp" />
+          <FeedbackSection stepKey="40_AppFeedback" />
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP +1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice ? STEP + 3 : STEP + 1)} />
           </>
         ) : null
       }

@@ -5,27 +5,27 @@ import { useAppStore } from "../../store/appStore";
 
 const STEP = 42;
 
-interface TryDifferentExitNodeProps {
+interface DidIPChangeLastProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function TryDifferentExitNode({ className, lastEntry }: TryDifferentExitNodeProps) {
+export default function DidIPChangeLast({ className, lastEntry }: DidIPChangeLastProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const WRAP_UP_LABEL = "Let's wrap up";
-  const TRY_AGAIN_LABEL = "Let's do that";
+  const WRONG_LABEL = "Something went wrong";
+  const SAME_LABEL = "It's the same as last time";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("42_TryDifferentExitNode", answer);
+    saveAnswer("42_DidIPChangeLast", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
+      className={`DidIPChangeLast${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Try with a different exit node"
+      title="Did the IP change?"
       text={
         <Typography
           variant="body1"
@@ -35,14 +35,14 @@ export default function TryDifferentExitNode({ className, lastEntry }: TryDiffer
             color: "#333",
           }}
         >
-          Amazing! If you'd like to keep testing, we can try again with a different exit node
+          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 28)} />
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
           </>
         ) : null
       }

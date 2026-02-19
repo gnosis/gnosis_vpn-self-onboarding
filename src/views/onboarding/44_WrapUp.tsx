@@ -2,31 +2,29 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
-import ButtonGrayCta from "../../components/ButtonGrayCta";
 
-const STEP = 35;
+const STEP = 44;
 
-interface CheckIPThirdTimeProps {
+interface WrapUpProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdTimeProps) {
+export default function WrapUp({ className, lastEntry }: WrapUpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const SAME_LABEL = "It's the same as last time";
-  const WRONG_LABEL = "Something's gone wrong";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("35_CheckIPThirdTime", answer);
+    saveAnswer("44_WrapUp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`CheckIPThirdTime${className ? ` ${className}` : ""}`}
+      className={`WrapUp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Check your IP again"
+      title="Wrap up"
       text={
         <Typography
           variant="body1"
@@ -36,18 +34,13 @@ export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdT
             color: "#333",
           }}
         >
-          Let's check in on the connection. Go back to{" "}
-            <ButtonGrayCta
-              href="https://ifconfig.me/ip"
-              label="https://ifconfig.me/ip"/>
-          {" "}and check your IP
+          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
-            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 98)} />
           </>
         ) : null
       }

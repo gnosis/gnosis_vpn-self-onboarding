@@ -2,14 +2,15 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import ButtonGrayCta from "../../components/ButtonGrayCta";
 
-const STEP = 38;
+const STEP = 41;
 
-interface UseChatAppProps {
+interface CheckIPLastTimeProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function UseChatApp({ className, lastEntry }: UseChatAppProps) {
+export default function CheckIPLastTime({ className, lastEntry }: CheckIPLastTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
@@ -17,15 +18,15 @@ export default function UseChatApp({ className, lastEntry }: UseChatAppProps) {
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("38_UseChatApp", answer);
+    saveAnswer("41_CheckIPLastTime", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`UseChatApp${className ? ` ${className}` : ""}`}
+      className={`CheckIPLastTime${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Use your Chat App"
+      title="Check IP one last time"
       text={
         <Typography
           variant="body1"
@@ -35,7 +36,10 @@ export default function UseChatApp({ className, lastEntry }: UseChatAppProps) {
             color: "#333",
           }}
         >
-          Now just use your chat app normally for a bit
+          Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
+            <ButtonGrayCta
+              href="https://ifconfig.me/ip"
+              label="https://ifconfig.me/ip"/>
         </Typography>
       }
       buttons={

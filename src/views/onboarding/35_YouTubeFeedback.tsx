@@ -2,30 +2,32 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import FeedbackSection from "../../components/FeedbackSection";
 
-const STEP = 36;
+const STEP = 35;
 
-interface OpenChatAppProps {
+interface YouTubeFeedbackProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function OpenChatApp({ className, lastEntry }: OpenChatAppProps) {
+export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedDevice = useAppStore((state) => state.onboardingAnswers["4_SwitchingDevices"]);
+  const sameDevice = selectedDevice === "same device";
 
-  const NEED_HELP_LABEL = "I need help";
-  const DONE_LABEL = "I've done that";
+  const CONTINUE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("36_OpenChatApp", answer);
+    saveAnswer("35_YouTubeFeedback", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`OpenChatApp${className ? ` ${className}` : ""}`}
+      className={`YouTubeFeedback${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Open your Chat App"
+      title="YouTube feedback"
       text={
         <>
           <Typography
@@ -36,7 +38,7 @@ export default function OpenChatApp({ className, lastEntry }: OpenChatAppProps) 
               color: "#333",
             }}
           >
-            Now let's try something else.
+            Great! And how was the video and audio quality?
           </Typography>
 
           <Typography
@@ -47,26 +49,16 @@ export default function OpenChatApp({ className, lastEntry }: OpenChatAppProps) 
               color: "#333",
             }}
           >
-            Not everything we do online uses the same method to send data, but we need to support them all!
+            Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible
           </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            Please open a Chat app, one that isn't in your browser.
-          </Typography>
+          
+          <FeedbackSection stepKey="35_YouTubeFeedback" />
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice ? STEP + 2 : STEP + 1)} />
           </>
         ) : null
       }

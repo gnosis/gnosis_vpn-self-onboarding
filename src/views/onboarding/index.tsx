@@ -29,19 +29,20 @@ import ChooseExitNodeVideohelp from "./27_ChooseExitNode_videohelp";
 import TellChoice from "./28_TellChoice";
 import CheckIPAgain from "./29_CheckIPAgain";
 import DidIPChange from "./30_DidIPChange";
-import PleaseRestart from "./31_PleaseRestart";
-import VisitWebsite from "./32_VisitWebsite";
-import VisitYoutube from "./33_VisitYoutube";
-import YouTubeFeedback from "./34_YouTubeFeedback";
-import CheckIPThirdTime from "./35_CheckIPThirdTime";
-import OpenChatApp from "./36_OpenChatApp";
-import TellChatApp from "./37_TellChatApp";
-import UseChatApp from "./38_UseChatApp";
-import AppFeedback from "./39_AppFeedback";
-import CheckIPLastTime from "./40_CheckIPLastTime";
-import DidIPChangeLast from "./41_DidIPChangeLast";
-import TryDifferentExitNode from "./42_TryDifferentExitNode";
-import WrapUp from "./43_WrapUp";
+import WaitTillYouAreConnected from "./31_WaitTillYouAreConnected";
+import PleaseRestart from "./32_PleaseRestart";
+import VisitWebsite from "./33_VisitWebsite";
+import VisitYoutube from "./34_VisitYoutube";
+import YouTubeFeedback from "./35_YouTubeFeedback";
+import CheckIPThirdTime from "./36_CheckIPThirdTime";
+import OpenChatApp from "./37_OpenChatApp";
+import TellChatApp from "./38_TellChatApp";
+import UseChatApp from "./39_UseChatApp";
+import AppFeedback from "./40_AppFeedback";
+import CheckIPLastTime from "./41_CheckIPLastTime";
+import DidIPChangeLast from "./42_DidIPChangeLast";
+import TryDifferentExitNode from "./43_TryDifferentExitNode";
+import WrapUp from "./44_WrapUp";
 import Summary from "./98_summary";
 import Feedback from "./99_Feedback";
 
@@ -76,19 +77,20 @@ export const STEP_NAMES: Record<number, string> = {
   28: "Tell Choice",
   29: "Check IP Again",
   30: "Did IP Change",
-  31: "Please Restart",
-  32: "Visit Website",
-  33: "Visit Youtube",
-  34: "YouTube Feedback",
-  35: "Check IP Third Time",
-  36: "Open Chat App",
-  37: "Tell Chat App",
-  38: "Use Chat App",
-  39: "App Feedback",
-  40: "Check IP Last Time",
-  41: "Did IP Change Last",
-  42: "Try Different Exit Node",
-  43: "Wrap Up",
+  31: "Wait Till You Are Connected",
+  32: "Please Restart",
+  33: "Visit Website",
+  34: "Visit Youtube",
+  35: "YouTube Feedback",
+  36: "Check IP Third Time",
+  37: "Open Chat App",
+  38: "Tell Chat App",
+  39: "Use Chat App",
+  40: "App Feedback",
+  41: "Check IP Last Time",
+  42: "Did IP Change Last",
+  43: "Try Different Exit Node",
+  44: "Wrap Up",
   98: "Summary",
   99: "Feedback Form"
 };
@@ -124,19 +126,20 @@ export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   28: TellChoice,
   29: CheckIPAgain,
   30: DidIPChange,
-  31: PleaseRestart,
-  32: VisitWebsite,
-  33: VisitYoutube,
-  34: YouTubeFeedback,
-  35: CheckIPThirdTime,
-  36: OpenChatApp,
-  37: TellChatApp,
-  38: UseChatApp,
-  39: AppFeedback,
-  40: CheckIPLastTime,
-  41: DidIPChangeLast,
-  42: TryDifferentExitNode,
-  43: WrapUp,
+  31: WaitTillYouAreConnected,
+  32: PleaseRestart,
+  33: VisitWebsite,
+  34: VisitYoutube,
+  35: YouTubeFeedback,
+  36: CheckIPThirdTime,
+  37: OpenChatApp,
+  38: TellChatApp,
+  39: UseChatApp,
+  40: AppFeedback,
+  41: CheckIPLastTime,
+  42: DidIPChangeLast,
+  43: TryDifferentExitNode,
+  44: WrapUp,
   98: Summary,
   99: Feedback
 };

@@ -4,28 +4,28 @@ import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import FeedbackSection from "../../components/FeedbackSection";
 
-const STEP = 34;
+const STEP = 38;
 
-interface YouTubeFeedbackProps {
+interface TellChatAppProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbackProps) {
+export default function TellChatApp({ className, lastEntry }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const CONTINUE_LABEL = "That's done";
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_YouTubeFeedback", answer);
+    saveAnswer("38_TellChatApp", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`YouTubeFeedback${className ? ` ${className}` : ""}`}
+      className={`TellChatApp${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="YouTube feedback"
+      title="Tell Us Your Chat App"
       text={
         <>
           <Typography
@@ -36,27 +36,16 @@ export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbac
               color: "#333",
             }}
           >
-            Great! And how was the video and audio quality?
+            I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
           </Typography>
 
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible
-          </Typography>
-          
-          <FeedbackSection stepKey="34_YouTubeFeedback" />
+          <FeedbackSection stepKey="38_TellChatApp" />
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, STEP +1)} />
           </>
         ) : null
       }

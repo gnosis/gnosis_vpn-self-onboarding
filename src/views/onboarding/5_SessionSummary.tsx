@@ -12,6 +12,8 @@ interface SessionSummaryProps {
 export default function SessionSummary({ className, lastEntry }: SessionSummaryProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const selectedDevice = useAppStore((state) => state.onboardingAnswers["4_SwitchingDevices"]);
+  const sameDevice = selectedDevice === "same device";
 
   const CONTINUE_LABEL = "Continue";
 
@@ -59,7 +61,7 @@ export default function SessionSummary({ className, lastEntry }: SessionSummaryP
           <>
             <Button
               label={CONTINUE_LABEL}
-              onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
+              onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice ? STEP + 3 : STEP + 1)}
             />
           </>
         ) : null

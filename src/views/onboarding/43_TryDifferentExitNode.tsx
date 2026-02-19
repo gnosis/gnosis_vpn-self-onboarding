@@ -5,26 +5,27 @@ import { useAppStore } from "../../store/appStore";
 
 const STEP = 43;
 
-interface WrapUpProps {
+interface TryDifferentExitNodeProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function WrapUp({ className, lastEntry }: WrapUpProps) {
+export default function TryDifferentExitNode({ className, lastEntry }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const CONTINUE_LABEL = "Continue";
+  const WRAP_UP_LABEL = "Let's wrap up";
+  const TRY_AGAIN_LABEL = "Let's do that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("43_WrapUp", answer);
+    saveAnswer("43_TryDifferentExitNode", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`WrapUp${className ? ` ${className}` : ""}`}
+      className={`TryDifferentExitNode${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Wrap up"
+      title="Try with a different exit node"
       text={
         <Typography
           variant="body1"
@@ -34,13 +35,14 @@ export default function WrapUp({ className, lastEntry }: WrapUpProps) {
             color: "#333",
           }}
         >
-          No problem! Thanks for testing Gnosis VPN with us today. The next few steps will ask you some questions about your experience and show you a summary of what happened.
+          Amazing! If you'd like to keep testing, we can try again with a different exit node
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, 98)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 28)} />
+            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
           </>
         ) : null
       }

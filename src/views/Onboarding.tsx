@@ -9,6 +9,10 @@ import { STEP_COMPONENTS } from "./onboarding/index";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
 import X_iCal from "./onboarding/X_iCal";
+import X_YouWereDisconnected from "./onboarding/X_YouWereDisconnected";
+import X_YouAreConnected from "./onboarding/X_YouAreConnected";
+import X_YouWereNeverConnected from "./onboarding/X_YouWereNeverConnected";
+import X_ConnectedTooEarly from "./onboarding/X_ConnectedTooEarly";
 
 interface OnboardingProps {
   className?: string;
@@ -72,6 +76,10 @@ export default function Onboarding({ className }: OnboardingProps) {
     };
   }, [onboardingStep, stepLog, notes, feedback, onboardingAnswers]);
 
+  useEffect(() => {
+      console.log(JSON.stringify({ stepLog }, null, 2));
+  }, [stepLog]);
+
 
   const CurrentComponent = STEP_COMPONENTS[onboardingStep] ?? null;
 
@@ -94,13 +102,16 @@ export default function Onboarding({ className }: OnboardingProps) {
           {stepLog.map((entry, i) => {
             const [key, answer] = entry.split(':');
             if (!key) return null;
-            if (key.startsWith("X") && key.endsWith("_WhatCanIHelpYouWith")) {
+            if (key.startsWith("X")) {
               const step = parseFloat(key.split('_')[0].substring(1));
               return (
                 <Fragment key={`${key}-${i}`}>
-                  { step % 1 === 0.25 && <X_WhatCanIHelpYouWith onboardingStep={step} />}
-                  { step % 1 === 0.5 && <X_KeepAnEye onboardingStep={step} />}
-                  { step % 1 === 0.75 && <X_iCal onboardingStep={step} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.1 && <X_ConnectedTooEarly onboardingStep={step} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.25 && <X_WhatCanIHelpYouWith onboardingStep={step} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.5 && <X_KeepAnEye onboardingStep={step} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.75 && <X_iCal onboardingStep={step} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.9 && <X_YouAreConnected onboardingStep={step} /> }
+                  { Math.round((step % 1) * 100) / 100 === 0.95 && <X_YouWereDisconnected onboardingStep={step} /> }
                   { answer && <MessageBubble text={answer} /> }
                 </Fragment>
               ); 
@@ -119,9 +130,12 @@ export default function Onboarding({ className }: OnboardingProps) {
 
           {/* Current active step */}
           {onboardingStep % 1 === 0 && CurrentComponent && <CurrentComponent lastEntry={true} />}
-          {onboardingStep % 1 === 0.25 && <X_WhatCanIHelpYouWith lastEntry={true} />}
-          {onboardingStep % 1 === 0.5 && <X_KeepAnEye lastEntry={true} />}
-          {onboardingStep % 1 === 0.75 && <X_iCal lastEntry={true} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.1 && <X_ConnectedTooEarly lastEntry={true} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.25 && <X_WhatCanIHelpYouWith lastEntry={true} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.5 && <X_KeepAnEye lastEntry={true} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.75 && <X_iCal lastEntry={true} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.9 && <X_YouAreConnected lastEntry={true} /> }
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.95 && <X_YouWereDisconnected lastEntry={true} /> }
 
         </Box>
       </Container>

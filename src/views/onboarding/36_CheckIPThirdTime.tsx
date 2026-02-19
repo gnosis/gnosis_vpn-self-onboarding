@@ -4,30 +4,29 @@ import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import ButtonGrayCta from "../../components/ButtonGrayCta";
 
-const STEP = 32;
+const STEP = 36;
 
-interface VisitWebsiteProps {
+interface CheckIPThirdTimeProps {
   className?: string;
-  lastEntry?: boolean;
-}
+  lastEntry?: boolean;}
 
-export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps) {
+export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const NEED_HELP_LABEL = "I need help";
-  const WORKED_LABEL = "It's worked";
+  const SAME_LABEL = "It's the same as last time";
+  const WRONG_LABEL = "Something's gone wrong";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("32_VisitWebsite", answer);
+    saveAnswer("36_CheckIPThirdTime", answer);
     setOnboardingStep(nextStep);
   };
 
   return (
     <Step
-      className={`VisitWebsite${className ? ` ${className}` : ""}`}
+      className={`CheckIPThirdTime${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Visit our website"
+      title="Check your IP again"
       text={
         <Typography
           variant="body1"
@@ -37,17 +36,18 @@ export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps
             color: "#333",
           }}
         >
-          Let's take it for a spin. Visit{" "}
-          <ButtonGrayCta
-            href="https://vpn.gnosis.eth.limo/"
-            label="https://vpn.gnosis.eth.limo/" />
+          Let's check in on the connection. Go back to{" "}
+            <ButtonGrayCta
+              href="https://ifconfig.me/ip"
+              label="https://ifconfig.me/ip"/>
+          {" "}and check your IP
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
+            <Button label={WRONG_LABEL} onClick={() => handleAnswer(WRONG_LABEL, STEP + 0.25)} />
+            <Button label={SAME_LABEL} onClick={() => handleAnswer(SAME_LABEL, STEP + 1)} />
           </>
         ) : null
       }

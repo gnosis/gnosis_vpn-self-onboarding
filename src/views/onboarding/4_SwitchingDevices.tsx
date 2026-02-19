@@ -13,7 +13,8 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const CONTINUE_LABEL = "Continue";
+  const SAME_DEVICE_LABEL = "same device";
+  const DIFFERENT_DEVICE_LABEL = "different device";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("4_SwitchingDevices", answer);
@@ -43,8 +44,13 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
         lastEntry ? (
           <>
             <Button
-              label={CONTINUE_LABEL}
-              onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
+              label={DIFFERENT_DEVICE_LABEL}
+              onClick={() => handleAnswer(DIFFERENT_DEVICE_LABEL, STEP + 1)}
+              disabled
+            />
+            <Button
+              label={SAME_DEVICE_LABEL}
+              onClick={() => handleAnswer(SAME_DEVICE_LABEL, STEP + 1)}
             />
           </>
         ) : null

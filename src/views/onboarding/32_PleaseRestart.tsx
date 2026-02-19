@@ -2,7 +2,7 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 31;
+const STEP = 32;
 
 interface PleaseRestartProps {
   className?: string;
@@ -16,7 +16,7 @@ export default function PleaseRestart({ className, lastEntry }: PleaseRestartPro
   const NOT_WORKING_LABEL = "It's still not working";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("31_PleaseRestart", answer);
+    saveAnswer("32_PleaseRestart", answer);
     setOnboardingStep(nextStep);
   };
 
