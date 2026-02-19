@@ -81,18 +81,6 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       setOnboardingStep(parseInt(onboardingStep.toString()));
     }
 
-
-    //   if (isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 !== 0.9 ) {
-    //     const toAdd = onboardingStep % 1 === 0 ? 0.9 : 0.05;
-    //     setOnboardingStep(onboardingStep + toAdd);
-    //     saveAnswer(`${onboardingStep}_STEP`, 'I connected to the VPN');
-    //     setVpnWasConnected(true);
-    //   } else if (!isVpnIp && vpnWasConnected && Math.round((onboardingStep % 1) * 100) / 100 !== 0.95) {
-    //     const toAdd = onboardingStep % 1 === 0 ? 0.95 : 0.05;
-    //     setOnboardingStep(onboardingStep + toAdd);
-    //     saveAnswer(`${onboardingStep}_STEP`, 'I disconnected from the VPN');
-    //   }
-    // }
   }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, vpnWasConnected, setOnboardingStep, setLastIPIsVpn, setLastIp]);
 
   return (
@@ -177,7 +165,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
             },
           }}
         >
-          {currentStep}/{totalSteps}
+          {Math.min(currentStep/totalSteps, 1) * 100 - 1}% Complete
         </Button>
 
         <Button

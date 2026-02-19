@@ -42,7 +42,7 @@ export default function ChooseExitNode({ className, lastEntry }: ChooseExitNodeP
         lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 2)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 5)} />
           </>
         ) : null
       }
