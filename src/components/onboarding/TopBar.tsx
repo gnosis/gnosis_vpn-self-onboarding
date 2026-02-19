@@ -56,13 +56,14 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
     const isVpnIp = currentIP?.startsWith("185.9.1.") || false;
 
     if(isVpnIp && onboardingStep < 25 && Math.round((onboardingStep % 1) * 100) / 100 !== 0.1) {
+      console.log("Connected too early", onboardingStep);
+      saveAnswer(`${onboardingStep}_STEP`, 'I connected too early to the VPN');
       setOnboardingStep(onboardingStep + 0.1);
-      saveAnswer(`X${onboardingStep}_STEP`, 'I connected too early to the VPN');
     } 
 
     if (!isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.1) {
-      setOnboardingStep(onboardingStep - 0.1);
       saveAnswer(`X${onboardingStep}_STEP`, 'Disconnected');
+      setOnboardingStep(onboardingStep - 0.1);
     }
 
     console.log(JSON.stringify({ onboardingStep, currentIP, lastIp, lastIPIsVpn, isVpnIp }));
