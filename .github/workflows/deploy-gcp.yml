@@ -1,0 +1,57 @@
+name: Deploy to GCP
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  GCS_BUCKET: gnosisvpn-self-onboarding
+  WIF_PROVIDER: projects/656686060169/locations/global/workloadIdentityPools/gnosisvpn-gh-pool/providers/github-provider
+  SERVICE_ACCOUNT: self-onboarding-gh-sa@gnosisvpn-production.iam.gserviceaccount.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Deploy to GCS
+        run: |
+          # Sync all files to the bucket
+          gsutil -m rsync -r -d dist/ gs://${{ env.GCS_BUCKET }}/
+
+          # Set long cache for hashed assets (Vite generates content-hashed filenames)
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" \
+            "gs://${{ env.GCS_BUCKET }}/assets/**"
+
+          # Set no-cache for index.html so new deployments are picked up immediately
+          gsutil setmeta -h "Cache-Control:no-cache, no-store, must-revalidate" \
+            "gs://${{ env.GCS_BUCKET }}/index.html"
