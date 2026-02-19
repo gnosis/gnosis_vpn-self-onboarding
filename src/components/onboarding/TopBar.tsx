@@ -20,7 +20,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       getPublicIP().then((ip) => setCurrentIP(ip));
     };
     checkIP();
-    const interval = setInterval(checkIP, 15000);
+    const interval = setInterval(checkIP, 3000);
     return () => clearInterval(interval);
   }, [setCurrentIP]);
 

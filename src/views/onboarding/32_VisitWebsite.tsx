@@ -1,4 +1,4 @@
-import { Typography, Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
@@ -8,7 +8,8 @@ const STEP = 32;
 
 interface VisitWebsiteProps {
   className?: string;
-  lastEntry?: boolean;}
+  lastEntry?: boolean;
+}
 
 export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
@@ -37,7 +38,7 @@ export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps
           }}
         >
           Let's take it for a spin. Visit{" "}
-                      <ButtonGrayCta
+          <ButtonGrayCta
             href="https://vpn.gnosis.eth.limo/"
             label="https://vpn.gnosis.eth.limo/" />
         </Typography>

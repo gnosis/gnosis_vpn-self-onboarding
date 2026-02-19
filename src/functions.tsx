@@ -1,9 +1,67 @@
 const IP_CHECK_URLS = [
+  // Plain text
   "https://api.ipify.org?format=text",
+  "https://api64.ipify.org",
   "https://ifconfig.me/ip",
   "https://icanhazip.com",
+  "https://ipv4.icanhazip.com",
   "https://checkip.amazonaws.com",
-  "https://api.my-ip.io/v2/ip.txt",
+
+  "https://ipecho.net/plain",
+  "https://ipinfo.io/ip",
+  "https://wtfismyip.com/text",
+  "https://ident.me",
+  "https://v4.ident.me",
+  "https://myexternalip.com/raw",
+  "https://ip.tyk.nu",
+  "https://wgetip.com",
+  "https://eth0.me",
+  "https://ipaddr.site",
+  "https://ifconfig.co/ip",
+  "https://curlmyip.net",
+  "https://l2.io/ip",
+  "https://api.seeip.org",
+
+  "https://trackip.net/ip",
+  "https://api.ip.sb/ip",
+  "https://ipof.in/txt",
+  "https://get.geojs.io/v1/ip",
+
+  "https://am.i.mullvad.net/ip",
+  "https://ipv4.wtfismyip.com/text",
+  "https://showip.net",
+  "https://v4.ip.zxinc.org/getip",
+  // JSON
+  "https://api.ipify.org?format=json",
+  "https://api64.ipify.org?format=json",
+  "https://ipinfo.io/json",
+  "https://freegeoip.app/json/",
+  "https://json.geoiplookup.io",
+  "https://wtfismyip.com/json",
+  "https://api.myip.com",
+  "https://ifconfig.co/json",
+  "https://httpbin.org/ip",
+  "https://www.trackip.net/ip?json",
+  "https://geolocation-db.com/json/",
+  "https://api.db-ip.com/v2/free/self",
+  "https://ipwhois.app/json/",
+  "https://freeipapi.com/api/json",
+  "https://reallyfreegeoip.org/json/",
+  "https://api.seeip.org/jsonip",
+  "https://ipwho.is/",
+  "https://get.geojs.io/v1/ip.json",
+  "https://www.myexternalip.com/json",
+  "https://api.ipgeolocation.io/getip",
+  "https://surfshark.com/api/v1/server/user",
+  "https://api.ip2location.io/",
+  "https://api.ipbase.com/v1/json/",
+  "https://api-bdc.net/data/client-ip",
+  "https://api.bigdatacloud.net/data/client-ip",
+  "https://check.torproject.org/api/ip",
+  // Cloudflare trace (key=value format)
+  "https://cloudflare.com/cdn-cgi/trace",
+  "https://1.1.1.1/cdn-cgi/trace",
+  "https://www.cloudflare.com/cdn-cgi/trace",
 ];
 
 function isValidPublicIP(ip: string): boolean {
@@ -65,13 +123,49 @@ export async function uploadData(
   }
 }
 
+const IP_JSON_FIELDS = [
+  "ip", "IP", "ipAddress", "IPv4", "origin",
+  "ipString", "YourFuckingIPAddress", "query",
+];
+
+function extractIP(text: string): string | null {
+  // Try JSON
+  try {
+    const json = JSON.parse(text);
+    for (const field of IP_JSON_FIELDS) {
+      if (typeof json[field] === "string" && json[field].trim()) {
+        return json[field].trim();
+      }
+    }
+  } catch {
+    // Not JSON
+  }
+
+  // Try Cloudflare trace format (ip=x.x.x.x)
+  const traceMatch = text.match(/^ip=(.+)$/m);
+  if (traceMatch) {
+    return traceMatch[1].trim();
+  }
+
+  // Plain text
+  return text.trim();
+}
+
+let ipCheckIndex = 0;
+
 export async function getPublicIP(): Promise<string | null> {
-  for (const url of IP_CHECK_URLS) {
+  const len = IP_CHECK_URLS.length;
+  for (let i = 0; i < len; i++) {
+    const url = IP_CHECK_URLS[(ipCheckIndex + i) % len];
     try {
       const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
       if (response.ok) {
-        const ip = (await response.text()).trim();
-        if (ip && isValidPublicIP(ip)) return ip;
+        const text = await response.text();
+        const ip = extractIP(text);
+        if (ip && isValidPublicIP(ip)) {
+          ipCheckIndex = (ipCheckIndex + i + 1) % len;
+          return ip;
+        }
       }
     } catch {
       continue;
