@@ -106,15 +106,27 @@ const IP_JSON_FIELDS = [
   "ipString", "YourFuckingIPAddress", "query",
 ];
 
+const IPV4_REGEX = /\b(\d{1,3}(?:\.\d{1,3}){3})\b/;
+
+function preferIPv4(value: string): string {
+  const match = value.match(IPV4_REGEX);
+  return match ? match[1] : value;
+}
+
 function extractIP(text: string): string | null {
   // Try JSON
   try {
     const json = JSON.parse(text);
+    let fallback: string | null = null;
     for (const field of IP_JSON_FIELDS) {
       if (typeof json[field] === "string" && json[field].trim()) {
-        return json[field].trim();
+        const val = json[field].trim();
+        const ipv4Match = val.match(IPV4_REGEX);
+        if (ipv4Match) return ipv4Match[1];
+        if (!fallback) fallback = val;
       }
     }
+    if (fallback) return fallback;
   } catch {
     // Not JSON
   }
@@ -122,11 +134,11 @@ function extractIP(text: string): string | null {
   // Try Cloudflare trace format (ip=x.x.x.x)
   const traceMatch = text.match(/^ip=(.+)$/m);
   if (traceMatch) {
-    return traceMatch[1].trim();
+    return preferIPv4(traceMatch[1].trim());
   }
 
   // Plain text
-  return text.trim();
+  return preferIPv4(text.trim());
 }
 
 let ipCheckIndex = 0;
