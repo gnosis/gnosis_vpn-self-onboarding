@@ -33,6 +33,8 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          VITE_WEBAPI_URL: ${{ vars.VITE_WEBAPI_URL }}
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v3
