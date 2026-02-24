@@ -164,7 +164,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
             },
           }}
         >
-          {Math.min(currentStep/totalSteps, 1) * 100 - 1}% Complete
+          {parseInt((Math.min(currentStep/totalSteps, 1) * 100 - 1).toString())}% Complete
         </Button>
 
         <Button

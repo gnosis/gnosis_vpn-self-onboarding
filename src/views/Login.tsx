@@ -64,7 +64,7 @@ export default function Login({ className }: LoginProps) {
       const data = await response.json();
       const token = data.token;
       if (token) {
-        localStorage.setItem('authToken', token);
+        localStorage.setItem('gvso_authToken', token);
         setToken(token);
       }
       console.log('Login successful:', data);

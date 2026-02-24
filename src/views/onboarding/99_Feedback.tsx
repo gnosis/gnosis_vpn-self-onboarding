@@ -30,7 +30,7 @@ export default function Feedback({ className }: FeedbackProps) {
   const handleTheEnd = async () => {
     setLoading(true);
     await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers });
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('gvso_authToken');
     resetStore();
   };
 

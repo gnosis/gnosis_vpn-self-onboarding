@@ -21,7 +21,7 @@ const css = `
   }
 `
 
-const NOT_WORKING_LABEL = "VPN Not working?";
+const NOT_WORKING_LABEL = "VPN not working?";
 
 export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTillYouAreConnectedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
@@ -58,13 +58,13 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
       onboardingStep={STEP}
       title="Let's wait a moment to see if you are connected to the VPN"
       text={
-        <>
+        lastEntry ? <>
         <p>In the mean time, you can play a game. Press the spacebar to start the game and to jump.</p>
         <DinoGame />
         <style>
           {css}
         </style>
-        </>
+        </> : <></>
       }
       buttons={
         lastEntry ? ( 

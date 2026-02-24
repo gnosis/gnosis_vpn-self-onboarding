@@ -248,7 +248,6 @@ const Footer = styled.footer`
 const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -311,6 +310,7 @@ interface GnosisLandingProps {
 
 const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
+  const username = useAppStore((state) => state.username);
 
   return (
     <>
@@ -352,10 +352,10 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
 
           <ContentBoxWrapper>
             <ContentBox>
-              <h1>Gnosis VPN MVP</h1>
+              <h1>Atlantis</h1>
               <h2>Onboarding</h2>
               <p>
-                Welcome <span style={{ fontStyle: 'italic' }}>(username)</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
+                Welcome <span style={{ fontStyle: 'italic' }}>{username}</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
               </p>
               <ButtonGrayCta
                 label='Onboard now'

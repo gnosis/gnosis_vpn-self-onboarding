@@ -101,7 +101,7 @@ function App() {
 
   useEffect(() => {
     const loadAndRefreshToken = async () => {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('gvso_authToken');
       if (!token) return;
 
       setAutoLoading(true);
@@ -109,7 +109,7 @@ function App() {
 
       const result = await refreshToken(token);
       if (result.success && result.token) {
-        localStorage.setItem('authToken', result.token);
+        localStorage.setItem('gvso_authToken', result.token);
         setToken(result.token);
 
         const payload = JSON.parse(atob(result.token.split('.')[1]));
@@ -133,7 +133,7 @@ function App() {
 
   useEffect(() => {
     const checkAndRefreshToken = async () => {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('gvso_authToken');
       if (!token) return;
 
       const expiry = getTokenExpiry(token);
@@ -146,7 +146,7 @@ function App() {
       if (timeUntilExpiry < twelveHours) {
         const result = await refreshToken(token);
         if (result.success && result.token) {
-          localStorage.setItem('authToken', result.token);
+          localStorage.setItem('gvso_authToken', result.token);
           setToken(result.token);
         }
       }
