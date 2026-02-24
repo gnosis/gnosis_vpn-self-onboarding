@@ -13,7 +13,7 @@ export default function SessionSummary({ className, lastEntry }: SessionSummaryP
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const selectedDevice = useAppStore((state) => state.onboardingAnswers["4_SwitchingDevices"]);
-  const sameDevice = selectedDevice === "same device";
+  const sameDevice = selectedDevice === "Same device";
 
   const CONTINUE_LABEL = "Continue";
 

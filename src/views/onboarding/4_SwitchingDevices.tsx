@@ -13,7 +13,7 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
-  const SAME_DEVICE_LABEL = "same device";
+  const SAME_DEVICE_LABEL = "Same device";
   const DIFFERENT_DEVICE_LABEL = "different device";
 
   const handleAnswer = (answer: string, nextStep: number) => {
