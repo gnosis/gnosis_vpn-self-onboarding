@@ -16,11 +16,17 @@ const GlobalStyle = createGlobalStyle`
 
 // --- Styled Components ---
 
+const NavContainer = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
 const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
-  width: 100%;
+  width: calc(100% - 48px);
 `;
 
 // Navbar
@@ -63,7 +69,7 @@ const HeroSection = styled.div`
 
 const HeroImageContainer = styled.div`
   width: 100%;
-  height: 500px;
+  height: 550px;
   background-color: #0f172a;
   position: relative;
   overflow: hidden;
@@ -87,7 +93,7 @@ const HoprBadge = styled.img`
   position: absolute;
   bottom: 30px;
   right: 30px;
-  z-index: 10;
+  z-index: 100;
   width: 100px;
 `;
 
@@ -96,30 +102,46 @@ const ContentBoxWrapper = styled.div`
   z-index: 20;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
   pointer-events: none;
 `;
 
 const ContentBox = styled.div`
+  position: relative;
   background-color: white;
-  width: 100%;
-  max-width: 580px;
-  padding: 40px;
-  margin-top: -100px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  width: calc(100% - 32px);
+  max-width: 540px;
+  padding: 16px 32px 16px 64px;
+  margin-top: -170px;
   pointer-events: auto;
 
   h1 {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 300;
     margin: 0 0 8px 0;
+    font-weight: 400;
   }
 
   h2 {
     font-size: 36px;
-    font-weight: 500;
-    color: #d1d5db;
-    margin: 0 0 24px 0;
+    font-weight: 400;
+    color: #B5B5B5;
+    margin: 0px 0px 24px;
+    margin-top: -16px;
+    margin-left: 32px;
+  }
+
+
+  .message {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 24px;
+    img {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      border-radius: 100px;
+    }
   }
 
   p {
@@ -128,6 +150,43 @@ const ContentBox = styled.div`
     line-height: 1.6;
     margin-bottom: 24px;
   }
+
+  button {
+    font-size: 36px;
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .stair1 {
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    background: white;
+    top: 71px;
+    right: -50px;
+  }
+
+  .stair2 {
+    position: absolute;
+    width: 101px;
+    height: 51px;
+    background: white;
+    top: 120px;
+    right: -100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    width: 100%;
+    max-width: calc(100% - 32px);
+    margin-top: 0px;
+    box-shadow: none;
+    .stair1, .stair2 {
+      display: none;
+    }
+  }
 `;
 
 // Features Section
@@ -135,7 +194,7 @@ const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  padding: 80px 0;
+  padding: 40px 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -143,7 +202,7 @@ const FeaturesGrid = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 400;
   margin: 0 0 32px 0;
 `;
@@ -151,7 +210,8 @@ const SectionTitle = styled.h2`
 const IntroBlock = styled.div`
   display: flex;
   gap: 16px;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
+  margin-left: 134px;
 
   p {
     font-size: 14px;
@@ -165,6 +225,7 @@ const StepList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  margin-left: 134px;
 `;
 
 const StepItem = styled.div`
@@ -172,7 +233,7 @@ const StepItem = styled.div`
   gap: 16px;
 `;
 
-const StepIconBox = styled.div`
+const StepIconBox = styled.img`
   margin-top: 4px;
   background-color: black;
   color: white;
@@ -242,7 +303,7 @@ const CtaBar = styled.div`
 const Footer = styled.footer`
   background-color: black;
   color: white;
-  padding: 32px 0;
+  padding: 32px;
 `;
 
 const FooterContent = styled.div`
@@ -262,18 +323,11 @@ const FooterContent = styled.div`
 const FooterLogo = styled.div`
   width: 32px;
   height: 32px;
-  background-color: rgba(255,255,255,0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  div {
-    width: 16px;
-    height: 8px;
-    background-color: white;
-    border-radius: 2px;
-  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    }
 `;
 
 const FooterLinks = styled.div`
@@ -318,7 +372,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
       <div className={`GnosisLanding${className ? ` ${className}` : ""}`} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
         {/* Navigation */}
-        <Container>
+        <NavContainer>
           <Nav>
             <Logo
               src={'./images/GnosisVPN_logo.svg'}
@@ -333,7 +387,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <LogoutButton />
             </NavLinks>
           </Nav>
-        </Container>
+        </NavContainer>
 
         {/* Hero Section */}
         <HeroSection>
@@ -354,13 +408,18 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
             <ContentBox>
               <h1>Atlantis</h1>
               <h2>Onboarding</h2>
-              <p>
-                Welcome <span style={{ fontStyle: 'italic' }}>{username}</span>! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
-              </p>
+              <div className='message'>
+                <img src="/images/avatar-gino-lp.png" alt="Avatar"  />
+                <p>
+                  Welcome {username}! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
+                </p>
+              </div>
               <ButtonGrayCta
                 label='Onboard now'
                 onClick={() => setCurrentView('onboarding')}
               />
+              <div className='stair1' />
+              <div className='stair2' />
             </ContentBox>
           </ContentBoxWrapper>
         </HeroSection>
@@ -373,7 +432,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <SectionTitle>How onboarding works</SectionTitle>
 
               <IntroBlock>
-                <img
+                {/* <img
                   src="/images/avatar.png"
                   alt="Avatar"
                   style={{
@@ -381,7 +440,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                     height: 56,
                     flexShrink: 0,
                   }}
-                />
+                /> */}
                 <p>
                   As one of our first users, you'll be shaping how Gnosis VPN looks and feels for all future explorers. To do this, this tool will both onboard you and assess how intuitive our VPN is. We'll also be on the hunt for bugs!
                 </p>
@@ -390,7 +449,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <StepList>
                 {/* Step 1 */}
                 <StepItem>
-                  <StepIconBox>1</StepIconBox>
+                  <StepIconBox
+                    src={'./images/getting-help-icon.svg'}
+                  />
                   <StepContent>
                     <h4>Determine if the page is good</h4>
                     <p>
@@ -401,7 +462,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
 
                 {/* Step 2 */}
                 <StepItem>
-                  <StepIconBox>2</StepIconBox>
+                  <StepIconBox
+                    src={'./images/switching-devices-icon.svg'}
+                  />
                   <StepContent>
                     <h4>Your requests are being recorded</h4>
                     <p>
@@ -412,7 +475,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
 
                 {/* Step 3 */}
                 <StepItem>
-                  <StepIconBox>3</StepIconBox>
+                  <StepIconBox
+                    src={'./images/session-summary-icon.svg'}
+                  />
                   <StepContent>
                     <h4>We help you</h4>
                     <p>
@@ -445,7 +510,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
         <Footer>
           <FooterContent>
             <FooterLogo>
-              <div />
+              <img src="./images/dark.png" alt="Gnosis" />
             </FooterLogo>
 
             <FooterLinks>

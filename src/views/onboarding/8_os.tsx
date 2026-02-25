@@ -12,11 +12,15 @@ interface OSProps {
 export default function OS({ className, lastEntry }: OSProps) {
     const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
     const saveAnswer = useAppStore((state) => state.saveAnswer);
+    const setIsMacOs = useAppStore((state) => state.setIsMacOs);
 
     const LINUX_LABEL = "Linux";
     const MACOS_LABEL = "Mac OS";
 
     const handleAnswer = (answer: string, nextStep: number) => {
+        if(answer === MACOS_LABEL) {
+            setIsMacOs(true);
+        }
         saveAnswer("8_os", answer);
         setOnboardingStep(nextStep);
     };

@@ -14,7 +14,7 @@ interface DownloadProps {
 export default function Download({ className, lastEntry }: DownloadProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
+  const macOS = useAppStore((state) => state.isMacOs);
 
   const NEED_HELP_LABEL = "I need some help";
   const DOWNLOADED_LABEL = "Downloaded!";
@@ -57,7 +57,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
               color: "#333",
             }}
           >
-            and download the installer <strong>{selectedOS === "Mac OS" ? "GnosisVPN-Installer-<VERSION>.pkg" : "Linux"}</strong>
+            and download the installer <strong>{macOS ? "GnosisVPN-Installer-<VERSION>.pkg" : "Linux"}</strong>
           </Typography>
 
         </>

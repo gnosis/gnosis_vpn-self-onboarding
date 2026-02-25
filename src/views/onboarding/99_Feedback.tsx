@@ -15,9 +15,12 @@ export default function Feedback({ className }: FeedbackProps) {
   const feedback = useAppStore((state) => state.feedback);
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const token = useAppStore((state) => state.token);
+  const isMacOs = useAppStore((state) => state.isMacOs);
+  const isSameDevice = useAppStore((state) => state.isSameDevice);
   const saveFeedback = useAppStore((state) => state.saveFeedback);
   const resetStore = useAppStore((state) => state.resetStore);
   const [loading, setLoading] = useState(false);
+  
 
   const questions = [
     { key: "feel", label: "How did the product feel to use?" },
@@ -29,7 +32,7 @@ export default function Feedback({ className }: FeedbackProps) {
 
   const handleTheEnd = async () => {
     setLoading(true);
-    await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers });
+    await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice });
     localStorage.removeItem('gvso_authToken');
     resetStore();
   };
@@ -37,6 +40,7 @@ export default function Feedback({ className }: FeedbackProps) {
   return (
     <Box
       className={`Feedback${className ? ` ${className}` : ""}`}
+      id={`the-feedback-step`}
       sx={{
         display: "flex",
         flexDirection: "column",

@@ -12,11 +12,13 @@ interface SwitchingDevicesProps {
 export default function SwitchingDevices({ className, lastEntry }: SwitchingDevicesProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const setSameDevice = useAppStore((state) => state.setIsSameDevice);
 
   const SAME_DEVICE_LABEL = "Same device";
   const DIFFERENT_DEVICE_LABEL = "different device";
 
   const handleAnswer = (answer: string, nextStep: number) => {
+    setSameDevice(answer === SAME_DEVICE_LABEL);
     saveAnswer("4_SwitchingDevices", answer);
     setOnboardingStep(nextStep);
   };
@@ -46,7 +48,6 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
             <Button
               label={DIFFERENT_DEVICE_LABEL}
               onClick={() => handleAnswer(DIFFERENT_DEVICE_LABEL, STEP + 1)}
-              disabled
             />
             <Button
               label={SAME_DEVICE_LABEL}

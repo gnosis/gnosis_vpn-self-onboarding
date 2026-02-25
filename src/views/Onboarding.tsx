@@ -26,15 +26,24 @@ export default function Onboarding({ className }: OnboardingProps) {
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const numberOfSteps = Object.keys(STEP_COMPONENTS).length;
+  const isMacOs = useAppStore((state) => state.isMacOs);
+  const isSameDevice = useAppStore((state) => state.isSameDevice);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
       await new Promise((r) => setTimeout(r, 50));
       while (!cancelled) {
-        const el = document.getElementsByClassName(`StepButtons`);
-        if (el.length > 0) {
-          const target = el[0].getBoundingClientRect().top + window.scrollY;
+        let el 
+        if (onboardingStep === 99) {
+          el = document.getElementsByClassName(`Feedback`);
+        } else {
+          el = document.getElementsByClassName(`StepButtons`);
+        }
+         
+        if (el && el.length > 0) {
+          const offset = onboardingStep === 99 ? 60 : 0;
+          const target = el[0].getBoundingClientRect().top + window.scrollY - offset;
           const start = window.scrollY;
           const distance = target - start;
           const duration = 1000;
@@ -65,7 +74,7 @@ export default function Onboarding({ className }: OnboardingProps) {
     }
 
     debounceTimerRef.current = setTimeout(() => {
-      uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers });
+      uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice });
     }, 4000);
 
     return () => {
@@ -73,7 +82,7 @@ export default function Onboarding({ className }: OnboardingProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [onboardingStep, stepLog, notes, feedback, onboardingAnswers]);
+  }, [onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice]);
 
   useEffect(() => {
       console.log(JSON.stringify({ stepLog }, null, 2));

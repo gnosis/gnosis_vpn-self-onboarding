@@ -14,8 +14,7 @@ interface RunInstallerVideohelpProps {
 export default function RunInstallerVideohelp({ className, lastEntry }: RunInstallerVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
-  const macOS = selectedOS === "Mac OS";
+  const macOS = useAppStore((state) => state.isMacOs);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";

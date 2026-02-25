@@ -1,3 +1,5 @@
+import { useAppStore } from './store/appStore';
+
 const IP_CHECK_URLS = [
   // Plain text
   "https://api.ipify.org?format=text",
@@ -26,9 +28,7 @@ const IP_CHECK_URLS = [
   "https://httpbin.org/ip",
   "https://geolocation-db.com/json/",
   "https://api.db-ip.com/v2/free/self",
-  "https://ipwhois.app/json/",
   "https://api.seeip.org/jsonip",
-  "https://ipwho.is/",
   "https://get.geojs.io/v1/ip.json",
   "https://www.myexternalip.com/json",
   "https://api.ipgeolocation.io/getip",
@@ -66,14 +66,42 @@ function isValidPublicIP(ip: string): boolean {
   return false;
 }
 
+export async function fetchFundingCode(token: string | null): Promise<void> {
+  if (!token) return;
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/getFundingCode`,
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      console.error('Failed to fetch funding code:', response.statusText);
+      return;
+    }
+
+    const data = await response.json();
+    useAppStore.getState().setFundingCode(data.fundingCode ?? null);
+  } catch (error) {
+    console.error('Error fetching funding code:', error);
+  }
+}
+
 export async function uploadData(
   token: string | null,
   data: {
-    onboardingStep: number;
-    stepLog: string[];
-    notes: Record<string, string>;
-    feedback: Record<string, string>;
-    onboardingAnswers: Record<string, string | null>;
+    onboardingStep?: number;
+    stepLog?: string[];
+    notes?: Record<string, string>;
+    feedback?: Record<string, string>;
+    onboardingAnswers?: Record<string, string | null>;
+    isMacOs?: boolean;
+    isSameDevice?: boolean | null;
   }
 ): Promise<void> {
   if (!token) return;
@@ -163,3 +191,4 @@ export async function getPublicIP(): Promise<string | null> {
   }
   return null;
 }
+

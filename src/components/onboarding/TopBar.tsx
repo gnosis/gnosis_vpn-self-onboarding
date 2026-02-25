@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Box, Stack, Button } from "@mui/material";
 import LogoutButton from "./LogoutButton";
 import { useAppStore } from "../../store/appStore";
-import { getPublicIP } from "../../functions";
+import { getPublicIP, uploadData } from "../../functions";
 
 interface TopBarProps {
   currentStep?: number;
@@ -15,9 +15,12 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   const setCurrentIP = useAppStore((state) => state.setCurrentIP);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const resetOnboarding = useAppStore((state) => state.resetOnboarding);
   const currentIP = useAppStore((state) => state.currentIP);
   const isVpn = useAppStore((state) => state.isVpn);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
+  const isSameDevice = useAppStore((state) => state.isSameDevice);
+  const token = useAppStore((state) => state.token);
   const ipColor = isVpn ? "#2e7d32" : "#e53935";
   const [lastIPIsVpn, setLastIPIsVpn] = useState<boolean | null>(null);
   const [lastIp, setLastIp] = useState<string | null>(null);
@@ -51,7 +54,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   }, [currentIP, lastIp, lastIPIsVpn, setLastIPIsVpn, setLastIp]);
 
   useEffect(() => {
-    if (currentIP === null) return;
+    if (currentIP === null || !isSameDevice) return;
     const isVpnIp = currentIP?.startsWith("185.9.1.") || false;
 
     if(isVpnIp && onboardingStep < 25 && Math.round((onboardingStep % 1) * 100) / 100 !== 0.1) {
@@ -80,7 +83,12 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       setOnboardingStep(parseInt(onboardingStep.toString()));
     }
 
-  }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, vpnWasConnected, setOnboardingStep, setLastIPIsVpn, setLastIp]);
+  }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, vpnWasConnected, isSameDevice, setOnboardingStep, setLastIPIsVpn, setLastIp]);
+
+  const handleResetOnboarding = async () => {
+    await uploadData(token, {});
+    resetOnboarding();
+  }
 
   return (
     <Box
@@ -156,15 +164,33 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
           size="small"
           sx={{
             fontSize: "0.85rem",
-            color: "#333",
+            color: "white!important",
             textTransform: "none",
             fontWeight: 500,
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
+          }}
+          disabled
+        >
+          {parseInt((Math.min(currentStep/totalSteps, 1) * 100 - 1).toString())}% Complete
+        </Button>
+
+        <Button
+          onClick={handleResetOnboarding}
+          variant="text"
+          size="small"
+          sx={{
+            fontSize: "0.85rem",
+            color: "rgb(229, 57, 53)!important",
+            textTransform: "none",
+            textDecoration: "none",
+            fontWeight: 500,
             "&:hover": {
-              backgroundColor: "rgba(0, 0, 0, 0.04)",
+              color: "darkred!important",
+              backgroundColor: "rgba(229, 57, 53, 0.5)",
             },
           }}
         >
-          {parseInt((Math.min(currentStep/totalSteps, 1) * 100 - 1).toString())}% Complete
+          Reset onboarding
         </Button>
 
         <Button

@@ -4,6 +4,7 @@ import LoadingOverlay from './components/LoadingOverlay';
 import LandingPage from './views/LandingPage'
 import Login from './views/Login';
 import Onboarding from './views/Onboarding';
+import { fetchFundingCode } from './functions';
 
 /**
  * Decode JWT and get expiry time
@@ -106,7 +107,8 @@ function App() {
 
       setAutoLoading(true);
       setToken(token);
-
+      fetchFundingCode(token);
+      
       const result = await refreshToken(token);
       if (result.success && result.token) {
         localStorage.setItem('gvso_authToken', result.token);

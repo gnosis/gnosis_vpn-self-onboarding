@@ -13,8 +13,7 @@ interface RunInstallerProps {
 export default function RunInstaller({ className, lastEntry }: RunInstallerProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedOS = useAppStore((state) => state.onboardingAnswers["8_os"]);
-  const macOS = selectedOS === "Mac OS";
+  const macOS = useAppStore((state) => state.isMacOs);
 
   const NEED_HELP_LABEL = "I need some help";
   const DONE_IT_LABEL = "It's installed";

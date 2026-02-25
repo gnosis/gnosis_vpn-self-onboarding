@@ -13,6 +13,7 @@ import {
 import { useState } from "react";
 import Button from "../components/onboarding/Button";
 import { useAppStore } from "../store/appStore";
+import { fetchFundingCode } from "../functions";
 
 interface LoginProps {
   className?: string;
@@ -35,12 +36,9 @@ export default function Login({ className }: LoginProps) {
    * @param {string} password - The user's password
    * @returns {Promise<{success: boolean, jsonData?: Object, isFirstLogin?: boolean, error?: string}>}
    */
-  async function loginUser(loginCredential: string, password: string): Promise<{
-    success: boolean;
-    jsonData?: Object;
-    isFirstLogin?: boolean;
-    error?: string;
-  }> {
+  async function loginUser(loginCredential: string, password: string): Promise<void> {
+    setError(null);
+    setLoading(true);
     try {
       const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/login`, {
         method: 'POST',
@@ -55,10 +53,9 @@ export default function Login({ className }: LoginProps) {
 
       if (!response.ok) {
         const errorData = await response.json();
-        return {
-          success: false,
-          error: errorData.error || `HTTP Error: ${response.status}`,
-        };
+        setError(errorData.error || `HTTP Error: ${response.status}`);
+        setShowErrorModal(true);
+        return;
       }
 
       const data = await response.json();
@@ -68,19 +65,20 @@ export default function Login({ className }: LoginProps) {
         setToken(token);
       }
       console.log('Login successful:', data);
-      return {
-        success: true,
-        jsonData: data.jsonData,
-        isFirstLogin: data.isFirstLogin,
-      };
+      if (data.jsonData) {
+        setOnboardingData(data.jsonData as Parameters<typeof setOnboardingData>[0]);
+      }
+      setCurrentView("landing");
+      fetchFundingCode(token);
     } catch (error) {
-      return {
-        success: false,
-        error: (error instanceof Error ? error.message : String(error)) || 'Network error occurred',
-      };
+      setError((error instanceof Error ? error.message : String(error)) || 'Network error occurred');
+      setShowErrorModal(true);
+    } finally {
+      setLoading(false);
     }
   }
 
+  
 
   return (
     <Container className={`Login${className ? ` ${className}` : ""}`} maxWidth={false}>
@@ -235,21 +233,7 @@ export default function Login({ className }: LoginProps) {
             <Button
               label="Share minimal data"
               loading={loading}
-              onClick={async () => {
-                setError(null);
-                setLoading(true);
-                const result = await loginUser(username, password);
-                setLoading(false);
-                if (result.success) {
-                  if (result.jsonData) {
-                    setOnboardingData(result.jsonData as Parameters<typeof setOnboardingData>[0]);
-                  }
-                  setCurrentView("landing");
-                } else {
-                  setError(result.error || "Login failed");
-                  setShowErrorModal(true);
-                }
-              }}
+              onClick={() => loginUser(username, password)}
             />
 
             <Dialog open={showErrorModal} onClose={() => setShowErrorModal(false)}>

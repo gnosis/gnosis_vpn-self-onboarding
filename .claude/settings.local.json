@@ -6,7 +6,15 @@
       "WebFetch(domain:docs.google.com)",
       "Bash(find:*)",
       "Bash(npm run build:*)",
-      "Bash(yarn build)"
+      "Bash(yarn build)",
+      "Bash(python3 -:*)",
+      "Bash(node --version)",
+      "Bash(node -e \":*)",
+      "Bash(python3.exe --version)",
+      "Bash(py --version)",
+      "Bash(py -:*)",
+      "Bash(npm install viem)",
+      "Bash(npm install viem --legacy-peer-deps)"
     ]
   }
 }

@@ -13,8 +13,7 @@ interface AppFeedbackProps {
 export default function AppFeedback({ className, lastEntry }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const selectedDevice = useAppStore((state) => state.onboardingAnswers["4_SwitchingDevices"]);
-  const sameDevice = selectedDevice === "Same device";
+  const sameDevice = useAppStore((state) => state.isSameDevice);
 
   const CONTINUE_LABEL = "Continue";
 

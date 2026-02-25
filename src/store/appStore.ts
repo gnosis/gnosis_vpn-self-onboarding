@@ -17,7 +17,17 @@ interface AppStore {
   stepLog: string[];
   feedback: Record<string, string>;
   saveFeedback: (key: string, value: string) => void;
-  setOnboardingData: (data: { onboardingStep?: number; stepLog?: string[]; notes?: Record<string, string>; feedback?: Record<string, string>; onboardingAnswers?: Record<string, string | null> }) => void;
+  setOnboardingData: (data: 
+    { 
+      onboardingStep?: number; 
+      stepLog?: string[]; 
+      notes?: Record<string, string>; 
+      feedback?: Record<string, string>; 
+      onboardingAnswers?: Record<string, string | null>;
+      isMacOs?: boolean;
+      isSameDevice?: boolean;
+    }
+  ) => void;
 
   // Login form
   username: string;
@@ -33,8 +43,19 @@ interface AppStore {
   isVpn: boolean;
   setCurrentIP: (ip: string | null) => void;
 
+  // Device flags
+  isMacOs: boolean;
+  isSameDevice: boolean;
+  setIsMacOs: (value: boolean) => void;
+  setIsSameDevice: (value: boolean) => void;
+
   // Reset store
   resetStore: () => void;
+  resetOnboarding: () => void;
+
+  // Funding
+  fundingCode: string | null;
+  setFundingCode: (code: string | null) => void;
 
   // Global loading
   isAutoLoading: boolean;
@@ -74,6 +95,8 @@ export const useAppStore = create<AppStore>()(
         notes: data.notes ?? {},
         feedback: data.feedback ?? {},
         onboardingAnswers: data.onboardingAnswers ?? {},
+        isMacOs: data.isMacOs ?? false,
+        isSameDevice: data.isSameDevice ?? false,
       }),
 
     // Login form
@@ -89,6 +112,12 @@ export const useAppStore = create<AppStore>()(
     isVpn: false,
     setCurrentIP: (ip) => set({ currentIP: ip, isVpn: ip?.startsWith("185.9.1.") ?? false }),
 
+    // Device flags
+    isMacOs: false,
+    isSameDevice: false,
+    setIsMacOs: (value) => set({ isMacOs: value }),
+    setIsSameDevice: (value) => set({ isSameDevice: value }),
+
     // Reset store
     resetStore: () => set({
       currentView: 'login',
@@ -99,8 +128,26 @@ export const useAppStore = create<AppStore>()(
       feedback: {},
       username: '',
       token: null,
+      isMacOs: false,
+      isSameDevice: false,
+      isAutoLoading: false,
+      fundingCode: null,
+    }),
+
+    resetOnboarding: () => set({
+      onboardingStep: 1,
+      onboardingAnswers: {},
+      stepLog: [],
+      notes: {},
+      feedback: {},
+      isMacOs: false,
+      isSameDevice: false,
       isAutoLoading: false,
     }),
+
+    // Funding
+    fundingCode: null,
+    setFundingCode: (code) => set({ fundingCode: code }),
 
     // Global loading
     isAutoLoading: false,
