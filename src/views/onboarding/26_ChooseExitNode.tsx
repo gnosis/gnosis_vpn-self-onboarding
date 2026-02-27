@@ -12,6 +12,7 @@ interface ChooseExitNodeProps {
 export default function ChooseExitNode({ className, lastEntry }: ChooseExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const isSameDevice = useAppStore((state) => state.isSameDevice);
 
   const NEED_HELP_LABEL = "I need some help";
   const DONE_LABEL = "That's done";
@@ -42,7 +43,7 @@ export default function ChooseExitNode({ className, lastEntry }: ChooseExitNodeP
         lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
-            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, STEP + 5)} />
+            <Button label={DONE_LABEL} onClick={() => handleAnswer(DONE_LABEL, isSameDevice ? STEP + 5 : STEP + 2)} />
           </>
         ) : null
       }

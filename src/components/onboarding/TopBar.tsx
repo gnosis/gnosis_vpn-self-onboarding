@@ -3,6 +3,7 @@ import { Box, Stack, Button } from "@mui/material";
 import LogoutButton from "./LogoutButton";
 import { useAppStore } from "../../store/appStore";
 import { getPublicIP, uploadData } from "../../functions";
+import { getVpnCountry } from "../../functions";
 
 interface TopBarProps {
   currentStep?: number;
@@ -56,6 +57,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   useEffect(() => {
     if (currentIP === null || !isSameDevice) return;
     const isVpnIp = currentIP?.startsWith("185.9.1.") || false;
+    const vpnCountry = getVpnCountry(currentIP);
 
     if(isVpnIp && onboardingStep < 25 && Math.round((onboardingStep % 1) * 100) / 100 !== 0.1) {
       console.log("Connected too early", onboardingStep);
@@ -79,7 +81,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
     }
 
     if (onboardingStep > 33 && isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.95) {
-      saveAnswer(`X${onboardingStep}_STEP`, 'I connected to the VPN again');
+      saveAnswer(`X${onboardingStep}_STEP`, `I connected to the VPN again ${vpnCountry ? `(${vpnCountry})` : ''}`);
       setOnboardingStep(parseInt(onboardingStep.toString()));
     }
 

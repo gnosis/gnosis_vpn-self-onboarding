@@ -38,10 +38,12 @@ interface AppStore {
   setToken: (token: string | null) => void;
   clearLoginForm: () => void;
 
-  // IP tracking
+  // IP checking
   currentIP: string | null;
   isVpn: boolean;
+  vpnCountry: string | null;
   setCurrentIP: (ip: string | null) => void;
+  setVpnCountry: (country: string | null) => void;
 
   // Device flags
   isMacOs: boolean;
@@ -107,10 +109,14 @@ export const useAppStore = create<AppStore>()(
     setToken: (token) => set({ token }),
     clearLoginForm: () => set({ username: '', password: '', token: null }),
 
-    // IP tracking
+    // IP checking
     currentIP: null,
     isVpn: false,
-    setCurrentIP: (ip) => set({ currentIP: ip, isVpn: ip?.startsWith("185.9.1.") ?? false }),
+    setCurrentIP: (ip) => set({
+      currentIP: ip,
+      isVpn: ip?.startsWith("185.9.1.") ?? false
+    }),
+
 
     // Device flags
     isMacOs: false,
@@ -130,6 +136,7 @@ export const useAppStore = create<AppStore>()(
       token: null,
       isMacOs: false,
       isSameDevice: false,
+      vpnCountry: null,
       isAutoLoading: false,
       fundingCode: null,
     }),

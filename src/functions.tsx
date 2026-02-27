@@ -192,3 +192,15 @@ export async function getPublicIP(): Promise<string | null> {
   return null;
 }
 
+const VPN_IP_COUNTRIES: Record<string, string> = {
+  "185.9.1.2":  "Australia",
+  "185.9.1.17": "South Korea",
+  "185.9.1.33": "India",
+  "185.9.1.49": "UK",
+  "185.9.1.65": "USA",
+  "185.9.1.81": "Brazil",
+};
+
+export function getVpnCountry(ip: string | null): string | null {
+  return (ip && VPN_IP_COUNTRIES[ip]) || null;
+}

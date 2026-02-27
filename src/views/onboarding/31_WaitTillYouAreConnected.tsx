@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import Button from "../../components/onboarding/Button";
+import { getVpnCountry } from "../../functions";
 import DinoGame from 'react-chrome-dino-ts'
 import 'react-chrome-dino-ts/index.css'
 
@@ -28,7 +29,7 @@ const I_AM_CONNECTED_LABEL = 'I am connected to the VPN';
 export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTillYouAreConnectedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const isVpn = useAppStore((state) => state.isVpn);
+  const currentIP = useAppStore((state) => state.currentIP);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const [waitTimeIsOver, setWaitTimeIsOver] = useState(false);
@@ -61,11 +62,13 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
   }, [gameReady]);
 
   useEffect(() => {
-    if(isSameDevice &&isVpn && STEP === onboardingStep) {
+    const isVpn = currentIP?.startsWith("185.9.1.") || false;
+    if(isSameDevice && isVpn && STEP === onboardingStep) {
+      const vpnCountry = getVpnCountry(currentIP);
       setOnboardingStep(onboardingStep + 2);
-      saveAnswer(`${STEP}_WaitTillYouAreConnected`, I_AM_CONNECTED_LABEL);
+      saveAnswer(`${STEP}_WaitTillYouAreConnected`, `${I_AM_CONNECTED_LABEL} ${vpnCountry ? `(${vpnCountry})` : ''}`);
     } 
-  }, [isSameDevice, isVpn, onboardingStep, setOnboardingStep, saveAnswer]);
+  }, [isSameDevice, currentIP, onboardingStep, setOnboardingStep, saveAnswer]);
 
   useEffect(() => {
     if(!lastEntry) {
