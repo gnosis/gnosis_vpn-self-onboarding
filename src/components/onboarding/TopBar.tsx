@@ -35,7 +35,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       if (isCheckingRef.current) return;
       isCheckingRef.current = true;
       const ip = await getPublicIP();
-      setCurrentIP(ip);
+      if (ip) setCurrentIP(ip);
       isCheckingRef.current = false;
     };
     checkIP();
