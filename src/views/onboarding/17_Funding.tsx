@@ -95,11 +95,9 @@ export default function Funding({ className, lastEntry }: FundingProps) {
     <Step
       className={`Funding${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Funding"
+      title="Fund And Sync Your Node"
       text={
         <>
-          {/* <VideoPlaceholder title="Funding" /> */}
-
           <Typography
             variant="body1"
             sx={{
@@ -108,7 +106,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
               color: "#333",
             }}
           >
-            Great! We now need to fund the edge node which will connect you to the mixnet. Of course I'll be covering the cost!
+            We now need to fund your Edge Node so it can connect to the mixnet. I’ll cover the cost.
           </Typography>
 
           {fundingCode && lastEntry &&
@@ -189,8 +187,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
                 color: "#333",
               }}
             >
-              You should have received a secret funding code when we contacted you. Please visit the
-              funding tool  at {" "}
+              Use the secret funding code we sent you and redeem it here: {" "}
               <ButtonGrayCta
                 href="https://faucet.vpn.gnosis.eth.limo/"
                 label="https://faucet.vpn.gnosis.eth.limo/" />
@@ -206,7 +203,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
               color: "#333",
             }}
           >
-            If you'd prefer to fund it yourself, you can find instructions{" "}
+            If you prefer to fund it yourself, you can follow the instructions here{" "}
             <Box
               component="a"
               href="https://github.com/gnosis/gnosis_vpn/wiki#how-do-i-fund-or-top-up-my-gnosis-vpn-account"
@@ -220,7 +217,18 @@ export default function Funding({ className, lastEntry }: FundingProps) {
             >
               here
             </Box>
-            .
+            <br/><br/>
+            <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  color: "#333",
+                }}
+              >
+                After funding, the node needs a few minutes to sync. This is normal, nothing is broken. Please note the time when syncing starts and let me know how long it took.
+              </Typography>
+
           </Typography>
         </>
       }
@@ -228,7 +236,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
         lastEntry ? (
           <>
             <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
-            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 2)} />
+            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 4)} />
           </>
         ) : null
       }
