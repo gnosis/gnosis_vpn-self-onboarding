@@ -38,7 +38,17 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
               color: "#333",
             }}
           >
-            You can use this onboarding tool on any device, but you’ll need to test on a desktop device. If you want to switch devices, just close the session here so I know where to resume from when you log in again.
+            You can use this onboarding tool on any device. However, Gnosis VPN must be set up on a desktop device.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            If you need to switch devices to continue using this onboarding tool, simply close your session here. I’ll save your progress and resume from the same point when you log in again.
           </Typography>
         </>
       }
