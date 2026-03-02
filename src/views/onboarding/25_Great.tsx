@@ -34,7 +34,7 @@ export default function Great({ className, lastEntry }: GreatProps) {
             color: "#333",
           }}
         >
-          
+          Now we wait for initialization to complete.
         </Typography>
       }
       buttons={
