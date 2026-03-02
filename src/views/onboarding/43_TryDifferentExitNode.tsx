@@ -7,7 +7,8 @@ const STEP = 43;
 
 interface TryDifferentExitNodeProps {
   className?: string;
-  lastEntry?: boolean;}
+  lastEntry?: boolean;
+}
 
 export default function TryDifferentExitNode({ className, lastEntry }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
@@ -42,7 +43,13 @@ export default function TryDifferentExitNode({ className, lastEntry }: TryDiffer
         lastEntry ? (
           <>
             <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 28)} />
-            <Button label={WRAP_UP_LABEL} onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)} />
+            <Button
+              style={{
+                backgroundColor: "#b8b8b8",
+              }}
+              label={WRAP_UP_LABEL}
+              onClick={() => handleAnswer(WRAP_UP_LABEL, STEP + 1)}
+            />
           </>
         ) : null
       }

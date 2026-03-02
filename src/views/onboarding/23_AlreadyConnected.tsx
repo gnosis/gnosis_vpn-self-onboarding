@@ -26,18 +26,31 @@ export default function AlreadyConnected({ className, lastEntry }: AlreadyConnec
     <Step
       className={`AlreadyConnected${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Good to know!"
+      title="No problem"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          No problem! Just disconnect for now
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            If you’ve already connected, please disconnect for now.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+              marginTop: "1rem",
+            }}
+          >
+            The node is still preparing in the background. Once initialization is complete, you’ll be able to connect safely.
+          </Typography>
+        </>
       }
       buttons={
         lastEntry ? (

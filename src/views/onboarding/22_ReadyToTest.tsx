@@ -15,7 +15,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
   const ALREADY_DID_LABEL = "I already did";
-  const OKAY_LABEL = "Okay";
+  const OKAY_LABEL = "I'm waiting";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("22_ReadyToTest", answer);
@@ -26,18 +26,31 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
     <Step
       className={`ReadyToTest${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Ready to test"
+      title="Your VPN is installed and funded"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          We're ready to test!<br /><br /><strong style={{ fontSize: "1.14rem" }}>But please don't connect the VPN yet</strong>
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            It’s now opening channels and completing final background steps. So please don’t connect the VPN yet
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+              marginTop: "1rem",
+            }}
+          >
+            This is an MVP release, so you may notice minor limitations or rough edges. That’s expected, and your feedback helps us improve.
+          </Typography>
+        </>
       }
       buttons={
         lastEntry

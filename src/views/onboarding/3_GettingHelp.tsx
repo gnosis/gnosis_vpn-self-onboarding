@@ -35,7 +35,7 @@ export default function GettingHelp({ className, lastEntry }: GettingHelpProps) 
               color: "#333",
             }}
           >
-            If you're still stuck, I can put you in touch with the team.
+            If you’re stuck, I can put you in touch with the team and a team member will contact you using your chosen method as soon as possible.
           </Typography>
 
           <Typography
@@ -46,18 +46,7 @@ export default function GettingHelp({ className, lastEntry }: GettingHelpProps) 
               color: "#333",
             }}
           >
-            First, briefly describe your problem in one of these boxes. A team member will get back to you via your chosen contact method as soon as possible.
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            If you’re still stuck, I can book you a 1-on-1 call with a member of the team.
+            Depending on what's not working, you might be asked to join 1-on-1 call for live debugging.
           </Typography>
         </>
       }

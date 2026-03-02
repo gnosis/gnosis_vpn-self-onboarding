@@ -453,9 +453,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                     src={'./images/getting-help-icon.svg'}
                   />
                   <StepContent>
-                    <h4>Determine if the page is good</h4>
+                    <h4>Follow the instructions</h4>
                     <p>
-                      I'll be giving you instructions to get onboarded. We're assessing our UI's clarity and feedback. If you need more, click the "Show me..." to get visual info on what to do.
+                      We’ll give you simple tasks to complete inside the app. We’re testing whether the interface is clear without extra explanation. If you need help, click “Show me…” for visual guidance.
                     </p>
                   </StepContent>
                 </StepItem>
@@ -466,9 +466,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                     src={'./images/switching-devices-icon.svg'}
                   />
                   <StepContent>
-                    <h4>Your requests are being recorded</h4>
+                    <h4>Your feedback matters</h4>
                     <p>
-                      If this still isn't enough info, or something is broken, you can write to us in there. Please briefly describe the issue and we'll reply ASAP to get back on track.
+                      Your actions are recorded to help us understand what works and what doesn’t. If something is unclear or broken, please tell us. Briefly describe the issue and we’ll respond as quickly as possible.
                     </p>
                   </StepContent>
                 </StepItem>
@@ -479,9 +479,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                     src={'./images/session-summary-icon.svg'}
                   />
                   <StepContent>
-                    <h4>We help you</h4>
+                    <h4>We’re here to help</h4>
                     <p>
-                      If we still can't figure things out, you can schedule a call with us for a 1-on-1 debugging session.
+                      If you get stuck, you can contact our support via message and we’ll help you out. And if we still can’t solve it, we’ll jump on a quick 1-on-1 call together.
                     </p>
                   </StepContent>
                 </StepItem>

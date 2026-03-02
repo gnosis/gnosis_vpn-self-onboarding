@@ -36,9 +36,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            Welcome, {username || "datanaut"}, to the datanaut program, so-called because
-            we're searching for ways to reduce the amount of data you leak online all the
-            way to nought.
+            Welcome, {username || "datanaut"} to the Datanaut program. <br/>We’re on a mission to reduce how much data you leak online.
           </Typography>
 
           <Typography
@@ -49,7 +47,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            I'm Gino, your guide for this quest to Atlantis. This guide will walk you step-by-step through setting up and using Gnosis VPN.
+            I’m Gino, your guide for this quest. I’ll walk you step-by-step through setting up and using Gnosis VPN.
           </Typography>
 
           <Typography
@@ -60,7 +58,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-           Thanks for agreeing to share some info – it will really help shape the VPN. It also lets you switch devices and save progress.
+           To help us improve the experience, please follow each step in this guide in order. We’re testing clarity and flow, so skipping ahead can affect the results.
           </Typography>
 
           <Typography
@@ -71,7 +69,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            I’ll store everything locally until you choose to submit or end your session. If you’re using something like incognito mode – well done on being private! – you’ll need to submit your progress before you close the browser.
+            Everything stays stored locally until you choose to submit or end your session.
           </Typography>
 
           <Typography
@@ -83,7 +81,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               fontWeight: 600,
             }}
           >
-            Ready? Let’s get started!
+            Ready? Let’s begin.
           </Typography>
         </>
       }

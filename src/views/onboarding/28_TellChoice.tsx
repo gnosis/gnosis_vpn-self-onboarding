@@ -27,16 +27,29 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
       onboardingStep={STEP}
       title="Tell us choice"
       text={
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "0.95rem",
-            lineHeight: 1.6,
-            color: "#333",
-          }}
-        >
-          Which one did you choose?
-        </Typography>
+        <>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            Which one did you choose?
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+              marginTop: "1rem",
+            }}
+          >
+            Now you can connect.
+          </Typography>
+        </>
       }
       buttons={
         lastEntry ? (
