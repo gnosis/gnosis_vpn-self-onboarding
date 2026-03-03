@@ -57,7 +57,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
               color: "#333",
             }}
           >
-            and download the installer <strong>{macOS ? "GnosisVPN-Installer-<VERSION>.pkg" : "Linux"}</strong>
+            and download the installer <strong>{macOS ? "GnosisVPN-Installer-<VERSION>.pkg" : "Linux"}</strong>.
           </Typography>
 
         </>

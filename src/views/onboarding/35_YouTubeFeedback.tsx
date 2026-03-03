@@ -48,7 +48,7 @@ export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbac
               color: "#333",
             }}
           >
-            Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible
+            Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible.
           </Typography>
           
           <FeedbackSection stepKey="35_YouTubeFeedback" />

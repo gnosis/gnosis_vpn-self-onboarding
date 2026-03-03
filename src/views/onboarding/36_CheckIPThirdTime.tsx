@@ -40,7 +40,7 @@ export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdT
             <ButtonGrayCta
               href="https://ifconfig.me/ip"
               label="https://ifconfig.me/ip"/>
-          {" "}and check your IP
+          {" "}and check your IP.
         </Typography>
       }
       buttons={

@@ -40,7 +40,7 @@ export default function DownloadVideohelp({ className, lastEntry }: DownloadVide
               marginBottom: "1rem",
             }}
           >
-            No problem! Just follow the video below and you should get back on track
+            No problem! Just follow the video below and you should get back on track.
           </Typography>
           <VideoPlaceholder 
             title="Download" 

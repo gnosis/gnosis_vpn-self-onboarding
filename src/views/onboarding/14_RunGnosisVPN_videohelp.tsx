@@ -39,7 +39,7 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
               marginBottom: "1rem",
             }}
           >
-            No problem! Just follow the video below and you should get back on track
+            No problem! Just follow the video below and you should get back on track.
           </Typography>
           <VideoPlaceholder 
             title="Run Gnosis VPN" 
@@ -53,7 +53,7 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
               marginBottom: "1rem",
             }}
           >
-            You can find the app in your Finder or applications folder
+            You can find the app in your Finder or applications folder.
           </Typography>
         </>
       }

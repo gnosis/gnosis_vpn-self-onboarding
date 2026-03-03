@@ -36,7 +36,7 @@ export default function TryDifferentExitNode({ className, lastEntry }: TryDiffer
             color: "#333",
           }}
         >
-          Amazing! If you'd like to keep testing, we can try again with a different exit node
+          Amazing! If you'd like to keep testing, we can try again with a different exit node.
         </Typography>
       }
       buttons={

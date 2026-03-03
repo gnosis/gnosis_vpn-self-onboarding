@@ -40,7 +40,7 @@ export default function CheckIPAgain({ className, lastEntry }: CheckIPAgainProps
           <ButtonGrayCta
               href="https://ifconfig.me/ip"
               label="https://ifconfig.me/ip"/>
-          {" "}and check the IP address
+          {" "}and check the IP address.
         </Typography>
       }
       buttons={

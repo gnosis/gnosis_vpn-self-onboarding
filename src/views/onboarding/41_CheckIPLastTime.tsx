@@ -39,7 +39,7 @@ export default function CheckIPLastTime({ className, lastEntry }: CheckIPLastTim
           Amazing! We're almost done. Let's just check the IP one last time. Go back to{" "}
             <ButtonGrayCta
               href="https://ifconfig.me/ip"
-              label="https://ifconfig.me/ip"/>
+              label="https://ifconfig.me/ip"/>.
         </Typography>
       }
       buttons={

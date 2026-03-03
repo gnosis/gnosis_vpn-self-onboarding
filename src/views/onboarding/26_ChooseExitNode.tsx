@@ -36,7 +36,7 @@ export default function ChooseExitNode({ className, lastEntry }: ChooseExitNodeP
             color: "#333",
           }}
         >
-          Next, choose and exit node and connect the VPN
+          Next, choose and exit node and connect the VPN.
         </Typography>
       }
       buttons={

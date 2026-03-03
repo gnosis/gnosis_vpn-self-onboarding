@@ -40,7 +40,7 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
               mb: 2,
             }}
           >
-            Thanks! Keep an eye on your chosen communication channel and we'll be in touch
+            Thanks! Keep an eye on your chosen communication channel and we'll be in touch.
           </Typography>
 
         </>

@@ -40,7 +40,7 @@ export default function OS({ className, lastEntry }: OSProps) {
                             color: "#333",
                         }}
                     >
-                        Before we start, I need to know what operating system you're running
+                        Before we start, I need to know what operating system you're running.
                     </Typography>
 
                 </>

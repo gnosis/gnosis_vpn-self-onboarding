@@ -57,7 +57,7 @@ export default function Feedback({ className }: FeedbackProps) {
           lineHeight: 1.2,
         }}
       >
-        Thank You for Your Feedback
+        Thank You for Your Feedback.
       </Typography>
 
       <Stack

@@ -42,7 +42,7 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
               mb: 2,
             }}
           >
-            Uh-oh. Just let us know what's gone wrong and we'll try to resolve it ASAP
+            Uh-oh. Just let us know what's gone wrong and we'll try to resolve it ASAP.
           </Typography>
 
           <FeedbackSection

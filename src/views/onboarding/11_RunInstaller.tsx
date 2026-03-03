@@ -38,7 +38,7 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
               color: "#333",
             }}
           >
-            Double click to run the installer
+            Double click to run the installer.
           </Typography>
           :
           <>

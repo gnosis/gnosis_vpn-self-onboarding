@@ -35,7 +35,7 @@ export default function GetStarted({ className, lastEntry }: GetStartedProps) {
             color: "#333",
           }}
         >
-          Perfect. Just follow the instructions in the app and let me know once you can see the funding screen
+          Perfect. Just follow the instructions in the app and let me know once you can see the funding screen.
         </Typography>
       }
       buttons={

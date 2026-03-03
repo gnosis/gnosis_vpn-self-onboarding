@@ -40,7 +40,7 @@ export default function VisitWebsite({ className, lastEntry }: VisitWebsiteProps
           Let's take it for a spin. Visit{" "}
           <ButtonGrayCta
             href="https://vpn.gnosis.eth.limo/"
-            label="https://vpn.gnosis.eth.limo/" />
+            label="https://vpn.gnosis.eth.limo/" />.
         </Typography>
       }
       buttons={

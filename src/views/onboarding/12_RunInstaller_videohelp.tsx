@@ -40,7 +40,7 @@ export default function RunInstallerVideohelp({ className, lastEntry }: RunInsta
               marginBottom: "1rem",
             }}
           >
-            No problem! Just follow the video below and you should get back on track
+            No problem! Just follow the video below and you should get back on track.
           </Typography>
           <VideoPlaceholder 
             title="Run Installer" 

@@ -35,7 +35,7 @@ export default function UseChatApp({ className, lastEntry }: UseChatAppProps) {
             color: "#333",
           }}
         >
-          Now just use your chat app normally for a bit
+          Now just use your chat app normally for a bit.
         </Typography>
       }
       buttons={
