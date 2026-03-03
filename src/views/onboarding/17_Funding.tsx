@@ -95,7 +95,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
     <Step
       className={`Funding${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Fund And Sync Your Node"
+      title="Funding and syncing your node takes place now"
       text={
         <>
           <Typography

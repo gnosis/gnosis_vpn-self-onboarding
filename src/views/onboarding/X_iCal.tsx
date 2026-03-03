@@ -40,7 +40,7 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
               mb: 2,
             }}
           >
-            No problem, just use this link to book some time with one of our team: [cal.com link].
+            No problem. We’ll send you an invitation via your previously selected preferred method of contact.
           </Typography>
         </>
       }
