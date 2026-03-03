@@ -30,7 +30,7 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
       title="Video support"
       text={
         <>
-          <Typography
+          {/* <Typography
             variant="body1"
             sx={{
               fontSize: "0.95rem",
@@ -40,10 +40,10 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
             }}
           >
             No problem! Just follow the video below and you should get back on track.
-          </Typography>
-          <VideoPlaceholder 
-            title="Run Gnosis VPN" 
-          />
+          </Typography> */}
+          {/* <VideoPlaceholder 
+            title="Run Gnosis VPN"
+          /> */}
           <Typography
             variant="body1"
             sx={{
@@ -53,7 +53,7 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
               marginBottom: "1rem",
             }}
           >
-            You can find the app in your Finder or applications folder.
+            You can find the app in your Finder or applications folder and double click to open it.
           </Typography>
         </>
       }

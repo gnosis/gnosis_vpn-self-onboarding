@@ -35,7 +35,7 @@ export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps
             color: "#333",
           }}
         >
-          Amazing! Now we're ready to run the Gnosis VPN app and begin our journey properly.
+          Amazing! Now we're ready to run the Gnosis VPN app and begin our journey properly. The app should start automatically.
         </Typography>
       }
       buttons={
