@@ -40,14 +40,11 @@ export default function Download({ className, lastEntry }: DownloadProps) {
             }}
           >
             Great! Now head to {" "}
-                      <ButtonGrayCta
-            href="https://github.com/gnosis/gnosis_vpn/releases/latest"
-            label="https://github.com/gnosis/gnosis_vpn/releases/latest" />
+            <ButtonGrayCta
+              href="https://github.com/gnosis/gnosis_vpn/releases/latest"
+              label="https://github.com/gnosis/gnosis_vpn/releases/latest" 
+            />
           </Typography>
-
-
-
-
 
           <Typography
             variant="body1"
@@ -57,7 +54,14 @@ export default function Download({ className, lastEntry }: DownloadProps) {
               color: "#333",
             }}
           >
-            and download the installer <strong>{macOS ? "GnosisVPN-Installer-<VERSION>.pkg" : "Linux"}</strong>.
+            and download the installer {" "}
+            <span style={{fontWeight:600}}>
+              {
+                macOS ? 
+                <>GnosisVPN-Installer-***<span style={{color:"darkorange", fontWeight: 800}}>.pkg</span></> : 
+                <>GnosisVPN-Installer-***<span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
+              }
+            </span>.
           </Typography>
 
         </>

@@ -14,7 +14,15 @@
       "Bash(py --version)",
       "Bash(py -:*)",
       "Bash(npm install viem)",
-      "Bash(npm install viem --legacy-peer-deps)"
+      "Bash(npm install viem --legacy-peer-deps)",
+      "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOmCnqEu92Fr1Mu4mxP.woff2\" -o \"Roboto-400.woff2\")",
+      "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmEU9vAw.woff2\" -o \"Roboto-500.woff2\")",
+      "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlvAw.woff2\" -o \"Roboto-700.woff2\")",
+      "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmUU9vAw.woff2\" -o \"Roboto-600.woff2\")",
+      "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmYUtvAw.woff2\" -o \"Roboto-800.woff2\")",
+      "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmcUtvAw.woff2\" -o \"Roboto-900.woff2\")",
+      "Bash(file *.woff2)",
+      "Bash(md5sum *.woff2)"
     ]
   }
 }
