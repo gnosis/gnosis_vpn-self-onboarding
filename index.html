@@ -12,5 +12,47 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Mute all audio and video elements
+      document.addEventListener('DOMContentLoaded', function() {
+        // Mute all existing audio/video elements
+        const mediaElements = document.querySelectorAll('audio, video');
+        mediaElements.forEach(el => {
+          el.muted = true;
+          el.volume = 0;
+        });
+      });
+
+      // Prevent new audio/video elements from playing sound
+      const originalAudio = window.HTMLAudioElement;
+      const originalVideo = window.HTMLVideoElement;
+
+      window.HTMLAudioElement = class extends originalAudio {
+        constructor() {
+          super();
+          this.muted = true;
+          this.volume = 0;
+        }
+      };
+
+      window.HTMLVideoElement = class extends originalVideo {
+        constructor() {
+          super();
+          this.muted = true;
+          this.volume = 0;
+        }
+      };
+
+      // Intercept audio creation via createElement
+      const originalCreateElement = document.createElement;
+      document.createElement = function(tagName, ...args) {
+        const element = originalCreateElement.call(this, tagName, ...args);
+        if (tagName.toLowerCase() === 'audio' || tagName.toLowerCase() === 'video') {
+          element.muted = true;
+          element.volume = 0;
+        }
+        return element;
+      };
+    </script>
   </body>
 </html>

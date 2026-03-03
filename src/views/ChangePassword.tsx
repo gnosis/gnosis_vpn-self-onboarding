@@ -47,8 +47,8 @@ export default function ChangePassword({ className }: ChangePasswordProps) {
       setError("New passwords do not match");
       return false;
     }
-    if (newPassword.length < 8) {
-      setError("Password must be at least 8 characters long");
+    if (newPassword.length < 6) {
+      setError("Password must be at least 6 characters long");
       return false;
     }
     return true;
