@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import ButtonGrayCta from '../components/ButtonGrayCta';
 import LogoutButton from '../components/onboarding/LogoutButton';
+import { Button } from "@mui/material";
 import { useAppStore } from '../store/appStore';
 // --- Global Styles ---
 const GlobalStyle = createGlobalStyle`
@@ -383,7 +384,47 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                 label='Onboard now'
                 onClick={() => setCurrentView('onboarding')}
               />
-              <a href="#">Privacy Policy</a>
+              <Button
+                component="a"
+                href="https://log-uploader.gnosisvpn.io/"
+                target="_blank"
+                rel="noreferrer noopener"
+                variant="text"
+                size="small"
+                sx={{
+                  fontSize: "0.85rem",
+                  color: "#333",
+                  textTransform: "none",
+                  textDecoration: "none",
+                  fontWeight: 500,
+                  "&:hover": {
+                    backgroundColor: "rgba(0, 0, 0, 0.04)",
+                  },
+                }}
+                disabled
+              >
+                Privacy Policy
+              </Button>
+              <Button
+                component="a"
+                href="https://log-uploader.gnosisvpn.io/"
+                target="_blank"
+                rel="noreferrer noopener"
+                variant="text"
+                size="small"
+                sx={{
+                  fontSize: "0.85rem",
+                  color: "#333",
+                  textTransform: "none",
+                  textDecoration: "none",
+                  fontWeight: 500,
+                  "&:hover": {
+                    backgroundColor: "rgba(0, 0, 0, 0.04)",
+                  },
+                }}
+              >
+                Upload Logs
+              </Button>
               <LogoutButton />
             </NavLinks>
           </Nav>
@@ -409,7 +450,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <h1>Atlantis</h1>
               <h2>Onboarding</h2>
               <div className='message'>
-                <img src="/images/avatar-gino-lp.png" alt="Avatar"  />
+                <img src="/images/avatar-gino-lp.png" alt="Avatar" />
                 <p>
                   Welcome {username}! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
                 </p>

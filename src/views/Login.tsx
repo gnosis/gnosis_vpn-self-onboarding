@@ -68,8 +68,12 @@ export default function Login({ className }: LoginProps) {
       if (data.jsonData) {
         setOnboardingData(data.jsonData as Parameters<typeof setOnboardingData>[0]);
       }
-      setCurrentView("landing");
       fetchFundingCode(token);
+      if (data.isFirstLogin) {
+        setCurrentView("changePassword");
+      } else {
+        setCurrentView("landing");
+      }
     } catch (error) {
       setError((error instanceof Error ? error.message : String(error)) || 'Network error occurred');
       setShowErrorModal(true);

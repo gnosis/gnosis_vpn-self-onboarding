@@ -10,7 +10,7 @@ export default function LogoutButton({ label = "Logout", sx, ...props }: LogoutB
   const resetStore = useAppStore((state) => state.resetStore);
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('gvso_authToken');
     resetStore();
     setCurrentView("login");
   };

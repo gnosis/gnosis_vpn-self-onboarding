@@ -4,6 +4,7 @@ import LoadingOverlay from './components/LoadingOverlay';
 import LandingPage from './views/LandingPage'
 import Login from './views/Login';
 import Onboarding from './views/Onboarding';
+import ChangePassword from './views/ChangePassword';
 import { fetchFundingCode } from './functions';
 
 /**
@@ -86,10 +87,11 @@ async function getJsonData(token: string): Promise<{ success: boolean; jsonData?
   }
 }
 
-export type AppView = 
-  'login' | 
+export type AppView =
+  'login' |
   'landing' |
-  'onboarding' 
+  'onboarding' |
+  'changePassword'
 ;
 
 function App() {
@@ -168,6 +170,8 @@ function App() {
         return <LandingPage />;
       case 'onboarding':
         return <Onboarding />;
+      case 'changePassword':
+        return <ChangePassword />;
       default:
         return <Login />;
     }
