@@ -62,6 +62,13 @@ interface AppStore {
   // Global loading
   isAutoLoading: boolean;
   setAutoLoading: (loading: boolean) => void;
+
+  // System specification
+  systemSpec: {
+    architecture: "x86_64" | "x86" | "arm64" | "arm" | null;
+    system: "Windows" | "macOS" | "Linux" | "Unknown" | null;
+  };
+  setSystemSpec: (architecture: "x86_64" | "x86" | "arm64" | "arm" | null, system: "Windows" | "macOS" | "Linux" | "Unknown" | null) => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -159,5 +166,12 @@ export const useAppStore = create<AppStore>()(
     // Global loading
     isAutoLoading: false,
     setAutoLoading: (loading) => set({ isAutoLoading: loading }),
+
+    // System specification
+    systemSpec: {
+      architecture: null,
+      system: null,
+    },
+    setSystemSpec: (architecture, system) => set({ systemSpec: { architecture, system } }),
   }), { name: 'AppStore' })
 );
