@@ -22,7 +22,6 @@ export default function ChangePassword({ className }: ChangePasswordProps) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const token = useAppStore((state) => state.token);
@@ -90,7 +89,6 @@ export default function ChangePassword({ className }: ChangePasswordProps) {
         return;
       }
       
-      setSuccess(true);
       setShowSuccessModal(true);
       setNewPassword("");
       setConfirmPassword("");

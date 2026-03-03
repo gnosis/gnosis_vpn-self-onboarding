@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Typography, Box } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
