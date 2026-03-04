@@ -203,7 +203,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
               color: "#333",
             }}
           >
-            If you prefer to fund it yourself, you can follow the instructions here{" "}
+            If you prefer to fund it yourself, you can follow the instructions {" "}
             <Box
               component="a"
               href="https://github.com/gnosis/gnosis_vpn/wiki#how-do-i-fund-or-top-up-my-gnosis-vpn-account"
