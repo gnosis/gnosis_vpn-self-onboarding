@@ -53,7 +53,7 @@ export default function AlreadyConnectedVideohelp({ className, lastEntry }: Alre
           ? (
             <>
               <Button label={I_NEED_MORE_HELP} onClick={() => handleAnswer(I_NEED_MORE_HELP, STEP + 0.25)} />
-              <Button label={THANKS_LABEL} onClick={() => handleAnswer(THANKS_LABEL, STEP + 1)} />
+              <Button label={THANKS_LABEL} onClick={() => handleAnswer(THANKS_LABEL, STEP + 2)} />
             </>
           )
           : null

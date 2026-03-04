@@ -41,8 +41,8 @@ export default function DidIPChange({ className, lastEntry }: DidIPChangeProps) 
       buttons={
         lastEntry ? (
           <>
-            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP + 1)} />
-            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 2)} />
+            <Button label={NO_CHANGE_LABEL} onClick={() => handleAnswer(NO_CHANGE_LABEL, STEP + 2)} />
+            <Button label={YES_LABEL} onClick={() => handleAnswer(YES_LABEL, STEP + 3)} />
           </>
         ) : null
       }

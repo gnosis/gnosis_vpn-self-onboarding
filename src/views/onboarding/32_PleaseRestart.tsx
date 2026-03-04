@@ -28,8 +28,8 @@ export default function PleaseRestart({ className, lastEntry }: PleaseRestartPro
       buttons={
         lastEntry ? (
           <>
-            <Button label={WORKING_LABEL} onClick={() => handleAnswer(WORKING_LABEL, STEP + 1)} />
             <Button label={NOT_WORKING_LABEL} onClick={() => handleAnswer(NOT_WORKING_LABEL, STEP + 0.25)} />
+            <Button label={WORKING_LABEL} onClick={() => handleAnswer(WORKING_LABEL, STEP + 1)} />
           </>
         ) : null
       }

@@ -97,11 +97,13 @@ export default function Feedback({ className }: FeedbackProps) {
             />
           </Box>
         ))}
+        <Button 
+          label="The End" 
+          loading={loading} 
+          onClick={handleTheEnd} 
+          style={{maxHeight: '52px'}}
+        />
       </Stack>
-
-      <Box sx={{ display: "flex", justifyContent: "center", pt: 2 }}>
-        <Button label="The End" loading={loading} onClick={handleTheEnd} />
-      </Box>
     </Box>
   );
 }
