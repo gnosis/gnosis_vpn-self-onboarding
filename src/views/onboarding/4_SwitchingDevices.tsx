@@ -15,7 +15,7 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
   const setSameDevice = useAppStore((state) => state.setIsSameDevice);
 
   const SAME_DEVICE_LABEL = "Same device";
-  const DIFFERENT_DEVICE_LABEL = "different device";
+  const DIFFERENT_DEVICE_LABEL = "Different device";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     setSameDevice(answer === SAME_DEVICE_LABEL);

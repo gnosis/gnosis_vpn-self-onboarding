@@ -31,17 +31,28 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
   // IP checker
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    if (isSameDevice === false) {
+      setCurrentIP(null);
+      if (timeoutId) clearTimeout(timeoutId);
+      return;
+    }
+
+
     const checkIP = async () => {
       if (isCheckingRef.current) return;
       isCheckingRef.current = true;
       const ip = await getPublicIP();
       if (ip) setCurrentIP(ip);
       isCheckingRef.current = false;
+      timeoutId = setTimeout(checkIP, 3000);
     };
+
     checkIP();
-    const interval = setInterval(checkIP, 3000);
-    return () => clearInterval(interval);
-  }, [setCurrentIP]);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [isSameDevice, setCurrentIP]);
 
   // First found IP
   useEffect(() => {
@@ -128,7 +139,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
       {/* IP Display */}
       {
-        currentIP && 
+        isSameDevice !== false && currentIP && 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Box
             sx={{

@@ -25,7 +25,7 @@ interface AppStore {
       feedback?: Record<string, string>; 
       onboardingAnswers?: Record<string, string | null>;
       isMacOs?: boolean;
-      isSameDevice?: boolean;
+      isSameDevice?: boolean | null;
     }
   ) => void;
 
@@ -47,7 +47,7 @@ interface AppStore {
 
   // Device flags
   isMacOs: boolean;
-  isSameDevice: boolean;
+  isSameDevice: boolean | null;
   setIsMacOs: (value: boolean) => void;
   setIsSameDevice: (value: boolean) => void;
 
@@ -105,7 +105,7 @@ export const useAppStore = create<AppStore>()(
         feedback: data.feedback ?? {},
         onboardingAnswers: data.onboardingAnswers ?? {},
         isMacOs: data.isMacOs ?? false,
-        isSameDevice: data.isSameDevice ?? false,
+        isSameDevice: data?.isSameDevice ?? null,
       }),
 
     // Login form
@@ -127,7 +127,7 @@ export const useAppStore = create<AppStore>()(
 
     // Device flags
     isMacOs: false,
-    isSameDevice: false,
+    isSameDevice: null,
     setIsMacOs: (value) => set({ isMacOs: value }),
     setIsSameDevice: (value) => set({ isSameDevice: value }),
 
@@ -142,7 +142,7 @@ export const useAppStore = create<AppStore>()(
       username: '',
       token: null,
       isMacOs: false,
-      isSameDevice: false,
+      isSameDevice: null,
       vpnCountry: null,
       isAutoLoading: false,
       fundingCode: null,
@@ -155,7 +155,7 @@ export const useAppStore = create<AppStore>()(
       notes: {},
       feedback: {},
       isMacOs: false,
-      isSameDevice: false,
+      isSameDevice: null,
       isAutoLoading: false,
     }),
 
