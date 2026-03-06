@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
+import VideoPlaceholder from "../../components/VideoPlaceholder";
 import { useAppStore } from "../../store/appStore";
 
 const STEP = 14;
@@ -13,6 +14,7 @@ interface RunGnosisVPNVideohelpProps {
 export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosisVPNVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const macOS = useAppStore((state) => state.isMacOs);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Done it!";
@@ -29,7 +31,7 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
       title="Video support"
       text={
         <>
-          {/* <Typography
+          <Typography
             variant="body1"
             sx={{
               fontSize: "0.95rem",
@@ -39,10 +41,11 @@ export default function RunGnosisVPNVideohelp({ className, lastEntry }: RunGnosi
             }}
           >
             No problem! Just follow the video below and you should get back on track.
-          </Typography> */}
-          {/* <VideoPlaceholder 
+          </Typography>
+          <VideoPlaceholder 
             title="Run Gnosis VPN"
-          /> */}
+            videoUrl= {macOS ? "./videos/MacOS/Launch_Run_MacOS_FHD.webm" : "./videos/Linux/gnosis_vpn_launch_Linux.webm"}
+          />
           <Typography
             variant="body1"
             sx={{
