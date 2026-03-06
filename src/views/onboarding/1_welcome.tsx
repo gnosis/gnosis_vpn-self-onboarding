@@ -36,7 +36,8 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-            Welcome, {username || "datanaut"} to the Datanaut program. <br/>We’re on a mission to reduce how much data you leak online.
+            Welcome, {username || "datanaut"} to the Datanaut program. <br/>
+            We’re on a mission to reduce how much data you leak online.
           </Typography>
 
           <Typography
@@ -58,7 +59,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
               color: "#333",
             }}
           >
-           To help us improve the experience, please follow each step in this guide in order. We’re testing clarity and flow, so skipping ahead can affect the results.
+           To help us improve the experience, <strong>please follow each step in this guide in order.</strong> We’re testing clarity and flow, so skipping ahead can affect the results.
           </Typography>
 
           <Typography

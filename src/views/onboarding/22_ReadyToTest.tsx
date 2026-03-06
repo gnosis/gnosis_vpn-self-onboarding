@@ -37,7 +37,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
               color: "#333",
             }}
           >
-            It’s now opening channels and completing final background steps. So please don’t connect the VPN yet.
+            It’s now opening channels and completing final background steps. <strong>So please don’t connect the VPN yet.</strong>
           </Typography>
           <Typography
             variant="body1"

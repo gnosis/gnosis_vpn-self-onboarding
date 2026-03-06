@@ -38,7 +38,7 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
               color: "#333",
             }}
           >
-            You can use this onboarding tool on any device. However, Gnosis VPN must be set up on a desktop device.
+            You can use this onboarding tool on any device. <strong>However, Gnosis VPN must be set up on a desktop device.</strong>
           </Typography>
           <Typography
             variant="body1"
