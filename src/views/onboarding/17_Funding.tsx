@@ -235,7 +235,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 3.25)} />
             <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 4)} />
           </>
         ) : null
