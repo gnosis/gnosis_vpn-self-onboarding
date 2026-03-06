@@ -226,7 +226,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
                   color: "#333",
                 }}
               >
-                After funding, the node needs a few minutes to sync. This is normal, nothing is broken. Please note the time when syncing starts and let me know how long it took.
+                <strong>After funding, the node needs a few minutes to sync. This is normal, nothing is broken. Please note the time when syncing starts and let me know how long it took.</strong>
               </Typography>
 
           </Typography>
