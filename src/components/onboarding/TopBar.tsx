@@ -83,10 +83,10 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
     console.log(JSON.stringify({ onboardingStep, currentIP, lastIp, lastIPIsVpn, isVpnIp }));
 
-    if(onboardingStep >= 33 && onboardingStep < 43) {
+    if(onboardingStep >= 33 && onboardingStep < 43 && onboardingStep % 1 === 0) {
       if (!isVpnIp && onboardingStep % 1 === 0) {
         saveAnswer(`${onboardingStep}_STEP`, 'I disconnected from the VPN');
-        setOnboardingStep(onboardingStep + 0.95);
+        setOnboardingStep(parseFloat((onboardingStep + 0.95).toFixed(2)));
         setVpnWasConnected(true);
       } 
     }

@@ -176,7 +176,10 @@ export async function getPublicIP(): Promise<string | null> {
   for (let i = 0; i < len; i++) {
     const url = IP_CHECK_URLS[(ipCheckIndex + i) % len];
     try {
-      const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(5000),
+        cache: "no-store",
+      });
       if (response.ok) {
         const text = await response.text();
         const ip = extractIP(text);
