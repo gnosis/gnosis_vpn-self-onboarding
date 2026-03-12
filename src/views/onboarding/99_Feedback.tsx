@@ -126,7 +126,12 @@ export default function Feedback({ className }: FeedbackProps) {
       {/* Thank You Popup */}
       <Dialog
         open={showThankYou}
-        onClose={handleCloseDialog}
+        onClose={(_event, reason) => {
+          if (reason === "backdropClick" || reason === "escapeKeyDown") {
+            return;
+          }
+          handleCloseDialog();
+        }}
         aria-labelledby="thank-you-dialog-title"
         aria-describedby="thank-you-dialog-description"
         PaperProps={{
