@@ -45,6 +45,7 @@ import TryDifferentExitNode from "./43_TryDifferentExitNode";
 import WrapUp from "./44_WrapUp";
 import Summary from "./98_summary";
 import Feedback from "./99_Feedback";
+import ThankYou from "./100_ThankYou";
 
 export const STEP_NAMES: Record<number, string> = {
   1: "Welcome",
@@ -92,7 +93,8 @@ export const STEP_NAMES: Record<number, string> = {
   43: "Try Different Exit Node",
   44: "Wrap Up",
   98: "Summary",
-  99: "Feedback Form"
+  99: "Feedback Form",
+  100: "Thank You"
 };
 
 export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
@@ -141,5 +143,6 @@ export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   43: TryDifferentExitNode,
   44: WrapUp,
   98: Summary,
-  99: Feedback
+  99: Feedback,
+  100: ThankYou
 };

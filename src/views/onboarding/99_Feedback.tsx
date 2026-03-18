@@ -18,7 +18,7 @@ export default function Feedback({ className }: FeedbackProps) {
   const isMacOs = useAppStore((state) => state.isMacOs);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const saveFeedback = useAppStore((state) => state.saveFeedback);
-  const resetStore = useAppStore((state) => state.resetStore);
+  const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const [loading, setLoading] = useState(false);
   
 
@@ -34,7 +34,7 @@ export default function Feedback({ className }: FeedbackProps) {
     setLoading(true);
     await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice });
     localStorage.removeItem('gvso_authToken');
-    resetStore();
+    setOnboardingStep(100);
   };
 
   return (
