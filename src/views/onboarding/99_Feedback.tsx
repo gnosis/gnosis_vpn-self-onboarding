@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Box, TextField, Typography, Stack } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Typography,
+  Stack,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button as MuiButton
+} from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import { useAppStore } from "../../store/appStore";
 import { uploadData } from "../../functions";
@@ -19,8 +30,9 @@ export default function Feedback({ className }: FeedbackProps) {
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const saveFeedback = useAppStore((state) => state.saveFeedback);
   const resetStore = useAppStore((state) => state.resetStore);
+
   const [loading, setLoading] = useState(false);
-  
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const questions = [
     { key: "feel", label: "How did the product feel to use?" },
@@ -33,6 +45,12 @@ export default function Feedback({ className }: FeedbackProps) {
   const handleTheEnd = async () => {
     setLoading(true);
     await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice });
+    setLoading(false);
+    setShowThankYou(true);
+  };
+
+  const handleCloseDialog = () => {
+    setShowThankYou(false);
     localStorage.removeItem('gvso_authToken');
     resetStore();
   };
@@ -97,13 +115,44 @@ export default function Feedback({ className }: FeedbackProps) {
             />
           </Box>
         ))}
-        <Button 
-          label="The End" 
-          loading={loading} 
-          onClick={handleTheEnd} 
+        <Button
+          label="The End"
+          loading={loading}
+          onClick={handleTheEnd}
           style={{maxHeight: '52px'}}
         />
       </Stack>
+
+      {/* Thank You Popup */}
+      <Dialog
+        open={showThankYou}
+        onClose={(_event, reason) => {
+          if (reason === "backdropClick" || reason === "escapeKeyDown") {
+            return;
+          }
+          handleCloseDialog();
+        }}
+        aria-labelledby="thank-you-dialog-title"
+        aria-describedby="thank-you-dialog-description"
+        PaperProps={{
+          sx: { p: 1, borderRadius: 2 }
+        }}
+      >
+        <DialogTitle id="thank-you-dialog-title" sx={{ fontWeight: 700 }}>
+          You made it to the end!
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="thank-you-dialog-description" sx={{ color: "text.primary" }}>
+            Thank you for completing the onboarding and helping test this release.
+            Your time and feedback help us improve the VPN and make it better for everyone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <MuiButton onClick={handleCloseDialog} variant="contained" disableElevation>
+            Close
+          </MuiButton>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

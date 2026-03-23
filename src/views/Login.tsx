@@ -82,7 +82,7 @@ export default function Login({ className }: LoginProps) {
     }
   }
 
-  
+
 
   return (
     <Container className={`Login${className ? ` ${className}` : ""}`} maxWidth={false}>
@@ -163,54 +163,8 @@ export default function Login({ className }: LoginProps) {
                 lineHeight: 1.4,
               }}
             >
-              Please read our privacy policy to understand how we're keeping
-              this experience private.
+              We're committed to making onboarding as private as possible
             </Typography>
-
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: 600,
-                mb: { xs: 0.75, sm: 1, md: 1 },
-                fontSize: "0.85rem",
-              }}
-            >
-              In brief:
-            </Typography>
-
-            <Box
-              component="ul"
-              sx={{
-                pl: { xs: 1.5, sm: 2, md: 2 },
-                m: 0,
-                mb: { xs: 1, sm: 1.25, md: 1.5 },
-              }}
-            >
-              <Typography
-                component="li"
-                variant="body2"
-                sx={{
-                  mb: { xs: 0.6, sm: 0.8, md: 0.8 },
-                  fontSize: "0.8rem",
-                  lineHeight: 1.4,
-                }}
-              >
-                <strong>"Share minimal data"</strong> will let you store login,
-                easily switch devices, and resume your session. You can contact
-                support and submit feedback through this tool.
-              </Typography>
-              <Typography
-                component="li"
-                variant="body2"
-                sx={{
-                  fontSize: "0.8rem",
-                  lineHeight: 1.4,
-                }}
-              >
-                If you choose to stay anonymous, data will only be stored
-                locally, including your feedback.
-              </Typography>
-            </Box>
 
             <Typography
               variant="body2"
@@ -219,8 +173,10 @@ export default function Login({ className }: LoginProps) {
                 lineHeight: 1.4,
               }}
             >
-              We respect your choice, but if you'd be willing to share minimal
-              data with us it would greatly help the development process.
+              This tool will help you onboard to Gnosis VPN.
+              To do so, we'll need to store minimal data which will let you resume your session, switch devices, contact support and submit feedback.
+              This data will only be used to facilitate the onboarding and testing process.
+              Although the onboarding uses your IP address to test connectivity, it is not sent to us or stored.
             </Typography>
           </Paper>
 
@@ -231,11 +187,7 @@ export default function Login({ className }: LoginProps) {
             sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}
           >
             <Button
-              label="Stay anonymous"
-              disabled
-            />
-            <Button
-              label="Share minimal data"
+              label="I understand. Log me in!"
               loading={loading}
               onClick={() => loginUser(username, password)}
             />
