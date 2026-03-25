@@ -13,12 +13,13 @@ export default function ChooseExitNode({ className, lastEntry }: ChooseExitNodeP
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const DONE_LABEL = "That's done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("26_ChooseExitNode", answer);
+    saveAnswer(`26_ChooseExitNode_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

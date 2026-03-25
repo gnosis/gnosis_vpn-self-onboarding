@@ -20,10 +20,10 @@ interface OnboardingProps {
 export default function Onboarding({ className }: OnboardingProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const stepLog = useAppStore((state) => state.stepLog);
-  const notes = useAppStore((state) => state.notes);
-  const previousNotes = useAppStore((state) => state.previousNotes);
   const feedback = useAppStore((state) => state.feedback);
+  const survey = useAppStore((state) => state.survey);
   const token = useAppStore((state) => state.token);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const numberOfSteps = Object.keys(STEP_COMPONENTS).length;
@@ -75,7 +75,7 @@ export default function Onboarding({ className }: OnboardingProps) {
     }
 
     debounceTimerRef.current = setTimeout(() => {
-      uploadData(token, { onboardingStep, stepLog, notes, previousNotes, feedback, onboardingAnswers, isMacOs, isSameDevice });
+      uploadData(token, { exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice });
     }, 4000);
 
     return () => {
@@ -83,7 +83,7 @@ export default function Onboarding({ className }: OnboardingProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [onboardingStep, stepLog, notes, previousNotes, feedback, onboardingAnswers, isMacOs, isSameDevice]);
+  }, [exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice]);
 
   useEffect(() => {
       console.log(JSON.stringify({ stepLog }, null, 2));
@@ -108,19 +108,22 @@ export default function Onboarding({ className }: OnboardingProps) {
           }}
         >
           {/* Completed steps from stepLog */}
-          {stepLog.map((entry, i) => {
+          {stepLog.map((entry, mN) => {
             const [key, answer] = entry.split(':');
             if (!key) return null;
             if (key.startsWith("X")) {
-              const step = parseFloat(key.split('_')[0].substring(1));
+              const stepData = key.split('_');
+              const step = parseFloat(stepData[0].substring(1));
+              const exitNodeIteration = stepData.length > 2 ? parseInt(stepData[2]) : 0;
+
               return (
-                <Fragment key={`${key}-${i}`}>
-                  { Math.round((step % 1) * 100) / 100 === 0.1 && <X_ConnectedTooEarly onboardingStep={step} />}
-                  { Math.round((step % 1) * 100) / 100 === 0.25 && <X_WhatCanIHelpYouWith onboardingStep={step} />}
-                  { Math.round((step % 1) * 100) / 100 === 0.5 && <X_KeepAnEye onboardingStep={step} />}
-                  { Math.round((step % 1) * 100) / 100 === 0.75 && <X_iCal onboardingStep={step} />}
-                  { Math.round((step % 1) * 100) / 100 === 0.9 && <X_YouAreConnected onboardingStep={step} /> }
-                  { Math.round((step % 1) * 100) / 100 === 0.95 && <X_YouWereDisconnected onboardingStep={step} /> }
+                <Fragment key={`${key}-${mN}`}>
+                  { Math.round((step % 1) * 100) / 100 === 0.1 && <X_ConnectedTooEarly onboardingStep={step} messageNumber={mN} exitNodeIteration={exitNodeIteration} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.25 && <X_WhatCanIHelpYouWith onboardingStep={step} messageNumber={mN} exitNodeIteration={exitNodeIteration} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.5 && <X_KeepAnEye onboardingStep={step} messageNumber={mN} exitNodeIteration={exitNodeIteration} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.75 && <X_iCal onboardingStep={step} messageNumber={mN} exitNodeIteration={exitNodeIteration} />}
+                  { Math.round((step % 1) * 100) / 100 === 0.9 && <X_YouAreConnected onboardingStep={step} messageNumber={mN} exitNodeIteration={exitNodeIteration} /> }
+                  { Math.round((step % 1) * 100) / 100 === 0.95 && <X_YouWereDisconnected onboardingStep={step} messageNumber={mN} exitNodeIteration={exitNodeIteration} /> }
                   { answer && <MessageBubble text={answer} /> }
                 </Fragment>
               ); 
@@ -130,21 +133,21 @@ export default function Onboarding({ className }: OnboardingProps) {
             const Component = STEP_COMPONENTS[stepNum];
             if (!Component) return null;
             return (
-              <Fragment key={`${key}-${i}`}>
-                <Component />
+              <Fragment key={`${key}-${mN}`}>
+                <Component messageNumber={mN} exitNodeIteration={exitNodeIteration}/>
                 { answer && <MessageBubble text={answer} /> }
               </Fragment>
             );
           })}
 
           {/* Current active step */}
-          {onboardingStep % 1 === 0 && CurrentComponent && <CurrentComponent lastEntry={true} />}
-          {Math.round((onboardingStep % 1) * 100) / 100 === 0.1 && <X_ConnectedTooEarly lastEntry={true} />}
-          {Math.round((onboardingStep % 1) * 100) / 100 === 0.25 && <X_WhatCanIHelpYouWith lastEntry={true} />}
-          {Math.round((onboardingStep % 1) * 100) / 100 === 0.5 && <X_KeepAnEye lastEntry={true} />}
-          {Math.round((onboardingStep % 1) * 100) / 100 === 0.75 && <X_iCal lastEntry={true} />}
-          {Math.round((onboardingStep % 1) * 100) / 100 === 0.9 && <X_YouAreConnected lastEntry={true} /> }
-          {Math.round((onboardingStep % 1) * 100) / 100 === 0.95 && <X_YouWereDisconnected lastEntry={true} /> }
+          {onboardingStep % 1 === 0 && CurrentComponent && <CurrentComponent lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.1 && <X_ConnectedTooEarly lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.25 && <X_WhatCanIHelpYouWith lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.5 && <X_KeepAnEye lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.75 && <X_iCal lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.9 && <X_YouAreConnected lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} />}
+          {Math.round((onboardingStep % 1) * 100) / 100 === 0.95 && <X_YouWereDisconnected lastEntry={true} messageNumber={stepLog.length} exitNodeIteration={exitNodeIteration} /> }
 
         </Box>
       </Container>

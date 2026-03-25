@@ -22,14 +22,14 @@ interface FeedbackProps {
 export default function Feedback({ className }: FeedbackProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const stepLog = useAppStore((state) => state.stepLog);
-  const notes = useAppStore((state) => state.notes);
-  const previousNotes = useAppStore((state) => state.previousNotes);
   const feedback = useAppStore((state) => state.feedback);
+  const survey = useAppStore((state) => state.survey);
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const token = useAppStore((state) => state.token);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const isMacOs = useAppStore((state) => state.isMacOs);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
-  const saveFeedback = useAppStore((state) => state.saveFeedback);
+  const saveSurvey = useAppStore((state) => state.saveSurvey);
   const resetStore = useAppStore((state) => state.resetStore);
 
   const [loading, setLoading] = useState(false);
@@ -45,7 +45,7 @@ export default function Feedback({ className }: FeedbackProps) {
 
   const handleTheEnd = async () => {
     setLoading(true);
-    await uploadData(token, { onboardingStep, stepLog, notes, previousNotes, feedback, onboardingAnswers, isMacOs, isSameDevice });
+    await uploadData(token, { exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice });
     setLoading(false);
     setShowThankYou(true);
   };
@@ -103,8 +103,8 @@ export default function Feedback({ className }: FeedbackProps) {
               fullWidth
               multiline
               rows={3}
-              value={feedback[question.key] || ""}
-              onChange={(e) => saveFeedback(question.key, e.target.value)}
+              value={survey[question.key] || ""}
+              onChange={(e) => saveSurvey(question.key, e.target.value)}
               placeholder="Your answer..."
               variant="outlined"
               sx={{

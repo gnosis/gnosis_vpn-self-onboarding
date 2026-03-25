@@ -13,12 +13,13 @@ interface CheckIPAgainProps {
 export default function CheckIPAgain({ className, lastEntry }: CheckIPAgainProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need help";
   const DONE_LABEL = "Done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("29_CheckIPAgain", answer);
+    saveAnswer(`29_CheckIPAgain_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

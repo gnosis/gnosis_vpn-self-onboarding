@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
+import { TRY_AGAIN_STEP } from "../../functions";
 
 const STEP = 43;
 
@@ -13,18 +14,19 @@ interface TryDifferentExitNodeProps {
 export default function TryDifferentExitNode({ className, lastEntry }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const onboardNewExitNode = useAppStore((state) => state.onboardNewExitNode);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
+  const setExitNodeIteration = useAppStore((state) => state.setExitNodeIteration);
 
   const WRAP_UP_LABEL = "Let's wrap up";
   const TRY_AGAIN_LABEL = "Let's do that";
 
   const handleTryAgain = () => {
-    handleAnswer(TRY_AGAIN_LABEL, 28);
-    onboardNewExitNode();
+    handleAnswer(TRY_AGAIN_LABEL, TRY_AGAIN_STEP);
+    setExitNodeIteration();
   };
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("43_TryDifferentExitNode", answer);
+    saveAnswer(`43_TryDifferentExitNode_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

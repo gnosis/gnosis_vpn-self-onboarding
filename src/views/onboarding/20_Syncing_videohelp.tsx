@@ -14,12 +14,13 @@ interface SyncingVideohelpProps {
 export default function SyncingVideohelp({ className, lastEntry }: SyncingVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("20_Syncing_videohelp", answer);
+    saveAnswer(`20_Syncing_videohelp_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

@@ -13,12 +13,13 @@ interface CheckIPThirdTimeProps {
 export default function CheckIPThirdTime({ className, lastEntry }: CheckIPThirdTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const SAME_LABEL = "It's the same as last time";
   const WRONG_LABEL = "Something's gone wrong";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("36_CheckIPThirdTime", answer);
+    saveAnswer(`36_CheckIPThirdTime_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

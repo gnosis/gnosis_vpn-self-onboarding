@@ -7,17 +7,20 @@ interface YouAreConnectedProps {
   className?: string;
   lastEntry?: boolean;
   onboardingStep?: number;
+  messageNumber?: number;
+  exitNodeIteration?: number;
 }
 
 export default function YouAreConnected({ className, lastEntry, onboardingStep }: YouAreConnectedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const currentOnboardingStep = useAppStore((state) => state.onboardingStep);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const stepToUse = onboardingStep || currentOnboardingStep;
 
   const CONTINUE_LABEL = "Continue";
 
-  const STEP_KEY = `X${stepToUse}_YouAreConnected`;
+  const STEP_KEY = `X${stepToUse}_YouAreConnected_${exitNodeIteration}`;
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(STEP_KEY, answer);

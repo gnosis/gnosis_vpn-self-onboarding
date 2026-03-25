@@ -5,87 +5,7 @@ import LandingPage from './views/LandingPage'
 import Login from './views/Login';
 import Onboarding from './views/Onboarding';
 import ChangePassword from './views/ChangePassword';
-import { fetchFundingCode } from './functions';
-
-/**
- * Decode JWT and get expiry time
- */
-function getTokenExpiry(token: string): number | null {
-  try {
-    const parts = token.split('.');
-    if (parts.length !== 3) return null;
-    const payload = JSON.parse(atob(parts[1]));
-    return payload.exp ? payload.exp * 1000 : null;
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Refresh JWT token
- */
-async function refreshToken(token: string): Promise<{ success: boolean; token?: string; error?: string }> {
-  try {
-    const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/refresh-token`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return {
-        success: false,
-        error: errorData.error || `HTTP Error: ${response.status}`,
-      };
-    }
-
-    const data = await response.json();
-    return {
-      success: true,
-      token: data.token,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Network error occurred',
-    };
-  }
-}
-
-/**
- * Get JSON data using JWT token
- */
-async function getJsonData(token: string): Promise<{ success: boolean; jsonData?: object; error?: string }> {
-  try {
-    const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/getJsonData`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return {
-        success: false,
-        error: errorData.error || `HTTP Error: ${response.status}`,
-      };
-    }
-
-    const data = await response.json();
-    return {
-      success: true,
-      jsonData: data.jsonData,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Network error occurred',
-    };
-  }
-}
+import { fetchFundingCode, getTokenExpiry, refreshToken, getJsonData } from './functions';
 
 export type AppView =
   'login' |
@@ -123,7 +43,8 @@ function App() {
         const jsonDataResult = await getJsonData(result.token);
         if (jsonDataResult.success && jsonDataResult.jsonData) {
           console.log('User JSON data:', jsonDataResult.jsonData);
-          setOnboardingData(jsonDataResult.jsonData as Parameters<typeof setOnboardingData>[0]);
+          const jsonData = jsonDataResult.jsonData as Record<string, unknown>;
+          setOnboardingData(jsonData as Parameters<typeof setOnboardingData>[0]);
         }
 
         setCurrentView('landing');

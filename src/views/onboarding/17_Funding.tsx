@@ -47,6 +47,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const fundingCode = useAppStore((state) => state.fundingCode);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const [vpnAddress, setVpnAddress] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -56,7 +57,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
   const FUNDED_LABEL = "It's funded";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("17_Funding", answer);
+    saveAnswer(`17_Funding_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

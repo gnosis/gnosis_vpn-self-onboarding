@@ -13,6 +13,7 @@ export default function OS({ className, lastEntry }: OSProps) {
     const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
     const saveAnswer = useAppStore((state) => state.saveAnswer);
     const setIsMacOs = useAppStore((state) => state.setIsMacOs);
+    const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
     const LINUX_LABEL = "Linux";
     const MACOS_LABEL = "Mac OS";
@@ -21,7 +22,7 @@ export default function OS({ className, lastEntry }: OSProps) {
         if(answer === MACOS_LABEL) {
             setIsMacOs(true);
         }
-        saveAnswer("8_os", answer);
+        saveAnswer(`8_os_${exitNodeIteration}`, answer);
         setOnboardingStep(nextStep);
     };
 

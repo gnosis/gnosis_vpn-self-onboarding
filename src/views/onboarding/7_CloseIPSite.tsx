@@ -12,12 +12,13 @@ interface CloseIPSiteProps {
 export default function CloseIPSite({ className, lastEntry }: CloseIPSiteProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need help";
   const DONE_LABEL = "Done";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("7_CloseIPSite", answer);
+    saveAnswer(`7_CloseIPSite_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

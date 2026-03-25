@@ -28,11 +28,12 @@ const STEP = 98;
 const CONTINUE_LABEL = "Continue";
 
 export default function Summary({ className, lastEntry }: SummaryProps) {
-  const notes = useAppStore((state) => state.notes);
+  const feedback = useAppStore((state) => state.feedback);
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
-  const summaryItems: SummaryItem[] = Object.entries(notes)
+  const summaryItems: SummaryItem[] = Object.entries(feedback)
     .map(([stepKey, note]) => {
       if (!stepKey || !note) return null;
       const stepNum = parseInt(stepKey.replace('X',''));
@@ -42,7 +43,7 @@ export default function Summary({ className, lastEntry }: SummaryProps) {
     .filter((item): item is SummaryItem => item !== null);
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("98_summary", answer);
+    saveAnswer(`98_summary_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

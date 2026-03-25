@@ -19,12 +19,13 @@ export default function Download({ className, lastEntry }: DownloadProps) {
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const setSystemSpec = useAppStore((state) => state.setSystemSpec);
   const systemSpec = useAppStore((state) => state.systemSpec);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const DOWNLOADED_LABEL = "Downloaded!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("9_download", answer);
+    saveAnswer(`9_download_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

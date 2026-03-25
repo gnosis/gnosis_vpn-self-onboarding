@@ -12,12 +12,13 @@ interface DidIPChangeLastProps {
 export default function DidIPChangeLast({ className, lastEntry }: DidIPChangeLastProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const WRONG_LABEL = "Something went wrong";
   const SAME_LABEL = "It's the same as last time";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("42_DidIPChangeLast", answer);
+    saveAnswer(`42_DidIPChangeLast_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

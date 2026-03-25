@@ -5,21 +5,25 @@ import { useAppStore } from "../store/appStore";
 interface FeedbackSectionProps {
   stepKey: string;
   label?: string;
+  disabled?: boolean;
 }
 
 export default function FeedbackSection({
   stepKey,
   label = "Share any blockers, questions, or notes for this step.",
+  disabled = false,
 }: FeedbackSectionProps) {
-  const [feedback, setFeedback] = useState("");
-  const saveNote = useAppStore((state) => state.saveNote);
-  const notes = useAppStore((state) => state.notes);
+  const [localValue, setLocalValue] = useState("");
+  const saveFeedback = useAppStore((state) => state.saveFeedback);
+  const feedback = useAppStore((state) => state.feedback);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
-    setFeedback(value);
-    saveNote(stepKey, value);
+    setLocalValue(value);
+    saveFeedback(stepKey, value);
   };
+
+  const displayValue = localValue || feedback[stepKey] || "";
 
   return (
     <Box
@@ -45,11 +49,12 @@ export default function FeedbackSection({
         fullWidth
         multiline
         rows={3}
-        placeholder="Your feedback..."
+        placeholder={"Your feedback..."}
         variant="outlined"
         size="small"
-        value={feedback || notes[stepKey] || ""}
+        value={displayValue}
         onChange={handleChange}
+        disabled={disabled}
         sx={{
           "& .MuiOutlinedInput-root": {
             fontSize: "0.9rem",

@@ -2,30 +2,34 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import type { AppView } from '../App';
 
+export const STORE_VERSION = 2;
+
 interface AppStore {
   // Navigation
   currentView: AppView;
   setCurrentView: (view: AppView) => void;
 
   // Onboarding
+  messageNumber: number;
+  exitNodeIteration: number;
   onboardingStep: number;
   setOnboardingStep: (step: number) => void;
+  setExitNodeIteration: (exitNodeIteration?: number) => void;
   onboardingAnswers: Record<string, string | null>;
   saveAnswer: (stepKey: string, answer: string) => void;
-  notes: Record<string, string>;
-  previousNotes: Record<string, string>[];
-  saveNote: (stepKey: string, note: string) => void;
+  feedback: Record<string, string>;
+  saveFeedback: (stepKey: string, value: string) => void;
   onboardNewExitNode: () => void;
   stepLog: string[];
-  feedback: Record<string, string>;
-  saveFeedback: (key: string, value: string) => void;
-  setOnboardingData: (data: 
-    { 
-      onboardingStep?: number; 
-      stepLog?: string[]; 
-      notes?: Record<string, string>; 
-      previousNotes?: Record<string, string>[];
-      feedback?: Record<string, string>; 
+  survey: Record<string, string>;
+  saveSurvey: (key: string, value: string) => void;
+  setOnboardingData: (data:
+    {
+      exitNodeIteration?: number;
+      onboardingStep?: number;
+      stepLog?: string[];
+      feedback?: Record<string, string>;
+      survey?: Record<string, string>;
       onboardingAnswers?: Record<string, string | null>;
       isMacOs?: boolean;
       isSameDevice?: boolean | null;
@@ -81,8 +85,18 @@ export const useAppStore = create<AppStore>()(
     setCurrentView: (view) => set({ currentView: view }),
 
     // Onboarding
+    messageNumber: 0,
+    exitNodeIteration: 0,
     onboardingStep: 1,
-    setOnboardingStep: (step) => set({ onboardingStep: step }),
+    setOnboardingStep: (step) => 
+      set((state) => ({ 
+        onboardingStep: step,
+        messageNumber: state.messageNumber + 1,
+      })),
+    setExitNodeIteration: (exitNodeIteration) =>
+      set((state) => ({ 
+        exitNodeIteration: exitNodeIteration !== undefined ? exitNodeIteration : state.exitNodeIteration + 1,
+      })),
     onboardingAnswers: {},
     stepLog: [],
     saveAnswer: (stepKey, answer) =>
@@ -90,24 +104,23 @@ export const useAppStore = create<AppStore>()(
         onboardingAnswers: { ...state.onboardingAnswers, [stepKey]: answer },
         stepLog: [...state.stepLog, `${stepKey}:${answer}`],
       })),
-    notes: {},
-    previousNotes: [],
-    saveNote: (stepKey, note) =>
-      set((state) => ({
-        notes: { ...state.notes, [stepKey]: note },
-      })),
     feedback: {},
-    saveFeedback: (key, value) =>
+    saveFeedback: (stepKey, value) =>
       set((state) => ({
-        feedback: { ...state.feedback, [key]: value },
+        feedback: { ...state.feedback, [stepKey]: value },
+      })),
+    survey: {},
+    saveSurvey: (key, value) =>
+      set((state) => ({
+        survey: { ...state.survey, [key]: value },
       })),
     setOnboardingData: (data) =>
       set({
+        exitNodeIteration: data.exitNodeIteration ?? 0,
         onboardingStep: data.onboardingStep ?? 1,
         stepLog: data.stepLog ?? [],
-        notes: data.notes ?? {},
-        previousNotes: data.previousNotes ?? [],
         feedback: data.feedback ?? {},
+        survey: data.survey ?? {},
         onboardingAnswers: data.onboardingAnswers ?? {},
         isMacOs: data.isMacOs ?? false,
         isSameDevice: data?.isSameDevice ?? null,
@@ -136,21 +149,15 @@ export const useAppStore = create<AppStore>()(
     setIsMacOs: (value) => set({ isMacOs: value }),
     setIsSameDevice: (value) => set({ isSameDevice: value }),
 
-    // prepare for next exit node selection
-    onboardNewExitNode: () => set((state) => ({
-      previousNotes: [...state.previousNotes, state.notes],
-      notes: {},
-    })),
-
     // Reset store
     resetStore: () => set({
       currentView: 'login',
+      exitNodeIteration: 0,
       onboardingStep: 1,
       onboardingAnswers: {},
       stepLog: [],
-      notes: {},
-      previousNotes: [],
       feedback: {},
+      survey: {},
       username: '',
       token: null,
       isMacOs: false,
@@ -162,11 +169,11 @@ export const useAppStore = create<AppStore>()(
 
     resetOnboarding: () => set({
       onboardingStep: 1,
+      exitNodeIteration: 0,
       onboardingAnswers: {},
       stepLog: [],
-      notes: {},
-      previousNotes: [],
       feedback: {},
+      survey: {},
       isMacOs: false,
       isSameDevice: null,
       isAutoLoading: false,

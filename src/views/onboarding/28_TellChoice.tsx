@@ -15,9 +15,10 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("28_TellChoice", answer);
+    saveAnswer(`28_TellChoice_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

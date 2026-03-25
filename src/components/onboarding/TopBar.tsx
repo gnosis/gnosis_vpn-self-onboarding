@@ -22,6 +22,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const token = useAppStore((state) => state.token);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const ipColor = isVpn ? "#2e7d32" : "#e53935";
   const [lastIPIsVpn, setLastIPIsVpn] = useState<boolean | null>(null);
   const [lastIp, setLastIp] = useState<string | null>(null);
@@ -72,12 +73,12 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
     if(isVpnIp && onboardingStep < 25 && Math.round((onboardingStep % 1) * 100) / 100 !== 0.1) {
       console.log("Connected too early", onboardingStep);
-      saveAnswer(`${onboardingStep}_STEP`, `I connected too early to the VPN${vpnCountry ? ` (${vpnCountry})` : ''}`);
+      saveAnswer(`${onboardingStep}_STEP_${exitNodeIteration}`, `I connected too early to the VPN${vpnCountry ? ` (${vpnCountry})` : ''}`);
       setOnboardingStep(33);
     } 
 
     if (!isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.1) {
-      saveAnswer(`X${onboardingStep}_STEP`, 'Disconnected');
+      saveAnswer(`X${onboardingStep}_STEP_${exitNodeIteration}`, 'Disconnected');
       setOnboardingStep(onboardingStep - 0.1);
     }
 
@@ -85,14 +86,14 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
     if(onboardingStep >= 33 && onboardingStep < 43 && onboardingStep % 1 === 0) {
       if (!isVpnIp && onboardingStep % 1 === 0) {
-        saveAnswer(`${onboardingStep}_STEP`, 'I disconnected from the VPN');
+        saveAnswer(`${onboardingStep}_STEP_${exitNodeIteration}`, 'I disconnected from the VPN');
         setOnboardingStep(parseFloat((onboardingStep + 0.95).toFixed(2)));
         setVpnWasConnected(true);
       } 
     }
 
     if (onboardingStep > 33 && isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.95) {
-      saveAnswer(`X${onboardingStep}_STEP`, `I connected to the VPN again ${vpnCountry ? `(${vpnCountry})` : ''}`);
+      saveAnswer(`X${onboardingStep}_STEP_${exitNodeIteration}`, `I connected to the VPN again ${vpnCountry ? `(${vpnCountry})` : ''}`);
       setOnboardingStep(parseInt(onboardingStep.toString()));
     }
 

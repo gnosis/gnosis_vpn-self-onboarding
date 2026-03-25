@@ -13,11 +13,12 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const username = useAppStore((state) => state.username);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const START_ONBOARDING_LABEL = "Start onboarding";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("1_welcome", answer);
+    saveAnswer(`1_welcome_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 
