@@ -23,6 +23,7 @@ export default function Feedback({ className }: FeedbackProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const stepLog = useAppStore((state) => state.stepLog);
   const notes = useAppStore((state) => state.notes);
+  const previousNotes = useAppStore((state) => state.previousNotes);
   const feedback = useAppStore((state) => state.feedback);
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
   const token = useAppStore((state) => state.token);
@@ -44,7 +45,7 @@ export default function Feedback({ className }: FeedbackProps) {
 
   const handleTheEnd = async () => {
     setLoading(true);
-    await uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice });
+    await uploadData(token, { onboardingStep, stepLog, notes, previousNotes, feedback, onboardingAnswers, isMacOs, isSameDevice });
     setLoading(false);
     setShowThankYou(true);
   };

@@ -98,6 +98,7 @@ export async function uploadData(
     onboardingStep?: number;
     stepLog?: string[];
     notes?: Record<string, string>;
+    previousNotes?: Record<string, string>[];
     feedback?: Record<string, string>;
     onboardingAnswers?: Record<string, string | null>;
     isMacOs?: boolean;

@@ -13,7 +13,9 @@ interface AppStore {
   onboardingAnswers: Record<string, string | null>;
   saveAnswer: (stepKey: string, answer: string) => void;
   notes: Record<string, string>;
+  previousNotes: Record<string, string>[];
   saveNote: (stepKey: string, note: string) => void;
+  onboardNewExitNode: () => void;
   stepLog: string[];
   feedback: Record<string, string>;
   saveFeedback: (key: string, value: string) => void;
@@ -22,6 +24,7 @@ interface AppStore {
       onboardingStep?: number; 
       stepLog?: string[]; 
       notes?: Record<string, string>; 
+      previousNotes?: Record<string, string>[];
       feedback?: Record<string, string>; 
       onboardingAnswers?: Record<string, string | null>;
       isMacOs?: boolean;
@@ -88,6 +91,7 @@ export const useAppStore = create<AppStore>()(
         stepLog: [...state.stepLog, `${stepKey}:${answer}`],
       })),
     notes: {},
+    previousNotes: [],
     saveNote: (stepKey, note) =>
       set((state) => ({
         notes: { ...state.notes, [stepKey]: note },
@@ -102,6 +106,7 @@ export const useAppStore = create<AppStore>()(
         onboardingStep: data.onboardingStep ?? 1,
         stepLog: data.stepLog ?? [],
         notes: data.notes ?? {},
+        previousNotes: data.previousNotes ?? [],
         feedback: data.feedback ?? {},
         onboardingAnswers: data.onboardingAnswers ?? {},
         isMacOs: data.isMacOs ?? false,
@@ -131,6 +136,12 @@ export const useAppStore = create<AppStore>()(
     setIsMacOs: (value) => set({ isMacOs: value }),
     setIsSameDevice: (value) => set({ isSameDevice: value }),
 
+    // prepare for next exit node selection
+    onboardNewExitNode: () => set((state) => ({
+      previousNotes: [...state.previousNotes, state.notes],
+      notes: {},
+    })),
+
     // Reset store
     resetStore: () => set({
       currentView: 'login',
@@ -138,6 +149,7 @@ export const useAppStore = create<AppStore>()(
       onboardingAnswers: {},
       stepLog: [],
       notes: {},
+      previousNotes: [],
       feedback: {},
       username: '',
       token: null,
@@ -153,6 +165,7 @@ export const useAppStore = create<AppStore>()(
       onboardingAnswers: {},
       stepLog: [],
       notes: {},
+      previousNotes: [],
       feedback: {},
       isMacOs: false,
       isSameDevice: null,

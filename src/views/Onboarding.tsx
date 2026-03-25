@@ -21,6 +21,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const stepLog = useAppStore((state) => state.stepLog);
   const notes = useAppStore((state) => state.notes);
+  const previousNotes = useAppStore((state) => state.previousNotes);
   const feedback = useAppStore((state) => state.feedback);
   const token = useAppStore((state) => state.token);
   const onboardingAnswers = useAppStore((state) => state.onboardingAnswers);
@@ -74,7 +75,7 @@ export default function Onboarding({ className }: OnboardingProps) {
     }
 
     debounceTimerRef.current = setTimeout(() => {
-      uploadData(token, { onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice });
+      uploadData(token, { onboardingStep, stepLog, notes, previousNotes, feedback, onboardingAnswers, isMacOs, isSameDevice });
     }, 4000);
 
     return () => {
@@ -82,7 +83,7 @@ export default function Onboarding({ className }: OnboardingProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [onboardingStep, stepLog, notes, feedback, onboardingAnswers, isMacOs, isSameDevice]);
+  }, [onboardingStep, stepLog, notes, previousNotes, feedback, onboardingAnswers, isMacOs, isSameDevice]);
 
   useEffect(() => {
       console.log(JSON.stringify({ stepLog }, null, 2));

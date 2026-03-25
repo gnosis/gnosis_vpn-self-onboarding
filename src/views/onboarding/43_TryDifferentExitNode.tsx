@@ -17,6 +17,11 @@ export default function TryDifferentExitNode({ className, lastEntry }: TryDiffer
   const WRAP_UP_LABEL = "Let's wrap up";
   const TRY_AGAIN_LABEL = "Let's do that";
 
+  const handleTryAgain = () => {
+    handleAnswer(TRY_AGAIN_LABEL, 28);
+
+  };
+
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer("43_TryDifferentExitNode", answer);
     setOnboardingStep(nextStep);
@@ -42,7 +47,7 @@ export default function TryDifferentExitNode({ className, lastEntry }: TryDiffer
       buttons={
         lastEntry ? (
           <>
-            <Button label={TRY_AGAIN_LABEL} onClick={() => handleAnswer(TRY_AGAIN_LABEL, 28)} />
+            <Button label={TRY_AGAIN_LABEL} onClick={handleTryAgain} />
             <Button
               style={{
                 backgroundColor: "#b8b8b8",
