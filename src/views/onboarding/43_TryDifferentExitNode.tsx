@@ -13,13 +13,14 @@ interface TryDifferentExitNodeProps {
 export default function TryDifferentExitNode({ className, lastEntry }: TryDifferentExitNodeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const onboardNewExitNode = useAppStore((state) => state.onboardNewExitNode);
 
   const WRAP_UP_LABEL = "Let's wrap up";
   const TRY_AGAIN_LABEL = "Let's do that";
 
   const handleTryAgain = () => {
     handleAnswer(TRY_AGAIN_LABEL, 28);
-
+    onboardNewExitNode();
   };
 
   const handleAnswer = (answer: string, nextStep: number) => {
