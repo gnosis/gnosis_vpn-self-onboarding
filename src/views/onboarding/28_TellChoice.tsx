@@ -15,12 +15,19 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
+  const isVpn = useAppStore((state) => state.isVpn);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`28_TellChoice_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
+
+  const NEXT_STEP = 
+    sameDevice ? 
+    isVpn ? STEP + 5 :STEP + 3 
+    : 
+    STEP + 1;
 
   return (
     <Step
@@ -59,7 +66,7 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
               <Button
                 key={location}
                 label={location}
-                onClick={() => handleAnswer(location, sameDevice ? STEP + 3 : STEP + 1)}
+                onClick={() => handleAnswer(location, NEXT_STEP)}
               />
             ))}
           </>
