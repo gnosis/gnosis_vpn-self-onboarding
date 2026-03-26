@@ -81,7 +81,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       setOnboardingStep(onboardingStep - 0.1);
     }
 
-    console.log(JSON.stringify({ onboardingStep, currentIP, lastIp, lastIPIsVpn, isVpnIp }));
+    console.log(JSON.stringify({ onboardingStep, currentIP, isVpnIp }));
 
     if(onboardingStep >= 33 && onboardingStep < 43 && onboardingStep % 1 === 0) {
       if (!isVpnIp && onboardingStep % 1 === 0) {
@@ -95,7 +95,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       setOnboardingStep(parseInt(onboardingStep.toString()));
     }
 
-  }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, isSameDevice, exitNodeIteration, setOnboardingStep, setLastIPIsVpn, setLastIp]);
+  }, [currentIP, onboardingStep, isSameDevice, exitNodeIteration, setOnboardingStep]);
 
   const handleResetOnboarding = async () => {
     await uploadData(token, {});
