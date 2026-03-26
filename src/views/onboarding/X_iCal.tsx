@@ -7,17 +7,20 @@ interface WhatCanIHelpYouWithProps {
   className?: string;
   lastEntry?: boolean;
   onboardingStep?: number;
+  messageNumber?: number;
+  exitNodeIteration?: number;
 }
 
 export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingStep }: WhatCanIHelpYouWithProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const currentOnboardingStep = useAppStore((state) => state.onboardingStep);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const stepToUse = onboardingStep || currentOnboardingStep;
 
   const IT_IS_RESOLVED = "It's resolved";
 
-  const STEP_KEY = `X${stepToUse}_WhatCanIHelpYouWith`;
+  const STEP_KEY = `X${stepToUse}_WhatCanIHelpYouWith_${exitNodeIteration}`;
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(STEP_KEY, answer);

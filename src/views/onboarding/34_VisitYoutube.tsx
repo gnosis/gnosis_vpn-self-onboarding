@@ -12,12 +12,13 @@ interface VisitYoutubeProps {
 export default function VisitYoutube({ className, lastEntry }: VisitYoutubeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need help";
   const WORKED_LABEL = "It's worked";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("34_VisitYoutube", answer);
+    saveAnswer(`34_VisitYoutube_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

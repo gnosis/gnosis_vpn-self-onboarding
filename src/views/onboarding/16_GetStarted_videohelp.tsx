@@ -14,12 +14,13 @@ interface GetStartedVideohelpProps {
 export default function GetStartedVideohelp({ className, lastEntry }: GetStartedVideohelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("16_GetStarted_videohelp", answer);
+    saveAnswer(`16_GetStarted_videohelp_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

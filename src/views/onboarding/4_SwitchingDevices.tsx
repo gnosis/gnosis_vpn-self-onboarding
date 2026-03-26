@@ -13,13 +13,14 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const setSameDevice = useAppStore((state) => state.setIsSameDevice);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const SAME_DEVICE_LABEL = "Same device";
   const DIFFERENT_DEVICE_LABEL = "Different device";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     setSameDevice(answer === SAME_DEVICE_LABEL);
-    saveAnswer("4_SwitchingDevices", answer);
+    saveAnswer(`4_SwitchingDevices_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

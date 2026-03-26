@@ -11,12 +11,13 @@ interface PleaseRestartProps {
 export default function PleaseRestart({ className, lastEntry }: PleaseRestartProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const WORKING_LABEL = "It's working now";
   const NOT_WORKING_LABEL = "It's still not working";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("32_PleaseRestart", answer);
+    saveAnswer(`32_PleaseRestart_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

@@ -14,12 +14,13 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const macOS = useAppStore((state) => state.isMacOs);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const DONE_IT_LABEL = "It's installed";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("11_RunInstaller", answer);
+    saveAnswer(`11_RunInstaller_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

@@ -12,11 +12,12 @@ interface GreatProps {
 export default function Great({ className, lastEntry }: GreatProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("25_Great", answer);
+    saveAnswer(`25_Great_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

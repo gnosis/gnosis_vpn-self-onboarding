@@ -12,11 +12,12 @@ interface GettingHelpProps {
 export default function GettingHelp({ className, lastEntry }: GettingHelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("3_GettingHelp", answer);
+    saveAnswer(`3_GettingHelp_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

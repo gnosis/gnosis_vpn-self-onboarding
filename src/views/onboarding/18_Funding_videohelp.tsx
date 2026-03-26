@@ -15,12 +15,13 @@ export default function FundingVideohelp({ className, lastEntry }: FundingVideoh
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const macOS = useAppStore((state) => state.isMacOs);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const I_NEED_MORE_HELP = "I need more help";
   const THANKS_LABEL = "Thanks, continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("18_Funding_videohelp", answer);
+    saveAnswer(`18_Funding_videohelp_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

@@ -13,12 +13,13 @@ interface ReadyToTestProps {
 export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const ALREADY_DID_LABEL = "I already did";
   const OKAY_LABEL = "I'm waiting";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("22_ReadyToTest", answer);
+    saveAnswer(`22_ReadyToTest_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

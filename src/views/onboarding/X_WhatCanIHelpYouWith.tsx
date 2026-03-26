@@ -8,18 +8,20 @@ interface WhatCanIHelpYouWithProps {
   className?: string;
   lastEntry?: boolean;
   onboardingStep?: number;
+  messageNumber?: number;
+  exitNodeIteration?: number;
 }
 
-export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingStep }: WhatCanIHelpYouWithProps) {
+export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingStep, exitNodeIteration }: WhatCanIHelpYouWithProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const currentOnboardingStep = useAppStore((state) => state.onboardingStep);
   const stepToUse = onboardingStep || currentOnboardingStep;
-
+  const currentExitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const SUBMIT_LABEL = "Submit";
   const I_NEED_A_CALL = "I need a call";
 
-  const STEP_KEY = `X${stepToUse}_WhatCanIHelpYouWith`;
+  const STEP_KEY = `X${stepToUse}_WhatCanIHelpYouWith_${exitNodeIteration}`;
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(STEP_KEY, answer);
@@ -48,6 +50,7 @@ export default function WhatCanIHelpYouWith({ className, lastEntry, onboardingSt
           <FeedbackSection
             stepKey={STEP_KEY}
             label="Please briefly describe the issue"
+            disabled={currentExitNodeIteration !== exitNodeIteration}
           />
         </>
       }

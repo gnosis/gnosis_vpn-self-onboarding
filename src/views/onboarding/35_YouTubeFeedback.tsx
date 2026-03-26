@@ -8,17 +8,21 @@ const STEP = 35;
 
 interface YouTubeFeedbackProps {
   className?: string;
-  lastEntry?: boolean;}
+  lastEntry?: boolean;
+  exitNodeIteration?: number;
+}
 
-export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbackProps) {
+export default function YouTubeFeedback({ className, lastEntry, exitNodeIteration }: YouTubeFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
 
   const CONTINUE_LABEL = "That's done";
 
+  const STEP_KEY = `35_YouTubeFeedback_${exitNodeIteration}`;
+
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("35_YouTubeFeedback", answer);
+    saveAnswer(STEP_KEY, answer);
     setOnboardingStep(nextStep);
   };
 
@@ -51,7 +55,7 @@ export default function YouTubeFeedback({ className, lastEntry }: YouTubeFeedbac
             Using a VPN will naturally introduce some latency, but we want to provide as normal a browsing experience as possible.
           </Typography>
           
-          <FeedbackSection stepKey="35_YouTubeFeedback" />
+          <FeedbackSection stepKey={STEP_KEY} />
         </>
       }
       buttons={

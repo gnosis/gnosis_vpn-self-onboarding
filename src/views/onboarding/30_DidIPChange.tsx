@@ -12,12 +12,13 @@ interface DidIPChangeProps {
 export default function DidIPChange({ className, lastEntry }: DidIPChangeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NO_CHANGE_LABEL = "No it's the same";
   const YES_LABEL = "Yes!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("30_DidIPChange", answer);
+    saveAnswer(`30_DidIPChange_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

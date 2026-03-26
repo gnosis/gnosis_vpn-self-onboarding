@@ -8,17 +8,21 @@ const STEP = 40;
 
 interface AppFeedbackProps {
   className?: string;
-  lastEntry?: boolean;}
+  lastEntry?: boolean;
+  exitNodeIteration?: number;
+}
 
-export default function AppFeedback({ className, lastEntry }: AppFeedbackProps) {
+export default function AppFeedback({ className, lastEntry, exitNodeIteration }: AppFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
 
   const CONTINUE_LABEL = "Continue";
 
+  const STEP_KEY = `40_AppFeedback_${exitNodeIteration}`;
+
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("40_AppFeedback", answer);
+    saveAnswer(STEP_KEY, answer);
     setOnboardingStep(nextStep);
   };
 
@@ -40,7 +44,7 @@ export default function AppFeedback({ className, lastEntry }: AppFeedbackProps) 
             Great! Did it work well? Did you notice any issues?
           </Typography>
 
-          <FeedbackSection stepKey="40_AppFeedback" />
+          <FeedbackSection stepKey={STEP_KEY} />
         </>
       }
       buttons={

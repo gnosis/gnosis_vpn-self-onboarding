@@ -19,12 +19,13 @@ export default function Download({ className, lastEntry }: DownloadProps) {
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const setSystemSpec = useAppStore((state) => state.setSystemSpec);
   const systemSpec = useAppStore((state) => state.systemSpec);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const DOWNLOADED_LABEL = "Downloaded!";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("9_download", answer);
+    saveAnswer(`9_download_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 
@@ -63,19 +64,19 @@ export default function Download({ className, lastEntry }: DownloadProps) {
 
   function Installer () {
     // mac OS
-    if (macOS) return <>GnosisVPN-Installer-***<span style={{color:"darkorange", fontWeight: 800}}>.pkg</span></>
+    if (macOS) return <>GnosisVPN-Installer-&lt;version&gt;<span style={{color:"darkorange", fontWeight: 800}}>.pkg</span></>
 
     // Linux
     if(isSameDevice) {
       if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
-        return <>gnosisvpn_***_<span style={{color:"darkblue", fontWeight: 800}}>arm64</span><span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
+        return <>gnosisvpn_&lt;version&gt;_<span style={{color:"darkblue", fontWeight: 800}}>arm64</span><span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
       }
       if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
-        return <>gnosisvpn_***_<span style={{color:"darkblue", fontWeight: 800}}>amd64</span><span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
+        return <>gnosisvpn_&lt;version&gt;_<span style={{color:"darkblue", fontWeight: 800}}>amd64</span><span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
       }
     }
 
-    return <>gnosisvpn_***_***<span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
+    return <>gnosisvpn_&lt;version&gt;_&lt;architecture&gt;<span style={{color:"darkorange", fontWeight: 800}}>.deb</span></>
   }
 
   return (

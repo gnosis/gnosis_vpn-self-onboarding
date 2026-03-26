@@ -32,6 +32,7 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
   const currentIP = useAppStore((state) => state.currentIP);
   const onboardingStep = useAppStore((state) => state.onboardingStep);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const [waitTimeIsOver, setWaitTimeIsOver] = useState(false);
   const [gameReady, setGameReady] = useState(false);
 
@@ -66,9 +67,9 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
     if(isSameDevice && isVpn && STEP === onboardingStep) {
       const vpnCountry = getVpnCountry(currentIP);
       setOnboardingStep(onboardingStep + 2);
-      saveAnswer(`${STEP}_WaitTillYouAreConnected`, `${I_AM_CONNECTED_LABEL} ${vpnCountry ? `(${vpnCountry})` : ''}`);
+      saveAnswer(`${STEP}_WaitTillYouAreConnected_${exitNodeIteration}`, `${I_AM_CONNECTED_LABEL} ${vpnCountry ? `(${vpnCountry})` : ''}`);
     } 
-  }, [isSameDevice, currentIP, onboardingStep, setOnboardingStep, saveAnswer]);
+  }, [isSameDevice, currentIP, onboardingStep, setOnboardingStep, saveAnswer, exitNodeIteration]);
 
   useEffect(() => {
     if(!lastEntry) {
@@ -81,7 +82,7 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
   }, [lastEntry]);
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(`${STEP}_WaitTillYouAreConnected`, answer);
+    saveAnswer(`${STEP}_WaitTillYouAreConnected_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

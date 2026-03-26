@@ -7,6 +7,8 @@ interface YouAreConnectedProps {
   className?: string;
   lastEntry?: boolean;
   onboardingStep?: number;
+  messageNumber?: number;
+  exitNodeIteration?: number;
 }
 
 export default function YouAreConnected({ className, lastEntry, onboardingStep }: YouAreConnectedProps) {

@@ -12,12 +12,13 @@ interface RunGnosisVPNProps {
 export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const RUNNING_LABEL = "It's running";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("13_RunGnosisVPN", answer);
+    saveAnswer(`13_RunGnosisVPN_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

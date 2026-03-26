@@ -13,11 +13,12 @@ export default function SessionSummary({ className, lastEntry }: SessionSummaryP
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("5_SessionSummary", answer);
+    saveAnswer(`5_SessionSummary_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

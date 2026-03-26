@@ -13,12 +13,13 @@ interface CheckIPProps {
 export default function CheckIP({ className, lastEntry }: CheckIPProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need help";
   const GOT_IT_LABEL = "I've got it";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("6_CheckIP", answer);
+    saveAnswer(`6_CheckIP_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

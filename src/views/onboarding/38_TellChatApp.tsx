@@ -8,16 +8,19 @@ const STEP = 38;
 
 interface TellChatAppProps {
   className?: string;
-  lastEntry?: boolean;}
+  lastEntry?: boolean;
+  exitNodeIteration?: number;
+}
 
-export default function TellChatApp({ className, lastEntry }: TellChatAppProps) {
+export default function TellChatApp({ className, lastEntry, exitNodeIteration }: TellChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
 
   const CONTINUE_LABEL = "Continue";
+  const STEP_KEY = `38_TellChatApp_${exitNodeIteration}`;
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("38_TellChatApp", answer);
+    saveAnswer(STEP_KEY, answer);
     setOnboardingStep(nextStep);
   };
 
@@ -39,7 +42,7 @@ export default function TellChatApp({ className, lastEntry }: TellChatAppProps) 
             I don't need to see what you're doing, but it would be great to know which app you're using, in case there are bugs related to specific apps. Just write the app name below.
           </Typography>
 
-          <FeedbackSection stepKey="38_TellChatApp" />
+          <FeedbackSection stepKey={STEP_KEY} />
         </>
       }
       buttons={

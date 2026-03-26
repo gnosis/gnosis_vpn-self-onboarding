@@ -13,12 +13,13 @@ interface AlreadyConnectedProps {
 export default function AlreadyConnected({ className, lastEntry }: AlreadyConnectedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const DISCONNECTED_LABEL = "I'm disconnected";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("23_AlreadyConnected", answer);
+    saveAnswer(`23_AlreadyConnected_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

@@ -12,12 +12,13 @@ interface GetStartedProps {
 export default function GetStarted({ className, lastEntry }: GetStartedProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const THERE_LABEL = "I'm there";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("15_GetStarted", answer);
+    saveAnswer(`15_GetStarted_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

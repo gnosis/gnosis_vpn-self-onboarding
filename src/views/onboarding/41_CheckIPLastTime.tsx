@@ -13,12 +13,13 @@ interface CheckIPLastTimeProps {
 export default function CheckIPLastTime({ className, lastEntry }: CheckIPLastTimeProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need help";
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("41_CheckIPLastTime", answer);
+    saveAnswer(`41_CheckIPLastTime_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

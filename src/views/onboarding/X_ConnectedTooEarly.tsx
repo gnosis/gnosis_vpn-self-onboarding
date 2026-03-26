@@ -6,6 +6,8 @@ interface ConnectedTooEarlyProps {
   className?: string;
   lastEntry?: boolean;
   onboardingStep?: number;
+  messageNumber?: number;
+  exitNodeIteration?: number;
 }
 
 export default function ConnectedTooEarly({ className, lastEntry, onboardingStep }: ConnectedTooEarlyProps) {

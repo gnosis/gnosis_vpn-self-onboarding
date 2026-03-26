@@ -1,4 +1,5 @@
 import { useAppStore } from './store/appStore';
+import { STORE_VERSION } from './store/appStore';
 
 const IP_CHECK_URLS = [
   // Plain text
@@ -92,13 +93,135 @@ export async function fetchFundingCode(token: string | null): Promise<void> {
   }
 }
 
+/**
+ * Decode JWT and get expiry time
+ */
+export function getTokenExpiry(token: string): number | null {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const payload = JSON.parse(atob(parts[1]));
+    return payload.exp ? payload.exp * 1000 : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Refresh JWT token
+ */
+export async function refreshToken(token: string): Promise<{ success: boolean; token?: string; error?: string }> {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/refresh-token`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      return {
+        success: false,
+        error: errorData.error || `HTTP Error: ${response.status}`,
+      };
+    }
+
+    const data = await response.json();
+    return {
+      success: true,
+      token: data.token,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Network error occurred',
+    };
+  }
+}
+
+/**
+ * Get JSON data using JWT token
+ */
+export async function getJsonData(token: string): Promise<{ success: boolean; jsonData?: object; error?: string }> {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/getJsonData`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      return {
+        success: false,
+        error: errorData.error || `HTTP Error: ${response.status}`,
+      };
+    }
+
+    const data = await response.json();
+    const jsonData = data.jsonData;
+
+    if(!jsonData.storeVersion) {
+      console.warn('No store version found in JSON data. Assuming version 1 structure.');
+      if (jsonData?.feedback) {
+        const migratedSurvey = jsonData.feedback;
+        delete jsonData.feedback;
+        jsonData.feedback = migratedSurvey;
+      }
+      if (jsonData?.notes) {
+        const migratedFeedback = jsonData.notes;
+        delete jsonData.notes;
+        for (const key in migratedFeedback) {
+          migratedFeedback[`${key}_0`] = migratedFeedback[key];
+          delete migratedFeedback[key];
+        }
+        jsonData.feedback = migratedFeedback;
+      }
+      if (jsonData?.onboardingAnswers) {
+        const migratedAnswers = jsonData.onboardingAnswers;
+        delete jsonData.onboardingAnswers;
+        for (const key in migratedAnswers) {
+          migratedAnswers[`${key}_0`] = migratedAnswers[key];
+          delete migratedAnswers[key];
+        }
+        jsonData.onboardingAnswers = migratedAnswers;
+      }
+      if (jsonData?.stepLog) {
+        const migratedStepLog = jsonData.stepLog;
+        delete jsonData.stepLog;
+        let checkIPAgainStepCount = -1;
+        for (let i = 0; i < migratedStepLog.length; i++) {
+          if(migratedStepLog[i].includes('29_CheckIPAgain')) {
+            checkIPAgainStepCount++;
+          }
+          migratedStepLog[i] = migratedStepLog[i].replace(':', `_${checkIPAgainStepCount < 0 ? 0 : checkIPAgainStepCount}:`);
+        }
+        jsonData.stepLog = migratedStepLog;
+      }
+    }
+
+    return {
+      success: true,
+      jsonData: jsonData,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Network error occurred',
+    };
+  }
+}
+
 export async function uploadData(
   token: string | null,
   data: {
+    exitNodeIteration?: number;
     onboardingStep?: number;
     stepLog?: string[];
-    notes?: Record<string, string>;
     feedback?: Record<string, string>;
+    survey?: Record<string, string>;
     onboardingAnswers?: Record<string, string | null>;
     isMacOs?: boolean;
     isSameDevice?: boolean | null;
@@ -115,7 +238,7 @@ export async function uploadData(
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ jsonData: data }),
+        body: JSON.stringify({ jsonData: { ...data, storeVersion: STORE_VERSION } }),
       }
     );
 
@@ -207,3 +330,5 @@ const VPN_IP_COUNTRIES: Record<string, string> = {
 export function getVpnCountry(ip: string | null): string | null {
   return (ip && VPN_IP_COUNTRIES[ip]) || null;
 }
+
+export const TRY_AGAIN_STEP = 28;

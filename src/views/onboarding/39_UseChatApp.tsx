@@ -12,12 +12,13 @@ interface UseChatAppProps {
 export default function UseChatApp({ className, lastEntry }: UseChatAppProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need help";
   const DONE_LABEL = "I've done that";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("39_UseChatApp", answer);
+    saveAnswer(`39_UseChatApp_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

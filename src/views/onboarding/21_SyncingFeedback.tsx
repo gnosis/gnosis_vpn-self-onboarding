@@ -13,11 +13,13 @@ interface SyncingFeedbackProps {
 export default function SyncingFeedback({ className, lastEntry }: SyncingFeedbackProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const currentExitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const CONTINUE_LABEL = "Continue";
+  const STEP_KEY = `21_SyncingFeedback_${currentExitNodeIteration}`;
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("21_SyncingFeedback", answer);
+    saveAnswer(STEP_KEY, answer);
     setOnboardingStep(nextStep);
   };
 
@@ -38,7 +40,7 @@ export default function SyncingFeedback({ className, lastEntry }: SyncingFeedbac
           >
             Amazing! How long did that take?
           </Typography>
-          <FeedbackSection stepKey="21_SyncingFeedback" />
+          <FeedbackSection stepKey={STEP_KEY} />
         </>
       }
       buttons={

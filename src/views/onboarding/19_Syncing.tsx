@@ -12,12 +12,13 @@ interface SyncingProps {
 export default function Syncing({ className, lastEntry }: SyncingProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
+  const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
   const SYNCED_LABEL = "It's synced";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer("19_Syncing", answer);
+    saveAnswer(`19_Syncing_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 
