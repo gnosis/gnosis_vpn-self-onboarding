@@ -26,7 +26,6 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   const ipColor = isVpn ? "#2e7d32" : "#e53935";
   const [lastIPIsVpn, setLastIPIsVpn] = useState<boolean | null>(null);
   const [lastIp, setLastIp] = useState<string | null>(null);
-  const [vpnWasConnected, setVpnWasConnected] = useState(false);
   
   const isCheckingRef = useRef(false);
 
@@ -88,8 +87,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       if (!isVpnIp && onboardingStep % 1 === 0) {
         saveAnswer(`${onboardingStep}_STEP_${exitNodeIteration}`, 'I disconnected from the VPN');
         setOnboardingStep(parseFloat((onboardingStep + 0.95).toFixed(2)));
-        setVpnWasConnected(true);
-      } 
+      }
     }
 
     if (onboardingStep > 33 && isVpnIp && Math.round((onboardingStep % 1) * 100) / 100 === 0.95) {
@@ -97,7 +95,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
       setOnboardingStep(parseInt(onboardingStep.toString()));
     }
 
-  }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, vpnWasConnected, isSameDevice, setOnboardingStep, setLastIPIsVpn, setLastIp]);
+  }, [lastIp, lastIPIsVpn, currentIP, onboardingStep, isSameDevice, exitNodeIteration, setOnboardingStep, setLastIPIsVpn, setLastIp]);
 
   const handleResetOnboarding = async () => {
     await uploadData(token, {});
