@@ -54,7 +54,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
   const [message, setMessage] = useState("");
 
   const NEED_HELP_LABEL = "I need some help";
-  const FUNDED_LABEL = "It's funded";
+  const FUNDED_LABEL = "SYNC COMPLETE";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`17_Funding_${exitNodeIteration}`, answer);
@@ -96,7 +96,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
     <Step
       className={`Funding${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Funding and syncing your node takes place now"
+      title="Funding and Syncing"
       text={
         <>
           <Typography
@@ -107,7 +107,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
               color: "#333",
             }}
           >
-            We now need to fund your Edge Node so it can connect to the mixnet. I’ll cover the cost.
+            We now need to fund the VPN. I'll cover the cost.
           </Typography>
 
           {fundingCode && lastEntry &&
@@ -227,7 +227,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
                   color: "#333",
                 }}
               >
-                <strong>After funding, the node needs a few minutes to sync. This is normal, nothing is broken. Please note the time when syncing starts and let me know how long it took.</strong>
+                <strong>After funding, the node needs a few minutes to sync. This is normal. Please note the time when syncing starts and let me know how long it took.</strong>
               </Typography>
 
           </Typography>
