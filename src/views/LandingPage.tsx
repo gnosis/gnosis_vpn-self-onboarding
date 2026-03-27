@@ -452,7 +452,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <div className='message'>
                 <img src="/images/avatar-gino-lp.png" alt="Avatar" />
                 <p>
-                  Welcome {username}! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will show you step by step what you need to get up and running it a breeze using it.
+                  Welcome {username}! I'm Gino, your guide for this quest to Atlantis, the first hidden city on the road to Gnosis VPN's launch. This guide will walk you step by step through everything you need to get up and running.
                 </p>
               </div>
               <ButtonGrayCta

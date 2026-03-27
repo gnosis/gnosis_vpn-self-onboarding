@@ -4,10 +4,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  IconButton,
   Box,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
