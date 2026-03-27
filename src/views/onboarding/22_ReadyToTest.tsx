@@ -15,7 +15,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
-  const ALREADY_DID_LABEL = "I already did";
+  const ALREADY_DID_LABEL = "I already connected to the VPN";
   const OKAY_LABEL = "I'm waiting";
 
   const handleAnswer = (answer: string, nextStep: number) => {
@@ -38,7 +38,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
               color: "#333",
             }}
           >
-            It’s now opening channels and completing final background steps. <strong>So please don’t connect the VPN yet.</strong>
+            The VPN is currently finishing a few setup steps in the background. Please do <strong>not connect to the VPN yet</strong> while this process is completing.
           </Typography>
           <Typography
             variant="body1"
@@ -49,7 +49,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
               marginTop: "1rem",
             }}
           >
-            This is an MVP release, so you may notice minor limitations or rough edges. That’s expected, and your feedback helps us improve.
+            This release, Atlantis, is an early version (minimum viable product). You may notice some limitations or rough edges. That’s expected, and your feedback helps us improve.
           </Typography>
         </>
       }
