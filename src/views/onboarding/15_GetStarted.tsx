@@ -15,7 +15,7 @@ export default function GetStarted({ className, lastEntry }: GetStartedProps) {
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const NEED_HELP_LABEL = "I need some help";
-  const THERE_LABEL = "I'm there";
+  const THERE_LABEL = "I'M AT THE FUNDING STEP";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`15_GetStarted_${exitNodeIteration}`, answer);
@@ -36,7 +36,7 @@ export default function GetStarted({ className, lastEntry }: GetStartedProps) {
             color: "#333",
           }}
         >
-          Perfect. Just follow the instructions in the app and let me know once you can see the funding screen.
+          Perfect! <strong>Click "Get Started" in the app</strong> and then follow the in-app instructions. Come back here when you reach the funding step.
         </Typography>
       }
       buttons={
