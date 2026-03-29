@@ -50,7 +50,7 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
               mt: 1,
             }}
           >
-            <strong>Testing in a Virtual Machine?</strong> We recommend at least <strong>8 GB RAM</strong> and a <strong>4-core CPU</strong> for a smooth experience.
+            <strong>Testing in a Virtual Machine?</strong> We recommend at least <strong>8GB RAM</strong>, a <strong>4-core CPU</strong>, and a <strong>bridged network adapter</strong> for a smooth experience.
           </Typography>
           <Typography
             variant="body1"
