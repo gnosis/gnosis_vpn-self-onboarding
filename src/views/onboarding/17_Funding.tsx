@@ -69,7 +69,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
     try {
       const body = {
         address: address,
-        code: fundingCode
+        code: fundingCode?.trim()
       };
       const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/cfp-funding-tool/airdrop`, {
         method: 'POST',
