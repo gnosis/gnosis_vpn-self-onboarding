@@ -23,6 +23,7 @@ export default function VideoPlaceholder({ title = "Video", videoUrl }: VideoPla
           loop
           muted
           style={{ width: "100%", height: "100%" }}
+          controls
         >
           <source src={videoUrl} type="video/webm" />
           Your browser does not support the video tag.

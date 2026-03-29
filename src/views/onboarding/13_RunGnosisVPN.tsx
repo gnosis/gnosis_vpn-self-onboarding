@@ -13,6 +13,7 @@ export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
+  const macOS = useAppStore((state) => state.isMacOs);
 
   const NEED_HELP_LABEL = "I need some help";
   const RUNNING_LABEL = "It's running";
@@ -36,13 +37,13 @@ export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps
             color: "#333",
           }}
         >
-          Amazing! Now we're ready to run the Gnosis VPN app and begin our journey properly. The app should start automatically.
+          Amazing! Now we're ready to run the Gnosis VPN app and begin our journey properly. {macOS ? "The app should start automatically." : "Please open the app manually."}
         </Typography>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 1.25)} />
             <Button label={RUNNING_LABEL} onClick={() => handleAnswer(RUNNING_LABEL, STEP + 2)} />
           </>
         ) : null

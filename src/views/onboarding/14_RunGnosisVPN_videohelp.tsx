@@ -1,3 +1,19 @@
+/*
+ * ============================================================================
+ *
+ *   SSSS   K   K  IIIII  PPPP   PPPP   EEEEE  DDDD
+ *  S       K  K     I    P   P  P   P  E      D   D
+ *   SSS    KKK      I    PPPP   PPPP   EEE    D   D
+ *      S   K  K     I    P      P      E      D   D
+ *  SSSS    K   K  IIIII  P      P      EEEEE  DDDD
+ *
+ *  THIS STEP IS SKIPPED!
+ *
+ *  See: https://github.com/gnosis/gnosis_vpn-self-onboarding/issues/82
+ *
+ * ============================================================================
+ */
+
 import { Typography } from "@mui/material";
 import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";

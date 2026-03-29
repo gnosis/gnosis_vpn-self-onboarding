@@ -47,6 +47,17 @@ export default function SwitchingDevices({ className, lastEntry }: SwitchingDevi
               fontSize: "0.95rem",
               lineHeight: 1.6,
               color: "#333",
+              mt: 1,
+            }}
+          >
+            <strong>Testing in a Virtual Machine?</strong> We recommend at least <strong>8GB RAM</strong>, a <strong>4-core CPU</strong>, and a <strong>bridged network adapter</strong> for a smooth experience.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
             }}
           >
             If you need to switch devices to continue using this onboarding tool, simply close your session here. I’ll save your progress and resume from the same point when you log in again.

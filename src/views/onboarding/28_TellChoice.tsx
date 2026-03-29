@@ -25,7 +25,7 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
 
   const NEXT_STEP = 
     sameDevice ? 
-    isVpn ? STEP + 5 :STEP + 3 
+    isVpn ? STEP + 5 : STEP + 3 
     : 
     STEP + 1;
 
