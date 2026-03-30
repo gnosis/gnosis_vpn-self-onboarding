@@ -100,8 +100,9 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   }, [currentIP, onboardingStep, isSameDevice, exitNodeIteration, setOnboardingStep]);
 
   const handleResetOnboarding = async () => {
-    if (anonymous) return;
-    await uploadData(token, {});
+    if (!anonymous) {
+      await uploadData(token, {});
+    }
     resetOnboarding();
   }
 

@@ -5,7 +5,7 @@ import { useAppStore } from "../store/appStore";
 import MessageBubble from "../components/MessageBubble";
 
 import { uploadData } from "../functions";
-import { STEP_COMPONENTS } from "./onboarding/index";
+import { STEP_COMPONENTS, STEP_COMPONENTS_ANNO } from "./onboarding/index";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
 import X_iCal from "./onboarding/X_iCal";
@@ -92,7 +92,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   }, [stepLog]);
 
 
-  const CurrentComponent = STEP_COMPONENTS[onboardingStep] ?? null;
+  const CurrentComponent = anonymous && onboardingStep < 10  ? STEP_COMPONENTS_ANNO[onboardingStep] : STEP_COMPONENTS[onboardingStep] ?? null;
 
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
@@ -132,7 +132,7 @@ export default function Onboarding({ className }: OnboardingProps) {
             }
             
             const stepNum = parseInt(key);
-            const Component = STEP_COMPONENTS[stepNum];
+            const Component = anonymous && stepNum < 10  ? STEP_COMPONENTS_ANNO[stepNum] : STEP_COMPONENTS[stepNum] ?? null;
             if (!Component) return null;
             return (
               <Fragment key={`${key}-${mN}`}>
