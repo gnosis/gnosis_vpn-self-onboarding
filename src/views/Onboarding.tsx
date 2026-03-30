@@ -29,6 +29,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   const numberOfSteps = Object.keys(STEP_COMPONENTS).length;
   const isMacOs = useAppStore((state) => state.isMacOs);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   useEffect(() => {
     let cancelled = false;
@@ -70,6 +71,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   }, [onboardingStep]);
 
   useEffect(() => {
+    if (anonymous) return;
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
@@ -83,7 +85,7 @@ export default function Onboarding({ className }: OnboardingProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice]);
+  }, [anonymous, exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice]);
 
   useEffect(() => {
       console.log(JSON.stringify({ stepLog }, null, 2));

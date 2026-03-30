@@ -46,6 +46,9 @@ import WrapUp from "./44_WrapUp";
 import Summary from "./98_summary";
 import Feedback from "./99_Feedback";
 
+// Annonymous Steps
+import WelcomeAnon from "./1anon_Welcome";
+
 export const STEP_NAMES: Record<number, string> = {
   1: "Welcome",
   2: "How Onboarding Works",
@@ -142,4 +145,8 @@ export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
   44: WrapUp,
   98: Summary,
   99: Feedback
+};
+
+export const STEP_COMPONENTS_ANNO: Record<number, React.ComponentType<any>> = {
+  1: WelcomeAnon,
 };

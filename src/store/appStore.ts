@@ -58,6 +58,10 @@ interface AppStore {
   setIsMacOs: (value: boolean) => void;
   setIsSameDevice: (value: boolean) => void;
 
+  // Anonymous mode
+  anonymous: boolean;
+  setAnonymous: (value: boolean) => void;
+
   // Reset store
   resetStore: () => void;
   resetOnboarding: () => void;
@@ -143,6 +147,10 @@ export const useAppStore = create<AppStore>()(
     }),
 
 
+    // Anonymous mode
+    anonymous: false,
+    setAnonymous: (value) => set({ anonymous: value }),
+
     // Device flags
     isMacOs: false,
     isSameDevice: null,
@@ -160,6 +168,7 @@ export const useAppStore = create<AppStore>()(
       survey: {},
       username: '',
       token: null,
+      anonymous: false,
       isMacOs: false,
       isSameDevice: null,
       vpnCountry: null,

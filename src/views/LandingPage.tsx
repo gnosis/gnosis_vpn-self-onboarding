@@ -366,6 +366,7 @@ interface GnosisLandingProps {
 const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
   const username = useAppStore((state) => state.username);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   return (
     <>
@@ -425,7 +426,9 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               >
                 Upload Logs
               </Button>
-              <LogoutButton />
+              {
+                !anonymous && <LogoutButton />
+              }
             </NavLinks>
           </Nav>
         </NavContainer>
@@ -506,12 +509,23 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                   <StepIconBox
                     src={'./images/switching-devices-icon.svg'}
                   />
-                  <StepContent>
-                    <h4>Your feedback matters</h4>
-                    <p>
-                      Your actions are recorded to help us understand what works and what doesn’t. If something is unclear or broken, please tell us. Briefly describe the issue and we’ll respond as quickly as possible.
-                    </p>
-                  </StepContent>
+                  {
+                    anonymous ? 
+                    <StepContent>
+                      <h4>Your actions are recorded locally only</h4>
+                      <p>
+                        Your actions are saved in your browser session only. If you refresh the page or close the browser, your progress will disappear and you’ll need to start over.
+                      </p>
+                    </StepContent>
+                    :
+                    <StepContent>
+                      <h4>Your feedback matters</h4>
+                      <p>
+                        Your actions are recorded to help us understand what works and what doesn’t. If something is unclear or broken, please tell us. Briefly describe the issue and we’ll respond as quickly as possible.
+                      </p>
+                    </StepContent>
+                  }
+
                 </StepItem>
 
                 {/* Step 3 */}

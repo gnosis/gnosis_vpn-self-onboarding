@@ -26,11 +26,13 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   const ipColor = isVpn ? "#2e7d32" : "#e53935";
   const [lastIPIsVpn, setLastIPIsVpn] = useState<boolean | null>(null);
   const [lastIp, setLastIp] = useState<string | null>(null);
+  const anonymous = useAppStore((state) => state.anonymous);
   
   const isCheckingRef = useRef(false);
 
   // IP checker
   useEffect(() => {
+    if(anonymous) return;
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
     if (isSameDevice === false) {
       setCurrentIP(null);
@@ -52,7 +54,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isSameDevice, setCurrentIP]);
+  }, [isSameDevice, setCurrentIP, anonymous]);
 
   // First found IP
   useEffect(() => {
@@ -98,6 +100,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
   }, [currentIP, onboardingStep, isSameDevice, exitNodeIteration, setOnboardingStep]);
 
   const handleResetOnboarding = async () => {
+    if (anonymous) return;
     await uploadData(token, {});
     resetOnboarding();
   }
@@ -138,7 +141,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
       {/* IP Display */}
       {
-        isSameDevice !== false && currentIP && 
+        !anonymous && isSameDevice !== false && currentIP && 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Box
             sx={{
@@ -225,7 +228,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
         >
           Upload Logs
         </Button>
-        <LogoutButton />
+        {!anonymous && <LogoutButton />}
       </Stack>
     </Box>
   );

@@ -31,6 +31,7 @@ export default function Feedback({ className }: FeedbackProps) {
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const saveSurvey = useAppStore((state) => state.saveSurvey);
   const resetStore = useAppStore((state) => state.resetStore);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   const [loading, setLoading] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
@@ -44,9 +45,11 @@ export default function Feedback({ className }: FeedbackProps) {
   ];
 
   const handleTheEnd = async () => {
-    setLoading(true);
-    await uploadData(token, { exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice });
-    setLoading(false);
+    if (!anonymous) {
+      setLoading(true);
+      await uploadData(token, { exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice });
+      setLoading(false);
+    }
     setShowThankYou(true);
   };
 
