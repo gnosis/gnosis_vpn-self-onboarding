@@ -5,7 +5,7 @@ import LandingPage from './views/LandingPage'
 import Login from './views/Login';
 import Onboarding from './views/Onboarding';
 import ChangePassword from './views/ChangePassword';
-import { fetchFundingCode, getTokenExpiry, refreshToken, getJsonData } from './functions';
+import { fetchFundingCode, fetchCurrentVersion, getTokenExpiry, refreshToken, getJsonData } from './functions';
 
 export type AppView =
   'login' |
@@ -21,6 +21,15 @@ function App() {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
   const setAutoLoading = useAppStore((state) => state.setAutoLoading);
   const setUsername = useAppStore((state) => state.setUsername);
+  const setCurrentVersion = useAppStore((state) => state.setCurrentVersion);
+
+  useEffect(() => {
+    const loadVersion = async () => {
+      const version = await fetchCurrentVersion();
+      setCurrentVersion(version);
+    };
+    loadVersion();
+  }, [setCurrentVersion]);
 
   useEffect(() => {
     const loadAndRefreshToken = async () => {
@@ -82,6 +91,8 @@ function App() {
 
     return () => clearInterval(interval);
   }, [setToken]);
+
+  
 
   const renderView = () => {
     switch (currentView) {

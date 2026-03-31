@@ -38,7 +38,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
               color: "#333",
             }}
           >
-            he VPN is currently finishing a few steps in the background. Not long before we can start our journey!
+            The VPN is currently finishing a few steps in the background. Not long before we can start our journey!
           </Typography>
           <Typography
             variant="body1"

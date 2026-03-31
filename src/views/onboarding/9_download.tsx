@@ -21,6 +21,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
   const systemSpec = useAppStore((state) => state.systemSpec);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const systemArchitectureAvailable = isSameDevice && systemSpec.architecture && ["arm64", "arm", "x86_64", "x86"].includes(systemSpec.architecture)
+  const currentVersion = useAppStore((state) => state.currentVersion);
 
   const NEED_HELP_LABEL = "I need some help";
   const DOWNLOADED_LABEL = "Downloaded!";
@@ -63,21 +64,45 @@ export default function Download({ className, lastEntry }: DownloadProps) {
   }, [setSystemSpec]);
 
 
-  function InstallerName () {
+  function InstallerName() {
     // mac OS
-    if (macOS) return <>GnosisVPN-Installer-<span style={{color:"darkorange", fontWeight: 800}}>&lt;version&gt;</span><span style={{color:"darkred", fontWeight: 800}}>.pkg</span></>
+    if (macOS) return <>GnosisVPN-Installer-<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span><span style={{ color: "darkred", fontWeight: 800 }}>.pkg</span></>
 
     // Linux
-    if(systemArchitectureAvailable) {
+    if (systemArchitectureAvailable) {
       if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
-        return <>gnosisvpn_<span style={{color:"darkorange", fontWeight: 800}}>&lt;version&gt;</span>_<span style={{color:"darkblue", fontWeight: 800}}>arm64</span><span style={{color:"darkred", fontWeight: 800}}>.deb</span></>
+        return <>gnosisvpn_<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span>_<span style={{ color: "darkblue", fontWeight: 800 }}>arm64</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
       }
       if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
-        return <>gnosisvpn_<span style={{color:"darkorange", fontWeight: 800}}>&lt;version&gt;</span>_<span style={{color:"darkblue", fontWeight: 800}}>amd64</span><span style={{color:"darkred", fontWeight: 800}}>.deb</span></>
+        return <>gnosisvpn_<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span>_<span style={{ color: "darkblue", fontWeight: 800 }}>amd64</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
       }
     }
 
-    return <>gnosisvpn_<span style={{color:"darkorange", fontWeight: 800}}>&lt;version&gt;</span>_<span style={{color:"darkblue", fontWeight: 800}}>&lt;architecture&gt;</span><span style={{color:"darkred", fontWeight: 800}}>.deb</span></>
+    return <>gnosisvpn_<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span>_<span style={{ color: "darkblue", fontWeight: 800 }}>&lt;architecture&gt;</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
+  }
+
+  function href() {
+    if (macOS) {
+      return `https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/GnosisVPN-Installer-${currentVersion}.pkg`
+    }
+    if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
+      return `https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/gnosisvpn_${currentVersion?.replace('v', '')}_arm64.deb`
+    }
+    if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
+      return `https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/gnosisvpn_${currentVersion?.replace('v', '')}_amd64.deb`
+    }
+  }
+
+  function label() {
+    if (macOS) {
+      return `GnosisVPN-Installer-${currentVersion}.pkg`
+    }
+    if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
+      return `gnosisvpn_${currentVersion?.replace('v', '')}_arm64.deb`
+    }
+    if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
+      return `gnosisvpn_${currentVersion?.replace('v', '')}_amd64.deb`
+    }
   }
 
   return (
@@ -87,34 +112,59 @@ export default function Download({ className, lastEntry }: DownloadProps) {
       title="Download The App"
       text={
         <>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            Great! Now head to {" "}
-            <ButtonGrayCta
-              href="https://github.com/gnosis/gnosis_vpn/releases/latest"
-              label="https://github.com/gnosis/gnosis_vpn/releases/latest" 
-            />
-          </Typography>
+          {
+            currentVersion && (macOS || systemArchitectureAvailable) ?
+              <>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: "0.95rem",
+                    lineHeight: 1.6,
+                    color: "#333",
+                  }}
+                >
+                  Great! Now download the installer for your system here: {" "}
+                  <ButtonGrayCta
+                    href={href()}
+                    label={label()}
+                  />
+                </Typography>
+              </>
+              :
+              <>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: "0.95rem",
+                    lineHeight: 1.6,
+                    color: "#333",
+                  }}
+                >
+                  Great! Now head to {" "}
+                  <ButtonGrayCta
+                    href="https://github.com/gnosis/gnosis_vpn/releases/latest"
+                    label="https://github.com/gnosis/gnosis_vpn/releases/latest"
+                  />
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: "0.95rem",
+                    lineHeight: 1.6,
+                    color: "#333",
+                  }}
+                >
+                  and download the installer {" "}
+                  <span style={{ fontWeight: 600 }}>
+                    <InstallerName />
+                  </span>.
+                </Typography>
+              </>
+          }
 
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "0.95rem",
-              lineHeight: 1.6,
-              color: "#333",
-            }}
-          >
-            and download the installer {" "}
-            <span style={{fontWeight:600}}>
-              <InstallerName />
-            </span>.
-          </Typography>
+
+
+
 
         </>
       }
