@@ -45,11 +45,21 @@ export default function Feedback({ className }: FeedbackProps) {
   ];
 
   const handleTheEnd = async () => {
-    if (!anonymous) {
-      setLoading(true);
-      await uploadData(token, { exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice });
-      setLoading(false);
-    }
+    setLoading(true);
+    await uploadData(token, { exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice });
+    setLoading(false);
+    setShowThankYou(true);
+  };
+
+  const handleDownload = () => {
+    const data = { exitNodeIteration, onboardingStep, feedback, survey, onboardingAnswers, isMacOs };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "gnosisvpn-onboarding-feedback.json";
+    a.click();
+    URL.revokeObjectURL(url);
     setShowThankYou(true);
   };
 
@@ -119,12 +129,22 @@ export default function Feedback({ className }: FeedbackProps) {
             />
           </Box>
         ))}
-        <Button
-          label="The End"
-          loading={loading}
-          onClick={handleTheEnd}
-          style={{maxHeight: '52px'}}
-        />
+        {
+          anonymous ?
+            <Button
+              label="Download your feedback"
+              loading={loading}
+              onClick={handleDownload}
+              style={{ maxHeight: '52px' }}
+            />
+            :
+            <Button
+              label="The End"
+              loading={loading}
+              onClick={handleTheEnd}
+              style={{ maxHeight: '52px' }}
+            />
+        }
       </Stack>
 
       {/* Thank You Popup */}
@@ -149,6 +169,7 @@ export default function Feedback({ className }: FeedbackProps) {
           <DialogContentText id="thank-you-dialog-description" sx={{ color: "text.primary" }}>
             Thank you for completing the onboarding and helping test this release.
             Your time and feedback help us improve the VPN and make it better for everyone.
+            { anonymous && " Since you were in anonymous mode, we couldn't save your feedback on our end, but it has been downloaded to your device! Feel free to share it with us via e-mail or other channels." }
           </DialogContentText>
         </DialogContent>
         <DialogActions>
