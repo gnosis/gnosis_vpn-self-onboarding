@@ -84,7 +84,7 @@ export default function Download({ className, lastEntry }: DownloadProps) {
     <Step
       className={`Download${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Download the app"
+      title="Download The App"
       text={
         <>
           <Typography

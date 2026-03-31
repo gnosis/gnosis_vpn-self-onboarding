@@ -17,7 +17,7 @@ export default function Welcome({ className, lastEntry }: WelcomeProps) {
   const START_ONBOARDING_LABEL = "Start Onboarding";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(`1anon_welcome_${exitNodeIteration}`, answer);
+    saveAnswer(`1_Welcome-ANON_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 

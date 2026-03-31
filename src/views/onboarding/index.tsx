@@ -1,13 +1,13 @@
 // Steps
-import Welcome from "./1_welcome";
+import Welcome from "./1_Welcome";
 import HowOnboardingWorks from "./2_HowOnboardingWorks";
 import GettingHelp from "./3_GettingHelp";
 import SwitchingDevices from "./4_SwitchingDevices";
 import SessionSummary from "./5_SessionSummary";
 import CheckIP from "./6_CheckIP";
 import CloseIPSite from "./7_CloseIPSite";
-import Os from "./8_os";
-import Download from "./9_download";
+import Os from "./8_OS";
+import Download from "./9_Download";
 import DownloadVideohelp from "./10_Download_videohelp";
 import RunInstaller from "./11_RunInstaller";
 import RunInstallerVideohelp from "./12_RunInstaller_videohelp";
@@ -47,7 +47,11 @@ import Summary from "./98_summary";
 import Feedback from "./99_Feedback";
 
 // Annonymous Steps
-import WelcomeAnon from "./1anon_Welcome";
+import WelcomeAnon from "./1_Welcome-ANON";
+import HowOnboardingWorksAnon from "./2_HowOnboardingWorks-ANON";
+import GettingHelpAnon from "./3_GettingHelp-ANON";
+import SwitchingDevicesAnon from "./4_SwitchingDevices-ANON";
+import FundingAnon from "./17_Funding-ANON";
 
 export const STEP_NAMES: Record<number, string> = {
   1: "Welcome",
@@ -149,4 +153,8 @@ export const STEP_COMPONENTS: Record<number, React.ComponentType<any>> = {
 
 export const STEP_COMPONENTS_ANNO: Record<number, React.ComponentType<any>> = {
   1: WelcomeAnon,
+  2: HowOnboardingWorksAnon,
+  3: GettingHelpAnon,
+  4: SwitchingDevicesAnon,
+  17: FundingAnon,
 };

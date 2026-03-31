@@ -92,7 +92,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   }, [stepLog]);
 
 
-  const CurrentComponent = anonymous && onboardingStep < 10  ? STEP_COMPONENTS_ANNO[onboardingStep] : STEP_COMPONENTS[onboardingStep] ?? null;
+  const CurrentComponent = anonymous && STEP_COMPONENTS_ANNO[onboardingStep]  ? STEP_COMPONENTS_ANNO[onboardingStep] : STEP_COMPONENTS[onboardingStep] ?? null;
 
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
@@ -132,7 +132,7 @@ export default function Onboarding({ className }: OnboardingProps) {
             }
             
             const stepNum = parseInt(key);
-            const Component = anonymous && stepNum < 10  ? STEP_COMPONENTS_ANNO[stepNum] : STEP_COMPONENTS[stepNum] ?? null;
+            const Component = anonymous && STEP_COMPONENTS_ANNO[stepNum]  ? STEP_COMPONENTS_ANNO[stepNum] : STEP_COMPONENTS[stepNum] ?? null;
             if (!Component) return null;
             return (
               <Fragment key={`${key}-${mN}`}>
