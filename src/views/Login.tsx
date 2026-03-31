@@ -20,7 +20,7 @@ interface LoginProps {
 }
 
 export default function Login({ className }: LoginProps) {
-  const [loading, setLoading] = useState(false);
+  const [loadingButton, setLoadingButton] = useState<"anon" | "login" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [password, setPassword] = useState("");
@@ -39,7 +39,7 @@ export default function Login({ className }: LoginProps) {
    */
   async function loginUser(loginCredential: string, password: string, anonymous: boolean = false): Promise<void> {
     setError(null);
-    setLoading(true);
+    setLoadingButton(anonymous ? "anon" : "login");
     setAnonymous(anonymous);
     try {
       const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/login`, {
@@ -83,7 +83,7 @@ export default function Login({ className }: LoginProps) {
       setError((error instanceof Error ? error.message : String(error)) || 'Network error occurred');
       setShowErrorModal(true);
     } finally {
-      setLoading(false);
+      setLoadingButton(null);
     }
   }
 
@@ -193,13 +193,16 @@ export default function Login({ className }: LoginProps) {
           >
             <Button
               label="Stay anonymous"
+              loading={loadingButton === "anon"}
+              disabled={loadingButton === "login"}
               onClick={() => {
                 loginUser(username, password, true);
               }}
             />
             <Button
               label="I understand. Log me in!"
-              loading={loading}
+              loading={loadingButton === "login"}
+              disabled={loadingButton === "anon"}
               onClick={() => loginUser(username, password)}
             />
             <Dialog open={showErrorModal} onClose={() => setShowErrorModal(false)}>

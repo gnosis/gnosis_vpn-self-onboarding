@@ -17,6 +17,7 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
   const sameDevice = useAppStore((state) => state.isSameDevice);
   const isVpn = useAppStore((state) => state.isVpn);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`28_TellChoice_${exitNodeIteration}`, answer);
@@ -27,6 +28,10 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
     sameDevice ? 
     isVpn ? STEP + 5 : STEP + 3 
     : 
+    anonymous 
+    ?
+    STEP + 3
+    :
     STEP + 1;
 
   return (
