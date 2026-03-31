@@ -16,6 +16,7 @@ export default function YouTubeFeedback({ className, lastEntry, exitNodeIteratio
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   const CONTINUE_LABEL = "That's done";
 
@@ -61,7 +62,7 @@ export default function YouTubeFeedback({ className, lastEntry, exitNodeIteratio
       buttons={
         lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice ? STEP + 2 : STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice || anonymous ? STEP + 2 : STEP + 1)} />
           </>
         ) : null
       }

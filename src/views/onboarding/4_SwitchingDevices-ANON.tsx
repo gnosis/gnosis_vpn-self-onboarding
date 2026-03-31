@@ -3,42 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 28;
+const STEP = 4;
 
-const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
-
-interface TellChoiceProps {
+interface SwitchingDevicesProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
+export default function SwitchingDevices({ className, lastEntry }: SwitchingDevicesProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const sameDevice = useAppStore((state) => state.isSameDevice);
-  const isVpn = useAppStore((state) => state.isVpn);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
-  const anonymous = useAppStore((state) => state.anonymous);
+
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(`28_TellChoice_${exitNodeIteration}`, answer);
+    saveAnswer(`4_SwitchingDevices-ANON_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 
-  const NEXT_STEP = 
-    sameDevice ? 
-    isVpn ? STEP + 5 : STEP + 3 
-    : 
-    anonymous 
-    ?
-    STEP + 3
-    :
-    STEP + 1;
-
   return (
     <Step
-      className={`TellChoice${className ? ` ${className}` : ""}`}
+      className={`SwitchingDevices ANON${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell us choice"
+      title="Switching Devices"
       text={
         <>
           <Typography
@@ -49,31 +36,28 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
               color: "#333",
             }}
           >
-            Which one did you choose?
+            You can use this onboarding tool on any device. However, Gnosis VPN must be set up on a desktop device.
           </Typography>
+
           <Typography
             variant="body1"
             sx={{
               fontSize: "0.95rem",
               lineHeight: 1.6,
               color: "#333",
-              marginTop: "1rem",
             }}
           >
-            Now you can connect.
+            Remember, if you decide to switch devices using the onboarding tool, I can't track where you are in your journey. But I am sure you'll be able to quickly navigate to where you need to pick up your onboarding journey.
           </Typography>
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            {LOCATIONS.map((location) => (
-              <Button
-                key={location}
-                label={location}
-                onClick={() => handleAnswer(location, NEXT_STEP)}
-              />
-            ))}
+            <Button
+              label={CONTINUE_LABEL}
+              onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 4)}
+            />
           </>
         ) : null
       }

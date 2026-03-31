@@ -3,42 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 28;
+const STEP = 3;
 
-const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
-
-interface TellChoiceProps {
+interface GettingHelpProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
+export default function GettingHelp({ className, lastEntry }: GettingHelpProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const sameDevice = useAppStore((state) => state.isSameDevice);
-  const isVpn = useAppStore((state) => state.isVpn);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
-  const anonymous = useAppStore((state) => state.anonymous);
+
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(`28_TellChoice_${exitNodeIteration}`, answer);
+    saveAnswer(`3_GettingHelp-ANON_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 
-  const NEXT_STEP = 
-    sameDevice ? 
-    isVpn ? STEP + 5 : STEP + 3 
-    : 
-    anonymous 
-    ?
-    STEP + 3
-    :
-    STEP + 1;
-
   return (
     <Step
-      className={`TellChoice${className ? ` ${className}` : ""}`}
+      className={`GettingHelp ANON${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell us choice"
+      title="Getting Help"
       text={
         <>
           <Typography
@@ -49,31 +36,39 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
               color: "#333",
             }}
           >
-            Which one did you choose?
+            If you're stuck, I can put you in touch with the team and a team member will contact you using your chosen method as soon as possible.
           </Typography>
+
           <Typography
             variant="body1"
             sx={{
               fontSize: "0.95rem",
               lineHeight: 1.6,
               color: "#333",
-              marginTop: "1rem",
             }}
           >
-            Now you can connect.
+            Depending on what's not working, you might be asked to join 1-on-1 call for live debugging.
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "0.95rem",
+              lineHeight: 1.6,
+              color: "#333",
+            }}
+          >
+            You can write notes about your problem in the provided boxes. Since you're anonymous mode I won't be able to see what you write, but you can refer to it when our support contacts you. The team is fully trained on how to handle anonymous datanauts.
           </Typography>
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            {LOCATIONS.map((location) => (
-              <Button
-                key={location}
-                label={location}
-                onClick={() => handleAnswer(location, NEXT_STEP)}
-              />
-            ))}
+            <Button
+              label={CONTINUE_LABEL}
+              onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
+            />
           </>
         ) : null
       }

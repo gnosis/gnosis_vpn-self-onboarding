@@ -20,7 +20,7 @@ interface LoginProps {
 }
 
 export default function Login({ className }: LoginProps) {
-  const [loading, setLoading] = useState(false);
+  const [loadingButton, setLoadingButton] = useState<"anon" | "login" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [password, setPassword] = useState("");
@@ -29,6 +29,7 @@ export default function Login({ className }: LoginProps) {
   const setToken = useAppStore((state) => state.setToken);
   const setOnboardingData = useAppStore((state) => state.setOnboardingData);
   const setCurrentView = useAppStore((state) => state.setCurrentView);
+  const setAnonymous = useAppStore((state) => state.setAnonymous);
 
   /**
    * Login to gnosis-vpn-self-onboarding
@@ -36,9 +37,10 @@ export default function Login({ className }: LoginProps) {
    * @param {string} password - The user's password
    * @returns {Promise<{success: boolean, jsonData?: Object, isFirstLogin?: boolean, error?: string}>}
    */
-  async function loginUser(loginCredential: string, password: string): Promise<void> {
+  async function loginUser(loginCredential: string, password: string, anonymous: boolean = false): Promise<void> {
     setError(null);
-    setLoading(true);
+    setLoadingButton(anonymous ? "anon" : "login");
+    setAnonymous(anonymous);
     try {
       const response = await fetch(`${import.meta.env.VITE_WEBAPI_URL}/api/gnosisvpn-self-onboarding/login`, {
         method: 'POST',
@@ -60,16 +62,19 @@ export default function Login({ className }: LoginProps) {
 
       const data = await response.json();
       const token = data.token;
-      if (token) {
+      if (!anonymous && token) {
         localStorage.setItem('gvso_authToken', token);
         setToken(token);
       }
       console.log('Login successful:', data);
-      if (data.jsonData) {
+      if (!anonymous && data.jsonData) {
         setOnboardingData(data.jsonData as Parameters<typeof setOnboardingData>[0]);
       }
+      if(anonymous) {
+        setUsername('Anonymous');
+      }
       fetchFundingCode(token);
-      if (data.isFirstLogin) {
+      if (!anonymous && data.isFirstLogin) {
         setCurrentView("changePassword");
       } else {
         setCurrentView("landing");
@@ -78,7 +83,7 @@ export default function Login({ className }: LoginProps) {
       setError((error instanceof Error ? error.message : String(error)) || 'Network error occurred');
       setShowErrorModal(true);
     } finally {
-      setLoading(false);
+      setLoadingButton(null);
     }
   }
 
@@ -187,11 +192,19 @@ export default function Login({ className }: LoginProps) {
             sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}
           >
             <Button
+              label="Stay anonymous"
+              loading={loadingButton === "anon"}
+              disabled={loadingButton === "login"}
+              onClick={() => {
+                loginUser(username, password, true);
+              }}
+            />
+            <Button
               label="I understand. Log me in!"
-              loading={loading}
+              loading={loadingButton === "login"}
+              disabled={loadingButton === "anon"}
               onClick={() => loginUser(username, password)}
             />
-
             <Dialog open={showErrorModal} onClose={() => setShowErrorModal(false)}>
               <DialogTitle sx={{ fontWeight: 600 }}>Login Error</DialogTitle>
               <DialogContent>

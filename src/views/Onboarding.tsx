@@ -5,7 +5,7 @@ import { useAppStore } from "../store/appStore";
 import MessageBubble from "../components/MessageBubble";
 
 import { uploadData } from "../functions";
-import { STEP_COMPONENTS } from "./onboarding/index";
+import { STEP_COMPONENTS, STEP_COMPONENTS_ANNO } from "./onboarding/index";
 import X_WhatCanIHelpYouWith from "./onboarding/X_WhatCanIHelpYouWith";
 import X_KeepAnEye from "./onboarding/X_KeepAnEye";
 import X_iCal from "./onboarding/X_iCal";
@@ -29,6 +29,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   const numberOfSteps = Object.keys(STEP_COMPONENTS).length;
   const isMacOs = useAppStore((state) => state.isMacOs);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   useEffect(() => {
     let cancelled = false;
@@ -70,6 +71,7 @@ export default function Onboarding({ className }: OnboardingProps) {
   }, [onboardingStep]);
 
   useEffect(() => {
+    if (anonymous) return;
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
     }
@@ -83,14 +85,14 @@ export default function Onboarding({ className }: OnboardingProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice]);
+  }, [anonymous, exitNodeIteration, onboardingStep, stepLog, feedback, survey, onboardingAnswers, isMacOs, isSameDevice]);
 
   useEffect(() => {
       console.log(JSON.stringify({ stepLog }, null, 2));
   }, [stepLog]);
 
 
-  const CurrentComponent = STEP_COMPONENTS[onboardingStep] ?? null;
+  const CurrentComponent = anonymous && STEP_COMPONENTS_ANNO[onboardingStep]  ? STEP_COMPONENTS_ANNO[onboardingStep] : STEP_COMPONENTS[onboardingStep] ?? null;
 
   return (
     <Box className={`Onboarding${className ? ` ${className}` : ""}`} sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", pt: "57px" }}>
@@ -130,7 +132,7 @@ export default function Onboarding({ className }: OnboardingProps) {
             }
             
             const stepNum = parseInt(key);
-            const Component = STEP_COMPONENTS[stepNum];
+            const Component = anonymous && STEP_COMPONENTS_ANNO[stepNum]  ? STEP_COMPONENTS_ANNO[stepNum] : STEP_COMPONENTS[stepNum] ?? null;
             if (!Component) return null;
             return (
               <Fragment key={`${key}-${mN}`}>

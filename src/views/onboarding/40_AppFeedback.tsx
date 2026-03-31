@@ -16,6 +16,7 @@ export default function AppFeedback({ className, lastEntry, exitNodeIteration }:
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const sameDevice = useAppStore((state) => state.isSameDevice);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   const CONTINUE_LABEL = "Continue";
 
@@ -50,7 +51,7 @@ export default function AppFeedback({ className, lastEntry, exitNodeIteration }:
       buttons={
         lastEntry ? (
           <>
-            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice ? STEP + 3 : STEP + 1)} />
+            <Button label={CONTINUE_LABEL} onClick={() => handleAnswer(CONTINUE_LABEL, sameDevice || anonymous ? STEP + 3 : STEP + 1)} />
           </>
         ) : null
       }

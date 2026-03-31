@@ -17,7 +17,7 @@ export default function Button({
         <MuiButton
             className={`Button${className ? ` ${className}` : ""}`}
             variant={isActive ? "contained" : "outlined"}
-            disabled={loading}
+            disabled={loading || props.disabled}
             sx={{
                 flex: 1,
                 py: { xs: 1.25, sm: 1.5, md: 1.75 },

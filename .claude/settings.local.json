@@ -22,7 +22,12 @@
       "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmYUtvAw.woff2\" -o \"Roboto-800.woff2\")",
       "Bash(curl -L \"https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmcUtvAw.woff2\" -o \"Roboto-900.woff2\")",
       "Bash(file *.woff2)",
-      "Bash(md5sum *.woff2)"
+      "Bash(md5sum *.woff2)",
+      "Bash(mv 1anon_Welcome.tsx 1_Welcome-ANON.tsx)",
+      "Bash(mv 2anon_HowOnboardingWorks.tsx 2_HowOnboardingWorks-ANON.tsx)",
+      "Bash(mv 3anon_GettingHelp.tsx 3_GettingHelp-ANON.tsx)",
+      "Bash(mv 4anon_SwitchingDevices.tsx 4_SwitchingDevices-ANON.tsx)",
+      "Bash(mv 5anon_Os.tsx 5_Os-ANON.tsx)"
     ]
   }
 }

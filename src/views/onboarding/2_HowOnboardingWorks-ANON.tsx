@@ -3,42 +3,29 @@ import Button from "../../components/onboarding/Button";
 import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 
-const STEP = 28;
+const STEP = 2;
 
-const LOCATIONS = ["USA", "UK", "Brazil", "India", "Australia", "South Korea"];
-
-interface TellChoiceProps {
+interface HowOnboardingWorksProps {
   className?: string;
   lastEntry?: boolean;}
 
-export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
+export default function HowOnboardingWorks({ className, lastEntry }: HowOnboardingWorksProps) {
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
-  const sameDevice = useAppStore((state) => state.isSameDevice);
-  const isVpn = useAppStore((state) => state.isVpn);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
-  const anonymous = useAppStore((state) => state.anonymous);
+
+  const CONTINUE_LABEL = "Continue";
 
   const handleAnswer = (answer: string, nextStep: number) => {
-    saveAnswer(`28_TellChoice_${exitNodeIteration}`, answer);
+    saveAnswer(`2_HowOnboardingWorks-ANON_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
 
-  const NEXT_STEP = 
-    sameDevice ? 
-    isVpn ? STEP + 5 : STEP + 3 
-    : 
-    anonymous 
-    ?
-    STEP + 3
-    :
-    STEP + 1;
-
   return (
     <Step
-      className={`TellChoice${className ? ` ${className}` : ""}`}
+      className={`HowOnboardingWorks ANON${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Tell us choice"
+      title="How Onboarding Works"
       text={
         <>
           <Typography
@@ -49,31 +36,28 @@ export default function TellChoice({ className, lastEntry }: TellChoiceProps) {
               color: "#333",
             }}
           >
-            Which one did you choose?
+            As a datanaut, you'll be shaping how Gnosis VPN looks and feels. This tool will both onboard you and assess how intuitive our VPN is. We'll also be on the hunt for bugs.
           </Typography>
+
           <Typography
             variant="body1"
             sx={{
               fontSize: "0.95rem",
               lineHeight: 1.6,
               color: "#333",
-              marginTop: "1rem",
             }}
           >
-            Now you can connect.
+            At each step, I'll give you a short instruction. Try to complete it on your own. If you can't, you can ask for help and I'll show you more.
           </Typography>
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            {LOCATIONS.map((location) => (
-              <Button
-                key={location}
-                label={location}
-                onClick={() => handleAnswer(location, NEXT_STEP)}
-              />
-            ))}
+            <Button
+              label={CONTINUE_LABEL}
+              onClick={() => handleAnswer(CONTINUE_LABEL, STEP + 1)}
+            />
           </>
         ) : null
       }

@@ -58,6 +58,10 @@ interface AppStore {
   setIsMacOs: (value: boolean) => void;
   setIsSameDevice: (value: boolean) => void;
 
+  // Anonymous mode
+  anonymous: boolean;
+  setAnonymous: (value: boolean) => void;
+
   // Reset store
   resetStore: () => void;
   resetOnboarding: () => void;
@@ -76,6 +80,10 @@ interface AppStore {
     system: "Windows" | "macOS" | "Linux" | "Unknown" | null;
   };
   setSystemSpec: (architecture: "x86_64" | "x86" | "arm64" | "arm" | null, system: "Windows" | "macOS" | "Linux" | "Unknown" | null) => void;
+
+  // Version
+  currentVersion: string | null;
+  setCurrentVersion: (version: string | null) => void;
 }
 
 export const useAppStore = create<AppStore>()(
@@ -143,6 +151,10 @@ export const useAppStore = create<AppStore>()(
     }),
 
 
+    // Anonymous mode
+    anonymous: false,
+    setAnonymous: (value) => set({ anonymous: value }),
+
     // Device flags
     isMacOs: false,
     isSameDevice: null,
@@ -160,6 +172,7 @@ export const useAppStore = create<AppStore>()(
       survey: {},
       username: '',
       token: null,
+      anonymous: false,
       isMacOs: false,
       isSameDevice: null,
       vpnCountry: null,
@@ -193,5 +206,9 @@ export const useAppStore = create<AppStore>()(
       system: null,
     },
     setSystemSpec: (architecture, system) => set({ systemSpec: { architecture, system } }),
+
+    // Version
+    currentVersion: null,
+    setCurrentVersion: (version) => set({ currentVersion: version }),
   }), { name: 'AppStore' })
 );

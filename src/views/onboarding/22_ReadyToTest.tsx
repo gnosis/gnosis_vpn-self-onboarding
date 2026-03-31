@@ -16,7 +16,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const ALREADY_DID_LABEL = "I already connected to the VPN";
-  const OKAY_LABEL = "I'm waiting";
+  const OKAY_LABEL = "IT'S SYNCED";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`22_ReadyToTest_${exitNodeIteration}`, answer);
@@ -27,7 +27,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
     <Step
       className={`ReadyToTest${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
-      title="Your VPN is installed and funded"
+      title="Your VPN is syncing"
       text={
         <>
           <Typography
@@ -38,7 +38,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
               color: "#333",
             }}
           >
-            The VPN is currently finishing a few setup steps in the background. Please do <strong>not connect to the VPN yet</strong> while this process is completing.
+            The VPN is currently finishing a few steps in the background. Not long before we can start our journey!
           </Typography>
           <Typography
             variant="body1"
@@ -49,7 +49,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
               marginTop: "1rem",
             }}
           >
-            This release, Atlantis, is an early version (minimum viable product). You may notice some limitations or rough edges. That’s expected, and your feedback helps us improve.
+            This release, Atlantis, is an early version. You may notice some limitations or rough edges. That's expected, and your feedback helps us improve.
           </Typography>
         </>
       }

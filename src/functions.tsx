@@ -252,6 +252,26 @@ export async function uploadData(
   }
 }
 
+export async function fetchCurrentVersion(): Promise<string | null> {
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/gnosis/gnosis_vpn/releases/latest`
+    );
+
+    if (!response.ok) {
+      console.error('Failed to fetch current version:', response.statusText);
+      return null;
+    }
+
+    const data = await response.json();
+    return data.tag_name ?? null;
+  } catch (error) {
+    console.error('Error fetching current version:', error);
+    return null;
+  }
+}
+
+
 const IP_JSON_FIELDS = [
   "ip", "IP", "ipAddress", "IPv4", "origin",
   "ipString", "YourFuckingIPAddress", "query",
