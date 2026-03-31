@@ -13,6 +13,7 @@ export default function VisitYoutube({ className, lastEntry }: VisitYoutubeProps
   const setOnboardingStep = useAppStore((state) => state.setOnboardingStep);
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
+  const anonymous = useAppStore((state) => state.anonymous);
 
   const NEED_HELP_LABEL = "I need help";
   const WORKED_LABEL = "It's worked";
@@ -44,8 +45,8 @@ export default function VisitYoutube({ className, lastEntry }: VisitYoutubeProps
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
-            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, STEP + 1)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, anonymous ? STEP + 1.25 : STEP + 0.25)} />
+            <Button label={WORKED_LABEL} onClick={() => handleAnswer(WORKED_LABEL, anonymous ? STEP + 2 : STEP + 1)} />
           </>
         ) : null
       }
