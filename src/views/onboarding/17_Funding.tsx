@@ -207,7 +207,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
             If you prefer to fund it yourself, you can follow the instructions {" "}
             <Box
               component="a"
-              href="https://github.com/gnosis/gnosis_vpn/wiki#how-do-i-fund-or-top-up-my-gnosis-vpn-account"
+              href="https://github.com/gnosis/gnosis_vpn/wiki#fund-and-top-up-account"
               target="_blank"
               rel="noreferrer noopener"
               sx={{
