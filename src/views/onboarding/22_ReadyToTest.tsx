@@ -16,7 +16,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
   const ALREADY_DID_LABEL = "I already connected to the VPN";
-  const OKAY_LABEL = "IT'S SYNCED";
+  const OKAY_LABEL = "It's synced";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`22_ReadyToTest_${exitNodeIteration}`, answer);
