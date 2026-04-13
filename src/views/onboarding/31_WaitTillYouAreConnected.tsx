@@ -11,15 +11,6 @@ interface WaitTillYouAreConnectedProps {
   lastEntry?: boolean;
 }
 
-const css = `
-  .interstitial-wrapper.instructions {
-    display: none;
-  }
-  canvas {
-    border-bottom: 1px #535353 solid;
-  }
-`
-
 const NOT_WORKING_LABEL = "VPN not working?";
 const I_AM_CONNECTED_LABEL = 'I am connected to the VPN';
 
