@@ -168,9 +168,20 @@ export default function Login({ className }: LoginProps) {
                 lineHeight: 1.4,
               }}
             >
-              We're committed to making onboarding as private as possible
+              We're committed to making onboarding as private as possible.
             </Typography>
 
+            <Typography
+              variant="body2"
+              sx={{
+                fontSize: "0.8rem",
+                mb: { xs: 1, sm: 1.25, md: 1.5 },
+                lineHeight: 1.4,
+              }}
+            >
+              This tool will help you onboard to Gnosis VPN and gather your feedback. To do so, we'd like to store minimal data to enable you to smoothly restore your session, switch devices, submit feedback and contact us if anything goes wrong. This data will only be used to facilitate the onboarding and testing process. Although the onboarding uses your IP address to test connectivity, it is not sent to us or stored.
+            </Typography>
+ 
             <Typography
               variant="body2"
               sx={{
@@ -178,10 +189,7 @@ export default function Login({ className }: LoginProps) {
                 lineHeight: 1.4,
               }}
             >
-              This tool will help you onboard to Gnosis VPN.
-              To do so, we'll need to store minimal data which will let you resume your session, switch devices, contact support and submit feedback.
-              This data will only be used to facilitate the onboarding and testing process.
-              Although the onboarding uses your IP address to test connectivity, it is not sent to us or stored.
+              If you'd prefer to remain anonymous, the tool will keep all your data local, but you will not be able to restore your session or automatically send us your feedback.
             </Typography>
           </Paper>
 
