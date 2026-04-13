@@ -3,8 +3,6 @@ import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import Button from "../../components/onboarding/Button";
 import { getVpnCountry } from "../../functions";
-import DinoGame from 'react-chrome-dino-ts'
-import 'react-chrome-dino-ts/index.css'
 
 const STEP = 31;
 
@@ -34,33 +32,6 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const [waitTimeIsOver, setWaitTimeIsOver] = useState(false);
-  const [gameReady, setGameReady] = useState(false);
-
-  useEffect(() => {
-    if (!isSameDevice) return;
-    const id = requestAnimationFrame(() => setGameReady(true));
-    return () => cancelAnimationFrame(id);
-  }, [isSameDevice]);
-
-  useEffect(() => {
-    if (!gameReady) return;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (window as any).Runner?.keycodes?.JUMP?.[38];
-    const preventScroll = (e: KeyboardEvent) => {
-      if (e.code !== 'Space') return;
-      const canvas = document.querySelector('canvas.runner-canvas');
-      if (!canvas) return;
-      const { top, bottom } = canvas.getBoundingClientRect();
-      const isVisible = top < window.innerHeight && bottom > 0;
-      if (isVisible) {
-        e.preventDefault();
-      } else {
-        e.stopImmediatePropagation();
-      }
-    };
-    window.addEventListener('keydown', preventScroll, true);
-    return () => window.removeEventListener('keydown', preventScroll, true);
-  }, [gameReady]);
 
   useEffect(() => {
     const isVpn = currentIP?.startsWith("185.9.1.") || false;
@@ -77,7 +48,7 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
     }
     const timeout = setTimeout(() => {
       setWaitTimeIsOver(true);
-    }, 30_000);
+    }, 15_000);
     return () => clearTimeout(timeout);
   }, [lastEntry]);
 
@@ -91,19 +62,6 @@ export default function WaitTillYouAreConnected({ className, lastEntry }: WaitTi
       className={`WaitTillYouAreConnected${className ? ` ${className}` : ""}`}
       onboardingStep={STEP}
       title="Let's wait a moment to see if you are connected to the VPN"
-      text={
-        isSameDevice ? (
-          <>
-            <p>In the mean time, you can play a game. Press the spacebar to start the game and to jump.</p>
-            <div className="game-container">
-              {gameReady && <DinoGame />}
-            </div>
-            <style>
-              {css}
-            </style>
-          </>
-        ) : null
-      }
       buttons={
         lastEntry && isSameDevice ? ( 
           <Button 
