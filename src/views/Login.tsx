@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import Button from "../components/onboarding/Button";
+import ButtonGrayCta from "../components/ButtonGrayCta";
 import { useAppStore } from "../store/appStore";
 import { fetchFundingCode } from "../functions";
 
@@ -191,6 +192,13 @@ export default function Login({ className }: LoginProps) {
             >
               If you'd prefer to remain anonymous, the tool will keep all your data local, but you will not be able to restore your session or automatically send us your feedback.
             </Typography>
+
+            <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+              <ButtonGrayCta
+                label='Privacy Policy'
+                onClick={() => { window.location.hash = '#privacyPolicy'; }}
+              />
+            </Box>
           </Paper>
 
           {/* Onboarding Buttons */}

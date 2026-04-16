@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from './store/appStore';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import LoadingOverlay from './components/LoadingOverlay';
 import LandingPage from './views/LandingPage'
 import Login from './views/Login';
@@ -94,6 +95,21 @@ function App() {
 
   
 
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(() => window.location.hash === '#privacyPolicy');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setShowPrivacyPolicy(window.location.hash === '#privacyPolicy');
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleClose = () => {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    setShowPrivacyPolicy(false);
+  };
+
   const renderView = () => {
     switch (currentView) {
       case 'login':
@@ -111,6 +127,7 @@ function App() {
 
   return (
     <div className="App">
+      <PrivacyPolicy open={showPrivacyPolicy} onClose={handleClose} />
       <LoadingOverlay />
       {renderView()}
     </div>

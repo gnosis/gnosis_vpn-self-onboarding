@@ -367,7 +367,6 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
   const setCurrentView = useAppStore((state) => state.setCurrentView);
   const username = useAppStore((state) => state.username);
   const anonymous = useAppStore((state) => state.anonymous);
-
   return (
     <>
       <GlobalStyle />
@@ -386,23 +385,16 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
                 onClick={() => setCurrentView('onboarding')}
               />
               <Button
-                component="a"
-                href="https://log-uploader.gnosisvpn.io/"
-                target="_blank"
-                rel="noreferrer noopener"
                 variant="text"
                 size="small"
+                onClick={() => { window.location.hash = '#privacyPolicy'; }}
                 sx={{
                   fontSize: "0.85rem",
                   color: "#333",
                   textTransform: "none",
-                  textDecoration: "none",
                   fontWeight: 500,
-                  "&:hover": {
-                    backgroundColor: "rgba(0, 0, 0, 0.04)",
-                  },
+                  "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.04)" },
                 }}
-                disabled
               >
                 Privacy Policy
               </Button>
@@ -577,7 +569,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               <div className="links">
                 <a href="#">Contact</a>
                 <a href="#">About us</a>
-                <a href="#">Privacy</a>
+                <a href='#privacyPolicy' onClick={() => { window.location.hash = '#privacyPolicy'; }}>Privacy</a>
               </div>
             </FooterLinks>
           </FooterContent>
