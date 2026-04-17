@@ -400,7 +400,7 @@ const GnosisLanding: React.FC<GnosisLandingProps> = ({ className }) => {
               </Button>
               <Button
                 component="a"
-                href="https://log-uploader.gnosisvpn.io/"
+                href="https://log-uploader.gnosisvpn.com/"
                 target="_blank"
                 rel="noreferrer noopener"
                 variant="text"

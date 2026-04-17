@@ -211,7 +211,7 @@ export default function TopBar({ currentStep = 1, totalSteps = 16, className }: 
 
         <Button
           component="a"
-          href="https://log-uploader.gnosisvpn.io/"
+          href="https://log-uploader.gnosisvpn.com/"
           target="_blank"
           rel="noreferrer noopener"
           variant="text"
