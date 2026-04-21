@@ -27,7 +27,8 @@
       "Bash(mv 2anon_HowOnboardingWorks.tsx 2_HowOnboardingWorks-ANON.tsx)",
       "Bash(mv 3anon_GettingHelp.tsx 3_GettingHelp-ANON.tsx)",
       "Bash(mv 4anon_SwitchingDevices.tsx 4_SwitchingDevices-ANON.tsx)",
-      "Bash(mv 5anon_Os.tsx 5_Os-ANON.tsx)"
+      "Bash(mv 5anon_Os.tsx 5_Os-ANON.tsx)",
+      "Bash(git -C \"c:/dev/gnosis/gnosis_vpn-self-onboarding\" ls-files --error-unmatch .claude/settings.local.json)"
     ]
   }
 }
