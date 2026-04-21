@@ -37,6 +37,12 @@ function App() {
       const token = localStorage.getItem('gvso_authToken');
       if (!token) return;
 
+      const expiry = getTokenExpiry(token);
+      if (!expiry || expiry <= Date.now()) {
+        localStorage.removeItem('gvso_authToken');
+        return;
+      }
+
       setAutoLoading(true);
       setToken(token);
       fetchFundingCode(token);
