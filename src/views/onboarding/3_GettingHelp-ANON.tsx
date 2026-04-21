@@ -36,7 +36,7 @@ export default function GettingHelp({ className, lastEntry }: GettingHelpProps) 
               color: "#333",
             }}
           >
-            If you're stuck, I can put you in touch with the team and a team member will contact you using your chosen method as soon as possible.
+            If you're stuck, please send us a message using your chosen contact method and a team member will respond as soon as possible.
           </Typography>
 
           <Typography
