@@ -15,7 +15,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
   const saveAnswer = useAppStore((state) => state.saveAnswer);
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
 
-  const ALREADY_DID_LABEL = "I already connected to the VPN";
+  const NEED_HELP_LABEL = "I need some help";
   const OKAY_LABEL = "It's synced";
 
   const handleAnswer = (answer: string, nextStep: number) => {
@@ -57,7 +57,7 @@ export default function ReadyToTest({ className, lastEntry }: ReadyToTestProps) 
         lastEntry
         ? (
           <>
-            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(ALREADY_DID_LABEL, STEP + 1)} />
+            <Button label={ALREADY_DID_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 0.25)} />
             <Button label={OKAY_LABEL} onClick={() => handleAnswer(OKAY_LABEL, STEP + 3)} />
           </>
         ) : null
