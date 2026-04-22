@@ -20,7 +20,6 @@ export default function RunInstaller({ className, lastEntry }: RunInstallerProps
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const isSameDevice = useAppStore((state) => state.isSameDevice);
   const systemSpec = useAppStore((state) => state.systemSpec);
-  const currentVersion = useAppStore((state) => state.currentVersion);
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
   const systemArchitectureAvailable = isSameDevice && systemSpec.architecture && ["arm64", "arm", "x86_64", "x86"].includes(systemSpec.architecture)

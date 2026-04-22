@@ -4,7 +4,7 @@ import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import ButtonGrayCta from "../../components/ButtonGrayCta";
 import { useEffect } from "react";
-import { InstallerName, installerLabel } from "../../functions";
+import { installerLabel } from "../../functions";
 
 const STEP = 9;
 
