@@ -53,8 +53,8 @@ export default function Funding({ className, lastEntry }: FundingProps) {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  const NEED_HELP_LABEL = "I need some help";
-  const FUNDED_LABEL = "Continue";
+  const NEED_HELP_LABEL = "I need help";
+  const FUNDED_LABEL = "SYNC COMPLETE";
 
   const handleAnswer = (answer: string, nextStep: number) => {
     saveAnswer(`17_Funding_${exitNodeIteration}`, answer);
@@ -229,15 +229,28 @@ export default function Funding({ className, lastEntry }: FundingProps) {
             >
               With the funding tool we can technically see who has used which code and with which address, while funding yourself will expose your funding address on chain. If you want to be extremely private you could consider funding from a privacy pool.
             </Typography>
+            <br/>
+            <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  color: "#333",
+                }}
+              >
+                <strong>After funding, the node needs a few minutes to sync. This is normal.</strong>
+              </Typography>
 
           </Typography>
+    
+
         </>
       }
       buttons={
         lastEntry ? (
           <>
-            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 4.25)} />
-            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 5)} />
+            <Button label={NEED_HELP_LABEL} onClick={() => handleAnswer(NEED_HELP_LABEL, STEP + 8.25)} />
+            <Button label={FUNDED_LABEL} onClick={() => handleAnswer(FUNDED_LABEL, STEP + 9)} />
           </>
         ) : null
       }
