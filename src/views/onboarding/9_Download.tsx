@@ -4,6 +4,7 @@ import Step from "../../components/onboarding/Step";
 import { useAppStore } from "../../store/appStore";
 import ButtonGrayCta from "../../components/ButtonGrayCta";
 import { useEffect } from "react";
+import { InstallerName, installerLabel } from "../../functions";
 
 const STEP = 9;
 
@@ -30,7 +31,6 @@ export default function Download({ className, lastEntry }: DownloadProps) {
     saveAnswer(`9_download_${exitNodeIteration}`, answer);
     setOnboardingStep(nextStep);
   };
-
 
   useEffect(() => {
     // Detect system information
@@ -60,50 +60,11 @@ export default function Download({ className, lastEntry }: DownloadProps) {
       architecture = "arm";
     }
 
-    setSystemSpec(architecture, system);
+    setSystemSpec({architecture, system});
   }, [setSystemSpec]);
 
-
-  function InstallerName() {
-    // mac OS
-    if (macOS) return <>GnosisVPN-Installer-<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span><span style={{ color: "darkred", fontWeight: 800 }}>.pkg</span></>
-
-    // Linux
-    if (systemArchitectureAvailable) {
-      if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
-        return <>gnosisvpn_<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span>_<span style={{ color: "darkblue", fontWeight: 800 }}>arm64</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
-      }
-      if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
-        return <>gnosisvpn_<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span>_<span style={{ color: "darkblue", fontWeight: 800 }}>amd64</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
-      }
-    }
-
-    return <>gnosisvpn_<span style={{ color: "darkorange", fontWeight: 800 }}>&lt;version&gt;</span>_<span style={{ color: "darkblue", fontWeight: 800 }}>&lt;architecture&gt;</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
-  }
-
-  function href() {
-    if (macOS) {
-      return `https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/GnosisVPN-Installer-${currentVersion}.pkg`
-    }
-    if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
-      return `https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/gnosisvpn_${currentVersion?.replace('v', '')}_arm64.deb`
-    }
-    if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
-      return `https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/gnosisvpn_${currentVersion?.replace('v', '')}_amd64.deb`
-    }
-  }
-
-  function label() {
-    if (macOS) {
-      return `GnosisVPN-Installer-${currentVersion}.pkg`
-    }
-    if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
-      return `gnosisvpn_${currentVersion?.replace('v', '')}_arm64.deb`
-    }
-    if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
-      return `gnosisvpn_${currentVersion?.replace('v', '')}_amd64.deb`
-    }
-  }
+  const DOWNLOAD_PORTAL_LABEL = "downloads.vpn.gnosis.eth.limo";
+  const DOWNLOAD_PORTAL_HREF = `https://${DOWNLOAD_PORTAL_LABEL}`;
 
   return (
     <Step
@@ -125,47 +86,24 @@ export default function Download({ className, lastEntry }: DownloadProps) {
                 >
                   Great! Now download the installer for your system here: {" "}
                   <ButtonGrayCta
-                    href={href()}
-                    label={label()}
+                    href={`https://github.com/gnosis/gnosis_vpn/releases/download/${currentVersion}/${installerLabel({ macOS, systemArchitectureAvailable, systemSpec })}`}
+                    label={installerLabel({ macOS, systemArchitectureAvailable, systemSpec })}
                   />
                 </Typography>
               </>
               :
-              <>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: "0.95rem",
-                    lineHeight: 1.6,
-                    color: "#333",
-                  }}
-                >
-                  Great! Now head to {" "}
-                  <ButtonGrayCta
-                    href="https://github.com/gnosis/gnosis_vpn/releases/latest"
-                    label="https://github.com/gnosis/gnosis_vpn/releases/latest"
-                  />
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: "0.95rem",
-                    lineHeight: 1.6,
-                    color: "#333",
-                  }}
-                >
-                  and download the installer {" "}
-                  <span style={{ fontWeight: 600 }}>
-                    <InstallerName />
-                  </span>.
-                </Typography>
-              </>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  color: "#333",
+                }}
+              >
+                Great! Open our download page and grab the installer for your system:{" "}
+                  <ButtonGrayCta href={DOWNLOAD_PORTAL_HREF} label={DOWNLOAD_PORTAL_LABEL} />
+              </Typography>
           }
-
-
-
-
-
         </>
       }
       buttons={

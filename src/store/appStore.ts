@@ -4,6 +4,11 @@ import type { AppView } from '../App';
 
 export const STORE_VERSION = 2;
 
+export type SystemSpec = {
+    architecture: "x86_64" | "x86" | "arm64" | "arm" | null;
+    system: "Windows" | "macOS" | "Linux" | "Unknown" | null;
+  }
+
 interface AppStore {
   // Navigation
   currentView: AppView;
@@ -75,11 +80,8 @@ interface AppStore {
   setAutoLoading: (loading: boolean) => void;
 
   // System specification
-  systemSpec: {
-    architecture: "x86_64" | "x86" | "arm64" | "arm" | null;
-    system: "Windows" | "macOS" | "Linux" | "Unknown" | null;
-  };
-  setSystemSpec: (architecture: "x86_64" | "x86" | "arm64" | "arm" | null, system: "Windows" | "macOS" | "Linux" | "Unknown" | null) => void;
+  systemSpec: SystemSpec;
+  setSystemSpec: (systemSpec: SystemSpec) => void;
 
   // Version
   currentVersion: string | null;
@@ -205,7 +207,7 @@ export const useAppStore = create<AppStore>()(
       architecture: null,
       system: null,
     },
-    setSystemSpec: (architecture, system) => set({ systemSpec: { architecture, system } }),
+    setSystemSpec: (systemSpec) => set({ systemSpec }),
 
     // Version
     currentVersion: null,

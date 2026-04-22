@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+import type { SystemSpec } from './store/appStore';
 import { useAppStore } from './store/appStore';
 import { STORE_VERSION } from './store/appStore';
 
@@ -352,3 +354,40 @@ export function getVpnCountry(ip: string | null): string | null {
 }
 
 export const TRY_AGAIN_STEP = 28;
+
+
+export function InstallerName(props: { macOS?: boolean | null, systemArchitectureAvailable?: boolean | null, systemSpec?: SystemSpec }): JSX.Element {
+  const { macOS, systemArchitectureAvailable, systemSpec } = props;
+  // mac OS
+  if (macOS) return <>gnosisvpn_arm64<span style={{ color: "darkred", fontWeight: 800 }}>.pkg</span></>
+
+  // Linux
+  if (systemArchitectureAvailable && systemSpec) {
+    if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
+      return <>gnosisvpn_<span style={{ color: "darkblue", fontWeight: 800 }}>arm64</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
+    }
+    if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
+      return <>gnosisvpn_<span style={{ color: "darkblue", fontWeight: 800 }}>amd64</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
+    }
+  }
+
+  return <>gnosisvpn_<span style={{ color: "darkblue", fontWeight: 800 }}>&lt;architecture&gt;</span><span style={{ color: "darkred", fontWeight: 800 }}>.deb</span></>
+}
+
+export function installerLabel(props: { macOS?: boolean | null, systemArchitectureAvailable?: boolean | null, systemSpec?: SystemSpec }): string {
+  const { macOS, systemArchitectureAvailable, systemSpec } = props;
+  if (macOS) {
+    return `gnosisvpn_arm64.pkg`
+  }
+
+  if (systemArchitectureAvailable && systemSpec) {  
+    if (systemSpec.architecture === "arm64" || systemSpec.architecture === "arm") {
+      return `gnosisvpn_arm64.deb`
+    }
+    if (systemSpec.architecture === "x86_64" || systemSpec.architecture === "x86") {
+      return `gnosisvpn_amd64.deb`
+    }
+  }
+
+  return `gnosisvpn_<architecture>.deb`;
+}
