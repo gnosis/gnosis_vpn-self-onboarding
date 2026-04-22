@@ -53,7 +53,7 @@ export default function Funding({ className, lastEntry }: FundingProps) {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  const NEED_HELP_LABEL = "I need some help";
+  const NEED_HELP_LABEL = "I need help";
   const FUNDED_LABEL = "SYNC COMPLETE";
 
   const handleAnswer = (answer: string, nextStep: number) => {

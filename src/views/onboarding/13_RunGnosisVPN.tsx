@@ -15,7 +15,7 @@ export default function RunGnosisVPN({ className, lastEntry }: RunGnosisVPNProps
   const exitNodeIteration = useAppStore((state) => state.exitNodeIteration);
   const macOS = useAppStore((state) => state.isMacOs);
 
-  const NEED_HELP_LABEL = "I need some help";
+  const NEED_HELP_LABEL = "I need help";
   const RUNNING_LABEL = "It's running";
 
   const handleAnswer = (answer: string, nextStep: number) => {
