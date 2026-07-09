@@ -1,6 +1,6 @@
 > [!IMPORTANT]
 > This repository is archived and read-only. The site now lives in the Gnosis VPN website monorepo:
-> **https://github.com/gnosis/gnosis_vpn-website_monorepo/tree/main/apps/onboarding**
+> **https://github.com/gnosis/gnosis_vpn-website_monorepo/tree/main/apps/self-onboarding**
 
 # React + TypeScript + Vite
 
